@@ -1,0 +1,25 @@
+[project]
+name = "cchs-bootstrap"
+version = "0.1.0"
+description = "Streamlit app for CCHS bootstrap analysis"
+authors = [ { name = "Eswar Attuluri" } ]
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "Proprietary" }
+
+dependencies = [
+  "streamlit==1.37.1",
+  "pandas==2.2.2",
+  "numpy==1.26.4",
+  "pyarrow==16.1.0",
+  "matplotlib==3.9.1",
+  "openpyxl==3.1.5",
+  "altair==5.3.0"
+]
+
+[tool.uv]
+# Enable deterministic resolution
+locked = false
+
+[tool.streamlit]
+browser.gatherUsageStats = false
