@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
+import json
 
 # Set page configuration with custom theme
 st.set_page_config(
@@ -112,31 +113,31 @@ if 'combined_results' not in st.session_state:
 if 'selected_variables' not in st.session_state:
     st.session_state['selected_variables'] = []
 
-# 1. Caching data load for better performance
+# Updated: Make load_data dynamic based on cycle
 @st.cache_data
-def load_data():
+def load_data(cycle):
     """
-    Load the main data and bootstrap data from parquet files.
-    Adjust file names/paths as needed.
+    Load the main data and bootstrap data from parquet files, based on the selected cycle.
+    Adjust file names/paths as needed (assuming pattern: hs{year}_on_distr.parquet, etc.).
     """
-    data_file = "data/hs2023_on_distr.parquet"
-    bootstrap_file = "data/hs2023_on_bootwt.parquet"
+    data_file = f"data/hs{cycle}_on_distr.parquet"
+    bootstrap_file = f"data/hs{cycle}_on_bootwt.parquet"
     if os.path.exists(data_file) and os.path.exists(bootstrap_file):
         data = pd.read_parquet(data_file)
         bootstrap_data = pd.read_parquet(bootstrap_file)
         return data, bootstrap_data
     else:
-        st.error("One or both of the required parquet files are missing.")
+        st.error(f"One or both of the required parquet files for cycle {cycle} are missing. Please check the 'data/' directory.")
         return None, None
 
-# Add this function to load the variable descriptions
+# Updated: Make load_variable_descriptions dynamic based on cycle
 @st.cache_data
-def load_variable_descriptions():
+def load_variable_descriptions(cycle):
     """
-    Load the variable descriptions from the CCHS_2021_Recoded_Variables.csv file.
+    Load the variable descriptions from the CCHS CSV file for the selected cycle.
     """
     try:
-        desc_file = "data/CCHS_2021_Recoded_Variables.csv"
+        desc_file = f"data/CCHS_{cycle}_Recoded_Variables.csv"
         if os.path.exists(desc_file):
             descriptions = pd.read_csv(desc_file)
             # Create a dictionary for quick lookup
@@ -145,8 +146,59 @@ def load_variable_descriptions():
         else:
             return None, {}
     except Exception as e:
-        st.error(f"Error loading variable descriptions: {e}")
+        st.error(f"Error loading variable descriptions for cycle {cycle}: {e}")
         return None, {}
+
+# Updated: Make load_json_variable_descriptions dynamic based on cycle
+@st.cache_data
+def load_json_variable_descriptions(cycle):
+    json_file = f"data/CCHS_{cycle}.json"
+    if os.path.exists(json_file):
+        with open(json_file, "r") as f:
+            var_dict = json.load(f)
+        # Assume structure: {"VARIABLE": {"label_en": "Description...", ...}, ...}
+        return {k: v.get("label_en", "") for k, v in var_dict.items()}
+    return {}
+
+@st.cache_data
+def load_crosswalk():
+    with open("harmonization/crosswalk.json", "r") as f:
+        return json.load(f)
+
+@st.cache_data
+def load_categories():
+    with open("harmonization/categories.json", "r") as f:
+        return json.load(f)
+
+# Helper to get cycle-specific variable name
+def get_cycle_varname(harmonized_var, cycle, crosswalk):
+    mapping = crosswalk.get(harmonized_var, {})
+    return mapping.get(cycle, harmonized_var)
+
+# Helper to get value label for cycle
+def get_value_label(harmonized_var, value, cycle, categories):
+    cat = categories.get(harmonized_var, {})
+    mappings = cat.get("mappings", {})
+    year_map = mappings.get(str(cycle), {})
+    # Convert value to string, but if it's a float and is_integer, cast to int first
+    if isinstance(value, float) and value.is_integer():
+        value_str = str(int(value))
+    else:
+        value_str = str(value)
+    label = year_map.get(value_str, None)
+    if label is None:
+        st.write(f"[DEBUG] No label for var={harmonized_var}, value={value}, cycle={cycle}")
+        return value_str
+    return label
+
+# Helper to get available harmonized variables for the selected cycle and data
+def get_available_harmonized_vars(crosswalk, cycle, merged_data):
+    available = []
+    for harmonized_var, mapping in crosswalk.items():
+        varname = mapping.get(cycle)
+        if varname and varname in merged_data.columns:
+            available.append(harmonized_var)
+    return available
 
 # 2. Merging filtered data with bootstrap weights
 @st.cache_data
@@ -263,24 +315,45 @@ def display_results(result_df, variable):
         </div>
     """, unsafe_allow_html=True)
     
-    # Enhanced dataframe styling with modern color scheme
-    styled_df = result_df.style.background_gradient(
-        subset=['Prevalence'], 
-        cmap='viridis'
-    ).format({
-        'Prevalence': '{:.2f}%',
-        'Weighted Population': '{:,.0f}',
-        'Standard Deviation': '{:.3f}',
-        'CI Lower': '{:.2f}',
-        'CI Upper': '{:.2f}',
-        'CV (%)': '{:.1f}%',
-        'Error': '{:.3f}'
-    }).set_properties(**{
-        'text-align': 'center',
-        'font-weight': '500'
-    })
-    
-    st.dataframe(styled_df, use_container_width=True)
+    # Always use Label column for display in both table and plot
+    if 'Label' in result_df.columns:
+        display_df = result_df.copy()
+        display_df = display_df.rename(columns={'Label': 'Value Label'})
+        styled_df = display_df.style.background_gradient(
+            subset=['Prevalence'], 
+            cmap='viridis'
+        ).format({
+            'Prevalence': '{:.2f}%',
+            'Weighted Population': '{:,.0f}',
+            'Standard Deviation': '{:.3f}',
+            'CI Lower': '{:.2f}',
+            'CI Upper': '{:.2f}',
+            'CV (%)': '{:.1f}%',
+            'Error': '{:.3f}'
+        }).set_properties(**{
+            'text-align': 'center',
+            'font-weight': '500'
+        })
+        st.dataframe(styled_df, use_container_width=True)
+        x_labels = display_df['Value Label']
+    else:
+        styled_df = result_df.style.background_gradient(
+            subset=['Prevalence'], 
+            cmap='viridis'
+        ).format({
+            'Prevalence': '{:.2f}%',
+            'Weighted Population': '{:,.0f}',
+            'Standard Deviation': '{:.3f}',
+            'CI Lower': '{:.2f}',
+            'CI Upper': '{:.2f}',
+            'CV (%)': '{:.1f}%',
+            'Error': '{:.3f}'
+        }).set_properties(**{
+            'text-align': 'center',
+            'font-weight': '500'
+        })
+        st.dataframe(styled_df, use_container_width=True)
+        x_labels = result_df['Value'].astype(str)
     
     # Create enhanced color palette with gradients
     colors = ['#005568', '#00928F', '#78A22F', '#1fb5b3', '#8fb944', '#5C6F7C', '#7A68AE']
@@ -291,7 +364,7 @@ def display_results(result_df, variable):
     
     # Create bars with enhanced styling
     bars = ax.bar(
-        result_df['Value'].astype(str),
+        x_labels,
         result_df['Prevalence'],
         yerr=result_df['Error'],
         capsize=6,
@@ -349,18 +422,20 @@ def display_crosstab_report(combined_df):
     """
     st.write("### Combined Crosstab Report (Prevalence)")
     
+    # Always use Label if available for columns
+    col_field = 'Label' if 'Label' in combined_df.columns else 'Value'
     # Build the pivot table with index=Variable and columns=Value
     prevalence_crosstab = pd.pivot_table(
         combined_df,
         index='Variable',
-        columns='Value',
+        columns=col_field,
         values='Prevalence'
     )
     # Weighted population crosstab
     weighted_pop_crosstab = pd.pivot_table(
         combined_df,
         index='Variable',
-        columns='Value',
+        columns=col_field,
         values='Weighted Population'
     )
     
@@ -418,13 +493,25 @@ def main():
     with title_col:
         st.title("Canadian Community Health Survey (CCHS) Analysis")
     
-    # A. Load data
-    data, bootstrap_data = load_data()
+    # NEW: Select cycle at the top, before loading data
+    cycle = st.selectbox(
+        "Select CCHS Cycle/Year",
+        options=["2021", "2022", "2023"],
+        index=2,  # Default to 2023
+        help="Choose the survey cycle. Data and descriptions will load automatically based on this selection."
+    )
+    st.session_state['cycle'] = cycle  # Store in session state for consistency
+    
+    # A. Load data (now dynamic based on cycle)
+    data, bootstrap_data = load_data(cycle)
     if data is None or bootstrap_data is None:
         st.stop()
         
-    # Load variable descriptions
-    desc_df, desc_dict = load_variable_descriptions()
+    # Load variable descriptions (now dynamic based on cycle)
+    desc_df, desc_dict = load_variable_descriptions(cycle)
+    json_desc_dict = load_json_variable_descriptions(cycle)
+    # Merge CSV and JSON descriptions, prefer CSV if present
+    merged_desc_dict = {**json_desc_dict, **desc_dict}
     
     # Enhanced sidebar variable search with modern design
     st.sidebar.markdown("""
@@ -751,39 +838,33 @@ def main():
         """, unsafe_allow_html=True)
         
         merged_data = st.session_state['merged_data']
-        
-        # Enhanced variable selection with better UI
+        crosswalk = load_crosswalk()
+        categories = load_categories()
+        # NOTE: Removed duplicate cycle selectbox here, as it's now at the top
+        available_harmonized_vars = get_available_harmonized_vars(crosswalk, cycle, merged_data)
+        variable_labels = {}
+        for var in available_harmonized_vars:
+            if var in merged_desc_dict and merged_desc_dict[var]:
+                variable_labels[var] = f"{var}: {merged_desc_dict[var]}"
+            else:
+                variable_labels[var] = var
         col1, col2 = st.columns([2, 1])
-        
         with col1:
-            # Enhanced variable selection with descriptions
-            variable_options = list(merged_data.columns)
-            variable_labels = {}
-            for var in variable_options:
-                if var in desc_dict:
-                    variable_labels[var] = f"{var}: {desc_dict[var]}"
-                else:
-                    variable_labels[var] = var
-            
             st.markdown("**📋 Variable Selection**")
             selected_variables = st.multiselect(
                 "Choose variables for bootstrap analysis:",
-                options=variable_options,
+                options=available_harmonized_vars,
                 format_func=lambda x: variable_labels.get(x, x),
                 help="Select one or more variables to analyze. Descriptions are shown when available.",
                 key="variable_selector"
             )
-            
-            # Update session state
             st.session_state['selected_variables'] = selected_variables
-            
             if selected_variables:
                 st.markdown(f"✅ **{len(selected_variables)} variable(s) selected**")
                 with st.expander("📖 View Selected Variables", expanded=False):
                     for var in selected_variables:
-                        desc = desc_dict.get(var, "No description available")
+                        desc = merged_desc_dict.get(var, "No description available")
                         st.markdown(f"• **{var}**: {desc}")
-        
         with col2:
             st.markdown("**⚖️ Weight Configuration**")
             weight_col = st.selectbox(
@@ -793,8 +874,6 @@ def main():
                 disabled=True,
                 help="Weight column is automatically set to WTS_S for CCHS analysis"
             )
-            
-            # Analysis summary card
             st.markdown(f"""
             <div style="background: linear-gradient(135deg, var(--light-bg) 0%, #E0F2F1 100%); 
                         padding: 1rem; border-radius: 12px; margin-top: 1rem; 
@@ -839,7 +918,7 @@ def main():
                         <h3 style="margin: 0; color: var(--primary); font-size: 1.4rem; font-weight: 600;">
                             🔬 Analysis in Progress
                         </h3>
-                        <p style="margin: 4px 0 0 0; color: var(--text-light); font-weight: 500;">
+                        <p style="margin: 4px 0 0 0; color: var (--text-light); font-weight: 500;">
                             Running bootstrap analysis for selected variables
                         </p>
                     </div>
@@ -866,7 +945,7 @@ def main():
             import time
             start_time = time.time()
             
-            for i, variable in enumerate(selected_variables):
+            for i, harmonized_var in enumerate(selected_variables):
                 progress = (i + 1) / len(selected_variables)
                 progress_bar.progress(progress)
                 
@@ -875,10 +954,10 @@ def main():
                 remaining = max(0, estimated_total - elapsed)
                 
                 status_text.markdown(f"""
-                <div style="background: var(--background-alt); padding: 1rem; border-radius: 8px; 
+                <div style="background: var (--background-alt); padding: 1rem; border-radius: 8px; 
                            text-align: center; margin: 1rem 0;">
                     <strong>Processing Variable {i+1} of {len(selected_variables)}</strong><br>
-                    <span style="color: var(--secondary); font-weight: 600;">{variable}</span>
+                    <span style="color: var(--secondary); font-weight: 600;">{harmonized_var}</span>
                 </div>
                 """, unsafe_allow_html=True)
                 
@@ -886,13 +965,14 @@ def main():
                 time_elapsed.metric("Time Elapsed", f"{elapsed:.1f}s")
                 eta.metric("ETA", f"{remaining:.1f}s" if remaining > 0 else "Almost done!")
                 
-                with st.spinner(f"Analyzing {variable}..."):
-                    result_df = run_bootstrap_analysis_for_all_values(merged_data, variable, weight_col)
-                result_df['Variable'] = variable
+                with st.spinner(f"Analyzing {harmonized_var}..."):
+                    varname = get_cycle_varname(harmonized_var, cycle, crosswalk)
+                    result_df = run_bootstrap_analysis_for_all_values(merged_data, varname, weight_col)
+                # Always add value labels
+                result_df['Label'] = result_df['Value'].apply(lambda v: get_value_label(harmonized_var, v, cycle, categories))
+                result_df['Variable'] = harmonized_var
                 combined_results.append(result_df)
-                
-                # Display results for each variable with enhanced styling
-                display_results(result_df, variable)
+                display_results(result_df, harmonized_var)
             
             # Complete the progress display
             progress_bar.progress(1.0)
