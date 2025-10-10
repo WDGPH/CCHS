@@ -119,8 +119,8 @@ def load_data():
     Load the main data and bootstrap data from parquet files.
     Adjust file names/paths as needed.
     """
-    data_file = "data/hs2023_on_distr.parquet"
-    bootstrap_file = "data/hs2023_on_bootwt.parquet"
+    data_file = "data/hs2021_on_distr.parquet"
+    bootstrap_file = "data/hs2021_on_bootwt.parquet"
     if os.path.exists(data_file) and os.path.exists(bootstrap_file):
         data = pd.read_parquet(data_file)
         bootstrap_data = pd.read_parquet(bootstrap_file)
