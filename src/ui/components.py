@@ -78,62 +78,41 @@ def create_progress_display():
     return progress_bar, status_text, current_var, time_elapsed, eta
 
 
-def create_enhanced_chart(result_df: pd.DataFrame, variable: str):
-    """Create an enhanced bar chart for results."""
-    # Create enhanced color palette with gradients
-    colors = ['#005568', '#00928F', '#78A22F', '#1fb5b3', '#8fb944', '#5C6F7C', '#7A68AE']
+def create_enhanced_chart(result_df, variable_name):
+    """Create an enhanced chart for displaying analysis results."""
+    # Create figure and axis
+    fig, ax = plt.subplots(figsize=(12, 6))
     
-    # Create an enhanced bar chart with modern styling
-    fig, ax = plt.subplots(figsize=(12, 7))
-    fig.patch.set_facecolor('white')
+    # Extract data for plotting
+    x_labels = result_df['Label'] if 'Label' in result_df.columns else result_df['Value'].astype(str)
+    prevalence = result_df['Prevalence']
+    ci_lower = result_df['CI Lower']
+    ci_upper = result_df['CI Upper']
     
-    # Create bars with enhanced styling
-    bars = ax.bar(
-        result_df['Value'].astype(str),
-        result_df['Prevalence'],
-        yerr=result_df['Error'],
-        capsize=6,
-        color=[colors[i % len(colors)] for i in range(len(result_df))],
-        edgecolor='white',
-        linewidth=2,
-        alpha=0.85
-    )
+    # Plot bars
+    x = range(len(x_labels))
+    bars = ax.bar(x, prevalence, color='skyblue', alpha=0.7)
     
-    # Enhanced axis styling
-    ax.set_xlabel("Value", fontsize=14, fontweight='600', color='#162732')
-    ax.set_ylabel("Prevalence (%)", fontsize=14, fontweight='600', color='#162732')
-    ax.set_title(f"Prevalence Distribution: {variable}", 
-                fontsize=16, fontweight='700', color='#005568', pad=20)
+    # Add confidence interval error bars
+    ax.errorbar(x, prevalence, yerr=[prevalence - ci_lower, ci_upper - prevalence],
+                fmt='none', color='navy', capsize=5, capthick=1.5, elinewidth=1.5)
     
-    # Modern grid and spine styling
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.spines['left'].set_color('#E2E8F0')
-    ax.spines['bottom'].set_color('#E2E8F0')
-    ax.grid(axis='y', linestyle='--', alpha=0.4, color='#CBD5E0')
+    # Customize the plot
+    ax.set_title(f'Prevalence Distribution for {variable_name}', pad=20, fontsize=12)
+    ax.set_xlabel('Categories', labelpad=10)
+    ax.set_ylabel('Prevalence (%)', labelpad=10)
     
-    # Enhanced value annotations with better positioning
-    for i, bar in enumerate(bars):
+    # Set x-axis labels
+    ax.set_xticks(x)
+    ax.set_xticklabels(x_labels, rotation=45, ha='right')
+    
+    # Add value labels on top of bars
+    for bar in bars:
         height = bar.get_height()
-        ax.annotate(
-            f'{height:.1f}%',
-            xy=(bar.get_x() + bar.get_width() / 2, height + result_df.iloc[i]['Error'] + 0.5),
-            xytext=(0, 5),
-            textcoords="offset points",
-            ha='center',
-            va='bottom',
-            fontsize=11,
-            fontweight='600',
-            color='#162732',
-            bbox=dict(boxstyle='round,pad=0.3', facecolor='white', 
-                     edgecolor=colors[i % len(colors)], alpha=0.8)
-        )
+        ax.text(bar.get_x() + bar.get_width()/2., height,
+                f'{height:.1f}%', ha='center', va='bottom')
     
-    # Add subtle background pattern
-    ax.set_facecolor('#FAFBFC')
-    
-    plt.xticks(rotation=45, ha='right', fontsize=11, fontweight='500')
-    plt.yticks(fontsize=11, fontweight='500')
+    # Adjust layout to prevent label cutoff
     plt.tight_layout()
     
     return fig
