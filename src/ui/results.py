@@ -6,9 +6,12 @@ from src.ui.components import create_enhanced_chart
 
 
 def display_results(result_df, variable, use_labels=False):
-    """
-    Display the analysis results as a modern styled table and enhanced chart.
-    """
+    """Display the analysis results as a modern styled table and enhanced chart."""
+    import uuid
+    
+    # Generate a unique session ID for this result display
+    result_id = str(uuid.uuid4())[:8]
+    
     # Modern header with improved styling
     st.markdown(f"""
     <div class="content-card">
@@ -67,17 +70,39 @@ def display_results(result_df, variable, use_labels=False):
         x_labels = result_df['Value'].astype(str)
     
     # Create and display enhanced chart
-    fig = create_enhanced_chart(result_df, variable, x_labels)
+    fig = create_enhanced_chart(result_df, variable)
     st.pyplot(fig)
     st.markdown("</div>", unsafe_allow_html=True)
+    
+    # Show weighted population with unique key
+    show_weighted_pop = st.checkbox("Show weighted population", key=f"weighted_pop_{result_id}")
+    if show_weighted_pop:
+        st.write("#### Weighted Population Distribution")
+        st.dataframe(result_df[['Weighted Population']])
+    
+    # Recode variable names with unique keys
+    if st.checkbox("Recode variable names", key=f"recode_names_{result_id}"):
+        variables_in_data = list(result_df.index)
+        st.write("Enter display names for each variable below:")
+        rename_dict = {}
+        for var in variables_in_data:
+            new_name = st.text_input(f"Display name for '{var}'", value=var, key=f"rename_{result_id}_{var}")
+            rename_dict[var] = new_name
 
 
 def display_crosstab_report(combined_df):
-    """
-    Display a crosstab (pivot) report of prevalence by variable and value.
-    Allows the user to recode (rename) both variable (row) names and column names for display in the crosstab.
-    """
+    """Display a crosstab (pivot) report of prevalence by variable and value."""
+    import uuid
+    
+    # Generate a unique session ID for this report
+    report_id = str(uuid.uuid4())[:8]
+    
     st.write("### Combined Crosstab Report (Prevalence)")
+    
+    # Display options with unique keys using UUID
+    show_weighted_pop = st.checkbox("Show weighted population in crosstab", key=f"crosstab_weighted_pop_{report_id}")
+    show_percentages = st.checkbox("Show percentages", value=True, key=f"crosstab_percentages_{report_id}")
+    show_confidence_intervals = st.checkbox("Show confidence intervals", value=True, key=f"crosstab_ci_{report_id}")
     
     # Always use Label if available for columns
     col_field = 'Label' if 'Label' in combined_df.columns else 'Value'
@@ -97,44 +122,67 @@ def display_crosstab_report(combined_df):
         values='Weighted Population'
     )
     
-    show_weighted_pop = st.checkbox("Show weighted population in crosstab")
     if show_weighted_pop:
         st.write("#### Weighted Population Crosstab")
         st.dataframe(weighted_pop_crosstab)
     
     # Let the user recode variable names (rows) for the crosstab display
-    if st.checkbox("Recode variable names for crosstab display"):
+    if st.checkbox("Recode variable names for crosstab display", key=f"recode_var_names_{report_id}"):
         variables_in_crosstab = list(prevalence_crosstab.index)
         st.write("Enter display names for each variable (row) below:")
         rename_dict = {}
         for var in variables_in_crosstab:
-            new_name = st.text_input(f"Display name for '{var}'", value=var, key=f"rename_{var}")
+            new_name = st.text_input(f"Display name for '{var}'", value=var, key=f"rename_var_{report_id}_{var}")
             rename_dict[var] = new_name
         
         recoded_crosstab = prevalence_crosstab.rename(index=rename_dict)
         
         # Extra feature: recode column names if desired
-        if st.checkbox("Recode column names for crosstab display"):
+        if st.checkbox("Recode column names for crosstab display", key=f"recode_cols_{report_id}"):
             columns_in_crosstab = list(recoded_crosstab.columns)
             st.write("Enter display names for each column below:")
             rename_columns_dict = {}
             for col in columns_in_crosstab:
-                new_name = st.text_input(f"Display name for column '{col}'", value=col, key=f"rename_col_{col}")
+                new_name = st.text_input(f"Display name for column '{col}'", value=col, key=f"rename_col_{report_id}_{col}")
                 rename_columns_dict[col] = new_name
+            
             recoded_crosstab = recoded_crosstab.rename(columns=rename_columns_dict)
         
         st.write("#### Recoded Crosstab")
         st.dataframe(recoded_crosstab)
         
         # Optionally, allow the user to download the recoded crosstab as CSV
-        if st.button("Download Recoded Crosstab as CSV"):
+        if st.checkbox("Download options", key=f"download_options_{report_id}"):
+            # Download buttons with unique keys
             csv_data = recoded_crosstab.to_csv().encode('utf-8')
             st.download_button(
-                label="Click to Download",
+                label="Download Recoded Crosstab as CSV",
                 data=csv_data,
                 file_name="recoded_crosstab.csv",
-                mime="text/csv"
+                mime="text/csv",
+                key=f"download_recoded_crosstab_{report_id}"
             )
     else:
         # If not recoding, just display the original pivot table
         st.dataframe(prevalence_crosstab)
+        
+        if st.checkbox("Download options", key=f"download_options_{report_id}"):
+            # Download buttons with unique keys
+            csv_data = prevalence_crosstab.to_csv().encode('utf-8')
+            st.download_button(
+                label="Download Prevalence Crosstab",
+                data=csv_data,
+                file_name="prevalence_crosstab.csv",
+                mime="text/csv",
+                key=f"download_prevalence_crosstab_{report_id}"
+            )
+            
+            if show_weighted_pop:
+                weighted_csv = weighted_pop_crosstab.to_csv().encode('utf-8')
+                st.download_button(
+                    label="Download Weighted Population Crosstab",
+                    data=weighted_csv,
+                    file_name="weighted_pop_crosstab.csv",
+                    mime="text/csv",
+                    key=f"download_weighted_crosstab_{report_id}"
+                )
