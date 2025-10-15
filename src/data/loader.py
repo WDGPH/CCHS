@@ -45,6 +45,15 @@ def load_variable_descriptions(cycle: str) -> tuple[pd.DataFrame, dict]:
                     })
                     desc_dict[var_name] = description
             
+            # Ensure all variables are included, even if description is missing
+            for var_name in var_dict.keys():
+                if var_name not in desc_dict:
+                    descriptions_data.append({
+                        'Variable': var_name,
+                        'Description': "No description available"
+                    })
+                    desc_dict[var_name] = "No description available"
+            
             # Create DataFrame from extracted data
             if descriptions_data:
                 desc_df = pd.DataFrame(descriptions_data)
