@@ -431,6 +431,10 @@ def main():
                             if cycle_results_list:
                                 combined_result_df = pd.concat(cycle_results_list, ignore_index=True)
                                 combined_results.append(combined_result_df)
+                                
+                                # Display multi-cycle results immediately
+                                var_desc = merged_desc_dict.get(variable, None)
+                                display_multi_cycle_results(combined_result_df, variable, var_desc)
                         else:
                             # Single cycle analysis (existing behavior)
                             if use_harmonized and crosswalk:
@@ -448,6 +452,10 @@ def main():
                             
                             result_df['Variable'] = variable
                             combined_results.append(result_df)
+                            
+                            # Display results immediately (like main.py does)
+                            var_desc = merged_desc_dict.get(variable, variable)
+                            display_results(result_df, variable, use_labels='Label' in result_df.columns, variable_description=var_desc)
                         
                     except Exception as e:
                         st.error(f"❌ Error analyzing {variable}: {str(e)}")
@@ -593,17 +601,29 @@ def main():
             ])
         
         with tab1:
-            # Display cross-tabulation
-            st.subheader("Cross-Tabulation Summary")
-            display_crosstab_report(combined_results)
-            
-            # For multi-cycle, also show detailed comparisons
+            # Show visualizations and detailed results
             if analysis_mode == "Multi-Cycle" and get_session_state('selected_variables'):
-                st.markdown("---")
-                st.subheader("Cycle Comparison Details")
+                # Multi-cycle: show cycle comparison visualizations
+                st.subheader("Cycle Comparison Visualizations")
                 for variable in get_session_state('selected_variables'):
                     var_desc = merged_desc_dict.get(variable, None)
                     display_multi_cycle_results(combined_results, variable, var_desc)
+                
+                st.markdown("---")
+            elif analysis_mode == "Single Cycle" and get_session_state('selected_variables'):
+                # Single-cycle: show standard bar charts for each variable
+                st.subheader("Variable Analysis Results")
+                for variable in get_session_state('selected_variables'):
+                    var_results = combined_results[combined_results['Variable'] == variable].copy()
+                    if not var_results.empty:
+                        var_desc = merged_desc_dict.get(variable, variable)
+                        display_results(var_results, variable, use_labels='Label' in var_results.columns, variable_description=var_desc)
+                
+                st.markdown("---")
+            
+            # Display cross-tabulation summary
+            st.subheader("Cross-Tabulation Summary")
+            display_crosstab_report(combined_results)
         
         with tab2:
             # Consolidated export section
