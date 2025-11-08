@@ -118,67 +118,54 @@ def create_enhanced_chart(result_df, variable_name):
     return fig
 
 
-def create_workflow_stepper(current_step: int):
-    """
-    Create a visual workflow progress indicator.
-    
-    Args:
-        current_step: Current step number (1-4)
-            1 = Configure & Filter Data
-            2 = Select Variables
-            3 = Run Analysis
-            4 = View Results
-    """
+def create_workflow_stepper(current_step):
+    """Create a progress stepper showing the analysis workflow steps"""
     steps = [
-        "Configure & Filter",
-        "Select Variables",
-        "Run Analysis",
-        "View Results"
+        ("Upload Data", 1),
+        ("Select Variables", 2),
+        ("Run Analysis", 3),
+        ("View Results", 4)
     ]
     
-    step_html = '<div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0 3rem 0; padding: 0 2rem;">'
+    # Create columns for visual layout
+    cols = st.columns(len(steps))
     
-    for i, step_name in enumerate(steps, 1):
-        is_current = i == current_step
-        is_complete = i < current_step
-        
-        if is_complete:
-            circle_color = "#78A22F"
-            text_color = "#005568"
-            border_style = "none"
-        elif is_current:
-            circle_color = "#00928F"
-            text_color = "#00928F"
-            border_style = "3px solid #00928F"
-        else:
-            circle_color = "#E0E0E0"
-            text_color = "#999"
-            border_style = "2px solid #E0E0E0"
-        
-        step_html += f'''
-        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; position: relative;">
-            <div style="width: 50px; height: 50px; border-radius: 50%; background: {circle_color}; 
-                        border: {border_style}; display: flex; align-items: center; justify-content: center;
-                        font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.5rem;">
-                {i}
+    for i, (step_name, step_num) in enumerate(steps):
+        with cols[i]:
+            # Determine styling based on step status
+            if step_num < current_step:
+                # Completed step
+                circle_bg = "#4CAF50"
+                circle_content = "✓"
+                text_color = "#4CAF50"
+            elif step_num == current_step:
+                # Active step
+                circle_bg = "#2196F3"
+                circle_content = str(step_num)
+                text_color = "#2196F3"
+            else:
+                # Pending step
+                circle_bg = "#E0E0E0"
+                circle_content = str(step_num)
+                text_color = "#999"
+            
+            # Create HTML for this step
+            step_html = f"""
+            <div style="text-align: center;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; 
+                            background: {circle_bg}; border: 2px solid {circle_bg}; 
+                            display: flex; align-items: center; justify-content: center;
+                            font-size: 1.2rem; font-weight: 700; color: white; 
+                            margin: 0 auto 0.5rem;">
+                    {circle_content}
+                </div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: {text_color}; 
+                            text-align: center;">
+                    {step_name}
+                </div>
             </div>
-            <div style="font-size: 0.9rem; font-weight: 600; color: {text_color}; text-align: center;">
-                {step_name}
-            </div>
-        '''
-        
-        if i < len(steps):
-            connector_color = "#78A22F" if is_complete else "#E0E0E0"
-            step_html += f'''
-            <div style="position: absolute; top: 25px; left: calc(50% + 25px); width: calc(100% - 50px); 
-                        height: 3px; background: {connector_color}; z-index: -1;"></div>
-            '''
-        
-        step_html += '</div>'
-    
-    step_html += '</div>'
-    
-    st.markdown(step_html, unsafe_allow_html=True)
+            """
+            st.markdown(step_html, unsafe_allow_html=True)
 
 
 def get_quality_badge(cv_percent: float) -> str:
