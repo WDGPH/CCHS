@@ -4,30 +4,53 @@ A comprehensive Streamlit application for analyzing Canadian Community Health Su
 
 ## 📋 Overview
 
-This application performs bootstrap analysis on CCHS 2021 Ontario data, allowing users to:
+This application performs bootstrap analysis on CCHS Ontario data with **multi-cycle support**, allowing users to:
+- **Multi-cycle analysis**: Compare data across CCHS 2021, 2022, and 2023 cycles
+- **Variable harmonization**: Use pre-harmonized variable names across cycles
 - Filter data by geographic regions (districts, municipalities, health regions)
 - Select multiple variables for analysis
 - Calculate prevalence rates with bootstrap confidence intervals
-- Generate cross-tabulation reports
+- Generate cross-tabulation reports and cycle comparisons
 - Perform age-stratified analysis
 - Export results in multiple formats
 
 ## 🗂️ Required Data Files
 
+### Data Directory Structure
+
 Place the following files in the `data/` directory:
 
 ```
 data/
-├── hs2021_on_distr.parquet          # Main CCHS data
-├── hs2021_on_bootwt.parquet         # Bootstrap weights
-└── CCHS_2021_Recoded_Variables.csv  # Variable descriptions
+├── hs2021_on_distr.parquet          # CCHS 2021 main data
+├── hs2021_on_bootwt.parquet         # CCHS 2021 bootstrap weights
+├── hs2022_on_distr.parquet          # CCHS 2022 main data
+├── hs2022_on_bootwt.parquet         # CCHS 2022 bootstrap weights
+├── hs2023_on_distr.parquet          # CCHS 2023 main data
+├── hs2023_on_bootwt.parquet         # CCHS 2023 bootstrap weights
+└── CCHS_YYYY_Recoded_Variables.csv  # Variable descriptions (per cycle)
 ```
+
+### Harmonization Files
+
+Pre-computed harmonization files (already included in repository):
+
+```
+harmonization/
+├── CCHS_2021.json      # Variable descriptions & categories for 2021
+├── CCHS_2022.json      # Variable descriptions & categories for 2022
+├── CCHS_2023.json      # Variable descriptions & categories for 2023
+├── crosswalk.json      # Variable name mappings across cycles
+└── categories.json     # Harmonized category labels
+```
+
+**Note**: These harmonization files are built using scripts (see [HARMONIZATION_WORKFLOW.md](HARMONIZATION_WORKFLOW.md))
 
 ### Data File Specifications
 
-- **hs2021_on_distr.parquet**: Main survey data with respondent records
-- **hs2021_on_bootwt.parquet**: Bootstrap weights (columns starting with 'BSW')
-- **CCHS_2021_Recoded_Variables.csv**: Must contain 'Variable' and 'Description' columns
+- **hsYYYY_on_distr.parquet**: Main survey data with respondent records
+- **hsYYYY_on_bootwt.parquet**: Bootstrap weights (columns starting with 'BSW')
+- **CCHS_YYYY_Recoded_Variables.csv**: Must contain 'Variable' and 'Description' columns
 
 ## 🚀 Installation & Setup (Local Python)
 
@@ -94,31 +117,40 @@ docker stop cchs-bootstrap && docker rm cchs-bootstrap
 
 ## 🎯 Features
 
-### 1. Variable Search & Selection
+### 1. Multi-Cycle Analysis (NEW!)
+- **Cycle Selection**: Choose between single-cycle or multi-cycle analysis
+- **Harmonized Variables**: Automatic variable name harmonization across cycles
+- **Cycle Comparisons**: Side-by-side comparison of prevalence rates
+- **Trend Analysis**: Visualize changes across cycles with line charts
+- **Fast Loading**: Pre-computed harmonization for instant data loading
+
+### 2. Variable Search & Selection
 - **Search by Code**: Find variables using CCHS variable codes (e.g., GEN_005)
 - **Search by Description**: Search within variable descriptions using keywords
 - **Multi-select**: Choose multiple variables for batch analysis
+- **Harmonized View**: See common variables available across all selected cycles
 
-### 2. Geographic Filtering
+### 3. Geographic Filtering
 - **District-level**: Filter by GEODVCSD codes
 - **Municipality**: Pre-configured filters for Wellington, Guelph, Dufferin
 - **Health Region**: Filter by GEODVHR4 codes
 
-### 3. Bootstrap Analysis
+### 4. Bootstrap Analysis
 - Calculates weighted prevalence rates
 - Computes 95% confidence intervals
 - Provides coefficient of variation (CV)
 - Uses vectorized operations for performance
 
-### 4. Results & Visualization
-- Interactive data tables with gradient styling
-- Bar charts with error bars
+### 5. Results & Visualization
+- **Single-Cycle**: Interactive tables with gradient styling and bar charts with error bars
+- **Multi-Cycle**: Comparison tables, trend lines, grouped bar charts, and statistical summaries
 - Cross-tabulation pivot tables
 - Age-stratified analysis
 
-### 5. Export Options
+### 6. Export Options
 - CSV format for data analysis
 - Excel format with multiple worksheets
+- Multi-cycle exports with separate sheets per cycle
 - Customizable variable naming for reports
 
 ## 📊 Analysis Workflow

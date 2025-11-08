@@ -115,35 +115,45 @@ def merge_data(filtered_data, bootstrap_data):
 @st.cache_data
 def load_multi_cycle_data(cycles: list, crosswalk: dict, categories: dict):
     """
-    Load and harmonize data from multiple cycles, combining them into a single DataFrame.
+    Load and harmonize data from multiple cycles using pre-computed crosswalk.
+    This uses simple column renaming (no value transformation) for performance.
     
     Args:
         cycles: List of cycle years to load (e.g., ["2021", "2022", "2023"])
-        crosswalk: Crosswalk dictionary for variable name harmonization
-        categories: Categories dictionary for value label harmonization
+        crosswalk: Crosswalk dictionary mapping harmonized_var -> {cycle: cycle_specific_var}
+        categories: Categories dictionary (not used, kept for compatibility)
     
     Returns:
         Tuple of (combined_data, combined_bootstrap_data) or (None, None) if error
     """
-    from src.data.harmonizer import apply_harmonization, get_common_harmonized_vars
-    
     if not cycles:
         st.error("No cycles specified for multi-cycle loading.")
         return None, None
     
+    if not crosswalk:
+        st.warning("No crosswalk provided. Loading cycles without harmonization.")
+    
     combined_data_list = []
     combined_bootstrap_list = []
-    data_dict = {}
     
     for cycle in cycles:
+        # Load raw data for this cycle
         data, bootstrap_data = load_cycle_data(cycle)
         if data is None or bootstrap_data is None:
             st.warning(f"Skipping cycle {cycle} due to missing data files.")
             continue
         
-        data_dict[cycle] = data
+        # Build reverse mapping: cycle_specific_var -> harmonized_var for this cycle
+        # This is fast O(n) operation on crosswalk dictionary
+        rename_dict = {}
+        if crosswalk:
+            for harmonized_var, cycle_mapping in crosswalk.items():
+                cycle_specific_var = cycle_mapping.get(cycle)
+                if cycle_specific_var and cycle_specific_var in data.columns:
+                    rename_dict[cycle_specific_var] = harmonized_var
         
-        harmonized_data = apply_harmonization(data, cycle, crosswalk, categories)
+        # Apply harmonization - just column rename, no value transformation (fast!)
+        harmonized_data = data.rename(columns=rename_dict) if rename_dict else data.copy()
         harmonized_data['CYCLE'] = cycle
         
         combined_data_list.append(harmonized_data)
@@ -153,8 +163,8 @@ def load_multi_cycle_data(cycles: list, crosswalk: dict, categories: dict):
         st.error("No valid cycles could be loaded.")
         return None, None
     
+    # Combine all cycles (fast concat operation)
     combined_data = pd.concat(combined_data_list, ignore_index=True)
-    
     combined_bootstrap = pd.concat(combined_bootstrap_list, ignore_index=True)
     
     return combined_data, combined_bootstrap
