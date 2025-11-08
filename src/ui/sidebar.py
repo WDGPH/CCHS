@@ -90,121 +90,25 @@ def create_multi_cycle_selector(crosswalk=None, data_dict=None):
 
 
 def create_variable_search_sidebar(desc_df, desc_dict, harmonized_vars=None, use_harmonized=False):
-    """Create the variable search sidebar section with optional harmonized variable support."""
-    st.sidebar.markdown("""
-    <div class="sidebar-card">
-        <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
-            🔍 <span style="margin-left: 0.5rem;">CCHS Variable Search</span>
-        </h3>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Add harmonization toggle if harmonized variables are available
-    if harmonized_vars:
-        use_harmonized = st.sidebar.checkbox(
-            "🔗 Use Harmonized Variables",
-            value=use_harmonized,
-            help="Use harmonized variable names that work across multiple cycles"
-        )
-    
-    if use_harmonized and harmonized_vars:
-        # Display harmonized variables
-        st.sidebar.markdown("""
-        <div style="background: var(--light-bg); padding: 0.75rem; border-radius: 8px; 
-                   margin: 0.5rem 0; border-left: 3px solid var(--accent);">
-            <strong style="color: var(--primary);">Harmonized Variables Available</strong>
-            <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem; color: var(--text-light);">
-                {len(harmonized_vars)} harmonized variables for this cycle
-            </p>
-        </div>
-        """.format(len=len), unsafe_allow_html=True)
-        
-        # Search in harmonized variables
-        search_term = st.sidebar.text_input(
-            "🔤 Search harmonized variables", 
-            placeholder="e.g., smoking, health",
-            help="Search harmonized variable names"
-        ).lower()
-        
-        if search_term:
-            matches = [var for var in harmonized_vars if search_term in var.lower()]
-            if matches:
-                st.sidebar.success(f"✅ Found {len(matches)} harmonized match(es)")
-                for match in matches[:10]:  # Show first 10 matches
-                    st.sidebar.markdown(f"• **{match}**")
-            else:
-                st.sidebar.warning(f"⚠️ No harmonized variables found containing '{search_term}'")
-    
-    elif desc_df is not None:
-        # Original variable search functionality
-        search_option = st.sidebar.radio(
-            "🎯 Search by:", 
-            ["Variable Code", "Description"],
-            help="Choose how to search the variable database"
-        )
-        
-        if search_option == "Variable Code":
-            search_term = st.sidebar.text_input(
-                "🔤 Enter variable code", 
-                placeholder="e.g., GEN_005",
-                help="Search for specific variable codes"
-            ).upper()
-            if search_term:
-                matches = desc_df[desc_df['Variable'].str.contains(search_term, case=False)]
-                if not matches.empty:
-                    st.sidebar.success(f"✅ Found {len(matches)} match(es)")
-                    st.sidebar.dataframe(matches, use_container_width=True)
-                else:
-                    st.sidebar.warning(f"⚠️ No variables found containing '{search_term}'")
-        else:
-            search_term = st.sidebar.text_input(
-                "📝 Enter description keyword", 
-                placeholder="e.g., health, smoking",
-                help="Search within variable descriptions"
-            )
-            if search_term:
-                matches = desc_df[desc_df['Description'].str.contains(search_term, case=False)]
-                if not matches.empty:
-                    st.sidebar.success(f"✅ Found {len(matches)} match(es)")
-                    st.sidebar.dataframe(matches, use_container_width=True)
-                else:
-                    st.sidebar.warning(f"⚠️ No descriptions found containing '{search_term}'")
-        
-        # Enhanced variable info display
-        st.sidebar.markdown("---")
-        st.sidebar.markdown("""
-        <div class="sidebar-card">
-            <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
-                📋 <span style="margin-left: 0.5rem;">Selected Variables</span>
-            </h3>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        if st.session_state.get('selected_variables', []):
-            for i, var in enumerate(st.session_state['selected_variables']):
-                if var in desc_dict:
-                    st.sidebar.markdown(f"""
-                    <div style="background: white; padding: 0.75rem; border-radius: 8px; 
-                               margin-bottom: 0.5rem; border-left: 3px solid var(--secondary);">
-                        <strong style="color: var(--primary);">{var}</strong><br>
-                        <span style="color: var(--text-light); font-size: 0.85rem;">{desc_dict[var]}</span>
-                    </div>
-                    """, unsafe_allow_html=True)
-        else:
-            st.sidebar.info("💡 No variables selected yet")
-    else:
-        st.sidebar.error("❌ Variable descriptions file not found or couldn't be loaded")
-    
+    """
+    Legacy function kept for compatibility - no longer displays UI.
+    Variable selection now handled in main area only.
+    """
     return use_harmonized if harmonized_vars else False
 
 
-def create_geographic_filters_sidebar():
-    """Create the geographic filters sidebar section."""
+def create_geographic_filters_sidebar(data=None):
+    """
+    Create the geographic filters sidebar section with optional preview.
+    
+    Args:
+        data: Optional DataFrame to show record count preview
+    """
     st.sidebar.markdown("---")
     st.sidebar.markdown("""
     <div class="sidebar-card">
         <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
-            🗺️ <span style="margin-left: 0.5rem;">Geographic Filters</span>
+            Geographic Filters
         </h3>
         <p style="margin: 0 0 1rem 0; color: var(--text-light); font-size: 0.85rem;">
             Apply geographic boundaries to focus your analysis
@@ -214,12 +118,12 @@ def create_geographic_filters_sidebar():
     
     # Enhanced filter options with better styling
     filter_by_district = st.sidebar.checkbox(
-        "🏛️ District-level GEODVCSD codes",
+        "District-level GEODVCSD codes",
         help="Filter data by district-level geographic codes"
     )
     
     filter_by_municipality_dropdown = st.sidebar.checkbox(
-        "🏘️ Municipality-level codes",
+        "Municipality-level codes",
         help="Filter by specific municipality boundaries"
     )
     
@@ -245,14 +149,30 @@ def create_geographic_filters_sidebar():
         
         if selected_municipalities:
             st.sidebar.success(
-                f"✅ Selected: {', '.join(selected_municipalities)} "
+                f"Selected: {', '.join(selected_municipalities)} "
                 f"({len(district_codes)} areas)"
             )
 
     filter_by_health_region = st.sidebar.checkbox(
-        "🏥 Health region-level GEODVHR4",
+        "Health region-level GEODVHR4",
         help="Filter by health region boundaries"
     )
+    
+    # Show preview of record count if data is provided
+    if data is not None and (filter_by_district or filter_by_municipality_dropdown or filter_by_health_region):
+        from src.data.processor import apply_region_filter
+        try:
+            preview_data = apply_region_filter(data, filter_by_district, filter_by_health_region, district_codes)
+            record_count = len(preview_data)
+            original_count = len(data)
+            pct = (record_count / original_count * 100) if original_count > 0 else 0
+            
+            if record_count < 100:
+                st.sidebar.warning(f"Preview: {record_count:,} records ({pct:.1f}%) - Small sample size!")
+            else:
+                st.sidebar.info(f"Preview: {record_count:,} records ({pct:.1f}%)")
+        except Exception:
+            pass
     
     return filter_by_district, filter_by_municipality_dropdown, district_codes, filter_by_health_region
 
