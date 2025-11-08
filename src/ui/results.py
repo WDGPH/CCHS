@@ -3,7 +3,7 @@
 import streamlit as st
 import pandas as pd
 from typing import Optional
-from src.ui.components import create_enhanced_chart
+from src.ui.components import create_enhanced_chart, get_quality_badge, display_quality_legend
 
 
 def is_multi_cycle(results_df: pd.DataFrame) -> bool:
@@ -39,45 +39,45 @@ def display_results(result_df, variable, use_labels=False, variable_description:
         </div>
     """, unsafe_allow_html=True)
     
+    # Display quality legend
+    display_quality_legend()
+    
+    # Add quality indicators to the dataframe
+    display_df = result_df.copy()
+    display_df['Quality'] = display_df['CV (%)'].apply(lambda cv: get_quality_badge(cv))
+    
     # Always use Label column for display in both table and plot if available
-    if 'Label' in result_df.columns:
-        display_df = result_df.copy()
+    if 'Label' in display_df.columns:
         display_df = display_df.rename(columns={'Label': 'Value Label'})
-        styled_df = display_df.style.background_gradient(
-            subset=['Prevalence'], 
-            cmap='viridis'
-        ).format({
-            'Prevalence': '{:.2f}%',
-            'Weighted Population': '{:,.0f}',
-            'Standard Deviation': '{:.3f}',
-            'CI Lower': '{:.2f}',
-            'CI Upper': '{:.2f}',
-            'CV (%)': '{:.1f}%',
-            'Error': '{:.3f}'
-        }).set_properties(**{
-            'text-align': 'center',
-            'font-weight': '500'
-        })
-        st.dataframe(styled_df, use_container_width=True)
         x_labels = display_df['Value Label']
     else:
-        styled_df = result_df.style.background_gradient(
-            subset=['Prevalence'], 
-            cmap='viridis'
-        ).format({
-            'Prevalence': '{:.2f}%',
-            'Weighted Population': '{:,.0f}',
-            'Standard Deviation': '{:.3f}',
-            'CI Lower': '{:.2f}',
-            'CI Upper': '{:.2f}',
-            'CV (%)': '{:.1f}%',
-            'Error': '{:.3f}'
-        }).set_properties(**{
-            'text-align': 'center',
-            'font-weight': '500'
-        })
-        st.dataframe(styled_df, use_container_width=True)
-        x_labels = result_df['Value'].astype(str)
+        x_labels = display_df['Value'].astype(str)
+    
+    # Reorder columns to put Quality after CV
+    cols = list(display_df.columns)
+    if 'Quality' in cols:
+        cols.remove('Quality')
+        cv_idx = cols.index('CV (%)')
+        cols.insert(cv_idx + 1, 'Quality')
+        display_df = display_df[cols]
+    
+    styled_df = display_df.style.background_gradient(
+        subset=['Prevalence'], 
+        cmap='viridis'
+    ).format({
+        'Prevalence': '{:.2f}%',
+        'Weighted Population': '{:,.0f}',
+        'Standard Deviation': '{:.3f}',
+        'CI Lower': '{:.2f}',
+        'CI Upper': '{:.2f}',
+        'CV (%)': '{:.1f}%',
+        'Error': '{:.3f}'
+    }).set_properties(**{
+        'text-align': 'center',
+        'font-weight': '500'
+    })
+    
+    st.markdown(styled_df.to_html(escape=False), unsafe_allow_html=True)
     
     # Create and display enhanced chart
     chart_title_var = variable_description if variable_description else variable

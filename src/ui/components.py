@@ -116,3 +116,115 @@ def create_enhanced_chart(result_df, variable_name):
     plt.tight_layout()
     
     return fig
+
+
+def create_workflow_stepper(current_step: int):
+    """
+    Create a visual workflow progress indicator.
+    
+    Args:
+        current_step: Current step number (1-4)
+            1 = Configure & Filter Data
+            2 = Select Variables
+            3 = Run Analysis
+            4 = View Results
+    """
+    steps = [
+        "Configure & Filter",
+        "Select Variables",
+        "Run Analysis",
+        "View Results"
+    ]
+    
+    step_html = '<div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0 3rem 0; padding: 0 2rem;">'
+    
+    for i, step_name in enumerate(steps, 1):
+        is_current = i == current_step
+        is_complete = i < current_step
+        
+        if is_complete:
+            circle_color = "#78A22F"
+            text_color = "#005568"
+            border_style = "none"
+        elif is_current:
+            circle_color = "#00928F"
+            text_color = "#00928F"
+            border_style = "3px solid #00928F"
+        else:
+            circle_color = "#E0E0E0"
+            text_color = "#999"
+            border_style = "2px solid #E0E0E0"
+        
+        step_html += f'''
+        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; position: relative;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: {circle_color}; 
+                        border: {border_style}; display: flex; align-items: center; justify-content: center;
+                        font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.5rem;">
+                {i}
+            </div>
+            <div style="font-size: 0.9rem; font-weight: 600; color: {text_color}; text-align: center;">
+                {step_name}
+            </div>
+        '''
+        
+        if i < len(steps):
+            connector_color = "#78A22F" if is_complete else "#E0E0E0"
+            step_html += f'''
+            <div style="position: absolute; top: 25px; left: calc(50% + 25px); width: calc(100% - 50px); 
+                        height: 3px; background: {connector_color}; z-index: -1;"></div>
+            '''
+        
+        step_html += '</div>'
+    
+    step_html += '</div>'
+    
+    st.markdown(step_html, unsafe_allow_html=True)
+
+
+def get_quality_badge(cv_percent: float) -> str:
+    """
+    Get quality indicator badge based on CV percentage.
+    
+    Args:
+        cv_percent: Coefficient of variation percentage
+    
+    Returns:
+        HTML string for quality badge
+    """
+    if cv_percent < 16.6:
+        color = "#4CAF50"
+        text = "Good"
+        label = "Acceptable precision"
+    elif cv_percent < 33.3:
+        color = "#FF9800"
+        text = "Caution"
+        label = "Use with caution"
+    else:
+        color = "#F44336"
+        text = "Poor"
+        label = "Unreliable"
+    
+    return f'''<span style="background: {color}; color: white; padding: 2px 8px; 
+                border-radius: 12px; font-size: 0.75rem; font-weight: 600; 
+                white-space: nowrap;" title="{label}">{text}</span>'''
+
+
+def display_quality_legend():
+    """Display legend explaining quality indicators."""
+    st.markdown("""
+    <div style="background: var(--light-bg); padding: 1rem; border-radius: 8px; margin: 1rem 0; 
+                border-left: 3px solid var(--primary);">
+        <strong style="color: var(--primary);">Data Quality Indicators:</strong><br>
+        <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+            <span style="background: #4CAF50; color: white; padding: 2px 8px; border-radius: 12px; 
+                        font-size: 0.75rem; font-weight: 600;">Good</span> 
+            CV < 16.6% - Acceptable precision<br>
+            <span style="background: #FF9800; color: white; padding: 2px 8px; border-radius: 12px; 
+                        font-size: 0.75rem; font-weight: 600; margin-top: 0.3rem; display: inline-block;">Caution</span> 
+            CV 16.6-33.3% - Use with caution<br>
+            <span style="background: #F44336; color: white; padding: 2px 8px; border-radius: 12px; 
+                        font-size: 0.75rem; font-weight: 600; margin-top: 0.3rem; display: inline-block;">Poor</span> 
+            CV > 33.3% - Unreliable, consider suppressing
+        </div>
+    </div>
+    """, unsafe_allow_html=True)

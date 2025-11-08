@@ -17,7 +17,10 @@ from src.data.loader import (
 )
 from src.data.processor import create_age_groups, apply_region_filter
 from src.analysis.bootstrap import run_bootstrap_analysis_for_all_values
-from src.ui.components import display_data_metrics, create_content_card
+from src.ui.components import (
+    display_data_metrics, create_content_card, create_workflow_stepper,
+    get_quality_badge, display_quality_legend
+)
 from src.ui.sidebar import (
     create_analysis_mode_selector,
     create_cycle_selector,
@@ -75,12 +78,33 @@ def main():
     # Analysis mode selection in sidebar
     analysis_mode = create_analysis_mode_selector()
     
-    # Handle mode switching - clear session state if mode changed
+    # Handle mode switching with warning if user has active work
     previous_mode = get_session_state('analysis_mode')
     if previous_mode and previous_mode != analysis_mode:
-        set_session_state('filtered_data', None)
-        set_session_state('merged_data', None)
-        set_session_state('combined_results', None)
+        # Check if user has active work
+        has_selections = get_session_state('selected_variables') and len(get_session_state('selected_variables')) > 0
+        has_results = get_session_state('combined_results') is not None
+        
+        if has_selections or has_results:
+            st.warning(f"⚠️ Switching from {previous_mode} to {analysis_mode} will clear your current selections and results.")
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("Continue and Clear", type="primary"):
+                    set_session_state('filtered_data', None)
+                    set_session_state('merged_data', None)
+                    set_session_state('combined_results', None)
+                    set_session_state('selected_variables', [])
+                    set_session_state('analysis_mode', analysis_mode)
+                    st.rerun()
+            with col2:
+                if st.button("Cancel"):
+                    st.rerun()
+            st.stop()
+        else:
+            # No active work, safe to switch
+            set_session_state('filtered_data', None)
+            set_session_state('merged_data', None)
+            set_session_state('combined_results', None)
     set_session_state('analysis_mode', analysis_mode)
     
     # Route to appropriate data loading based on mode
@@ -135,14 +159,8 @@ def main():
         use_harmonized = True
         
     else:
-        # Single cycle mode (existing behavior)
-        cycle = st.selectbox(
-            "Select CCHS Cycle/Year",
-            options=AVAILABLE_CYCLES,
-            index=AVAILABLE_CYCLES.index(DEFAULT_CYCLE),
-            help="Choose the survey cycle. Data and descriptions will load automatically based on this selection.",
-            key="main_cycle_selector"
-        )
+        # Single cycle mode - use sidebar selector only
+        cycle = create_cycle_selector()
         set_session_state('cycle', cycle)
         
         # Load data based on selected cycle
@@ -165,28 +183,32 @@ def main():
         display_data_metrics(data)
         st.markdown("</div>", unsafe_allow_html=True)
         
-        # Sidebar components with cycle selector
-        cycle_sidebar = create_cycle_selector()
-        if cycle_sidebar != cycle:
-            st.rerun()
-        
         available_harmonized_vars = []
         use_harmonized = False
     
-    # Variable search in sidebar
-    use_harmonized = create_variable_search_sidebar(
-        desc_df, merged_desc_dict, available_harmonized_vars, use_harmonized
-    )
+    # Determine current workflow step
+    current_step = 1
+    if get_session_state('merged_data') is not None:
+        if get_session_state('selected_variables') and len(get_session_state('selected_variables')) > 0:
+            if get_session_state('combined_results') is not None:
+                current_step = 4
+            else:
+                current_step = 3
+        else:
+            current_step = 2
     
-    # Geographic filters
-    filter_by_district, filter_by_municipality_dropdown, district_codes, filter_by_health_region = create_geographic_filters_sidebar()
+    # Display workflow progress indicator
+    create_workflow_stepper(current_step)
+    
+    # Geographic filters with data preview
+    filter_by_district, filter_by_municipality_dropdown, district_codes, filter_by_health_region = create_geographic_filters_sidebar(data)
     
     # Apply filters button
     apply_filters = create_apply_filters_section()
     
-    # Main content area
+    # Main content area - Auto-merge data after filtering
     if apply_filters:
-        with st.spinner("🔄 Applying geographic filters..."):
+        with st.spinner("🔄 Applying geographic filters and preparing data..."):
             filtered_data = apply_region_filter(
                 data, filter_by_district, filter_by_health_region, district_codes
             )
@@ -194,14 +216,14 @@ def main():
             # Add age groups
             filtered_data = create_age_groups(filtered_data, 'DHH_AGE')
             
-            # Merge with bootstrap data
+            # Automatically merge with bootstrap data (no manual step needed)
             merged_data = merge_data(filtered_data, bootstrap_data)
             
             # Store in session state
             set_session_state('filtered_data', filtered_data)
             set_session_state('merged_data', merged_data)
             
-        st.success(f"✅ Filters applied! Dataset now contains {len(filtered_data):,} records.")
+        st.success(f"✅ Filters applied and data prepared! Dataset now contains {len(filtered_data):,} records, ready for analysis.")
         
         # Display filtered data metrics
         st.markdown(create_content_card(
@@ -210,25 +232,6 @@ def main():
         ), unsafe_allow_html=True)
         
         display_data_metrics(filtered_data)
-        st.markdown("</div>", unsafe_allow_html=True)
-    
-    # Enhanced merge data section
-    if get_session_state('filtered_data') is not None and get_session_state('merged_data') is None:
-        st.markdown("---")
-        st.markdown(create_content_card(
-            "🔗 Data Merging",
-            "Combine filtered data with bootstrap weights for statistical analysis"
-        ), unsafe_allow_html=True)
-        
-        col1, col2, col3 = st.columns([1, 2, 1])
-        with col2:
-            if st.button("🚀 Merge Data with Bootstrap Weights", type="primary", key="merge_button"):
-                with st.spinner('🔄 Merging data...'):
-                    filtered_data = get_session_state('filtered_data')
-                    merged_data = merge_data(filtered_data, bootstrap_data)
-                    set_session_state('merged_data', merged_data)
-                    st.success("✅ Data merged successfully!")
-        
         st.markdown("</div>", unsafe_allow_html=True)
     
     # Variable analysis section with harmonization support
@@ -260,19 +263,19 @@ def main():
         col1, col2 = st.columns([2, 1])
         
         with col1:
-            st.markdown("**📋 Variable Selection**")
+            st.markdown("**Variable Selection**")
             
             # Toggle for harmonized variables (only show in single-cycle mode)
             if analysis_mode == "Single Cycle" and available_harmonized_vars:
                 use_harmonized = st.checkbox(
-                    "🔗 Use Harmonized Variables",
+                    "Use Harmonized Variables",
                     value=get_session_state('use_harmonized', False),
                     help="Use harmonized variable names that work across multiple cycles"
                 )
                 set_session_state('use_harmonized', use_harmonized)
             elif analysis_mode == "Multi-Cycle":
                 use_harmonized = True
-                st.info(f"📊 Multi-cycle mode: Using {len(available_harmonized_vars)} harmonized variables available across all selected cycles")
+                st.info(f"Multi-cycle mode: Using {len(available_harmonized_vars)} harmonized variables available across all selected cycles")
             
             if use_harmonized and available_harmonized_vars:
                 variable_options = available_harmonized_vars
@@ -291,9 +294,31 @@ def main():
                     else:
                         variable_labels[var] = var
             
+            # Add search filter
+            search_term = st.text_input(
+                "Search variables by code or description:",
+                placeholder="e.g., health, smoking, GEN_005",
+                help="Filter the variable list by keyword"
+            )
+            
+            # Filter options based on search
+            if search_term:
+                filtered_options = [
+                    var for var in variable_options 
+                    if search_term.lower() in var.lower() or 
+                       search_term.lower() in variable_labels.get(var, '').lower()
+                ]
+                if filtered_options:
+                    st.success(f"Found {len(filtered_options)} matching variable(s)")
+                else:
+                    st.warning("No variables match your search")
+                    filtered_options = variable_options
+            else:
+                filtered_options = variable_options
+            
             selected_variables = st.multiselect(
-                "🎯 Select variables for analysis:",
-                options=variable_options,
+                "Select variables for analysis:",
+                options=filtered_options,
                 format_func=lambda x: variable_labels.get(x, x),
                 help="Choose one or more variables to analyze",
                 key="variable_multiselect"
@@ -303,8 +328,8 @@ def main():
             set_session_state('selected_variables', selected_variables)
             
             if selected_variables:
-                st.markdown(f"✅ **{len(selected_variables)} variable(s) selected**")
-                with st.expander("📖 View Selected Variables", expanded=False):
+                st.markdown(f"**{len(selected_variables)} variable(s) selected**")
+                with st.expander("View Selected Variables", expanded=False):
                     for var in selected_variables:
                         desc = merged_desc_dict.get(var, "No description available")
                         st.markdown(f"• **{var}**: {desc}")
@@ -342,9 +367,20 @@ def main():
             # Analysis options
             col1, col2 = st.columns(2)
             with col1:
-                run_single = st.button("🔍 Analyze Selected Variables", type="primary")
+                run_single = st.button("Analyze Selected Variables", type="primary")
             with col2:
-                run_batch = st.button("⚡ Batch Analysis (All Variables)")
+                with st.expander("Batch Analysis (All Variables)"):
+                    if analysis_mode == "Multi-Cycle":
+                        total_vars = len(available_harmonized_vars) if available_harmonized_vars else 0
+                    elif use_harmonized and available_harmonized_vars:
+                        total_vars = len(available_harmonized_vars)
+                    else:
+                        total_vars = len([col for col in merged_data.columns 
+                                        if col not in ['ONT_ID', 'WTS_S', 'CYCLE'] and not col.startswith('GEO') and not col.startswith('BSW')])
+                    
+                    st.warning(f"This will process all {total_vars} available variables. Estimated time: {total_vars * 2 // 60} minutes.")
+                    confirm_batch = st.checkbox(f"I understand this will process {total_vars} variables")
+                    run_batch = st.button("Run Batch Analysis", disabled=not confirm_batch, type="primary")
             
             # Single variable analysis with harmonization support
             if run_single:
@@ -395,10 +431,6 @@ def main():
                             if cycle_results_list:
                                 combined_result_df = pd.concat(cycle_results_list, ignore_index=True)
                                 combined_results.append(combined_result_df)
-                                
-                                # Display multi-cycle results with description
-                                var_desc = merged_desc_dict.get(variable, None)
-                                display_multi_cycle_results(combined_result_df, variable, var_desc)
                         else:
                             # Single cycle analysis (existing behavior)
                             if use_harmonized and crosswalk:
@@ -416,10 +448,6 @@ def main():
                             
                             result_df['Variable'] = variable
                             combined_results.append(result_df)
-                            
-                            # Display results for each variable with description
-                            var_desc = merged_desc_dict.get(variable, None)
-                            display_results(result_df, variable, use_labels=use_harmonized, variable_description=var_desc)
                         
                     except Exception as e:
                         st.error(f"❌ Error analyzing {variable}: {str(e)}")
@@ -436,123 +464,88 @@ def main():
             
             # Batch analysis with harmonization support
             if run_batch:
-                st.warning("⚠️ Batch analysis will process all variables. This may take several minutes.")
-                if st.button("🚀 Confirm Batch Analysis"):
-                    # Get all available variables based on harmonization setting
-                    if analysis_mode == "Multi-Cycle":
-                        analysis_variables = available_harmonized_vars if available_harmonized_vars else []
-                    elif use_harmonized and available_harmonized_vars:
-                        analysis_variables = available_harmonized_vars
-                    else:
-                        analysis_variables = [col for col in merged_data.columns 
-                                            if col not in ['ONT_ID', 'WTS_S', 'CYCLE'] and not col.startswith('GEO') and not col.startswith('BSW')]
+                # Get all available variables based on harmonization setting
+                if analysis_mode == "Multi-Cycle":
+                    analysis_variables = available_harmonized_vars if available_harmonized_vars else []
+                elif use_harmonized and available_harmonized_vars:
+                    analysis_variables = available_harmonized_vars
+                else:
+                    analysis_variables = [col for col in merged_data.columns 
+                                        if col not in ['ONT_ID', 'WTS_S', 'CYCLE'] and not col.startswith('GEO') and not col.startswith('BSW')]
+                
+                combined_results = []
+                progress_bar = st.progress(0)
+                status_text = st.empty()
+                
+                start_time = time.time()
+                
+                for i, variable in enumerate(analysis_variables):
+                    elapsed_time = time.time() - start_time
+                    remaining_vars = len(analysis_variables) - i
+                    eta = (elapsed_time / (i + 1)) * remaining_vars if i > 0 else 0
                     
-                    combined_results = []
-                    progress_bar = st.progress(0)
-                    status_text = st.empty()
+                    status_text.text(
+                        f"Processing {i+1}/{len(analysis_variables)}: {variable} "
+                        f"(ETA: {eta/60:.1f} min)"
+                    )
+                    progress_bar.progress((i + 1) / len(analysis_variables))
                     
-                    start_time = time.time()
-                    
-                    for i, variable in enumerate(analysis_variables):
-                        elapsed_time = time.time() - start_time
-                        remaining_vars = len(analysis_variables) - i
-                        eta = (elapsed_time / (i + 1)) * remaining_vars if i > 0 else 0
-                        
-                        status_text.text(
-                            f"Processing {i+1}/{len(analysis_variables)}: {variable} "
-                            f"(ETA: {eta/60:.1f} min)"
-                        )
-                        progress_bar.progress((i + 1) / len(analysis_variables))
-                        
-                        try:
-                            if analysis_mode == "Multi-Cycle":
-                                # Multi-cycle batch analysis
-                                cycle_results_list = []
-                                for cycle_year in selected_cycles:
-                                    cycle_data = merged_data[merged_data['CYCLE'] == cycle_year].copy()
-                                    if cycle_data.empty:
-                                        continue
-                                    
-                                    result_df = run_bootstrap_analysis_for_all_values(cycle_data, variable, weight_col)
-                                    result_df['CYCLE'] = cycle_year
-                                    result_df['Variable'] = variable
-                                    
-                                    if categories:
-                                        result_df['Label'] = result_df.apply(
-                                            lambda row: get_value_label(variable, row['Value'], cycle_year, categories),
-                                            axis=1
-                                        )
-                                    
-                                    cycle_results_list.append(result_df)
+                    try:
+                        if analysis_mode == "Multi-Cycle":
+                            # Multi-cycle batch analysis
+                            cycle_results_list = []
+                            for cycle_year in selected_cycles:
+                                cycle_data = merged_data[merged_data['CYCLE'] == cycle_year].copy()
+                                if cycle_data.empty:
+                                    continue
                                 
-                                if cycle_results_list:
-                                    combined_result_df = pd.concat(cycle_results_list, ignore_index=True)
-                                    combined_results.append(combined_result_df)
-                            else:
-                                # Single cycle batch analysis
-                                if use_harmonized and crosswalk:
-                                    actual_varname = get_cycle_varname(variable, cycle, crosswalk)
-                                else:
-                                    actual_varname = variable
+                                result_df = run_bootstrap_analysis_for_all_values(cycle_data, variable, weight_col)
+                                result_df['CYCLE'] = cycle_year
+                                result_df['Variable'] = variable
                                 
-                                result_df = run_bootstrap_analysis_for_all_values(merged_data, actual_varname, weight_col)
-                                
-                                if use_harmonized and categories:
-                                    result_df['Label'] = result_df['Value'].apply(
-                                        lambda v: get_value_label(variable, v, cycle, categories)
+                                if categories:
+                                    result_df['Label'] = result_df.apply(
+                                        lambda row: get_value_label(variable, row['Value'], cycle_year, categories),
+                                        axis=1
                                     )
                                 
-                                result_df['Variable'] = variable
-                                combined_results.append(result_df)
-                        except Exception as e:
-                            st.warning(f"⚠️ Skipped {variable}: {str(e)}")
-                    
-                    if combined_results:
-                        combined_df = pd.concat(combined_results, ignore_index=True)
-                        set_session_state('combined_results', combined_df)
-                        
-                        st.success(f"✅ Batch analysis complete! Processed {len(combined_results)} variables.")
-                        
-                        # Download option
-                        if analysis_mode == "Multi-Cycle" and is_multi_cycle(combined_df):
-                            excel_data = create_multi_cycle_excel(combined_df, selected_cycles)
-                            cycles_str = '_'.join(selected_cycles)
-                            file_name = f"cchs_multi_cycle_{cycles_str}_analysis_results.xlsx"
+                                cycle_results_list.append(result_df)
+                            
+                            if cycle_results_list:
+                                combined_result_df = pd.concat(cycle_results_list, ignore_index=True)
+                                combined_results.append(combined_result_df)
                         else:
-                            excel_data = create_excel_download(combined_df, f"CCHS_{cycle}_Analysis_Results")
-                            file_name = f"cchs_{cycle}_analysis_results.xlsx"
-                        
-                        st.download_button(
-                            label="📊 Download Results as Excel",
-                            data=excel_data,
-                            file_name=file_name,
-                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                        )
+                            # Single cycle batch analysis
+                            if use_harmonized and crosswalk:
+                                actual_varname = get_cycle_varname(variable, cycle, crosswalk)
+                            else:
+                                actual_varname = variable
+                            
+                            result_df = run_bootstrap_analysis_for_all_values(merged_data, actual_varname, weight_col)
+                            
+                            if use_harmonized and categories:
+                                result_df['Label'] = result_df['Value'].apply(
+                                    lambda v: get_value_label(variable, v, cycle, categories)
+                                )
+                            
+                            result_df['Variable'] = variable
+                            combined_results.append(result_df)
+                    except Exception as e:
+                        st.warning(f"Skipped {variable}: {str(e)}")
+                
+                if combined_results:
+                    combined_df = pd.concat(combined_results, ignore_index=True)
+                    set_session_state('combined_results', combined_df)
                     
-                    progress_bar.empty()
-                    status_text.empty()
+                    st.success(f"Batch analysis complete! Processed {len(combined_results)} variables.")
+                
+                progress_bar.empty()
+                status_text.empty()
         
         st.markdown("</div>", unsafe_allow_html=True)
     
-    # Enhanced crosstab report section with cycle information
+    # Consolidated results dashboard (removed duplicate crosstab section)
     combined_results = get_session_state('combined_results')
-    if combined_results is not None:
-        if analysis_mode == "Multi-Cycle":
-            cycles_str = ', '.join(selected_cycles)
-            st.markdown(create_content_card(
-                f"Multi-Cycle Crosstab Analysis - Cycles {cycles_str}",
-                "Cross-tabulation report comparing prevalence across cycles with harmonized labels"
-            ), unsafe_allow_html=True)
-        else:
-            st.markdown(create_content_card(
-                f"Crosstab Analysis - Cycle {cycle}",
-                "Cross-tabulation report of prevalence by variable and value with harmonized labels"
-            ), unsafe_allow_html=True)
-        
-        display_crosstab_report(combined_results)
-        st.markdown("</div>", unsafe_allow_html=True)
-    
-    # Enhanced results dashboard
     if combined_results is not None:
         st.markdown("---")
         
@@ -587,165 +580,69 @@ def main():
             </div>
         """, unsafe_allow_html=True)
         
-        # Enhanced tabs with cycle-specific features
+        # Simplified tabs - Results & Export only
         if analysis_mode == "Multi-Cycle":
-            tab1, tab2, tab3 = st.tabs([
-                "📊 Crosstab Report", 
-                "📈 Cycle Comparisons", 
-                "💾 Data Export"
+            tab1, tab2 = st.tabs([
+                "Results & Visualizations", 
+                "Export Data"
             ])
         else:
-            tab1, tab2, tab3 = st.tabs([
-                "📊 Crosstab Report", 
-                "👥 Age Group Analysis", 
-                "💾 Data Export"
+            tab1, tab2 = st.tabs([
+                "Results & Visualizations", 
+                "Export Data"
             ])
         
         with tab1:
-            if analysis_mode == "Multi-Cycle":
-                cycles_str = ', '.join(selected_cycles)
-                st.markdown(f"""
-                <div style="background: var(--background-alt); padding: 1.5rem; border-radius: 12px; 
-                            margin-bottom: 1.5rem; border-left: 4px solid var(--primary);">
-                    <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">
-                        📋 Cross-Tabulation Summary (Cycles {cycles_str})
-                    </h4>
-                    <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
-                        Interactive pivot table showing prevalence rates with harmonized labels across cycles.
-                    </p>
-                </div>
-                """, unsafe_allow_html=True)
-            else:
-                st.markdown(f"""
-                <div style="background: var(--background-alt); padding: 1.5rem; border-radius: 12px; 
-                            margin-bottom: 1.5rem; border-left: 4px solid var(--primary);">
-                    <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">
-                        📋 Cross-Tabulation Summary (Cycle {cycle})
-                    </h4>
-                    <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
-                        Interactive pivot table showing prevalence rates with {'harmonized labels' if use_harmonized else 'raw variable values'}.
-                    </p>
-                </div>
-                """, unsafe_allow_html=True)
+            # Display cross-tabulation
+            st.subheader("Cross-Tabulation Summary")
             display_crosstab_report(combined_results)
+            
+            # For multi-cycle, also show detailed comparisons
+            if analysis_mode == "Multi-Cycle" and get_session_state('selected_variables'):
+                st.markdown("---")
+                st.subheader("Cycle Comparison Details")
+                for variable in get_session_state('selected_variables'):
+                    var_desc = merged_desc_dict.get(variable, None)
+                    display_multi_cycle_results(combined_results, variable, var_desc)
         
         with tab2:
-            if analysis_mode == "Multi-Cycle":
-                cycles_str = ', '.join(selected_cycles)
-                st.markdown(f"""
-                <div style="background: var(--background-alt); padding: 1.5rem; border-radius: 12px; 
-                            margin-bottom: 1.5rem; border-left: 4px solid var(--secondary);">
-                    <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">
-                        📈 Cycle Comparison Analysis
-                    </h4>
-                    <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
-                        Compare prevalence rates across selected cycles with trend analysis.
-                    </p>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                if get_session_state('selected_variables'):
-                    for variable in get_session_state('selected_variables'):
-                        var_desc = merged_desc_dict.get(variable, None)
-                        display_multi_cycle_results(combined_results, variable, var_desc)
-                else:
-                    st.info("💡 Select variables and run analysis to see cycle comparisons here.")
-            else:
-                # Age group analysis with enhanced cycle support
-                st.markdown(f"""
-                <div style="background: var(--background-alt); padding: 1.5rem; border-radius: 12px; 
-                            margin-bottom: 1.5rem; border-left: 4px solid var(--secondary);">
-                    <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">
-                        👥 Age-Stratified Analysis (Cycle {cycle})
-                    </h4>
-                    <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
-                        Breakdown of analysis results by age groups to identify demographic patterns.
-                    </p>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                age_analysis_enabled = st.checkbox(
-                    "🔍 Enable Age Group-Wise Analysis", 
-                    help="Perform detailed analysis stratified by age groups"
-                )
-                
-                if age_analysis_enabled and get_session_state('selected_variables'):
-                    # Age group analysis implementation
-                    st.info("Age group analysis functionality would be implemented here with cycle-specific considerations.")
-        
-        with tab3:
-            # Enhanced export with cycle information
-            if analysis_mode == "Multi-Cycle":
-                cycles_str = ', '.join(selected_cycles)
-                st.markdown(f"""
-                <div style="background: var(--background-alt); padding: 1.5rem; border-radius: 12px; 
-                            margin-bottom: 1.5rem; border-left: 4px solid var(--accent);">
-                    <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">
-                        💾 Export Multi-Cycle Analysis Results
-                    </h4>
-                    <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
-                        Download your complete multi-cycle analysis results with comparison metadata.
-                    </p>
-                </div>
-                """, unsafe_allow_html=True)
-            else:
-                st.markdown(f"""
-                <div style="background: var(--background-alt); padding: 1.5rem; border-radius: 12px; 
-                            margin-bottom: 1.5rem; border-left: 4px solid var(--accent);">
-                    <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">
-                        💾 Export Analysis Results (Cycle {cycle})
-                    </h4>
-                    <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
-                        Download your complete analysis results with cycle and harmonization metadata.
-                    </p>
-                </div>
-                """, unsafe_allow_html=True)
+            # Consolidated export section
+            st.subheader("Export Analysis Results")
             
-            # Enhanced download section with cycle info
             col1, col2 = st.columns(2)
             
             with col1:
-                st.markdown("**📄 CSV Export**")
+                st.markdown("**CSV Format**")
                 csv = combined_results.to_csv().encode('utf-8')
                 if analysis_mode == "Multi-Cycle":
                     cycles_str = '_'.join(selected_cycles)
-                    file_name = f"cchs_multi_cycle_{cycles_str}_analysis_results.csv"
-                    label = f"📥 Download Multi-Cycle Results (CSV)"
-                    help_text = f"Download the complete multi-cycle analysis results as a CSV file"
+                    file_name = f"cchs_multi_cycle_{cycles_str}_results.csv"
                 else:
-                    file_name = f"cchs_{cycle}_analysis_results.csv"
-                    label = f"📥 Download Cycle {cycle} Results (CSV)"
-                    help_text = f"Download the complete {cycle} analysis results as a CSV file"
+                    file_name = f"cchs_{cycle}_results.csv"
                 
                 st.download_button(
-                    label=label,
+                    label="Download CSV",
                     data=csv,
                     file_name=file_name,
                     mime="text/csv",
-                    help=help_text,
                     use_container_width=True
                 )
             
             with col2:
-                st.markdown("**📊 Excel Export**")
+                st.markdown("**Excel Format**")
                 if analysis_mode == "Multi-Cycle" and is_multi_cycle(combined_results):
                     excel_data = create_multi_cycle_excel(combined_results, selected_cycles)
                     cycles_str = '_'.join(selected_cycles)
-                    file_name = f"cchs_multi_cycle_{cycles_str}_analysis_results.xlsx"
-                    label = f"📊 Download Multi-Cycle Results (Excel)"
-                    help_text = f"Download multi-cycle results as an Excel file with separate sheets per cycle"
+                    file_name = f"cchs_multi_cycle_{cycles_str}_results.xlsx"
                 else:
                     excel_data = create_excel_download(combined_results, f"CCHS_{cycle}_Analysis")
-                    file_name = f"cchs_{cycle}_analysis_results.xlsx"
-                    label = f"📊 Download Cycle {cycle} Results (Excel)"
-                    help_text = f"Download {cycle} results as an Excel file with metadata"
+                    file_name = f"cchs_{cycle}_results.xlsx"
                 
                 st.download_button(
-                    label=label,
+                    label="Download Excel",
                     data=excel_data,
                     file_name=file_name,
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    help=help_text,
                     use_container_width=True
                 )
         
