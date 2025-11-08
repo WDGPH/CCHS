@@ -19,7 +19,7 @@ dependencies = [
 
 [tool.uv]
 # Enable deterministic resolution
-locked = false
+# Note: 'locked' is not a valid uv.toml field - use uv.lock file for locking
 
 [tool.streamlit]
 browser.gatherUsageStats = false
