@@ -4,8 +4,29 @@ import streamlit as st
 from config.settings import MUNICIPALITY_OPTIONS, AVAILABLE_CYCLES, DEFAULT_CYCLE
 
 
+def create_analysis_mode_selector():
+    """Create analysis mode selector (Single Cycle vs Multi-Cycle)."""
+    st.sidebar.markdown("""
+    <div class="sidebar-card">
+        <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
+            📅 <span style="margin-left: 0.5rem;">Analysis Mode</span>
+        </h3>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    analysis_mode = st.sidebar.radio(
+        "Select Analysis Mode",
+        options=["Single Cycle", "Multi-Cycle"],
+        index=0,
+        help="Single Cycle: Analyze one survey year. Multi-Cycle: Compare across multiple years.",
+        key="analysis_mode_selector"
+    )
+    
+    return analysis_mode
+
+
 def create_cycle_selector():
-    """Create cycle selection component."""
+    """Create cycle selection component for single cycle mode."""
     st.markdown("""
     <div class="sidebar-card">
         <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
@@ -19,10 +40,53 @@ def create_cycle_selector():
         options=AVAILABLE_CYCLES,
         index=AVAILABLE_CYCLES.index(DEFAULT_CYCLE),
         help="Choose the survey cycle. Data and descriptions will load automatically based on this selection.",
-        key="sidebar_cycle_selector"  # Add unique key
+        key="sidebar_cycle_selector"
     )
     
     return cycle
+
+
+def create_multi_cycle_selector(crosswalk=None, data_dict=None):
+    """
+    Create multi-cycle selection component.
+    
+    Args:
+        crosswalk: Optional crosswalk dictionary to show available harmonized variables
+        data_dict: Optional dictionary mapping cycle -> DataFrame to check variable availability
+    
+    Returns:
+        List of selected cycles
+    """
+    st.sidebar.markdown("""
+    <div class="sidebar-card">
+        <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
+            📅 <span style="margin-left: 0.5rem;">Select Cycles</span>
+        </h3>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    selected_cycles = st.sidebar.multiselect(
+        "Select CCHS Cycles/Years",
+        options=AVAILABLE_CYCLES,
+        default=[DEFAULT_CYCLE],
+        help="Select one or more survey cycles to compare. Data will be harmonized automatically.",
+        key="multi_cycle_selector"
+    )
+    
+    if selected_cycles:
+        st.sidebar.success(f"✅ Selected {len(selected_cycles)} cycle(s): {', '.join(selected_cycles)}")
+        
+        if crosswalk and data_dict:
+            from src.data.harmonizer import get_common_harmonized_vars
+            common_vars = get_common_harmonized_vars(selected_cycles, crosswalk, data_dict)
+            if common_vars:
+                st.sidebar.info(f"📊 {len(common_vars)} harmonized variables available across all selected cycles")
+            else:
+                st.sidebar.warning("⚠️ No common harmonized variables found across selected cycles")
+    else:
+        st.sidebar.warning("⚠️ Please select at least one cycle")
+    
+    return selected_cycles
 
 
 def create_variable_search_sidebar(desc_df, desc_dict, harmonized_vars=None, use_harmonized=False):

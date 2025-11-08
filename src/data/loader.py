@@ -112,6 +112,54 @@ def merge_data(filtered_data, bootstrap_data):
     return merged
 
 
+@st.cache_data
+def load_multi_cycle_data(cycles: list, crosswalk: dict, categories: dict):
+    """
+    Load and harmonize data from multiple cycles, combining them into a single DataFrame.
+    
+    Args:
+        cycles: List of cycle years to load (e.g., ["2021", "2022", "2023"])
+        crosswalk: Crosswalk dictionary for variable name harmonization
+        categories: Categories dictionary for value label harmonization
+    
+    Returns:
+        Tuple of (combined_data, combined_bootstrap_data) or (None, None) if error
+    """
+    from src.data.harmonizer import apply_harmonization, get_common_harmonized_vars
+    
+    if not cycles:
+        st.error("No cycles specified for multi-cycle loading.")
+        return None, None
+    
+    combined_data_list = []
+    combined_bootstrap_list = []
+    data_dict = {}
+    
+    for cycle in cycles:
+        data, bootstrap_data = load_cycle_data(cycle)
+        if data is None or bootstrap_data is None:
+            st.warning(f"Skipping cycle {cycle} due to missing data files.")
+            continue
+        
+        data_dict[cycle] = data
+        
+        harmonized_data = apply_harmonization(data, cycle, crosswalk, categories)
+        harmonized_data['CYCLE'] = cycle
+        
+        combined_data_list.append(harmonized_data)
+        combined_bootstrap_list.append(bootstrap_data)
+    
+    if not combined_data_list:
+        st.error("No valid cycles could be loaded.")
+        return None, None
+    
+    combined_data = pd.concat(combined_data_list, ignore_index=True)
+    
+    combined_bootstrap = pd.concat(combined_bootstrap_list, ignore_index=True)
+    
+    return combined_data, combined_bootstrap
+
+
 # Legacy function for backward compatibility
 @st.cache_data
 def load_data():

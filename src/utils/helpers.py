@@ -91,3 +91,33 @@ def get_available_harmonized_vars(crosswalk: dict, cycle: str, merged_data: pd.D
 def merge_descriptions(json_desc_dict: dict, csv_desc_dict: dict) -> dict:
     """Merge CSV and JSON descriptions, preferring CSV if present."""
     return {**json_desc_dict, **csv_desc_dict}
+
+
+def create_multi_cycle_excel(results_df: pd.DataFrame, cycles: list) -> bytes:
+    """
+    Create Excel file with multiple sheets for multi-cycle results.
+    
+    Args:
+        results_df: DataFrame with multi-cycle results (must contain 'CYCLE' column)
+        cycles: List of cycles included in the results
+    
+    Returns:
+        Excel file as bytes
+    """
+    excel_buffer = BytesIO()
+    
+    with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
+        results_df.to_excel(writer, sheet_name="Combined Results", index=False)
+        
+        for cycle in cycles:
+            cycle_data = results_df[results_df['CYCLE'] == cycle].copy()
+            if not cycle_data.empty:
+                cycle_data = cycle_data.drop(columns=['CYCLE'])
+                cycle_data.to_excel(writer, sheet_name=f"Cycle {cycle}", index=False)
+        
+        from src.analysis.comparison import create_comparison_summary
+        summary_df = create_comparison_summary(results_df)
+        if not summary_df.empty:
+            summary_df.to_excel(writer, sheet_name="Comparison Summary", index=False)
+    
+    return excel_buffer.getvalue()
