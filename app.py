@@ -116,18 +116,7 @@ def main():
             st.warning("⚠️ Please select at least one cycle to proceed.")
             st.stop()
         
-        # Load data for all selected cycles
-        data_dict = {}
-        for cycle in selected_cycles:
-            cycle_data, cycle_bootstrap = load_cycle_data(cycle)
-            if cycle_data is not None and cycle_bootstrap is not None:
-                data_dict[cycle] = cycle_data
-        
-        if not data_dict:
-            st.error("❌ Failed to load data files for any selected cycle.")
-            st.stop()
-        
-        # Load multi-cycle harmonized data
+        # Load multi-cycle harmonized data (load once, not twice!)
         with st.spinner("🔄 Loading and harmonizing multi-cycle data..."):
             data, bootstrap_data = load_multi_cycle_data(selected_cycles, crosswalk, categories)
         
@@ -135,9 +124,21 @@ def main():
             st.error("❌ Failed to harmonize and combine multi-cycle data.")
             st.stop()
         
-        # Get common harmonized variables
-        from src.data.harmonizer import get_common_harmonized_vars
-        available_harmonized_vars = get_common_harmonized_vars(selected_cycles, crosswalk, data_dict) if crosswalk else []
+        # Get common harmonized variables from the already-harmonized data
+        # No need to load raw data again - check which variables exist in all cycles
+        available_harmonized_vars = []
+        if crosswalk:
+            for harmonized_var in crosswalk.keys():
+                if harmonized_var in data.columns:
+                    # Verify it exists in all selected cycles
+                    has_data_in_all_cycles = True
+                    for cycle_year in selected_cycles:
+                        cycle_subset = data[data['CYCLE'] == cycle_year]
+                        if cycle_subset.empty or harmonized_var not in cycle_subset.columns or cycle_subset[harmonized_var].isna().all():
+                            has_data_in_all_cycles = False
+                            break
+                    if has_data_in_all_cycles:
+                        available_harmonized_vars.append(harmonized_var)
         
         # Load variable descriptions (use first cycle as reference)
         desc_df, desc_dict = load_variable_descriptions(selected_cycles[0])
