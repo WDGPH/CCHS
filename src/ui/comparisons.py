@@ -231,10 +231,14 @@ def display_cycle_table(results_df: pd.DataFrame, variable: Optional[str] = None
     if use_labels:
         pivot_df = pivot_df.rename(columns={'Value_Label': 'Category'})
     
+    # Format only numeric columns (the cycle columns like '2021', '2022', etc.)
+    # This avoids ValueError when trying to format string columns with float format
+    numeric_cols = [col for col in pivot_df.columns if col not in ['Variable', 'Value', 'Category', 'Value_Label']]
+    
     st.dataframe(pivot_df.style.background_gradient(
-        subset=[col for col in pivot_df.columns if col not in ['Variable', 'Value', 'Category', 'Value_Label']], 
+        subset=numeric_cols,
         cmap='viridis'
-    ).format('{:.2f}%'), use_container_width=True)
+    ).format({col: '{:.2f}%' for col in numeric_cols}), use_container_width=True)
     
     return pivot_df
 
