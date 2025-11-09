@@ -163,6 +163,25 @@ def load_multi_cycle_data(cycles: list, crosswalk: dict, categories: dict):
         st.error("No valid cycles could be loaded.")
         return None, None
     
+    # Before the concat line, check for and remove duplicate columns
+    for i, df in enumerate(combined_data_list):
+        duplicates = df.columns[df.columns.duplicated()].unique()
+        if len(duplicates) > 0:
+            import streamlit as st
+            st.warning(f"Cycle {cycles[i]} has duplicate columns: {duplicates.tolist()}")
+            print(f"Duplicate columns in cycle {cycles[i]}: {duplicates.tolist()}")
+            # Remove duplicate columns, keeping first occurrence
+            combined_data_list[i] = df.loc[:, ~df.columns.duplicated()]
+    
+    # Same check for bootstrap data if it exists
+    if combined_bootstrap_list:
+        for i, df in enumerate(combined_bootstrap_list):
+            duplicates = df.columns[df.columns.duplicated()].unique()
+            if len(duplicates) > 0:
+                import streamlit as st
+                st.warning(f"Cycle {cycles[i]} bootstrap data has duplicate columns: {duplicates.tolist()}")
+                combined_bootstrap_list[i] = df.loc[:, ~df.columns.duplicated()]
+    
     # Combine all cycles (fast concat operation)
     combined_data = pd.concat(combined_data_list, ignore_index=True)
     combined_bootstrap = pd.concat(combined_bootstrap_list, ignore_index=True)
