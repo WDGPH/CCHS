@@ -78,6 +78,32 @@ def get_value_label(harmonized_var: str, value, cycle: str, categories: dict) ->
     return label
 
 
+def get_cycle_value_label(varname: str, value, cycle_var_info: dict) -> str:
+    """
+    Get value label from cycle-specific JSON (CCHS_YYYY.json).
+    Used for single-cycle analysis to show proper category labels.
+    
+    Args:
+        varname: Variable name (cycle-specific, not harmonized)
+        value: The value to get label for
+        cycle_var_info: Full cycle variable info from CCHS_YYYY.json
+    
+    Returns:
+        Label string or original value if not found
+    """
+    var_info = cycle_var_info.get(varname, {})
+    categories = var_info.get("categories", {})
+    
+    # Convert value to string (handle floats that are actually integers)
+    if isinstance(value, float) and value.is_integer():
+        value_str = str(int(value))
+    else:
+        value_str = str(value)
+    
+    # Return label if found, otherwise return the value as string
+    return categories.get(value_str, value_str)
+
+
 def get_available_harmonized_vars(crosswalk: dict, cycle: str, merged_data: pd.DataFrame) -> list:
     """Helper to get available harmonized variables for the selected cycle and data."""
     available = []

@@ -86,6 +86,16 @@ def load_json_variable_descriptions(cycle: str) -> dict:
 
 
 @st.cache_data
+def load_cycle_variable_info(cycle: str) -> dict:
+    """Load complete variable information (descriptions AND categories) for a specific cycle."""
+    json_file = os.path.join("harmonization", f"CCHS_{cycle}.json")
+    if os.path.exists(json_file):
+        with open(json_file, "r") as f:
+            return json.load(f)
+    return {}
+
+
+@st.cache_data
 def load_crosswalk() -> dict:
     """Load harmonization crosswalk."""
     crosswalk_file = os.path.join("harmonization", "crosswalk.json")

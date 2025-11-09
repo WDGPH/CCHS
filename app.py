@@ -13,7 +13,7 @@ from config.styles import CSS_STYLES
 from src.data.loader import (
     load_cycle_data, load_multi_cycle_data, 
     load_variable_descriptions, load_json_variable_descriptions, 
-    load_crosswalk, load_categories, merge_data
+    load_cycle_variable_info, load_crosswalk, load_categories, merge_data
 )
 from src.data.processor import create_age_groups, apply_region_filter
 from src.analysis.bootstrap import run_bootstrap_analysis_for_all_values
@@ -36,7 +36,8 @@ from src.utils.helpers import (
     create_excel_download, 
     create_multi_cycle_excel,
     get_cycle_varname, 
-    get_value_label, 
+    get_value_label,
+    get_cycle_value_label,
     get_available_harmonized_vars, 
     merge_descriptions
 )
@@ -143,6 +144,10 @@ def main():
         # Load variable descriptions (use first cycle as reference)
         desc_df, desc_dict = load_variable_descriptions(selected_cycles[0])
         json_desc_dict = load_json_variable_descriptions(selected_cycles[0])
+        
+        # Load cycle variable info for all selected cycles (for labels)
+        cycle_var_info_dict = {cycle: load_cycle_variable_info(cycle) for cycle in selected_cycles}
+        
         merged_desc_dict = merge_descriptions(json_desc_dict, desc_dict)
         
         # Display data overview
@@ -173,6 +178,7 @@ def main():
         # Load variable descriptions for the selected cycle
         desc_df, desc_dict = load_variable_descriptions(cycle)
         json_desc_dict = load_json_variable_descriptions(cycle)
+        cycle_var_info = load_cycle_variable_info(cycle)  # Load full info with categories
         merged_desc_dict = merge_descriptions(json_desc_dict, desc_dict)
         
         # Display data overview
@@ -420,12 +426,18 @@ def main():
                                 result_df['CYCLE'] = cycle_year
                                 result_df['Variable'] = variable
                                 
-                                # Add harmonized labels
-                                if categories:
-                                    result_df['Label'] = result_df.apply(
-                                        lambda row: get_value_label(variable, row['Value'], cycle_year, categories),
-                                        axis=1
-                                    )
+                                # Add labels - try harmonized categories first, then fall back to cycle-specific
+                                def get_label_with_fallback(row):
+                                    # Try harmonized categories first
+                                    if categories:
+                                        label = get_value_label(variable, row['Value'], cycle_year, categories)
+                                        if label != str(row['Value']):  # Found a label
+                                            return label
+                                    # Fallback to cycle-specific JSON
+                                    cycle_info = cycle_var_info_dict.get(cycle_year, {})
+                                    return get_cycle_value_label(variable, row['Value'], cycle_info)
+                                
+                                result_df['Label'] = result_df.apply(get_label_with_fallback, axis=1)
                                 
                                 cycle_results_list.append(result_df)
                             
@@ -445,11 +457,10 @@ def main():
                             
                             result_df = run_bootstrap_analysis_for_all_values(merged_data, actual_varname, weight_col)
                             
-                            # Add value labels if using harmonized variables
-                            if use_harmonized and categories:
-                                result_df['Label'] = result_df['Value'].apply(
-                                    lambda v: get_value_label(variable, v, cycle, categories)
-                                )
+                            # Add value labels from cycle-specific JSON (ALWAYS, not just for harmonized)
+                            result_df['Label'] = result_df['Value'].apply(
+                                lambda v: get_cycle_value_label(actual_varname, v, cycle_var_info)
+                            )
                             
                             result_df['Variable'] = variable
                             combined_results.append(result_df)
@@ -680,7 +691,7 @@ def main():
     
     st.markdown(f"""
     <div style="text-align: center; color: var(--text-light); padding: 1rem;">
-        <p>🏥 Wellington-Dufferin-Guelph Public Health | CCHS Analysis Tool</p>
+        <p> Wellington-Dufferin-Guelph Public Health | CCHS Analysis Tool</p>
         <p style="font-size: 0.8rem;">Mode: {analysis_mode} | Cycles: {cycles_str} | Powered by Streamlit & Bootstrap Analysis | Harmonization: {harmonization_status}</p>
     </div>
     """, unsafe_allow_html=True)
