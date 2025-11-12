@@ -147,3 +147,36 @@ def create_multi_cycle_excel(results_df: pd.DataFrame, cycles: list) -> bytes:
             summary_df.to_excel(writer, sheet_name="Comparison Summary", index=False)
     
     return excel_buffer.getvalue()
+
+
+def get_inclusion_flags(data: pd.DataFrame, desc_dict: dict) -> dict:
+    """
+    Detect inclusion flag variables in the dataset.
+    Inclusion flags are identified by having "Inclusion Flag" in their description.
+    Works for all cycles (2021, 2022, 2023).
+    
+    Args:
+        data: DataFrame with columns
+        desc_dict: Dictionary mapping variable names to descriptions (required)
+    
+    Returns:
+        Dictionary mapping flag_name -> description
+    """
+    inclusion_flags = {}
+    
+    if desc_dict is None or not desc_dict:
+        return inclusion_flags
+    
+    # Check all variables in the dataset
+    for col in data.columns:
+        # Skip bootstrap weights and other non-variable columns
+        if col.startswith('BSW') or col in ['ONT_ID', 'CYCLE', 'WTS_S', 'AgeGroup']:
+            continue
+            
+        # Check if description contains "Inclusion Flag"
+        if col in desc_dict:
+            desc = desc_dict[col]
+            if 'Inclusion Flag' in desc or 'inclusion flag' in desc.lower():
+                inclusion_flags[col] = desc
+    
+    return inclusion_flags
