@@ -15,7 +15,7 @@ from src.data.loader import (
     load_variable_descriptions, load_json_variable_descriptions, 
     load_cycle_variable_info, load_crosswalk, load_categories, merge_data
 )
-from src.data.processor import create_age_groups, apply_region_filter
+from src.data.processor import create_age_groups, apply_region_filter, apply_inclusion_flag_filters
 from src.analysis.bootstrap import run_bootstrap_analysis_for_all_values
 from src.ui.components import (
     display_data_metrics, create_content_card, create_workflow_stepper,
@@ -27,6 +27,7 @@ from src.ui.sidebar import (
     create_multi_cycle_selector,
     create_variable_search_sidebar, 
     create_geographic_filters_sidebar, 
+    create_inclusion_flag_filters_sidebar,
     create_apply_filters_section
 )
 from src.ui.results import display_results, display_crosstab_report, display_multi_cycle_results, is_multi_cycle
@@ -64,10 +65,10 @@ def main():
         st.markdown("""
         <div style="padding: 1rem 0;">
             <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: var(--primary);">
-                🏥 CCHS Analysis Dashboard
+                CCHS Bootstrap Analysis Platform
             </h1>
             <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: var(--text-light);">
-                Canadian Community Health Survey Bootstrap Analysis Tool
+                Canadian Community Health Survey Statistical Analysis Tool
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -210,15 +211,27 @@ def main():
     # Geographic filters with data preview
     filter_by_district, filter_by_municipality_dropdown, district_codes, filter_by_health_region = create_geographic_filters_sidebar(data)
     
+    # Inclusion flag filters (works for all cycles)
+    selected_inclusion_flags = create_inclusion_flag_filters_sidebar(
+        data if 'data' in locals() else None,
+        merged_desc_dict if 'merged_desc_dict' in locals() else None
+    )
+    set_session_state('selected_inclusion_flags', selected_inclusion_flags)
+    
     # Apply filters button
     apply_filters = create_apply_filters_section()
     
     # Main content area - Auto-merge data after filtering
     if apply_filters:
-        with st.spinner("🔄 Applying geographic filters and preparing data..."):
+        with st.spinner("🔄 Applying geographic and inclusion flag filters and preparing data..."):
+            # Apply geographic filters first
             filtered_data = apply_region_filter(
                 data, filter_by_district, filter_by_health_region, district_codes
             )
+            
+            # Apply inclusion flag filters if any selected
+            if any(selected_inclusion_flags.values()):
+                filtered_data = apply_inclusion_flag_filters(filtered_data, selected_inclusion_flags)
             
             # Add age groups
             filtered_data = create_age_groups(filtered_data, 'DHH_AGE')
@@ -691,7 +704,7 @@ def main():
     
     st.markdown(f"""
     <div style="text-align: center; color: var(--text-light); padding: 1rem;">
-        <p> Wellington-Dufferin-Guelph Public Health | CCHS Analysis Tool</p>
+        <p> Wellington-Dufferin-Guelph Public Health | CCHS Bootstrap Analysis Platform</p>
         <p style="font-size: 0.8rem;">Mode: {analysis_mode} | Cycles: {cycles_str} | Powered by Streamlit & Bootstrap Analysis | Harmonization: {harmonization_status}</p>
     </div>
     """, unsafe_allow_html=True)
