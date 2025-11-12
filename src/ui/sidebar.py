@@ -177,6 +177,98 @@ def create_geographic_filters_sidebar(data=None):
     return filter_by_district, filter_by_municipality_dropdown, district_codes, filter_by_health_region
 
 
+def create_inclusion_flag_filters_sidebar(data=None, desc_dict=None):
+    """
+    Create the inclusion flag filters sidebar section.
+    Works for all cycles (2021, 2022, 2023).
+    
+    Args:
+        data: Optional DataFrame to detect available inclusion flags
+        desc_dict: Dictionary mapping variable names to descriptions (required for detection)
+    
+    Returns:
+        Dictionary mapping flag_name -> True/False (whether to filter by it)
+    """
+    from src.utils.helpers import get_inclusion_flags
+    
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("""
+    <div class="sidebar-card">
+        <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
+            🎯 <span style="margin-left: 0.5rem;">Data Quality Filters</span>
+        </h3>
+        <p style="margin: 0 0 1rem 0; color: var(--text-light); font-size: 0.85rem;">
+            Filter by inclusion flags to ensure only eligible respondents are included
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    selected_flags = {}
+    
+    if data is not None and desc_dict is not None:
+        # Detect available inclusion flags using description
+        inclusion_flags = get_inclusion_flags(data, desc_dict)
+        
+        if inclusion_flags:
+            st.sidebar.markdown("""
+            <div style="background: var(--light-bg); padding: 0.75rem; border-radius: 8px; 
+                       margin: 0.5rem 0; border-left: 3px solid var(--accent);">
+                <strong style="color: var(--primary);">Select Inclusion Flags</strong>
+                <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem; color: var(--text-light);">
+                    Only include respondents who were asked specific module questions
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Sort flags by variable name for consistency
+            sorted_flags = sorted(inclusion_flags.items())
+            
+            # Show flags in checkboxes
+            for flag, desc in sorted_flags:
+                # Extract a short label from description (remove " - Inclusion Flag - (F)")
+                short_desc = desc.replace(" - Inclusion Flag - (F)", "").strip()
+                if not short_desc:
+                    short_desc = flag
+                
+                selected_flags[flag] = st.sidebar.checkbox(
+                    f"✅ {flag}: {short_desc}",
+                    value=False,
+                    help=desc,
+                    key=f"inclusion_flag_{flag}"
+                )
+            
+            # Show preview if any flags selected
+            if any(selected_flags.values()):
+                from src.data.processor import apply_inclusion_flag_filters
+                try:
+                    preview_data = apply_inclusion_flag_filters(data, selected_flags)
+                    record_count = len(preview_data)
+                    original_count = len(data)
+                    pct = (record_count / original_count * 100) if original_count > 0 else 0
+                    
+                    if record_count < 100:
+                        st.sidebar.warning(
+                            f"📊 Preview: {record_count:,} records ({pct:.1f}%) "
+                            f"- Small sample size!"
+                        )
+                    else:
+                        st.sidebar.info(
+                            f"📊 Preview: {record_count:,} records ({pct:.1f}%) "
+                            f"after inclusion flag filters"
+                        )
+                except Exception as e:
+                    st.sidebar.warning(f"Could not preview: {str(e)}")
+        else:
+            st.sidebar.info("ℹ️ No inclusion flags detected. Ensure variable descriptions are loaded.")
+    else:
+        if desc_dict is None:
+            st.sidebar.info("ℹ️ Load data to see available inclusion flags")
+        else:
+            st.sidebar.info("ℹ️ Variable descriptions needed to detect inclusion flags")
+    
+    return selected_flags
+
+
 def create_apply_filters_section():
     """Create the apply filters section in sidebar."""
     st.sidebar.markdown("---")
@@ -191,8 +283,8 @@ def create_apply_filters_section():
     """, unsafe_allow_html=True)
     
     return st.sidebar.button(
-        "🎯 Apply Geographic Filters", 
+        "🎯 Apply All Filters", 
         type="primary",
-        help="Apply all selected geographic filters to the dataset",
+        help="Apply geographic and inclusion flag filters to the dataset",
         use_container_width=True
     )

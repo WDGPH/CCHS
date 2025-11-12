@@ -40,3 +40,35 @@ def apply_region_filter(data, filter_by_district, filter_by_health_region, distr
         filtered = data
         st.write("No region filter applied; using the entire dataset.")
     return filtered
+
+
+def apply_inclusion_flag_filters(data: pd.DataFrame, selected_flags: dict) -> pd.DataFrame:
+    """
+    Apply inclusion flag filters to the dataset.
+    Works for all cycles (2021, 2022, 2023).
+    
+    Args:
+        data: DataFrame to filter
+        selected_flags: Dictionary mapping flag_name -> True/False
+    
+    Returns:
+        Filtered DataFrame
+    """
+    filtered = data.copy()
+    applied_filters = []
+    
+    # Apply each selected inclusion flag filter
+    for flag, should_filter in selected_flags.items():
+        if should_filter and flag in filtered.columns:
+            # Filter to only include rows where flag == 1
+            initial_count = len(filtered)
+            filtered = filtered[filtered[flag] == 1]
+            final_count = len(filtered)
+            applied_filters.append(f"{flag} ({initial_count:,} → {final_count:,} records)")
+    
+    if applied_filters:
+        st.write(f"Applied inclusion flag filters: {', '.join(applied_filters)}")
+    else:
+        st.write("No inclusion flag filters applied")
+    
+    return filtered
