@@ -13,10 +13,10 @@ def is_multi_cycle(results_df: pd.DataFrame) -> bool:
 
 def display_results(result_df, variable, use_labels=False, variable_description: Optional[str] = None):
     """Display the analysis results as a modern styled table and enhanced chart."""
-    import uuid
+    import hashlib
     
-    # Generate a unique session ID for this result display
-    result_id = str(uuid.uuid4())[:8]
+    # Generate a stable ID based on variable name (not random)
+    result_id = hashlib.md5(variable.encode()).hexdigest()[:8]
     
     # Use variable description in header if available
     display_var = variable_description if variable_description else variable
@@ -39,11 +39,145 @@ def display_results(result_df, variable, use_labels=False, variable_description:
         </div>
     """, unsafe_allow_html=True)
     
+    # Add filtering options AFTER the header
+    st.markdown("**Display Options:**")
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        filter_skips = st.checkbox(
+            "🎯 Filter skip/missing",
+            value=False,
+            key=f"filter_skips_{result_id}",
+            help="Remove 'Valid skip', 'Not stated', 'Don't know', and similar categories"
+        )
+    
+    with col2:
+        recalculate_pct = st.checkbox(
+            "🔄 Recalculate %",
+            value=False,
+            key=f"recalc_pct_{result_id}",
+            help="Show % only among those who answered"
+        )
+    
+    with col3:
+        show_debug = st.checkbox(
+            "🔍 Debug",
+            value=False,
+            key=f"debug_{result_id}",
+            help="Show values for debugging"
+        )
+    
+    # Apply filtering if requested
+    display_df = result_df.copy()
+    original_count = len(display_df)
+    filtered_count = original_count
+    
+    # Show debug info if requested
+    if show_debug:
+        st.write("**Debug Info:**")
+        if 'Label' in display_df.columns:
+            st.write("Label values:", display_df['Label'].tolist())
+        st.write("Value column:", display_df['Value'].tolist())
+    
+    if filter_skips:
+        # Define skip/missing patterns to filter
+        skip_patterns = [
+            'valid skip', 'skip', 'not stated', 'not stated', 'don\'t know', 
+            'refusal', 'not applicable', 'refused', 'n/a', 'na', 
+            'missing', 'dk', 'ns'
+        ]
+        
+        # Check which column to filter on
+        filter_column = None
+        if 'Label' in display_df.columns and display_df['Label'].notna().any():
+            filter_column = 'Label'
+            st.write(f"🔍 Filtering on: {filter_column} column")
+        else:
+            filter_column = 'Value'
+            st.write(f"🔍 Filtering on: {filter_column} column")
+        
+        # Create mask - keep rows that DON'T contain any skip patterns
+        def should_keep_row(val):
+            if pd.isna(val):
+                return True
+            val_str = str(val).lower().strip()
+            for pattern in skip_patterns:
+                if pattern in val_str:
+                    return False
+            return True
+        
+        mask = display_df[filter_column].apply(should_keep_row)
+        display_df = display_df[mask].copy()
+        filtered_count = len(display_df)
+        
+        if filtered_count < original_count:
+            st.info(f"ℹ️ Filtered: {original_count} → {filtered_count} rows ({original_count - filtered_count} removed)")
+        else:
+            st.warning("⚠️ No skip/missing categories detected")
+    
+    # Recalculate percentages if requested
+    if recalculate_pct and not display_df.empty:
+        total_valid = display_df['Weighted Population'].sum()
+        if total_valid > 0:
+            display_df = display_df.copy()
+            display_df['Original Prevalence'] = display_df['Prevalence'].copy()
+            display_df['Prevalence'] = (display_df['Weighted Population'] / total_valid) * 100
+            
+            # Recalculate confidence intervals proportionally
+            # Avoid division by zero
+            with pd.option_context('mode.chained_assignment', None):
+                scale_factor = display_df['Prevalence'] / display_df['Original Prevalence'].replace(0, 1)
+                display_df['CI Lower'] = display_df['Prevalence'] - (display_df['Error'] * scale_factor).fillna(0)
+                display_df['CI Upper'] = display_df['Prevalence'] + (display_df['Error'] * scale_factor).fillna(0)
+            
+            st.success(f"✅ Recalculated among {filtered_count} response(s) (weighted pop: {total_valid:,.0f})")
+        else:
+            st.error("❌ Cannot recalculate: no valid weighted population")
+    
+    # Add info box explaining response categories with actual data examples
+    with st.expander("ℹ️ Understanding Response Categories", expanded=False):
+        st.markdown("""
+        **Common Response Categories:**
+        
+        - **Valid Response** (e.g., Yes, No): Person was asked and provided an answer
+        - **Valid Skip**: Question didn't apply (e.g., non-smokers skipping smoking questions)
+        - **Not stated/Refusal**: Person declined to answer
+        - **Don't know**: Person was unsure
+        
+        **Interpreting Percentages:**
+        
+        - **Default view**: Shows % of the entire population (including skips)
+        - **Filtered view**: Removes skip/missing categories from display
+        - **Recalculated view**: Shows % only among those who answered
+        """)
+        
+        # Show actual example from current data
+        st.markdown("**Example from your current data:**")
+        
+        # Get label column if available
+        label_col = 'Label' if 'Label' in display_df.columns else 'Value'
+        
+        # Show first few rows as example
+        example_rows = display_df.head(min(5, len(display_df)))
+        for idx, row in example_rows.iterrows():
+            label = row[label_col] if label_col in row else row['Value']
+            prev = row['Prevalence']
+            st.write(f"• **{label}**: {prev:.2f}% → {prev:.2f}% of entire population")
+        
+        # Calculate what it would be if recalculated
+        total = display_df['Prevalence'].sum()
+        if total > 0:
+            st.markdown(f"\n**If recalculated among valid responses only:**")
+            for idx, row in example_rows.iterrows():
+                label = row[label_col] if label_col in row else row['Value']
+                prev = row['Prevalence']
+                recalc = (prev / total) * 100
+                st.write(f"• **{label}**: {recalc:.1f}% → {recalc:.1f}% of those who answered")
+    
     # Display quality legend
     display_quality_legend()
     
     # Add quality indicators to the dataframe
-    display_df = result_df.copy()
     display_df['Quality'] = display_df['CV (%)'].apply(lambda cv: get_quality_badge(cv))
     
     # Always use Label column for display in both table and plot if available
@@ -61,10 +195,8 @@ def display_results(result_df, variable, use_labels=False, variable_description:
         cols.insert(cv_idx + 1, 'Quality')
         display_df = display_df[cols]
     
-    styled_df = display_df.style.background_gradient(
-        subset=['Prevalence'], 
-        cmap='viridis'
-    ).format({
+    # Format dictionary for styling
+    format_dict = {
         'Prevalence': '{:.2f}%',
         'Weighted Population': '{:,.0f}',
         'Standard Deviation': '{:.3f}',
@@ -72,16 +204,37 @@ def display_results(result_df, variable, use_labels=False, variable_description:
         'CI Upper': '{:.2f}',
         'CV (%)': '{:.1f}%',
         'Error': '{:.3f}'
-    }).set_properties(**{
+    }
+    
+    # Add original prevalence format if it exists
+    if 'Original Prevalence' in display_df.columns:
+        format_dict['Original Prevalence'] = '{:.2f}%'
+    
+    styled_df = display_df.style.background_gradient(
+        subset=['Prevalence'], 
+        cmap='viridis'
+    ).format(format_dict).set_properties(**{
         'text-align': 'center',
         'font-weight': '500'
     })
     
     st.markdown(styled_df.to_html(escape=False), unsafe_allow_html=True)
     
-    # Create and display enhanced chart
+    # Create and display enhanced chart using the filtered/recalculated display_df
     chart_title_var = variable_description if variable_description else variable
-    fig = create_enhanced_chart(result_df, chart_title_var)
+    
+    # Add note to chart title if recalculated
+    if recalculate_pct:
+        chart_title_var += " (% of valid responses)"
+    elif filter_skips:
+        chart_title_var += " (filtered)"
+    
+    # Prepare chart data - need to restore 'Label' column if it was renamed
+    chart_data = display_df.copy()
+    if 'Value Label' in chart_data.columns and 'Label' not in chart_data.columns:
+        chart_data['Label'] = chart_data['Value Label']
+    
+    fig = create_enhanced_chart(chart_data, chart_title_var)
     st.pyplot(fig)
     st.markdown("</div>", unsafe_allow_html=True)
     
