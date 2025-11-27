@@ -269,6 +269,84 @@ def create_inclusion_flag_filters_sidebar(data=None, desc_dict=None):
     return selected_flags
 
 
+def create_age_group_configuration():
+    """
+    Create age group configuration UI in sidebar.
+    Returns a tuple of (age_bins, age_labels) to be used when creating age groups.
+    """
+    from config.settings import AGE_GROUP_PRESETS
+    
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("""
+    <div class="sidebar-card">
+        <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
+            👥 <span style="margin-left: 0.5rem;">Age Group Configuration</span>
+        </h3>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    preset = st.sidebar.selectbox(
+        "Select Age Group Preset",
+        options=list(AGE_GROUP_PRESETS.keys()),
+        index=0,
+        help="Choose a predefined age grouping or create a custom one",
+        key="age_group_preset"
+    )
+    
+    if preset == "Custom":
+        st.sidebar.markdown("**Define Custom Age Groups:**")
+        st.sidebar.info("💡 Enter bin edges separated by commas (e.g., 0,18,30,50,65,120)")
+        
+        bins_input = st.sidebar.text_input(
+            "Bin Edges (comma-separated)",
+            value="0,15,25,45,65,120",
+            help="Enter age boundaries. Must start with 0 and end with a high value (e.g., 120)",
+            key="custom_age_bins"
+        )
+        
+        labels_input = st.sidebar.text_input(
+            "Labels (comma-separated)",
+            value="0-14,15-24,25-44,45-64,65+",
+            help="Enter labels for each age range. Number of labels = bins - 1",
+            key="custom_age_labels"
+        )
+        
+        try:
+            bins = [int(x.strip()) for x in bins_input.split(',')]
+            labels = [x.strip() for x in labels_input.split(',')]
+            
+            if len(labels) != len(bins) - 1:
+                st.sidebar.error(f"❌ Error: {len(labels)} labels provided but need {len(bins)-1} (bins-1)")
+                return None, None
+            
+            st.sidebar.success(f"✅ Custom age groups: {len(labels)} groups defined")
+            
+            # Show preview
+            with st.sidebar.expander("👁️ Preview Age Groups", expanded=False):
+                for i, label in enumerate(labels):
+                    st.write(f"• {label}: {bins[i]} to {bins[i+1]-1}")
+            
+            return bins, labels
+            
+        except ValueError as e:
+            st.sidebar.error(f"❌ Invalid format: {str(e)}")
+            return None, None
+    else:
+        # Use preset
+        config = AGE_GROUP_PRESETS[preset]
+        bins = config["bins"]
+        labels = config["labels"]
+        
+        st.sidebar.success(f"✅ Using preset: {len(labels)} age groups")
+        
+        # Show preview
+        with st.sidebar.expander("👁️ Preview Age Groups", expanded=False):
+            for i, label in enumerate(labels):
+                st.write(f"• {label}: {bins[i]} to {bins[i+1]-1}")
+        
+        return bins, labels
+
+
 def create_apply_filters_section():
     """Create the apply filters section in sidebar."""
     st.sidebar.markdown("---")

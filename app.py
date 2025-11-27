@@ -28,6 +28,7 @@ from src.ui.sidebar import (
     create_variable_search_sidebar, 
     create_geographic_filters_sidebar, 
     create_inclusion_flag_filters_sidebar,
+    create_age_group_configuration,
     create_apply_filters_section
 )
 from src.ui.results import display_results, display_crosstab_report, display_multi_cycle_results, is_multi_cycle
@@ -218,6 +219,11 @@ def main():
     )
     set_session_state('selected_inclusion_flags', selected_inclusion_flags)
     
+    # Age group configuration
+    age_bins, age_labels = create_age_group_configuration()
+    set_session_state('age_bins', age_bins)
+    set_session_state('age_labels', age_labels)
+    
     # Apply filters button
     apply_filters = create_apply_filters_section()
     
@@ -233,8 +239,10 @@ def main():
             if any(selected_inclusion_flags.values()):
                 filtered_data = apply_inclusion_flag_filters(filtered_data, selected_inclusion_flags)
             
-            # Add age groups
-            filtered_data = create_age_groups(filtered_data, 'DHH_AGE')
+            # Add age groups with user-configured bins/labels
+            age_bins = get_session_state('age_bins')
+            age_labels = get_session_state('age_labels')
+            filtered_data = create_age_groups(filtered_data, age_bins=age_bins, age_labels=age_labels)
             
             # Automatically merge with bootstrap data (no manual step needed)
             merged_data = merge_data(filtered_data, bootstrap_data)
@@ -457,10 +465,6 @@ def main():
                             if cycle_results_list:
                                 combined_result_df = pd.concat(cycle_results_list, ignore_index=True)
                                 combined_results.append(combined_result_df)
-                                
-                                # Display multi-cycle results immediately
-                                var_desc = merged_desc_dict.get(variable, None)
-                                display_multi_cycle_results(combined_result_df, variable, var_desc)
                         else:
                             # Single cycle analysis (existing behavior)
                             if use_harmonized and crosswalk:
@@ -477,10 +481,6 @@ def main():
                             
                             result_df['Variable'] = variable
                             combined_results.append(result_df)
-                            
-                            # Display results immediately (like main.py does)
-                            var_desc = merged_desc_dict.get(variable, variable)
-                            display_results(result_df, variable, use_labels='Label' in result_df.columns, variable_description=var_desc)
                         
                     except Exception as e:
                         st.error(f"❌ Error analyzing {variable}: {str(e)}")
@@ -613,16 +613,18 @@ def main():
             </div>
         """, unsafe_allow_html=True)
         
-        # Simplified tabs - Results & Export only
+        # Tabs with Age Group Analysis
         if analysis_mode == "Multi-Cycle":
-            tab1, tab2 = st.tabs([
-                "Results & Visualizations", 
-                "Export Data"
+            tab1, tab2, tab3 = st.tabs([
+                "📊 Results & Visualizations", 
+                "👥 Age Group Analysis",
+                "💾 Export Data"
             ])
         else:
-            tab1, tab2 = st.tabs([
-                "Results & Visualizations", 
-                "Export Data"
+            tab1, tab2, tab3 = st.tabs([
+                "📊 Results & Visualizations", 
+                "👥 Age Group Analysis",
+                "💾 Export Data"
             ])
         
         with tab1:
@@ -651,6 +653,145 @@ def main():
             display_crosstab_report(combined_results)
         
         with tab2:
+            # Age Group Analysis
+            st.markdown("""
+            <div style="background: var(--background-alt); padding: 1.5rem; border-radius: 12px; 
+                        margin-bottom: 1.5rem; border-left: 4px solid var(--secondary);">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">
+                    👥 Age-Stratified Analysis
+                </h4>
+                <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
+                    Breakdown of analysis results by age groups (0-14, 15-24, 25-44, 45-64, 65+) to identify demographic patterns.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            age_analysis_enabled = st.checkbox(
+                "🔍 Enable Age Group-Wise Analysis", 
+                help="Perform detailed analysis stratified by age groups. This will analyze your selected variables across different age groups."
+            )
+            
+            if age_analysis_enabled:
+                merged_data_for_age = get_session_state('merged_data')
+                selected_variables = get_session_state('selected_variables')
+                
+                if merged_data_for_age is not None and selected_variables and len(selected_variables) > 0:
+                    # Check if age groups exist
+                    if 'AgeGroup' not in merged_data_for_age.columns:
+                        st.warning("⚠️ Age groups not found in data. Please apply filters first to generate age groups.")
+                    else:
+                        # Select which variable to analyze by age group
+                        st.markdown("**Select Variable for Age Group Analysis:**")
+                        selected_age_var = st.selectbox(
+                            "Choose a variable to analyze across age groups:",
+                            options=selected_variables,
+                            help="Select one variable to see how results vary by age group"
+                        )
+                        
+                        if selected_age_var:
+                            age_group_results = []
+                            
+                            with st.spinner(f"🔄 Analyzing '{selected_age_var}' across age groups..."):
+                                age_progress = st.progress(0)
+                                age_status = st.empty()
+                                
+                                # Get unique age groups (excluding None)
+                                age_groups = list(merged_data_for_age['AgeGroup'].dropna().unique())
+                                age_groups = sorted(age_groups, key=lambda x: ['0-14', '15-24', '25-44', '45-64', '65+'].index(x) if x in ['0-14', '15-24', '25-44', '45-64', '65+'] else 999)
+                                
+                                for i, age_group in enumerate(age_groups):
+                                    # Filter data for this age group
+                                    group_data = merged_data_for_age[
+                                        merged_data_for_age['AgeGroup'] == age_group
+                                    ]
+                                    
+                                    if not group_data.empty:
+                                        progress = (i + 1) / len(age_groups)
+                                        age_progress.progress(progress)
+                                        age_status.text(f"Processing age group {i+1}/{len(age_groups)}: {age_group}")
+                                        
+                                        # Determine the actual variable name
+                                        if analysis_mode == "Single Cycle" and use_harmonized and crosswalk:
+                                            actual_varname = get_cycle_varname(selected_age_var, cycle, crosswalk)
+                                        else:
+                                            actual_varname = selected_age_var
+                                        
+                                        # Run bootstrap analysis for this age group
+                                        try:
+                                            result_df = run_bootstrap_analysis_for_all_values(
+                                                group_data, 
+                                                actual_varname, 
+                                                'WTS_S'
+                                            )
+                                            result_df['AgeGroup'] = age_group
+                                            result_df['Variable'] = selected_age_var
+                                            
+                                            # Add labels if available
+                                            if use_harmonized and categories:
+                                                result_df['Label'] = result_df['Value'].apply(
+                                                    lambda v: get_value_label(selected_age_var, v, cycle, categories)
+                                                )
+                                            
+                                            age_group_results.append(result_df)
+                                        except Exception as e:
+                                            st.warning(f"Could not analyze age group {age_group}: {str(e)}")
+                                
+                                age_progress.empty()
+                                age_status.empty()
+                            
+                            if age_group_results:
+                                age_group_df = pd.concat(age_group_results, ignore_index=True)
+                                
+                                # Display results
+                                st.markdown("""
+                                <div style="background: white; padding: 1.5rem; border-radius: 12px; 
+                                            margin: 1rem 0; box-shadow: 0 4px 20px var(--shadow); 
+                                            border-left: 4px solid var(--accent);">
+                                    <h4 style="margin: 0 0 1rem 0; color: var(--primary);">
+                                        📊 Age Group Cross-Tabulation Results
+                                    </h4>
+                                """, unsafe_allow_html=True)
+                                
+                                # Create cross-tabulation by age group
+                                age_crosstab = pd.pivot_table(
+                                    age_group_df,
+                                    index='AgeGroup',
+                                    columns='Value',
+                                    values='Prevalence'
+                                )
+                                
+                                # Enhanced styling for age group results
+                                styled_age_crosstab = age_crosstab.style.format('{:.2f}%').background_gradient(
+                                    cmap='RdYlBu_r', axis=None
+                                )
+                                
+                                st.dataframe(styled_age_crosstab, use_container_width=True)
+                                st.markdown("</div>", unsafe_allow_html=True)
+                                
+                                # Show detailed breakdown
+                                with st.expander("📋 View Detailed Age Group Breakdown", expanded=False):
+                                    st.dataframe(
+                                        age_group_df[['AgeGroup', 'Value', 'Prevalence', 'Weighted Population', 
+                                                      'Standard Deviation', 'CI Lower', 'CI Upper', 'CV (%)']],
+                                        use_container_width=True
+                                    )
+                                
+                                # Download age group results
+                                st.markdown("**💾 Download Age Group Analysis:**")
+                                age_csv = age_group_df.to_csv().encode('utf-8')
+                                st.download_button(
+                                    label="Download Age Group Results (CSV)",
+                                    data=age_csv,
+                                    file_name=f"cchs_age_group_analysis_{selected_age_var}.csv",
+                                    mime="text/csv",
+                                    use_container_width=True
+                                )
+                            else:
+                                st.warning("⚠️ No age group results generated. This may happen if data is insufficient for some age groups.")
+                else:
+                    st.info("💡 Please select variables and run analysis first, then return to this tab for age group breakdown.")
+        
+        with tab3:
             # Consolidated export section
             st.subheader("Export Analysis Results")
             

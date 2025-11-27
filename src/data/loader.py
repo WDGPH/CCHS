@@ -29,7 +29,7 @@ def load_variable_descriptions(cycle: str) -> tuple[pd.DataFrame, dict]:
         # Load from harmonized JSON file first
         json_file = os.path.join("harmonization", f"CCHS_{cycle}.json")
         if os.path.exists(json_file):
-            with open(json_file, "r") as f:
+            with open(json_file, "r", encoding="utf-8") as f:
                 var_dict = json.load(f)
             
             # Extract descriptions from JSON structure
@@ -79,7 +79,7 @@ def load_json_variable_descriptions(cycle: str) -> dict:
     """Load JSON variable descriptions for a specific cycle (legacy function for compatibility)."""
     json_file = os.path.join("harmonization", f"CCHS_{cycle}.json")
     if os.path.exists(json_file):
-        with open(json_file, "r") as f:
+        with open(json_file, "r", encoding="utf-8") as f:
             var_dict = json.load(f)
         return {k: v.get("description", "") for k, v in var_dict.items()}
     return {}
@@ -90,7 +90,7 @@ def load_cycle_variable_info(cycle: str) -> dict:
     """Load complete variable information (descriptions AND categories) for a specific cycle."""
     json_file = os.path.join("harmonization", f"CCHS_{cycle}.json")
     if os.path.exists(json_file):
-        with open(json_file, "r") as f:
+        with open(json_file, "r", encoding="utf-8") as f:
             return json.load(f)
     return {}
 
@@ -100,7 +100,7 @@ def load_crosswalk() -> dict:
     """Load harmonization crosswalk."""
     crosswalk_file = os.path.join("harmonization", "crosswalk.json")
     if os.path.exists(crosswalk_file):
-        with open(crosswalk_file, "r") as f:
+        with open(crosswalk_file, "r", encoding="utf-8") as f:
             return json.load(f)
     return {}
 
@@ -110,7 +110,7 @@ def load_categories() -> dict:
     """Load harmonization categories."""
     categories_file = os.path.join("harmonization", "categories.json")
     if os.path.exists(categories_file):
-        with open(categories_file, "r") as f:
+        with open(categories_file, "r", encoding="utf-8") as f:
             return json.load(f)
     return {}
 
