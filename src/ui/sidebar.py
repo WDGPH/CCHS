@@ -231,7 +231,7 @@ def create_inclusion_flag_filters_sidebar(data=None, desc_dict=None):
                     short_desc = flag
                 
                 selected_flags[flag] = st.sidebar.checkbox(
-                    f"✅ {flag}: {short_desc}",
+                    f" {flag}: {short_desc}",
                     value=False,
                     help=desc,
                     key=f"inclusion_flag_{flag}"
