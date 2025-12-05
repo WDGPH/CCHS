@@ -15,6 +15,10 @@ DEFAULT_CYCLE = "2023"
 # File paths
 DATA_PATH = "data"
 HARMONIZATION_PATH = "harmonization"
+PRECOMPUTED_PATH = "data/precomputed"  # Path for precomputed harmonized data
+
+# Precomputing settings
+ENABLE_PRECOMPUTING = True  # Enable use of precomputed data when available
 
 # Geographic codes
 WELLINGTON_CODES = {
