@@ -119,29 +119,47 @@ def main():
             st.warning("⚠️ Please select at least one cycle to proceed.")
             st.stop()
         
-        # Load multi-cycle harmonized data (load once, not twice!)
-        with st.spinner("🔄 Loading and harmonizing multi-cycle data..."):
-            data, bootstrap_data = load_multi_cycle_data(selected_cycles, crosswalk, categories)
+        # Load multi-cycle harmonized data using smart loader
+        from src.data.smart_loader import smart_load_multiple_cycles, get_common_vars_smart
+        from config.settings import ENABLE_PRECOMPUTING
         
-        if data is None or bootstrap_data is None:
-            st.error("❌ Failed to harmonize and combine multi-cycle data.")
+        with st.spinner("🔄 Loading multi-cycle data..."):
+            cycle_data_dict = smart_load_multiple_cycles(
+                selected_cycles, 
+                crosswalk, 
+                categories,
+                use_precompute=ENABLE_PRECOMPUTING
+            )
+        
+        if not cycle_data_dict:
+            st.error("❌ Failed to load multi-cycle data.")
             st.stop()
         
-        # Get common harmonized variables from the already-harmonized data
-        # No need to load raw data again - check which variables exist in all cycles
-        available_harmonized_vars = []
-        if crosswalk:
-            for harmonized_var in crosswalk.keys():
-                if harmonized_var in data.columns:
-                    # Verify it exists in all selected cycles
-                    has_data_in_all_cycles = True
-                    for cycle_year in selected_cycles:
-                        cycle_subset = data[data['CYCLE'] == cycle_year]
-                        if cycle_subset.empty or harmonized_var not in cycle_subset.columns or cycle_subset[harmonized_var].isna().all():
-                            has_data_in_all_cycles = False
-                            break
-                    if has_data_in_all_cycles:
-                        available_harmonized_vars.append(harmonized_var)
+        # Show performance info to user
+        precomputed_cycles = [c for c, r in cycle_data_dict.items() if r['precomputed']]
+        realtime_cycles = [c for c, r in cycle_data_dict.items() if not r['precomputed']]
+        
+        if precomputed_cycles and realtime_cycles:
+            st.info(f"⚡ Loaded from cache: {', '.join(precomputed_cycles)} | ⏱️ Real-time: {', '.join(realtime_cycles)}")
+        elif precomputed_cycles:
+            st.success(f"⚡ Loaded from cache: {', '.join(precomputed_cycles)}")
+        elif realtime_cycles:
+            st.info(f"⏱️ Processed in real-time: {', '.join(realtime_cycles)}")
+        
+        # Combine data from all cycles
+        combined_data_list = [result['data'] for result in cycle_data_dict.values()]
+        combined_bootstrap_list = [result['bootstrap'] for result in cycle_data_dict.values()]
+        
+        data = pd.concat(combined_data_list, ignore_index=True)
+        bootstrap_data = pd.concat(combined_bootstrap_list, ignore_index=True)
+        
+        # Get common harmonized variables (fast if precomputed)
+        available_harmonized_vars = get_common_vars_smart(
+            selected_cycles, 
+            crosswalk, 
+            categories,
+            use_precompute=ENABLE_PRECOMPUTING
+        )
         
         # Load variable descriptions (use first cycle as reference)
         desc_df, desc_dict = load_variable_descriptions(selected_cycles[0])
@@ -247,13 +265,30 @@ def main():
             # Automatically merge with bootstrap data (no manual step needed)
             merged_data = merge_data(filtered_data, bootstrap_data)
             
+            # Check which cycles remain after filtering (for multi-cycle mode)
+            if analysis_mode == "Multi-Cycle" and 'CYCLE' in merged_data.columns:
+                remaining_cycles = sorted(merged_data['CYCLE'].unique())
+                missing_cycles = [c for c in selected_cycles if c not in remaining_cycles]
+                
+                if missing_cycles:
+                    st.warning(
+                        f"⚠️ After applying filters, the following cycles have no data: {', '.join(missing_cycles)}\n\n"
+                        f"Remaining cycles: {', '.join(remaining_cycles)}\n\n"
+                        "This may be due to geographic filters being too restrictive for some cycles. "
+                        "Consider adjusting your filters or analyzing cycles separately."
+                    )
+                elif len(remaining_cycles) == 1:
+                    st.warning(
+                        f"⚠️ After applying filters, only 1 cycle remains: {remaining_cycles[0]}\n\n"
+                        "Multi-cycle comparison requires at least 2 cycles. "
+                        "Consider using Single Cycle mode or adjusting your filters."
+                    )
+            
             # Store in session state
             set_session_state('filtered_data', filtered_data)
             set_session_state('merged_data', merged_data)
-            
-        st.success(f"✅ Filters applied and data prepared! Dataset now contains {len(filtered_data):,} records, ready for analysis.")
         
-        # Display filtered data metrics
+        st.success(f"✅ Filters applied and data prepared! Dataset now contains {len(filtered_data):,} records, ready for analysis.")        # Display filtered data metrics
         st.markdown(create_content_card(
             "Filtered Dataset",
             "Statistics for the geographically filtered dataset"
@@ -438,27 +473,51 @@ def main():
                         if analysis_mode == "Multi-Cycle":
                             # Multi-cycle analysis: run analysis per cycle
                             cycle_results_list = []
+                            
+                            # Check what cycles are actually in merged_data
+                            if 'CYCLE' not in merged_data.columns:
+                                st.error("❌ CYCLE column not found in merged_data! Please apply filters first.")
+                                continue
+                            
+                            available_cycles_in_data = sorted(merged_data['CYCLE'].unique())
+                            
+                            # Warn if cycles are missing
+                            missing_cycles = [c for c in selected_cycles if c not in available_cycles_in_data]
+                            if missing_cycles:
+                                st.info(f"ℹ️ Analyzing variable '{variable}' in {len(available_cycles_in_data)} cycle(s): {', '.join(available_cycles_in_data)}")
+                                if len(available_cycles_in_data) < 2:
+                                    st.warning(f"⚠️ Multi-cycle comparison requires at least 2 cycles. Skipping '{variable}'.")
+                                    continue
+                            
                             for cycle_year in selected_cycles:
                                 cycle_data = merged_data[merged_data['CYCLE'] == cycle_year].copy()
+                                
                                 if cycle_data.empty:
+                                    st.warning(f"⚠️ No data found for cycle {cycle_year}")
                                     continue
                                 
+                                # Check if variable exists in this cycle's data
+                                if variable not in cycle_data.columns:
+                                    st.warning(f"⚠️ Variable '{variable}' not found in cycle {cycle_year}")
+                                    continue
+                                
+                                # Run bootstrap analysis
                                 result_df = run_bootstrap_analysis_for_all_values(cycle_data, variable, weight_col)
                                 result_df['CYCLE'] = cycle_year
                                 result_df['Variable'] = variable
                                 
                                 # Add labels - try harmonized categories first, then fall back to cycle-specific
-                                def get_label_with_fallback(row):
-                                    # Try harmonized categories first
-                                    if categories:
-                                        label = get_value_label(variable, row['Value'], cycle_year, categories)
-                                        if label != str(row['Value']):  # Found a label
-                                            return label
+                                if categories:
+                                    result_df['Label'] = result_df.apply(
+                                        lambda row: get_value_label(variable, row['Value'], cycle_year, categories),
+                                        axis=1
+                                    )
+                                else:
                                     # Fallback to cycle-specific JSON
                                     cycle_info = cycle_var_info_dict.get(cycle_year, {})
-                                    return get_cycle_value_label(variable, row['Value'], cycle_info)
-                                
-                                result_df['Label'] = result_df.apply(get_label_with_fallback, axis=1)
+                                    result_df['Label'] = result_df['Value'].apply(
+                                        lambda v: get_cycle_value_label(variable, v, cycle_info)
+                                    )
                                 
                                 cycle_results_list.append(result_df)
                             
