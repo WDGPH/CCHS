@@ -11,12 +11,13 @@ def is_multi_cycle(results_df: pd.DataFrame) -> bool:
     return 'CYCLE' in results_df.columns
 
 
-def display_results(result_df, variable, use_labels=False, variable_description: Optional[str] = None):
+def display_results(result_df, variable, use_labels=False, variable_description: Optional[str] = None, show_info_expander=True, cycle_suffix=None):
     """Display the analysis results as a modern styled table and enhanced chart."""
     import hashlib
     
-    # Generate a stable ID based on variable name (not random)
-    result_id = hashlib.md5(variable.encode()).hexdigest()[:8]
+    # Generate a stable ID based on variable name and optional cycle suffix
+    id_base = f"{variable}_{cycle_suffix}" if cycle_suffix else variable
+    result_id = hashlib.md5(id_base.encode()).hexdigest()[:8]
     
     # Use variable description in header if available
     display_var = variable_description if variable_description else variable
@@ -134,9 +135,10 @@ def display_results(result_df, variable, use_labels=False, variable_description:
         else:
             st.error("❌ Cannot recalculate: no valid weighted population")
     
-    # Add info box explaining response categories with actual data examples
-    with st.expander("ℹ️ Understanding Response Categories", expanded=False):
-        st.markdown("""
+    # Add info box explaining response categories with actual data examples (only if not nested)
+    if show_info_expander:
+        with st.expander("ℹ️ Understanding Response Categories", expanded=False):
+            st.markdown("""
         **Common Response Categories:**
         
         - **Valid Response** (e.g., Yes, No): Person was asked and provided an answer
@@ -334,7 +336,7 @@ def display_multi_cycle_results(results_df: pd.DataFrame, variable: str, variabl
         with st.expander(f"Cycle {cycle} Results", expanded=False):
             cycle_results = var_results[var_results['CYCLE'] == cycle].copy()
             cycle_results = cycle_results.drop(columns=['CYCLE'])
-            display_results(cycle_results, variable, use_labels='Label' in cycle_results.columns)
+            display_results(cycle_results, variable, use_labels='Label' in cycle_results.columns, show_info_expander=False, cycle_suffix=cycle)
 
 
 def display_crosstab_report(combined_df):

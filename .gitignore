@@ -29,3 +29,8 @@ wheels/
 .cache/
 
 /data/
+
+# Precomputed data (large files - regenerate with scripts/precompute_cycles.py)
+data/precomputed/*.parquet
+data/precomputed/*.pkl
+data/precomputed/*.json

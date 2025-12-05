@@ -48,7 +48,8 @@ def create_cycle_selector():
 
 def create_multi_cycle_selector(crosswalk=None, data_dict=None):
     """
-    Create multi-cycle selection component.
+    Create multi-cycle selection component with precompute support.
+    Falls back to real-time processing if precomputed data unavailable.
     
     Args:
         crosswalk: Optional crosswalk dictionary to show available harmonized variables
@@ -57,6 +58,9 @@ def create_multi_cycle_selector(crosswalk=None, data_dict=None):
     Returns:
         List of selected cycles
     """
+    from src.data.smart_loader import get_precompute_summary
+    from config.settings import ENABLE_PRECOMPUTING
+    
     st.sidebar.markdown("""
     <div class="sidebar-card">
         <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
@@ -65,24 +69,74 @@ def create_multi_cycle_selector(crosswalk=None, data_dict=None):
     </div>
     """, unsafe_allow_html=True)
     
+    # Check precompute status if enabled
+    if ENABLE_PRECOMPUTING:
+        summary = get_precompute_summary(AVAILABLE_CYCLES)
+        
+        if summary['all_precomputed']:
+            st.sidebar.success("⚡ All cycles precomputed - fast analysis enabled!")
+        elif summary['none_precomputed']:
+            st.sidebar.info(
+                "💡 Precomputed data not found. Multi-cycle analysis will use real-time processing.\n\n"
+                "For faster analysis, run: `python scripts/precompute_cycles.py`"
+            )
+        elif summary['partial_precomputed']:
+            st.sidebar.info(
+                f"⚡ Precomputed: {', '.join(summary['precomputed_cycles'])}\n\n"
+                f"⏱️ Real-time: {', '.join(summary['missing_cycles'])}\n\n"
+                "Run `python scripts/precompute_cycles.py` to precompute all cycles."
+            )
+    
     selected_cycles = st.sidebar.multiselect(
         "Select CCHS Cycles/Years",
         options=AVAILABLE_CYCLES,
         default=[DEFAULT_CYCLE],
-        help="Select one or more survey cycles to compare. Data will be harmonized automatically.",
+        help="Select one or more survey cycles to compare. Uses precomputed data when available, otherwise processes in real-time.",
         key="multi_cycle_selector"
     )
     
     if selected_cycles:
-        st.sidebar.success(f"✅ Selected {len(selected_cycles)} cycle(s): {', '.join(selected_cycles)}")
-        
-        if crosswalk and data_dict:
-            from src.data.harmonizer import get_common_harmonized_vars
-            common_vars = get_common_harmonized_vars(selected_cycles, crosswalk, data_dict)
-            if common_vars:
-                st.sidebar.info(f"📊 {len(common_vars)} harmonized variables available across all selected cycles")
+        # Show status for selected cycles
+        if ENABLE_PRECOMPUTING:
+            selected_summary = get_precompute_summary(selected_cycles)
+            
+            if selected_summary['all_precomputed']:
+                # All precomputed - fast path
+                common_var_count = selected_summary.get('common_variables_count', 0)
+                st.sidebar.success(
+                    f"✅ {len(selected_cycles)} cycle(s) selected: {', '.join(selected_cycles)}\n\n"
+                    f"⚡ Fast mode enabled\n\n"
+                    f"📊 {common_var_count} harmonized variables available"
+                )
+            elif selected_summary['none_precomputed']:
+                # All real-time - legacy path
+                st.sidebar.warning(
+                    f"⏱️ {len(selected_cycles)} cycle(s): {', '.join(selected_cycles)}\n\n"
+                    f"Processing in real-time (may be slower)\n\n"
+                    "Consider running precompute script for better performance"
+                )
+                if crosswalk and data_dict:
+                    from src.data.harmonizer import get_common_harmonized_vars
+                    common_vars = get_common_harmonized_vars(selected_cycles, crosswalk, data_dict)
+                    if common_vars:
+                        st.sidebar.info(f"📊 {len(common_vars)} harmonized variables available")
             else:
-                st.sidebar.warning("⚠️ No common harmonized variables found across selected cycles")
+                # Mixed - hybrid path
+                st.sidebar.info(
+                    f"🔄 Mixed mode for {len(selected_cycles)} cycle(s):\n\n"
+                    f"⚡ Precomputed: {', '.join(selected_summary['precomputed_cycles'])}\n\n"
+                    f"⏱️ Real-time: {', '.join(selected_summary['missing_cycles'])}"
+                )
+        else:
+            st.sidebar.success(f"✅ Selected {len(selected_cycles)} cycle(s): {', '.join(selected_cycles)}")
+            
+            if crosswalk and data_dict:
+                from src.data.harmonizer import get_common_harmonized_vars
+                common_vars = get_common_harmonized_vars(selected_cycles, crosswalk, data_dict)
+                if common_vars:
+                    st.sidebar.info(f"📊 {len(common_vars)} harmonized variables available across all selected cycles")
+                else:
+                    st.sidebar.warning("⚠️ No common harmonized variables found across selected cycles")
     else:
         st.sidebar.warning("⚠️ Please select at least one cycle")
     
@@ -231,7 +285,7 @@ def create_inclusion_flag_filters_sidebar(data=None, desc_dict=None):
                     short_desc = flag
                 
                 selected_flags[flag] = st.sidebar.checkbox(
-                    f" {flag}: {short_desc}",
+                    f"✅ {flag}: {short_desc}",
                     value=False,
                     help=desc,
                     key=f"inclusion_flag_{flag}"
