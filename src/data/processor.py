@@ -2,7 +2,8 @@
 
 import pandas as pd
 import streamlit as st
-from config.settings import AGE_COLUMN, MUNICIPALITY_OPTIONS, HEALTH_REGION_CODE
+from config.settings import AGE_COLUMN, KNOWN_DISTRICT_LABELS, KNOWN_HEALTH_REGION_LABELS
+from src.data.loader import load_ontario_csd_lookup
 
 
 def create_age_groups(df, age_column=None, age_bins=None, age_labels=None):
@@ -80,20 +81,62 @@ def create_age_groups(df, age_column=None, age_bins=None, age_labels=None):
     return result_df
 
 
-def apply_region_filter(data, filter_by_district, filter_by_health_region, district_codes, health_region_code=HEALTH_REGION_CODE):
+def _normalize_geo_code_series(series: pd.Series) -> pd.Series:
+    """Normalize geographic code columns so filtering works across float/string inputs."""
+    return pd.to_numeric(series, errors='coerce').astype('Int64')
+
+
+def _format_health_region_labels(health_region_codes):
+    """Format health region codes with human-readable labels when available."""
+    labels = []
+    for code in sorted({int(code) for code in health_region_codes}):
+        label = KNOWN_HEALTH_REGION_LABELS.get(code, f"Health Region {code}")
+        labels.append(f"{label} ({code})")
+    return labels
+
+
+def _format_district_labels(district_codes):
+    """Format district codes with human-readable labels when available."""
+    district_lookup = load_ontario_csd_lookup()
+    labels = []
+    for code in sorted({int(code) for code in district_codes}):
+        district_record = district_lookup.get(str(code))
+        if district_record:
+            labels.append(district_record.get("label", f"{district_record.get('name', 'District')} ({code})"))
+            continue
+        label = KNOWN_DISTRICT_LABELS.get(code, "District")
+        labels.append(f"{label} ({code})")
+    return labels
+
+
+def apply_region_filter(data, district_codes=None, health_region_codes=None):
     """
-    Dynamically apply region filters based on user selection.
+    Apply geographic filters using optional district and health region code lists.
     """
-    # Apply municipality or district filter if district_codes is set
-    if district_codes:
-        filtered = data[data['GEODVCSD'].astype(int).isin([int(k) for k in district_codes.keys()])]
-        st.write(f"Filtering by GEODVCSD codes: {list(district_codes.values())}")
-    elif filter_by_health_region and health_region_code:
-        filtered = data[data['GEODVHR4'] == health_region_code]
-        st.write(f"Filtering by health region-level GEODVHR4 code: {health_region_code}")
+    filtered = data.copy()
+    applied_filters = []
+
+    if health_region_codes and 'GEODVHR4' in filtered.columns:
+        health_region_set = {int(code) for code in health_region_codes}
+        health_region_values = _normalize_geo_code_series(filtered['GEODVHR4'])
+        filtered = filtered[health_region_values.isin(health_region_set)]
+        applied_filters.append(
+            f"GEODVHR4 in {', '.join(_format_health_region_labels(health_region_set))}"
+        )
+
+    if district_codes and 'GEODVCSD' in filtered.columns:
+        district_code_set = {int(code) for code in district_codes.keys()}
+        district_values = _normalize_geo_code_series(filtered['GEODVCSD'])
+        filtered = filtered[district_values.isin(district_code_set)]
+        applied_filters.append(
+            f"GEODVCSD in {', '.join(_format_district_labels(district_code_set))}"
+        )
+
+    if applied_filters:
+        st.write(f"Applied geographic filters: {', '.join(applied_filters)}")
     else:
-        filtered = data
         st.write("No region filter applied; using the entire dataset.")
+
     return filtered
 
 

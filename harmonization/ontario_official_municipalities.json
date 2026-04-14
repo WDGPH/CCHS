@@ -1,0 +1,2823 @@
+{
+  "3501005": {
+    "csd_name": "South Glengarry",
+    "geographic_area": "Stormont, Dundas and Glengarry",
+    "label": "South Glengarry, Township of (3501005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "South Glengarry, Township of"
+  },
+  "3501011": {
+    "csd_name": "South Stormont",
+    "geographic_area": "Stormont, Dundas and Glengarry",
+    "label": "South Stormont, Township of (3501011)",
+    "municipal_status": "Lower Tier",
+    "official_name": "South Stormont, Township of"
+  },
+  "3501012": {
+    "csd_name": "Cornwall",
+    "geographic_area": "Stormont, Dundas and Glengarry",
+    "label": "Cornwall, City of (3501012)",
+    "municipal_status": "Single Tier",
+    "official_name": "Cornwall, City of"
+  },
+  "3501020": {
+    "csd_name": "South Dundas",
+    "geographic_area": "Stormont, Dundas and Glengarry",
+    "label": "South Dundas, Municipality of (3501020)",
+    "municipal_status": "Lower Tier",
+    "official_name": "South Dundas, Municipality of"
+  },
+  "3501030": {
+    "csd_name": "North Dundas",
+    "geographic_area": "Stormont, Dundas and Glengarry",
+    "label": "North Dundas, Township of (3501030)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Dundas, Township of"
+  },
+  "3501042": {
+    "csd_name": "North Stormont",
+    "geographic_area": "Stormont, Dundas and Glengarry",
+    "label": "North Stormont, Township of (3501042)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Stormont, Township of"
+  },
+  "3501050": {
+    "csd_name": "North Glengarry",
+    "geographic_area": "Stormont, Dundas and Glengarry",
+    "label": "North Glengarry, Township of (3501050)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Glengarry, Township of"
+  },
+  "3502001": {
+    "csd_name": "East Hawkesbury",
+    "geographic_area": "Prescott and Russell",
+    "label": "East Hawkesbury, Township of (3502001)",
+    "municipal_status": "Lower Tier",
+    "official_name": "East Hawkesbury, Township of"
+  },
+  "3502008": {
+    "csd_name": "Hawkesbury",
+    "geographic_area": "Prescott and Russell",
+    "label": "Hawkesbury, Town of (3502008)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Hawkesbury, Town of"
+  },
+  "3502010": {
+    "csd_name": "Champlain",
+    "geographic_area": "Prescott and Russell",
+    "label": "Champlain, Township of (3502010)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Champlain, Township of"
+  },
+  "3502023": {
+    "csd_name": "Alfred and Plantagenet",
+    "geographic_area": "Prescott and Russell",
+    "label": "Alfred and Plantagenet, Township of (3502023)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Alfred and Plantagenet, Township of"
+  },
+  "3502036": {
+    "csd_name": "Clarence-Rockland",
+    "geographic_area": "Prescott and Russell",
+    "label": "Clarence-Rockland, City of (3502036)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Clarence-Rockland, City of"
+  },
+  "3502044": {
+    "csd_name": "Casselman",
+    "geographic_area": "Prescott and Russell",
+    "label": "Casselman, Municipality of (3502044)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Casselman, Municipality of"
+  },
+  "3502048": {
+    "csd_name": "Russell",
+    "geographic_area": "Prescott and Russell",
+    "label": "Russell, Township of (3502048)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Russell, Township of"
+  },
+  "3506008": {
+    "csd_name": "Ottawa",
+    "geographic_area": "Ottawa",
+    "label": "Ottawa, City of (3506008)",
+    "municipal_status": "Single Tier",
+    "official_name": "Ottawa, City of"
+  },
+  "3507004": {
+    "csd_name": "Edwardsburgh/Cardinal",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Edwardsburgh/Cardinal, Township of (3507004)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Edwardsburgh/Cardinal, Township of"
+  },
+  "3507006": {
+    "csd_name": "Augusta",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Augusta, Township of (3507006)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Augusta, Township of"
+  },
+  "3507008": {
+    "csd_name": "Prescott",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Prescott, Town of (3507008)",
+    "municipal_status": "Single Tier",
+    "official_name": "Prescott, Town of"
+  },
+  "3507014": {
+    "csd_name": "Elizabethtown-Kitley",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Elizabethtown-Kitley, Township of (3507014)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Elizabethtown-Kitley, Township of"
+  },
+  "3507015": {
+    "csd_name": "Brockville",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Brockville, City of (3507015)",
+    "municipal_status": "Single Tier",
+    "official_name": "Brockville, City of"
+  },
+  "3507017": {
+    "csd_name": "Front of Yonge",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Front of Yonge, Township of (3507017)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Front of Yonge, Township of"
+  },
+  "3507021": {
+    "csd_name": "Leeds and the Thousand Islands",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Leeds and the Thousand Islands, Township of (3507021)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Leeds and the Thousand Islands, Township of"
+  },
+  "3507024": {
+    "csd_name": "Gananoque",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Gananoque, Town of (3507024)",
+    "municipal_status": "Single Tier",
+    "official_name": "Gananoque, Town of"
+  },
+  "3507033": {
+    "csd_name": "Westport",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Westport, Village of (3507033)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Westport, Village of"
+  },
+  "3507040": {
+    "csd_name": "Rideau Lakes",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Rideau Lakes, Township of (3507040)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Rideau Lakes, Township of"
+  },
+  "3507042": {
+    "csd_name": "Athens",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Athens, Township of (3507042)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Athens, Township of"
+  },
+  "3507052": {
+    "csd_name": "Merrickville-Wolford",
+    "geographic_area": "Leeds and Grenville",
+    "label": "Merrickville-Wolford, Village of (3507052)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Merrickville-Wolford, Village of"
+  },
+  "3507065": {
+    "csd_name": "North Grenville",
+    "geographic_area": "Leeds and Grenville",
+    "label": "North Grenville, Municipality of (3507065)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Grenville, Municipality of"
+  },
+  "3509001": {
+    "csd_name": "Montague",
+    "geographic_area": "Lanark",
+    "label": "Montague, Township of (3509001)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Montague, Township of"
+  },
+  "3509004": {
+    "csd_name": "Smiths Falls",
+    "geographic_area": "Lanark",
+    "label": "Smiths Falls, Town of (3509004)",
+    "municipal_status": "Single Tier",
+    "official_name": "Smiths Falls, Town of"
+  },
+  "3509010": {
+    "csd_name": "Drummond/North Elmsley",
+    "geographic_area": "Lanark",
+    "label": "Drummond/North Elmsley, Township of (3509010)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Drummond/North Elmsley, Township of"
+  },
+  "3509015": {
+    "csd_name": "Tay Valley",
+    "geographic_area": "Lanark",
+    "label": "Tay Valley, Township of (3509015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Tay Valley, Township of"
+  },
+  "3509021": {
+    "csd_name": "Perth",
+    "geographic_area": "Lanark",
+    "label": "Perth, Town of (3509021)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Perth, Town of"
+  },
+  "3509024": {
+    "csd_name": "Beckwith",
+    "geographic_area": "Lanark",
+    "label": "Beckwith, Township of (3509024)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Beckwith, Township of"
+  },
+  "3509028": {
+    "csd_name": "Carleton Place",
+    "geographic_area": "Lanark",
+    "label": "Carleton Place, Town of (3509028)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Carleton Place, Town of"
+  },
+  "3509030": {
+    "csd_name": "Mississippi Mills",
+    "geographic_area": "Lanark",
+    "label": "Mississippi Mills, Municipality of (3509030)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Mississippi Mills, Municipality of"
+  },
+  "3509039": {
+    "csd_name": "Lanark Highlands",
+    "geographic_area": "Lanark",
+    "label": "Lanark Highlands, Township of (3509039)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Lanark Highlands, Township of"
+  },
+  "3510005": {
+    "csd_name": "Frontenac Islands",
+    "geographic_area": "Frontenac",
+    "label": "Frontenac Islands, Township of (3510005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Frontenac Islands, Township of"
+  },
+  "3510010": {
+    "csd_name": "Kingston",
+    "geographic_area": "Frontenac",
+    "label": "Kingston, City of (3510010)",
+    "municipal_status": "Single Tier",
+    "official_name": "Kingston, City of"
+  },
+  "3510020": {
+    "csd_name": "South Frontenac",
+    "geographic_area": "Frontenac",
+    "label": "South Frontenac, Township of (3510020)",
+    "municipal_status": "Lower Tier",
+    "official_name": "South Frontenac, Township of"
+  },
+  "3510035": {
+    "csd_name": "Central Frontenac",
+    "geographic_area": "Frontenac",
+    "label": "Central Frontenac, Township of (3510035)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Central Frontenac, Township of"
+  },
+  "3510045": {
+    "csd_name": "North Frontenac",
+    "geographic_area": "Frontenac",
+    "label": "North Frontenac, Township of (3510045)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Frontenac, Township of"
+  },
+  "3511005": {
+    "csd_name": "Loyalist",
+    "geographic_area": "Lennox and Addington",
+    "label": "Loyalist, Township of (3511005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Loyalist, Township of"
+  },
+  "3511015": {
+    "csd_name": "Greater Napanee",
+    "geographic_area": "Lennox and Addington",
+    "label": "Greater Napanee, Town of (3511015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Greater Napanee, Town of"
+  },
+  "3511030": {
+    "csd_name": "Stone Mills",
+    "geographic_area": "Lennox and Addington",
+    "label": "Stone Mills, Township of (3511030)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Stone Mills, Township of"
+  },
+  "3511035": {
+    "csd_name": "Addington Highlands",
+    "geographic_area": "Lennox and Addington",
+    "label": "Addington Highlands, Township of (3511035)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Addington Highlands, Township of"
+  },
+  "3512001": {
+    "csd_name": "Tyendinaga",
+    "geographic_area": "Hastings",
+    "label": "Tyendinaga, Township of (3512001)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Tyendinaga, Township of"
+  },
+  "3512002": {
+    "csd_name": "Deseronto",
+    "geographic_area": "Hastings",
+    "label": "Deseronto, Town of (3512002)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Deseronto, Town of"
+  },
+  "3512005": {
+    "csd_name": "Belleville",
+    "geographic_area": "Hastings",
+    "label": "Belleville, City of (3512005)",
+    "municipal_status": "Single Tier",
+    "official_name": "Belleville, City of"
+  },
+  "3512015": {
+    "csd_name": "Quinte West",
+    "geographic_area": "Hastings",
+    "label": "Quinte West, City of (3512015)",
+    "municipal_status": "Single Tier",
+    "official_name": "Quinte West, City of"
+  },
+  "3512020": {
+    "csd_name": "Stirling-Rawdon",
+    "geographic_area": "Hastings",
+    "label": "Stirling-Rawdon, Township of (3512020)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Stirling-Rawdon, Township of"
+  },
+  "3512026": {
+    "csd_name": "Centre Hastings",
+    "geographic_area": "Hastings",
+    "label": "Centre Hastings, Municipality of (3512026)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Centre Hastings, Municipality of"
+  },
+  "3512030": {
+    "csd_name": "Tweed",
+    "geographic_area": "Hastings",
+    "label": "Tweed, Municipality of (3512030)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Tweed, Municipality of"
+  },
+  "3512036": {
+    "csd_name": "Madoc",
+    "geographic_area": "Hastings",
+    "label": "Madoc, Township of (3512036)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Madoc, Township of"
+  },
+  "3512046": {
+    "csd_name": "Marmora and Lake",
+    "geographic_area": "Hastings",
+    "label": "Marmora and Lake, Municipality of (3512046)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Marmora and Lake, Municipality of"
+  },
+  "3512048": {
+    "csd_name": "Tudor and Cashel",
+    "geographic_area": "Hastings",
+    "label": "Tudor and Cashel, Township of (3512048)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Tudor and Cashel, Township of"
+  },
+  "3512051": {
+    "csd_name": "Limerick",
+    "geographic_area": "Hastings",
+    "label": "Limerick, Township of (3512051)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Limerick, Township of"
+  },
+  "3512054": {
+    "csd_name": "Wollaston",
+    "geographic_area": "Hastings",
+    "label": "Wollaston, Township of (3512054)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Wollaston, Township of"
+  },
+  "3512058": {
+    "csd_name": "Faraday",
+    "geographic_area": "Hastings",
+    "label": "Faraday, Township of (3512058)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Faraday, Township of"
+  },
+  "3512061": {
+    "csd_name": "Bancroft",
+    "geographic_area": "Hastings",
+    "label": "Bancroft, Town of (3512061)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Bancroft, Town of"
+  },
+  "3512065": {
+    "csd_name": "Carlow/Mayo",
+    "geographic_area": "Hastings",
+    "label": "Carlow/Mayo, Township of (3512065)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Carlow/Mayo, Township of"
+  },
+  "3512076": {
+    "csd_name": "Hastings Highlands",
+    "geographic_area": "Hastings",
+    "label": "Hastings Highlands, Municipality of (3512076)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Hastings Highlands, Municipality of"
+  },
+  "3514004": {
+    "csd_name": "Brighton",
+    "geographic_area": "Northumberland",
+    "label": "Brighton, Municipality of (3514004)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Brighton, Municipality of"
+  },
+  "3514014": {
+    "csd_name": "Cramahe",
+    "geographic_area": "Northumberland",
+    "label": "Cramahe, Township of (3514014)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Cramahe, Township of"
+  },
+  "3514020": {
+    "csd_name": "Port Hope",
+    "geographic_area": "Northumberland",
+    "label": "Port Hope, Municipality of (3514020)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Port Hope, Municipality of"
+  },
+  "3514021": {
+    "csd_name": "Cobourg",
+    "geographic_area": "Northumberland",
+    "label": "Cobourg, Town of (3514021)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Cobourg, Town of"
+  },
+  "3514024": {
+    "csd_name": "Alnwick/Haldimand",
+    "geographic_area": "Northumberland",
+    "label": "Alnwick/Haldimand, Township of (3514024)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Alnwick/Haldimand, Township of"
+  },
+  "3514045": {
+    "csd_name": "Trent Hills",
+    "geographic_area": "Northumberland",
+    "label": "Trent Hills, Municipality of (3514045)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Trent Hills, Municipality of"
+  },
+  "3515003": {
+    "csd_name": "Asphodel-Norwood",
+    "geographic_area": "Peterborough",
+    "label": "Asphodel-Norwood, Township of (3515003)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Asphodel-Norwood, Township of"
+  },
+  "3515005": {
+    "csd_name": "Otonabee-South Monaghan",
+    "geographic_area": "Peterborough",
+    "label": "Otonabee-South Monaghan, Township of (3515005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Otonabee-South Monaghan, Township of"
+  },
+  "3515013": {
+    "csd_name": "Cavan Monaghan",
+    "geographic_area": "Peterborough",
+    "label": "Cavan Monaghan, Township of (3515013)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Cavan Monaghan, Township of"
+  },
+  "3515014": {
+    "csd_name": "Peterborough",
+    "geographic_area": "Peterborough",
+    "label": "Peterborough, City of (3515014)",
+    "municipal_status": "Single Tier",
+    "official_name": "Peterborough, City of"
+  },
+  "3515015": {
+    "csd_name": "Selwyn",
+    "geographic_area": "Peterborough",
+    "label": "Selwyn, Township of (3515015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Selwyn, Township of"
+  },
+  "3515023": {
+    "csd_name": "Douro-Dummer",
+    "geographic_area": "Peterborough",
+    "label": "Douro-Dummer, Township of (3515023)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Douro-Dummer, Township of"
+  },
+  "3515030": {
+    "csd_name": "Havelock-Belmont-Methuen",
+    "geographic_area": "Peterborough",
+    "label": "Havelock-Belmont-Methuen, Township of (3515030)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Havelock-Belmont-Methuen, Township of"
+  },
+  "3515037": {
+    "csd_name": "North Kawartha",
+    "geographic_area": "Peterborough",
+    "label": "North Kawartha, Township of (3515037)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Kawartha, Township of"
+  },
+  "3515044": {
+    "csd_name": "Trent Lakes",
+    "geographic_area": "Peterborough",
+    "label": "Trent Lakes, Municipality of (3515044)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Trent Lakes, Municipality of"
+  },
+  "3516010": {
+    "csd_name": "Kawartha Lakes",
+    "geographic_area": "Kawartha Lakes",
+    "label": "Kawartha Lakes, City of (3516010)",
+    "municipal_status": "Single Tier",
+    "official_name": "Kawartha Lakes, City of"
+  },
+  "3518001": {
+    "csd_name": "Pickering",
+    "geographic_area": "Durham",
+    "label": "Pickering, City of (3518001)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Pickering, City of"
+  },
+  "3518005": {
+    "csd_name": "Ajax",
+    "geographic_area": "Durham",
+    "label": "Ajax, Town of (3518005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Ajax, Town of"
+  },
+  "3518009": {
+    "csd_name": "Whitby",
+    "geographic_area": "Durham",
+    "label": "Whitby, Town of (3518009)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Whitby, Town of"
+  },
+  "3518013": {
+    "csd_name": "Oshawa",
+    "geographic_area": "Durham",
+    "label": "Oshawa, City of (3518013)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Oshawa, City of"
+  },
+  "3518017": {
+    "csd_name": "Clarington",
+    "geographic_area": "Durham",
+    "label": "Clarington, Municipality of (3518017)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Clarington, Municipality of"
+  },
+  "3518020": {
+    "csd_name": "Scugog",
+    "geographic_area": "Durham",
+    "label": "Scugog, Township of (3518020)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Scugog, Township of"
+  },
+  "3518029": {
+    "csd_name": "Uxbridge",
+    "geographic_area": "Durham",
+    "label": "Uxbridge, Township of (3518029)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Uxbridge, Township of"
+  },
+  "3518039": {
+    "csd_name": "Brock",
+    "geographic_area": "Durham",
+    "label": "Brock, Township of (3518039)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Brock, Township of"
+  },
+  "3519028": {
+    "csd_name": "Vaughan",
+    "geographic_area": "York",
+    "label": "Vaughan, City of (3519028)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Vaughan, City of"
+  },
+  "3519036": {
+    "csd_name": "Markham",
+    "geographic_area": "York",
+    "label": "Markham, City of (3519036)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Markham, City of"
+  },
+  "3519038": {
+    "csd_name": "Richmond Hill",
+    "geographic_area": "York",
+    "label": "Richmond Hill, City of (3519038)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Richmond Hill, City of"
+  },
+  "3519044": {
+    "csd_name": "Whitchurch-Stouffville",
+    "geographic_area": "York",
+    "label": "Whitchurch-Stouffville, Town of (3519044)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Whitchurch-Stouffville, Town of"
+  },
+  "3519046": {
+    "csd_name": "Aurora",
+    "geographic_area": "York",
+    "label": "Aurora, Town of (3519046)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Aurora, Town of"
+  },
+  "3519048": {
+    "csd_name": "Newmarket",
+    "geographic_area": "York",
+    "label": "Newmarket, Town of (3519048)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Newmarket, Town of"
+  },
+  "3519049": {
+    "csd_name": "King",
+    "geographic_area": "York",
+    "label": "King, Township of (3519049)",
+    "municipal_status": "Lower Tier",
+    "official_name": "King, Township of"
+  },
+  "3519054": {
+    "csd_name": "East Gwillimbury",
+    "geographic_area": "York",
+    "label": "East Gwillimbury, Town of (3519054)",
+    "municipal_status": "Lower Tier",
+    "official_name": "East Gwillimbury, Town of"
+  },
+  "3519070": {
+    "csd_name": "Georgina",
+    "geographic_area": "York",
+    "label": "Georgina, Town of (3519070)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Georgina, Town of"
+  },
+  "3520005": {
+    "csd_name": "Toronto",
+    "geographic_area": "Toronto",
+    "label": "Toronto, City of (3520005)",
+    "municipal_status": "Single Tier",
+    "official_name": "Toronto, City of"
+  },
+  "3521005": {
+    "csd_name": "Mississauga",
+    "geographic_area": "Peel",
+    "label": "Mississauga, City of (3521005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Mississauga, City of"
+  },
+  "3521010": {
+    "csd_name": "Brampton",
+    "geographic_area": "Peel",
+    "label": "Brampton, City of (3521010)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Brampton, City of"
+  },
+  "3521024": {
+    "csd_name": "Caledon",
+    "geographic_area": "Peel",
+    "label": "Caledon, Town of (3521024)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Caledon, Town of"
+  },
+  "3522001": {
+    "csd_name": "East Garafraxa",
+    "geographic_area": "Dufferin",
+    "label": "East Garafraxa, Township of (3522001)",
+    "municipal_status": "Lower Tier",
+    "official_name": "East Garafraxa, Township of"
+  },
+  "3522008": {
+    "csd_name": "Amaranth",
+    "geographic_area": "Dufferin",
+    "label": "Amaranth, Township of (3522008)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Amaranth, Township of"
+  },
+  "3522010": {
+    "csd_name": "Grand Valley",
+    "geographic_area": "Dufferin",
+    "label": "Grand Valley, Town of (3522010)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Grand Valley, Town of"
+  },
+  "3522012": {
+    "csd_name": "Mono",
+    "geographic_area": "Dufferin",
+    "label": "Mono, Town of (3522012)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Mono, Town of"
+  },
+  "3522014": {
+    "csd_name": "Orangeville",
+    "geographic_area": "Dufferin",
+    "label": "Orangeville, Town of (3522014)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Orangeville, Town of"
+  },
+  "3522016": {
+    "csd_name": "Mulmur",
+    "geographic_area": "Dufferin",
+    "label": "Mulmur, Township of (3522016)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Mulmur, Township of"
+  },
+  "3522019": {
+    "csd_name": "Melancthon",
+    "geographic_area": "Dufferin",
+    "label": "Melancthon, Township of (3522019)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Melancthon, Township of"
+  },
+  "3522021": {
+    "csd_name": "Shelburne",
+    "geographic_area": "Dufferin",
+    "label": "Shelburne, Town of (3522021)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Shelburne, Town of"
+  },
+  "3523001": {
+    "csd_name": "Puslinch",
+    "geographic_area": "Wellington",
+    "label": "Puslinch, Township of (3523001)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Puslinch, Township of"
+  },
+  "3523008": {
+    "csd_name": "Guelph",
+    "geographic_area": "Wellington",
+    "label": "Guelph, City of (3523008)",
+    "municipal_status": "Single Tier",
+    "official_name": "Guelph, City of"
+  },
+  "3523009": {
+    "csd_name": "Guelph/Eramosa",
+    "geographic_area": "Wellington",
+    "label": "Guelph/Eramosa, Township of (3523009)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Guelph/Eramosa, Township of"
+  },
+  "3523017": {
+    "csd_name": "Erin",
+    "geographic_area": "Wellington",
+    "label": "Erin, Town of (3523017)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Erin, Town of"
+  },
+  "3523025": {
+    "csd_name": "Centre Wellington",
+    "geographic_area": "Wellington",
+    "label": "Centre Wellington, Township of (3523025)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Centre Wellington, Township of"
+  },
+  "3523033": {
+    "csd_name": "Mapleton",
+    "geographic_area": "Wellington",
+    "label": "Mapleton, Township of (3523033)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Mapleton, Township of"
+  },
+  "3523043": {
+    "csd_name": "Minto",
+    "geographic_area": "Wellington",
+    "label": "Minto, Town of (3523043)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Minto, Town of"
+  },
+  "3523050": {
+    "csd_name": "Wellington North",
+    "geographic_area": "Wellington",
+    "label": "Wellington North, Township of (3523050)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Wellington North, Township of"
+  },
+  "3524001": {
+    "csd_name": "Oakville",
+    "geographic_area": "Halton",
+    "label": "Oakville, Town of (3524001)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Oakville, Town of"
+  },
+  "3524002": {
+    "csd_name": "Burlington",
+    "geographic_area": "Halton",
+    "label": "Burlington, City of (3524002)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Burlington, City of"
+  },
+  "3524009": {
+    "csd_name": "Milton",
+    "geographic_area": "Halton",
+    "label": "Milton, Town of (3524009)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Milton, Town of"
+  },
+  "3524015": {
+    "csd_name": "Halton Hills",
+    "geographic_area": "Halton",
+    "label": "Halton Hills, Town of (3524015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Halton Hills, Town of"
+  },
+  "3525005": {
+    "csd_name": "Hamilton",
+    "geographic_area": "Northumberland",
+    "label": "Hamilton, Township of (3525005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Hamilton, Township of"
+  },
+  "3526003": {
+    "csd_name": "Fort Erie",
+    "geographic_area": "Niagara",
+    "label": "Fort Erie, Town of (3526003)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Fort Erie, Town of"
+  },
+  "3526011": {
+    "csd_name": "Port Colborne",
+    "geographic_area": "Niagara",
+    "label": "Port Colborne, City of (3526011)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Port Colborne, City of"
+  },
+  "3526014": {
+    "csd_name": "Wainfleet",
+    "geographic_area": "Niagara",
+    "label": "Wainfleet, Township of (3526014)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Wainfleet, Township of"
+  },
+  "3526021": {
+    "csd_name": "West Lincoln",
+    "geographic_area": "Niagara",
+    "label": "West Lincoln, Township of (3526021)",
+    "municipal_status": "Lower Tier",
+    "official_name": "West Lincoln, Township of"
+  },
+  "3526028": {
+    "csd_name": "Pelham",
+    "geographic_area": "Niagara",
+    "label": "Pelham, Town of (3526028)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Pelham, Town of"
+  },
+  "3526032": {
+    "csd_name": "Welland",
+    "geographic_area": "Niagara",
+    "label": "Welland, City of (3526032)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Welland, City of"
+  },
+  "3526037": {
+    "csd_name": "Thorold",
+    "geographic_area": "Niagara",
+    "label": "Thorold, City of (3526037)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Thorold, City of"
+  },
+  "3526043": {
+    "csd_name": "Niagara Falls",
+    "geographic_area": "Niagara",
+    "label": "Niagara Falls, City of (3526043)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Niagara Falls, City of"
+  },
+  "3526047": {
+    "csd_name": "Niagara-on-the-Lake",
+    "geographic_area": "Niagara",
+    "label": "Niagara-on-the-Lake, Town of (3526047)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Niagara-on-the-Lake, Town of"
+  },
+  "3526053": {
+    "csd_name": "St. Catharines",
+    "geographic_area": "Niagara",
+    "label": "St. Catharines, City of (3526053)",
+    "municipal_status": "Lower Tier",
+    "official_name": "St. Catharines, City of"
+  },
+  "3526057": {
+    "csd_name": "Lincoln",
+    "geographic_area": "Niagara",
+    "label": "Lincoln, Town of (3526057)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Lincoln, Town of"
+  },
+  "3526065": {
+    "csd_name": "Grimsby",
+    "geographic_area": "Niagara",
+    "label": "Grimsby, Town of (3526065)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Grimsby, Town of"
+  },
+  "3528018": {
+    "csd_name": "Haldimand County",
+    "geographic_area": "Haldimand",
+    "label": "Haldimand County (3528018)",
+    "municipal_status": "Single Tier",
+    "official_name": "Haldimand County"
+  },
+  "3528052": {
+    "csd_name": "Norfolk County",
+    "geographic_area": "Norfolk",
+    "label": "Norfolk County (3528052)",
+    "municipal_status": "Single Tier",
+    "official_name": "Norfolk County"
+  },
+  "3529006": {
+    "csd_name": "Brantford",
+    "geographic_area": "Brant",
+    "label": "Brantford, City of (3529006)",
+    "municipal_status": "Single Tier",
+    "official_name": "Brantford, City of"
+  },
+  "3530004": {
+    "csd_name": "North Dumfries",
+    "geographic_area": "Waterloo",
+    "label": "North Dumfries, Township of (3530004)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Dumfries, Township of"
+  },
+  "3530010": {
+    "csd_name": "Cambridge",
+    "geographic_area": "Waterloo",
+    "label": "Cambridge, City of (3530010)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Cambridge, City of"
+  },
+  "3530013": {
+    "csd_name": "Kitchener",
+    "geographic_area": "Waterloo",
+    "label": "Kitchener, City of (3530013)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Kitchener, City of"
+  },
+  "3530016": {
+    "csd_name": "Waterloo",
+    "geographic_area": "Waterloo",
+    "label": "Waterloo, City of (3530016)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Waterloo, City of"
+  },
+  "3530020": {
+    "csd_name": "Wilmot",
+    "geographic_area": "Waterloo",
+    "label": "Wilmot, Township of (3530020)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Wilmot, Township of"
+  },
+  "3530027": {
+    "csd_name": "Wellesley",
+    "geographic_area": "Waterloo",
+    "label": "Wellesley, Township of (3530027)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Wellesley, Township of"
+  },
+  "3530035": {
+    "csd_name": "Woolwich",
+    "geographic_area": "Waterloo",
+    "label": "Woolwich, Township of (3530035)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Woolwich, Township of"
+  },
+  "3531011": {
+    "csd_name": "Stratford",
+    "geographic_area": "Perth",
+    "label": "Stratford, City of (3531011)",
+    "municipal_status": "Single Tier",
+    "official_name": "Stratford, City of"
+  },
+  "3531013": {
+    "csd_name": "Perth South",
+    "geographic_area": "Perth",
+    "label": "Perth South, Township of (3531013)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Perth South, Township of"
+  },
+  "3531016": {
+    "csd_name": "St. Marys",
+    "geographic_area": "Perth",
+    "label": "St. Marys, Town of (3531016)",
+    "municipal_status": "Single Tier",
+    "official_name": "St. Marys, Town of"
+  },
+  "3531025": {
+    "csd_name": "West Perth",
+    "geographic_area": "Perth",
+    "label": "West Perth, Municipality of (3531025)",
+    "municipal_status": "Lower Tier",
+    "official_name": "West Perth, Municipality of"
+  },
+  "3531030": {
+    "csd_name": "Perth East",
+    "geographic_area": "Perth",
+    "label": "Perth East, Township of (3531030)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Perth East, Township of"
+  },
+  "3531040": {
+    "csd_name": "North Perth",
+    "geographic_area": "Perth",
+    "label": "North Perth, Municipality of (3531040)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Perth, Municipality of"
+  },
+  "3532002": {
+    "csd_name": "Norwich",
+    "geographic_area": "Oxford",
+    "label": "Norwich, Township of (3532002)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Norwich, Township of"
+  },
+  "3532004": {
+    "csd_name": "Tillsonburg",
+    "geographic_area": "Oxford",
+    "label": "Tillsonburg, Town of (3532004)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Tillsonburg, Town of"
+  },
+  "3532012": {
+    "csd_name": "South-West Oxford",
+    "geographic_area": "Oxford",
+    "label": "South-West Oxford, Township of (3532012)",
+    "municipal_status": "Lower Tier",
+    "official_name": "South-West Oxford, Township of"
+  },
+  "3532018": {
+    "csd_name": "Ingersoll",
+    "geographic_area": "Oxford",
+    "label": "Ingersoll, Town of (3532018)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Ingersoll, Town of"
+  },
+  "3532027": {
+    "csd_name": "Zorra",
+    "geographic_area": "Oxford",
+    "label": "Zorra, Township of (3532027)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Zorra, Township of"
+  },
+  "3532038": {
+    "csd_name": "East Zorra-Tavistock",
+    "geographic_area": "Oxford",
+    "label": "East Zorra-Tavistock, Township of (3532038)",
+    "municipal_status": "Lower Tier",
+    "official_name": "East Zorra-Tavistock, Township of"
+  },
+  "3532042": {
+    "csd_name": "Woodstock",
+    "geographic_area": "Oxford",
+    "label": "Woodstock, City of (3532042)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Woodstock, City of"
+  },
+  "3532045": {
+    "csd_name": "Blandford-Blenheim",
+    "geographic_area": "Oxford",
+    "label": "Blandford-Blenheim, Township of (3532045)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Blandford-Blenheim, Township of"
+  },
+  "3534005": {
+    "csd_name": "Bayham",
+    "geographic_area": "Elgin",
+    "label": "Bayham, Municipality of (3534005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Bayham, Municipality of"
+  },
+  "3534010": {
+    "csd_name": "Malahide",
+    "geographic_area": "Elgin",
+    "label": "Malahide, Township of (3534010)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Malahide, Township of"
+  },
+  "3534011": {
+    "csd_name": "Aylmer",
+    "geographic_area": "Elgin",
+    "label": "Aylmer, Town of (3534011)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Aylmer, Town of"
+  },
+  "3534020": {
+    "csd_name": "Central Elgin",
+    "geographic_area": "Elgin",
+    "label": "Central Elgin, Municipality of (3534020)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Central Elgin, Municipality of"
+  },
+  "3534021": {
+    "csd_name": "St. Thomas",
+    "geographic_area": "Elgin",
+    "label": "St. Thomas, City of (3534021)",
+    "municipal_status": "Single Tier",
+    "official_name": "St. Thomas, City of"
+  },
+  "3534024": {
+    "csd_name": "Southwold",
+    "geographic_area": "Elgin",
+    "label": "Southwold, Township of (3534024)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Southwold, Township of"
+  },
+  "3534030": {
+    "csd_name": "Dutton/Dunwich",
+    "geographic_area": "Elgin",
+    "label": "Dutton/Dunwich, Municipality of (3534030)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Dutton/Dunwich, Municipality of"
+  },
+  "3534042": {
+    "csd_name": "West Elgin",
+    "geographic_area": "Elgin",
+    "label": "West Elgin, Municipality of (3534042)",
+    "municipal_status": "Lower Tier",
+    "official_name": "West Elgin, Municipality of"
+  },
+  "3536020": {
+    "csd_name": "Chatham-Kent",
+    "geographic_area": "Chatham-Kent",
+    "label": "Chatham-Kent, Municipality of (3536020)",
+    "municipal_status": "Single Tier",
+    "official_name": "Chatham-Kent, Municipality of"
+  },
+  "3537001": {
+    "csd_name": "Pelee",
+    "geographic_area": "Essex",
+    "label": "Pelee, Township of (3537001)",
+    "municipal_status": "Single Tier",
+    "official_name": "Pelee, Township of"
+  },
+  "3537003": {
+    "csd_name": "Leamington",
+    "geographic_area": "Essex",
+    "label": "Leamington, Municipality of (3537003)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Leamington, Municipality of"
+  },
+  "3537013": {
+    "csd_name": "Kingsville",
+    "geographic_area": "Essex",
+    "label": "Kingsville, Town of (3537013)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Kingsville, Town of"
+  },
+  "3537016": {
+    "csd_name": "Essex",
+    "geographic_area": "Essex",
+    "label": "Essex, Town of (3537016)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Essex, Town of"
+  },
+  "3537028": {
+    "csd_name": "Amherstburg",
+    "geographic_area": "Essex",
+    "label": "Amherstburg, Town of (3537028)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Amherstburg, Town of"
+  },
+  "3537034": {
+    "csd_name": "LaSalle",
+    "geographic_area": "Essex",
+    "label": "LaSalle, Town of (3537034)",
+    "municipal_status": "Lower Tier",
+    "official_name": "LaSalle, Town of"
+  },
+  "3537039": {
+    "csd_name": "Windsor",
+    "geographic_area": "Essex",
+    "label": "Windsor, City of (3537039)",
+    "municipal_status": "Single Tier",
+    "official_name": "Windsor, City of"
+  },
+  "3537048": {
+    "csd_name": "Tecumseh",
+    "geographic_area": "Essex",
+    "label": "Tecumseh, Town of (3537048)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Tecumseh, Town of"
+  },
+  "3537064": {
+    "csd_name": "Lakeshore",
+    "geographic_area": "Essex",
+    "label": "Lakeshore, Municipality of (3537064)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Lakeshore, Municipality of"
+  },
+  "3538003": {
+    "csd_name": "St. Clair",
+    "geographic_area": "Lambton",
+    "label": "St. Clair, Township of (3538003)",
+    "municipal_status": "Lower Tier",
+    "official_name": "St. Clair, Township of"
+  },
+  "3538007": {
+    "csd_name": "Dawn-Euphemia",
+    "geographic_area": "Lambton",
+    "label": "Dawn-Euphemia, Township of (3538007)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Dawn-Euphemia, Township of"
+  },
+  "3538015": {
+    "csd_name": "Brooke-Alvinston",
+    "geographic_area": "Lambton",
+    "label": "Brooke-Alvinston, Municipality of (3538015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Brooke-Alvinston, Municipality of"
+  },
+  "3538016": {
+    "csd_name": "Enniskillen",
+    "geographic_area": "Lambton",
+    "label": "Enniskillen, Township of (3538016)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Enniskillen, Township of"
+  },
+  "3538018": {
+    "csd_name": "Oil Springs",
+    "geographic_area": "Lambton",
+    "label": "Oil Springs, Village of (3538018)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Oil Springs, Village of"
+  },
+  "3538019": {
+    "csd_name": "Petrolia",
+    "geographic_area": "Lambton",
+    "label": "Petrolia, Town of (3538019)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Petrolia, Town of"
+  },
+  "3538030": {
+    "csd_name": "Sarnia",
+    "geographic_area": "Lambton",
+    "label": "Sarnia, City of (3538030)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Sarnia, City of"
+  },
+  "3538031": {
+    "csd_name": "Point Edward",
+    "geographic_area": "Lambton",
+    "label": "Point Edward, Village of (3538031)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Point Edward, Village of"
+  },
+  "3538035": {
+    "csd_name": "Plympton-Wyoming",
+    "geographic_area": "Lambton",
+    "label": "Plympton-Wyoming, Town of (3538035)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Plympton-Wyoming, Town of"
+  },
+  "3538040": {
+    "csd_name": "Lambton Shores",
+    "geographic_area": "Lambton",
+    "label": "Lambton Shores, Municipality of (3538040)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Lambton Shores, Municipality of"
+  },
+  "3538043": {
+    "csd_name": "Warwick",
+    "geographic_area": "Lambton",
+    "label": "Warwick, Township of (3538043)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Warwick, Township of"
+  },
+  "3539002": {
+    "csd_name": "Newbury",
+    "geographic_area": "Middlesex",
+    "label": "Newbury, Village of (3539002)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Newbury, Village of"
+  },
+  "3539005": {
+    "csd_name": "Southwest Middlesex",
+    "geographic_area": "Middlesex",
+    "label": "Southwest Middlesex, Municipality of (3539005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Southwest Middlesex, Municipality of"
+  },
+  "3539015": {
+    "csd_name": "Strathroy-Caradoc",
+    "geographic_area": "Middlesex",
+    "label": "Strathroy-Caradoc, Municipality of (3539015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Strathroy-Caradoc, Municipality of"
+  },
+  "3539027": {
+    "csd_name": "Thames Centre",
+    "geographic_area": "Middlesex",
+    "label": "Thames Centre, Municipality of (3539027)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Thames Centre, Municipality of"
+  },
+  "3539033": {
+    "csd_name": "Middlesex Centre",
+    "geographic_area": "Middlesex",
+    "label": "Middlesex Centre, Municipality of (3539033)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Middlesex Centre, Municipality of"
+  },
+  "3539036": {
+    "csd_name": "London",
+    "geographic_area": "Middlesex",
+    "label": "London, City of (3539036)",
+    "municipal_status": "Single Tier",
+    "official_name": "London, City of"
+  },
+  "3539041": {
+    "csd_name": "North Middlesex",
+    "geographic_area": "Middlesex",
+    "label": "North Middlesex, Municipality of (3539041)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Middlesex, Municipality of"
+  },
+  "3539047": {
+    "csd_name": "Adelaide-Metcalfe",
+    "geographic_area": "Middlesex",
+    "label": "Adelaide-Metcalfe, Township of (3539047)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Adelaide-Metcalfe, Township of"
+  },
+  "3539060": {
+    "csd_name": "Lucan Biddulph",
+    "geographic_area": "Middlesex",
+    "label": "Lucan Biddulph, Township of (3539060)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Lucan Biddulph, Township of"
+  },
+  "3540005": {
+    "csd_name": "South Huron",
+    "geographic_area": "Huron",
+    "label": "South Huron, Municipality of (3540005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "South Huron, Municipality of"
+  },
+  "3540010": {
+    "csd_name": "Bluewater",
+    "geographic_area": "Huron",
+    "label": "Bluewater, Municipality of (3540010)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Bluewater, Municipality of"
+  },
+  "3540025": {
+    "csd_name": "Central Huron",
+    "geographic_area": "Huron",
+    "label": "Central Huron, Municipality of (3540025)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Central Huron, Municipality of"
+  },
+  "3540028": {
+    "csd_name": "Goderich",
+    "geographic_area": "Huron",
+    "label": "Goderich, Town of (3540028)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Goderich, Town of"
+  },
+  "3540040": {
+    "csd_name": "Huron East",
+    "geographic_area": "Huron",
+    "label": "Huron East, Municipality of (3540040)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Huron East, Municipality of"
+  },
+  "3540046": {
+    "csd_name": "Howick",
+    "geographic_area": "Huron",
+    "label": "Howick, Township of (3540046)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Howick, Township of"
+  },
+  "3540050": {
+    "csd_name": "Morris-Turnberry",
+    "geographic_area": "Huron",
+    "label": "Morris-Turnberry, Municipality of (3540050)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Morris-Turnberry, Municipality of"
+  },
+  "3540055": {
+    "csd_name": "North Huron",
+    "geographic_area": "Huron",
+    "label": "North Huron, Township of (3540055)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Huron, Township of"
+  },
+  "3540063": {
+    "csd_name": "Ashfield-Colborne-Wawanosh",
+    "geographic_area": "Huron",
+    "label": "Ashfield-Colborne-Wawanosh, Township of (3540063)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Ashfield-Colborne-Wawanosh, Township of"
+  },
+  "3541004": {
+    "csd_name": "South Bruce",
+    "geographic_area": "Bruce",
+    "label": "South Bruce, Municipality of (3541004)",
+    "municipal_status": "Lower Tier",
+    "official_name": "South Bruce, Municipality of"
+  },
+  "3541015": {
+    "csd_name": "Huron-Kinloss",
+    "geographic_area": "Bruce",
+    "label": "Huron-Kinloss, Township of (3541015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Huron-Kinloss, Township of"
+  },
+  "3541024": {
+    "csd_name": "Kincardine",
+    "geographic_area": "Bruce",
+    "label": "Kincardine, Municipality of (3541024)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Kincardine, Municipality of"
+  },
+  "3541032": {
+    "csd_name": "Brockton",
+    "geographic_area": "Bruce",
+    "label": "Brockton, Municipality of (3541032)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Brockton, Municipality of"
+  },
+  "3541043": {
+    "csd_name": "Arran-Elderslie",
+    "geographic_area": "Bruce",
+    "label": "Arran-Elderslie, Municipality of (3541043)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Arran-Elderslie, Municipality of"
+  },
+  "3541045": {
+    "csd_name": "Saugeen Shores",
+    "geographic_area": "Bruce",
+    "label": "Saugeen Shores, Town of (3541045)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Saugeen Shores, Town of"
+  },
+  "3541055": {
+    "csd_name": "South Bruce Peninsula",
+    "geographic_area": "Bruce",
+    "label": "South Bruce Peninsula, Town of (3541055)",
+    "municipal_status": "Lower Tier",
+    "official_name": "South Bruce Peninsula, Town of"
+  },
+  "3541069": {
+    "csd_name": "Northern Bruce Peninsula",
+    "geographic_area": "Bruce",
+    "label": "Northern Bruce Peninsula, Municipality of (3541069)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Northern Bruce Peninsula, Municipality of"
+  },
+  "3542004": {
+    "csd_name": "West Grey",
+    "geographic_area": "Grey",
+    "label": "West Grey, Municipality of (3542004)",
+    "municipal_status": "Lower Tier",
+    "official_name": "West Grey, Municipality of"
+  },
+  "3542005": {
+    "csd_name": "Southgate",
+    "geographic_area": "Grey",
+    "label": "Southgate, Township of (3542005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Southgate, Township of"
+  },
+  "3542015": {
+    "csd_name": "Grey Highlands",
+    "geographic_area": "Grey",
+    "label": "Grey Highlands, Municipality of (3542015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Grey Highlands, Municipality of"
+  },
+  "3542029": {
+    "csd_name": "Hanover",
+    "geographic_area": "Grey",
+    "label": "Hanover, Town of (3542029)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Hanover, Town of"
+  },
+  "3542037": {
+    "csd_name": "Chatsworth",
+    "geographic_area": "Grey",
+    "label": "Chatsworth, Township of (3542037)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Chatsworth, Township of"
+  },
+  "3542045": {
+    "csd_name": "The Blue Mountains",
+    "geographic_area": "Grey",
+    "label": "The Blue Mountains, Town of (3542045)",
+    "municipal_status": "Lower Tier",
+    "official_name": "The Blue Mountains, Town of"
+  },
+  "3542047": {
+    "csd_name": "Meaford",
+    "geographic_area": "Grey",
+    "label": "Meaford, Municipality of (3542047)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Meaford, Municipality of"
+  },
+  "3542053": {
+    "csd_name": "Georgian Bluffs",
+    "geographic_area": "Grey",
+    "label": "Georgian Bluffs, Township of (3542053)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Georgian Bluffs, Township of"
+  },
+  "3542059": {
+    "csd_name": "Owen Sound",
+    "geographic_area": "Grey",
+    "label": "Owen Sound, City of (3542059)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Owen Sound, City of"
+  },
+  "3543003": {
+    "csd_name": "Adjala-Tosorontio",
+    "geographic_area": "Simcoe",
+    "label": "Adjala-Tosorontio, Township of (3543003)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Adjala-Tosorontio, Township of"
+  },
+  "3543005": {
+    "csd_name": "Clearview",
+    "geographic_area": "Simcoe",
+    "label": "Clearview, Township of (3543005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Clearview, Township of"
+  },
+  "3543007": {
+    "csd_name": "New Tecumseth",
+    "geographic_area": "Simcoe",
+    "label": "New Tecumseth, Town of (3543007)",
+    "municipal_status": "Lower Tier",
+    "official_name": "New Tecumseth, Town of"
+  },
+  "3543009": {
+    "csd_name": "Springwater",
+    "geographic_area": "Simcoe",
+    "label": "Springwater, Township of (3543009)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Springwater, Township of"
+  },
+  "3543014": {
+    "csd_name": "Bradford West Gwillimbury",
+    "geographic_area": "Simcoe",
+    "label": "Bradford West Gwillimbury, Town of (3543014)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Bradford West Gwillimbury, Town of"
+  },
+  "3543015": {
+    "csd_name": "Severn",
+    "geographic_area": "Simcoe",
+    "label": "Severn, Township of (3543015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Severn, Township of"
+  },
+  "3543017": {
+    "csd_name": "Innisfil",
+    "geographic_area": "Simcoe",
+    "label": "Innisfil, Town of (3543017)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Innisfil, Town of"
+  },
+  "3543019": {
+    "csd_name": "Ramara",
+    "geographic_area": "Simcoe",
+    "label": "Ramara, Township of (3543019)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Ramara, Township of"
+  },
+  "3543021": {
+    "csd_name": "Essa",
+    "geographic_area": "Simcoe",
+    "label": "Essa, Township of (3543021)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Essa, Township of"
+  },
+  "3543023": {
+    "csd_name": "Oro-Medonte",
+    "geographic_area": "Simcoe",
+    "label": "Oro-Medonte, Township of (3543023)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Oro-Medonte, Township of"
+  },
+  "3543031": {
+    "csd_name": "Collingwood",
+    "geographic_area": "Simcoe",
+    "label": "Collingwood, Town of (3543031)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Collingwood, Town of"
+  },
+  "3543042": {
+    "csd_name": "Barrie",
+    "geographic_area": "Simcoe",
+    "label": "Barrie, City of (3543042)",
+    "municipal_status": "Single Tier",
+    "official_name": "Barrie, City of"
+  },
+  "3543052": {
+    "csd_name": "Orillia",
+    "geographic_area": "Simcoe",
+    "label": "Orillia, City of (3543052)",
+    "municipal_status": "Single Tier",
+    "official_name": "Orillia, City of"
+  },
+  "3543064": {
+    "csd_name": "Wasaga Beach",
+    "geographic_area": "Simcoe",
+    "label": "Wasaga Beach, Town of (3543064)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Wasaga Beach, Town of"
+  },
+  "3543068": {
+    "csd_name": "Tiny",
+    "geographic_area": "Simcoe",
+    "label": "Tiny, Township of (3543068)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Tiny, Township of"
+  },
+  "3543071": {
+    "csd_name": "Tay",
+    "geographic_area": "Simcoe",
+    "label": "Tay, Township of (3543071)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Tay, Township of"
+  },
+  "3543072": {
+    "csd_name": "Penetanguishene",
+    "geographic_area": "Simcoe",
+    "label": "Penetanguishene, Town of (3543072)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Penetanguishene, Town of"
+  },
+  "3543074": {
+    "csd_name": "Midland",
+    "geographic_area": "Simcoe",
+    "label": "Midland, Town of (3543074)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Midland, Town of"
+  },
+  "3544002": {
+    "csd_name": "Gravenhurst",
+    "geographic_area": "Muskoka",
+    "label": "Gravenhurst, Town of (3544002)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Gravenhurst, Town of"
+  },
+  "3544018": {
+    "csd_name": "Bracebridge",
+    "geographic_area": "Muskoka",
+    "label": "Bracebridge, Town of (3544018)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Bracebridge, Town of"
+  },
+  "3544027": {
+    "csd_name": "Lake of Bays",
+    "geographic_area": "Muskoka",
+    "label": "Lake of Bays, Township of (3544027)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Lake of Bays, Township of"
+  },
+  "3544042": {
+    "csd_name": "Huntsville",
+    "geographic_area": "Muskoka",
+    "label": "Huntsville, Town of (3544042)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Huntsville, Town of"
+  },
+  "3544053": {
+    "csd_name": "Muskoka Lakes",
+    "geographic_area": "Muskoka",
+    "label": "Muskoka Lakes, Township of (3544053)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Muskoka Lakes, Township of"
+  },
+  "3544065": {
+    "csd_name": "Georgian Bay",
+    "geographic_area": "Muskoka",
+    "label": "Georgian Bay, Township of (3544065)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Georgian Bay, Township of"
+  },
+  "3546005": {
+    "csd_name": "Highlands East",
+    "geographic_area": "Haliburton",
+    "label": "Highlands East, Municipality of (3546005)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Highlands East, Municipality of"
+  },
+  "3546015": {
+    "csd_name": "Minden Hills",
+    "geographic_area": "Haliburton",
+    "label": "Minden Hills, Township of (3546015)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Minden Hills, Township of"
+  },
+  "3546018": {
+    "csd_name": "Algonquin Highlands",
+    "geographic_area": "Haliburton",
+    "label": "Algonquin Highlands, Township of (3546018)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Algonquin Highlands, Township of"
+  },
+  "3546024": {
+    "csd_name": "Dysart et al",
+    "geographic_area": "Haliburton",
+    "label": "Dysart et al, Municipality of (3546024)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Dysart et al, Municipality of"
+  },
+  "3547002": {
+    "csd_name": "Arnprior",
+    "geographic_area": "Renfrew",
+    "label": "Arnprior, Town of (3547002)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Arnprior, Town of"
+  },
+  "3547003": {
+    "csd_name": "McNab/Braeside",
+    "geographic_area": "Renfrew",
+    "label": "McNab/Braeside, Township of (3547003)",
+    "municipal_status": "Lower Tier",
+    "official_name": "McNab/Braeside, Township of"
+  },
+  "3547008": {
+    "csd_name": "Greater Madawaska",
+    "geographic_area": "Renfrew",
+    "label": "Greater Madawaska, Township of (3547008)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Greater Madawaska, Township of"
+  },
+  "3547020": {
+    "csd_name": "Brudenell, Lyndoch and Raglan",
+    "geographic_area": "Renfrew",
+    "label": "Brudenell, Lyndoch and Raglan, Township of (3547020)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Brudenell, Lyndoch and Raglan, Township of"
+  },
+  "3547030": {
+    "csd_name": "Madawaska Valley",
+    "geographic_area": "Renfrew",
+    "label": "Madawaska Valley, Township of (3547030)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Madawaska Valley, Township of"
+  },
+  "3547033": {
+    "csd_name": "Killaloe, Hagarty and Richards",
+    "geographic_area": "Renfrew",
+    "label": "Killaloe, Hagarty and Richards, Township of (3547033)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Killaloe, Hagarty and Richards, Township of"
+  },
+  "3547035": {
+    "csd_name": "Bonnechere Valley",
+    "geographic_area": "Renfrew",
+    "label": "Bonnechere Valley, Township of (3547035)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Bonnechere Valley, Township of"
+  },
+  "3547043": {
+    "csd_name": "Admaston/Bromley",
+    "geographic_area": "Renfrew",
+    "label": "Admaston/Bromley, Township of (3547043)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Admaston/Bromley, Township of"
+  },
+  "3547046": {
+    "csd_name": "Horton",
+    "geographic_area": "Renfrew",
+    "label": "Horton, Township of (3547046)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Horton, Township of"
+  },
+  "3547048": {
+    "csd_name": "Renfrew",
+    "geographic_area": "Renfrew",
+    "label": "Renfrew, Town of (3547048)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Renfrew, Town of"
+  },
+  "3547056": {
+    "csd_name": "Whitewater Region",
+    "geographic_area": "Renfrew",
+    "label": "Whitewater Region, Township of (3547056)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Whitewater Region, Township of"
+  },
+  "3547064": {
+    "csd_name": "Pembroke",
+    "geographic_area": "Renfrew",
+    "label": "Pembroke, City of (3547064)",
+    "municipal_status": "Single Tier",
+    "official_name": "Pembroke, City of"
+  },
+  "3547070": {
+    "csd_name": "North Algona Wilberforce",
+    "geographic_area": "Renfrew",
+    "label": "North Algona Wilberforce, Township of (3547070)",
+    "municipal_status": "Lower Tier",
+    "official_name": "North Algona Wilberforce, Township of"
+  },
+  "3547075": {
+    "csd_name": "Laurentian Valley",
+    "geographic_area": "Renfrew",
+    "label": "Laurentian Valley, Township of (3547075)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Laurentian Valley, Township of"
+  },
+  "3547076": {
+    "csd_name": "Petawawa",
+    "geographic_area": "Renfrew",
+    "label": "Petawawa, Town of (3547076)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Petawawa, Town of"
+  },
+  "3547090": {
+    "csd_name": "Laurentian Hills",
+    "geographic_area": "Renfrew",
+    "label": "Laurentian Hills, Town of (3547090)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Laurentian Hills, Town of"
+  },
+  "3547096": {
+    "csd_name": "Deep River",
+    "geographic_area": "Renfrew",
+    "label": "Deep River, Town of (3547096)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Deep River, Town of"
+  },
+  "3547098": {
+    "csd_name": "Head, Clara and Maria",
+    "geographic_area": "Renfrew",
+    "label": "Head, Clara and Maria, Township of (3547098)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Head, Clara and Maria, Township of"
+  },
+  "3548001": {
+    "csd_name": "South Algonquin",
+    "geographic_area": "Nipissing",
+    "label": "South Algonquin, Township of (3548001)",
+    "municipal_status": "Single Tier",
+    "official_name": "South Algonquin, Township of"
+  },
+  "3548013": {
+    "csd_name": "Papineau-Cameron",
+    "geographic_area": "Nipissing",
+    "label": "Papineau-Cameron, Township of (3548013)",
+    "municipal_status": "Single Tier",
+    "official_name": "Papineau-Cameron, Township of"
+  },
+  "3548019": {
+    "csd_name": "Mattawan",
+    "geographic_area": "Nipissing",
+    "label": "Mattawan, Municipality of (3548019)",
+    "municipal_status": "Single Tier",
+    "official_name": "Mattawan, Municipality of"
+  },
+  "3548021": {
+    "csd_name": "Mattawa",
+    "geographic_area": "Nipissing",
+    "label": "Mattawa, Town of (3548021)",
+    "municipal_status": "Single Tier",
+    "official_name": "Mattawa, Town of"
+  },
+  "3548022": {
+    "csd_name": "Calvin",
+    "geographic_area": "Nipissing",
+    "label": "Calvin, Municipality of (3548022)",
+    "municipal_status": "Single Tier",
+    "official_name": "Calvin, Municipality of"
+  },
+  "3548027": {
+    "csd_name": "Bonfield",
+    "geographic_area": "Nipissing",
+    "label": "Bonfield, Township of (3548027)",
+    "municipal_status": "Single Tier",
+    "official_name": "Bonfield, Township of"
+  },
+  "3548031": {
+    "csd_name": "Chisholm",
+    "geographic_area": "Nipissing",
+    "label": "Chisholm, Township of (3548031)",
+    "municipal_status": "Single Tier",
+    "official_name": "Chisholm, Township of"
+  },
+  "3548034": {
+    "csd_name": "East Ferris",
+    "geographic_area": "Nipissing",
+    "label": "East Ferris, Township of (3548034)",
+    "municipal_status": "Single Tier",
+    "official_name": "East Ferris, Township of"
+  },
+  "3548044": {
+    "csd_name": "North Bay",
+    "geographic_area": "Nipissing",
+    "label": "North Bay, City of (3548044)",
+    "municipal_status": "Single Tier",
+    "official_name": "North Bay, City of"
+  },
+  "3548069": {
+    "csd_name": "Temagami",
+    "geographic_area": "Nipissing",
+    "label": "Temagami, Municipality of (3548069)",
+    "municipal_status": "Single Tier",
+    "official_name": "Temagami, Municipality of"
+  },
+  "3549003": {
+    "csd_name": "Seguin",
+    "geographic_area": "Parry Sound",
+    "label": "Seguin, Township of (3549003)",
+    "municipal_status": "Single Tier",
+    "official_name": "Seguin, Township of"
+  },
+  "3549005": {
+    "csd_name": "The Archipelago",
+    "geographic_area": "Parry Sound",
+    "label": "The Archipelago, Township of (3549005)",
+    "municipal_status": "Single Tier",
+    "official_name": "The Archipelago, Township of"
+  },
+  "3549012": {
+    "csd_name": "McMurrich/Monteith",
+    "geographic_area": "Parry Sound",
+    "label": "McMurrich/Monteith, Township of (3549012)",
+    "municipal_status": "Single Tier",
+    "official_name": "McMurrich/Monteith, Township of"
+  },
+  "3549014": {
+    "csd_name": "Perry",
+    "geographic_area": "Parry Sound",
+    "label": "Perry, Township of (3549014)",
+    "municipal_status": "Single Tier",
+    "official_name": "Perry, Township of"
+  },
+  "3549018": {
+    "csd_name": "Kearney",
+    "geographic_area": "Parry Sound",
+    "label": "Kearney, Town of (3549018)",
+    "municipal_status": "Single Tier",
+    "official_name": "Kearney, Town of"
+  },
+  "3549019": {
+    "csd_name": "Armour",
+    "geographic_area": "Parry Sound",
+    "label": "Armour, Township of (3549019)",
+    "municipal_status": "Single Tier",
+    "official_name": "Armour, Township of"
+  },
+  "3549024": {
+    "csd_name": "Ryerson",
+    "geographic_area": "Parry Sound",
+    "label": "Ryerson, Township of (3549024)",
+    "municipal_status": "Single Tier",
+    "official_name": "Ryerson, Township of"
+  },
+  "3549028": {
+    "csd_name": "McKellar",
+    "geographic_area": "Parry Sound",
+    "label": "McKellar, Township of (3549028)",
+    "municipal_status": "Single Tier",
+    "official_name": "McKellar, Township of"
+  },
+  "3549031": {
+    "csd_name": "McDougall",
+    "geographic_area": "Parry Sound",
+    "label": "McDougall, Township of (3549031)",
+    "municipal_status": "Single Tier",
+    "official_name": "McDougall, Township of"
+  },
+  "3549032": {
+    "csd_name": "Parry Sound",
+    "geographic_area": "Parry Sound",
+    "label": "Parry Sound, Town of (3549032)",
+    "municipal_status": "Single Tier",
+    "official_name": "Parry Sound, Town of"
+  },
+  "3549036": {
+    "csd_name": "Carling",
+    "geographic_area": "Parry Sound",
+    "label": "Carling, Township of (3549036)",
+    "municipal_status": "Single Tier",
+    "official_name": "Carling, Township of"
+  },
+  "3549039": {
+    "csd_name": "Whitestone",
+    "geographic_area": "Parry Sound",
+    "label": "Whitestone, Municipality of (3549039)",
+    "municipal_status": "Single Tier",
+    "official_name": "Whitestone, Municipality of"
+  },
+  "3549043": {
+    "csd_name": "Magnetawan",
+    "geographic_area": "Parry Sound",
+    "label": "Magnetawan, Municipality of (3549043)",
+    "municipal_status": "Single Tier",
+    "official_name": "Magnetawan, Municipality of"
+  },
+  "3549046": {
+    "csd_name": "Strong",
+    "geographic_area": "Parry Sound",
+    "label": "Strong, Township of (3549046)",
+    "municipal_status": "Single Tier",
+    "official_name": "Strong, Township of"
+  },
+  "3549048": {
+    "csd_name": "Sundridge",
+    "geographic_area": "Parry Sound",
+    "label": "Sundridge, Village of (3549048)",
+    "municipal_status": "Single Tier",
+    "official_name": "Sundridge, Village of"
+  },
+  "3549051": {
+    "csd_name": "Joly",
+    "geographic_area": "Parry Sound",
+    "label": "Joly, Township of (3549051)",
+    "municipal_status": "Single Tier",
+    "official_name": "Joly, Township of"
+  },
+  "3549054": {
+    "csd_name": "Machar",
+    "geographic_area": "Parry Sound",
+    "label": "Machar, Township of (3549054)",
+    "municipal_status": "Single Tier",
+    "official_name": "Machar, Township of"
+  },
+  "3549056": {
+    "csd_name": "South River",
+    "geographic_area": "Parry Sound",
+    "label": "South River, Village of (3549056)",
+    "municipal_status": "Single Tier",
+    "official_name": "South River, Village of"
+  },
+  "3549060": {
+    "csd_name": "Powassan",
+    "geographic_area": "Parry Sound",
+    "label": "Powassan, Municipality of (3549060)",
+    "municipal_status": "Single Tier",
+    "official_name": "Powassan, Municipality of"
+  },
+  "3549066": {
+    "csd_name": "Callander",
+    "geographic_area": "Parry Sound",
+    "label": "Callander, Municipality of (3549066)",
+    "municipal_status": "Single Tier",
+    "official_name": "Callander, Municipality of"
+  },
+  "3549071": {
+    "csd_name": "Nipissing",
+    "geographic_area": "Parry Sound",
+    "label": "Nipissing, Township of (3549071)",
+    "municipal_status": "Single Tier",
+    "official_name": "Nipissing, Township of"
+  },
+  "3551001": {
+    "csd_name": "Tehkummah",
+    "geographic_area": "Manitoulin",
+    "label": "Tehkummah, Township of (3551001)",
+    "municipal_status": "Single Tier",
+    "official_name": "Tehkummah, Township of"
+  },
+  "3551006": {
+    "csd_name": "Central Manitoulin",
+    "geographic_area": "Manitoulin",
+    "label": "Central Manitoulin, Municipality of (3551006)",
+    "municipal_status": "Single Tier",
+    "official_name": "Central Manitoulin, Municipality of"
+  },
+  "3551011": {
+    "csd_name": "Assiginack",
+    "geographic_area": "Manitoulin",
+    "label": "Assiginack, Township of (3551011)",
+    "municipal_status": "Single Tier",
+    "official_name": "Assiginack, Township of"
+  },
+  "3551017": {
+    "csd_name": "Northeastern Manitoulin and the Islands",
+    "geographic_area": "Manitoulin",
+    "label": "Northeastern Manitoulin and The Islands, Town of (3551017)",
+    "municipal_status": "Single Tier",
+    "official_name": "Northeastern Manitoulin and The Islands, Town of"
+  },
+  "3551021": {
+    "csd_name": "Billings",
+    "geographic_area": "Manitoulin",
+    "label": "Billings, Township of (3551021)",
+    "municipal_status": "Single Tier",
+    "official_name": "Billings, Township of"
+  },
+  "3551026": {
+    "csd_name": "Gore Bay",
+    "geographic_area": "Manitoulin",
+    "label": "Gore Bay, Town of (3551026)",
+    "municipal_status": "Single Tier",
+    "official_name": "Gore Bay, Town of"
+  },
+  "3551027": {
+    "csd_name": "Gordon/Barrie Island",
+    "geographic_area": "Manitoulin",
+    "label": "Gordon/Barrie Island, Municipality of (3551027)",
+    "municipal_status": "Single Tier",
+    "official_name": "Gordon/Barrie Island, Municipality of"
+  },
+  "3551028": {
+    "csd_name": "Burpee and Mills",
+    "geographic_area": "Manitoulin",
+    "label": "Burpee and Mills, Township of (3551028)",
+    "municipal_status": "Single Tier",
+    "official_name": "Burpee and Mills, Township of"
+  },
+  "3551034": {
+    "csd_name": "Cockburn Island",
+    "geographic_area": "Manitoulin",
+    "label": "Cockburn Island, Township of (3551034)",
+    "municipal_status": "Single Tier",
+    "official_name": "Cockburn Island, Township of"
+  },
+  "3552004": {
+    "csd_name": "St.-Charles",
+    "geographic_area": "Sudbury",
+    "label": "St.-Charles, Municipality of (3552004)",
+    "municipal_status": "Single Tier",
+    "official_name": "St.-Charles, Municipality of"
+  },
+  "3552013": {
+    "csd_name": "Markstay-Warren",
+    "geographic_area": "Sudbury",
+    "label": "Markstay-Warren, Municipality of (3552013)",
+    "municipal_status": "Single Tier",
+    "official_name": "Markstay-Warren, Municipality of"
+  },
+  "3552023": {
+    "csd_name": "Sables-Spanish Rivers",
+    "geographic_area": "Sudbury",
+    "label": "Sables-Spanish Rivers, Township of (3552023)",
+    "municipal_status": "Single Tier",
+    "official_name": "Sables-Spanish Rivers, Township of"
+  },
+  "3552026": {
+    "csd_name": "Espanola",
+    "geographic_area": "Sudbury",
+    "label": "Espanola, Town of (3552026)",
+    "municipal_status": "Single Tier",
+    "official_name": "Espanola, Town of"
+  },
+  "3552028": {
+    "csd_name": "Baldwin",
+    "geographic_area": "Sudbury",
+    "label": "Baldwin, Township of (3552028)",
+    "municipal_status": "Single Tier",
+    "official_name": "Baldwin, Township of"
+  },
+  "3552031": {
+    "csd_name": "Nairn and Hyman",
+    "geographic_area": "Sudbury",
+    "label": "Nairn and Hyman, Township of (3552031)",
+    "municipal_status": "Single Tier",
+    "official_name": "Nairn and Hyman, Township of"
+  },
+  "3552036": {
+    "csd_name": "Killarney",
+    "geographic_area": "Sudbury",
+    "label": "Killarney, Municipality of (3552036)",
+    "municipal_status": "Single Tier",
+    "official_name": "Killarney, Municipality of"
+  },
+  "3552092": {
+    "csd_name": "Chapleau",
+    "geographic_area": "Sudbury",
+    "label": "Chapleau, Township of (3552092)",
+    "municipal_status": "Single Tier",
+    "official_name": "Chapleau, Township of"
+  },
+  "3554001": {
+    "csd_name": "Coleman",
+    "geographic_area": "Timiskaming",
+    "label": "Coleman, Township of (3554001)",
+    "municipal_status": "Single Tier",
+    "official_name": "Coleman, Township of"
+  },
+  "3554006": {
+    "csd_name": "Latchford",
+    "geographic_area": "Timiskaming",
+    "label": "Latchford, Town of (3554006)",
+    "municipal_status": "Single Tier",
+    "official_name": "Latchford, Town of"
+  },
+  "3554008": {
+    "csd_name": "Cobalt",
+    "geographic_area": "Timiskaming",
+    "label": "Cobalt, Town of (3554008)",
+    "municipal_status": "Single Tier",
+    "official_name": "Cobalt, Town of"
+  },
+  "3554014": {
+    "csd_name": "Harris",
+    "geographic_area": "Timiskaming",
+    "label": "Harris, Township of (3554014)",
+    "municipal_status": "Single Tier",
+    "official_name": "Harris, Township of"
+  },
+  "3554020": {
+    "csd_name": "Temiskaming Shores",
+    "geographic_area": "Timiskaming",
+    "label": "Temiskaming Shores, City of (3554020)",
+    "municipal_status": "Single Tier",
+    "official_name": "Temiskaming Shores, City of"
+  },
+  "3554021": {
+    "csd_name": "Hudson",
+    "geographic_area": "Timiskaming",
+    "label": "Hudson, Township of (3554021)",
+    "municipal_status": "Single Tier",
+    "official_name": "Hudson, Township of"
+  },
+  "3554024": {
+    "csd_name": "Kerns",
+    "geographic_area": "Timiskaming",
+    "label": "Kerns, Township of (3554024)",
+    "municipal_status": "Single Tier",
+    "official_name": "Kerns, Township of"
+  },
+  "3554026": {
+    "csd_name": "Harley",
+    "geographic_area": "Timiskaming",
+    "label": "Harley, Township of (3554026)",
+    "municipal_status": "Single Tier",
+    "official_name": "Harley, Township of"
+  },
+  "3554029": {
+    "csd_name": "Casey",
+    "geographic_area": "Timiskaming",
+    "label": "Casey, Township of (3554029)",
+    "municipal_status": "Single Tier",
+    "official_name": "Casey, Township of"
+  },
+  "3554032": {
+    "csd_name": "Brethour",
+    "geographic_area": "Timiskaming",
+    "label": "Brethour, Township of (3554032)",
+    "municipal_status": "Single Tier",
+    "official_name": "Brethour, Township of"
+  },
+  "3554034": {
+    "csd_name": "Hilliard",
+    "geographic_area": "Timiskaming",
+    "label": "Hilliard, Township of (3554034)",
+    "municipal_status": "Single Tier",
+    "official_name": "Hilliard, Township of"
+  },
+  "3554036": {
+    "csd_name": "Armstrong",
+    "geographic_area": "Timiskaming",
+    "label": "Armstrong, Township of (3554036)",
+    "municipal_status": "Single Tier",
+    "official_name": "Armstrong, Township of"
+  },
+  "3554038": {
+    "csd_name": "Thornloe",
+    "geographic_area": "Timiskaming",
+    "label": "Thornloe, Village of (3554038)",
+    "municipal_status": "Single Tier",
+    "official_name": "Thornloe, Village of"
+  },
+  "3554042": {
+    "csd_name": "James",
+    "geographic_area": "Timiskaming",
+    "label": "James, Township of (3554042)",
+    "municipal_status": "Single Tier",
+    "official_name": "James, Township of"
+  },
+  "3554044": {
+    "csd_name": "Charlton and Dack",
+    "geographic_area": "Timiskaming",
+    "label": "Charlton and Dack, Municipality of (3554044)",
+    "municipal_status": "Single Tier",
+    "official_name": "Charlton and Dack, Municipality of"
+  },
+  "3554049": {
+    "csd_name": "Evanturel",
+    "geographic_area": "Timiskaming",
+    "label": "Evanturel, Township of (3554049)",
+    "municipal_status": "Single Tier",
+    "official_name": "Evanturel, Township of"
+  },
+  "3554052": {
+    "csd_name": "Englehart",
+    "geographic_area": "Timiskaming",
+    "label": "Englehart, Town of (3554052)",
+    "municipal_status": "Single Tier",
+    "official_name": "Englehart, Town of"
+  },
+  "3554054": {
+    "csd_name": "Chamberlain",
+    "geographic_area": "Timiskaming",
+    "label": "Chamberlain, Township of (3554054)",
+    "municipal_status": "Single Tier",
+    "official_name": "Chamberlain, Township of"
+  },
+  "3554056": {
+    "csd_name": "Matachewan",
+    "geographic_area": "Timiskaming",
+    "label": "Matachewan, Township of (3554056)",
+    "municipal_status": "Single Tier",
+    "official_name": "Matachewan, Township of"
+  },
+  "3554058": {
+    "csd_name": "McGarry",
+    "geographic_area": "Timiskaming",
+    "label": "McGarry, Township of (3554058)",
+    "municipal_status": "Single Tier",
+    "official_name": "McGarry, Township of"
+  },
+  "3554062": {
+    "csd_name": "Larder Lake",
+    "geographic_area": "Timiskaming",
+    "label": "Larder Lake, Township of (3554062)",
+    "municipal_status": "Single Tier",
+    "official_name": "Larder Lake, Township of"
+  },
+  "3554066": {
+    "csd_name": "Gauthier",
+    "geographic_area": "Timiskaming",
+    "label": "Gauthier, Township of (3554066)",
+    "municipal_status": "Single Tier",
+    "official_name": "Gauthier, Township of"
+  },
+  "3554068": {
+    "csd_name": "Kirkland Lake",
+    "geographic_area": "Timiskaming",
+    "label": "Kirkland Lake, Town of (3554068)",
+    "municipal_status": "Single Tier",
+    "official_name": "Kirkland Lake, Town of"
+  },
+  "3556014": {
+    "csd_name": "Black River-Matheson",
+    "geographic_area": "Cochrane",
+    "label": "Black River-Matheson, Township of (3556014)",
+    "municipal_status": "Single Tier",
+    "official_name": "Black River-Matheson, Township of"
+  },
+  "3556027": {
+    "csd_name": "Timmins",
+    "geographic_area": "Cochrane",
+    "label": "Timmins, City of (3556027)",
+    "municipal_status": "Single Tier",
+    "official_name": "Timmins, City of"
+  },
+  "3556031": {
+    "csd_name": "Iroquois Falls",
+    "geographic_area": "Cochrane",
+    "label": "Iroquois Falls, Town of (3556031)",
+    "municipal_status": "Single Tier",
+    "official_name": "Iroquois Falls, Town of"
+  },
+  "3556042": {
+    "csd_name": "Cochrane",
+    "geographic_area": "Cochrane",
+    "label": "Cochrane, Town of (3556042)",
+    "municipal_status": "Single Tier",
+    "official_name": "Cochrane, Town of"
+  },
+  "3556048": {
+    "csd_name": "Smooth Rock Falls",
+    "geographic_area": "Cochrane",
+    "label": "Smooth Rock Falls, Town of (3556048)",
+    "municipal_status": "Single Tier",
+    "official_name": "Smooth Rock Falls, Town of"
+  },
+  "3556052": {
+    "csd_name": "Fauquier-Strickland",
+    "geographic_area": "Cochrane",
+    "label": "Fauquier-Strickland, Township of (3556052)",
+    "municipal_status": "Single Tier",
+    "official_name": "Fauquier-Strickland, Township of"
+  },
+  "3556056": {
+    "csd_name": "Moonbeam",
+    "geographic_area": "Cochrane",
+    "label": "Moonbeam, Township of (3556056)",
+    "municipal_status": "Single Tier",
+    "official_name": "Moonbeam, Township of"
+  },
+  "3556066": {
+    "csd_name": "Kapuskasing",
+    "geographic_area": "Cochrane",
+    "label": "Kapuskasing, Town of (3556066)",
+    "municipal_status": "Single Tier",
+    "official_name": "Kapuskasing, Town of"
+  },
+  "3556070": {
+    "csd_name": "Val Rita-Harty",
+    "geographic_area": "Cochrane",
+    "label": "Val Rita-Harty, Township of (3556070)",
+    "municipal_status": "Single Tier",
+    "official_name": "Val Rita-Harty, Township of"
+  },
+  "3556073": {
+    "csd_name": "Opasatika",
+    "geographic_area": "Cochrane",
+    "label": "Opasatika, Township of (3556073)",
+    "municipal_status": "Single Tier",
+    "official_name": "Opasatika, Township of"
+  },
+  "3556076": {
+    "csd_name": "Hearst",
+    "geographic_area": "Cochrane",
+    "label": "Hearst, Town of (3556076)",
+    "municipal_status": "Single Tier",
+    "official_name": "Hearst, Town of"
+  },
+  "3556106": {
+    "csd_name": "Moosonee",
+    "geographic_area": "Cochrane",
+    "label": "Moosonee, Town of (3556106)",
+    "municipal_status": "Single Tier",
+    "official_name": "Moosonee, Town of"
+  },
+  "3557001": {
+    "csd_name": "Jocelyn",
+    "geographic_area": "Algoma",
+    "label": "Jocelyn, Township of (3557001)",
+    "municipal_status": "Single Tier",
+    "official_name": "Jocelyn, Township of"
+  },
+  "3557004": {
+    "csd_name": "Hilton",
+    "geographic_area": "Algoma",
+    "label": "Hilton, Township of (3557004)",
+    "municipal_status": "Single Tier",
+    "official_name": "Hilton, Township of"
+  },
+  "3557006": {
+    "csd_name": "Hilton Beach",
+    "geographic_area": "Algoma",
+    "label": "Hilton Beach, Village of (3557006)",
+    "municipal_status": "Single Tier",
+    "official_name": "Hilton Beach, Village of"
+  },
+  "3557008": {
+    "csd_name": "St. Joseph",
+    "geographic_area": "Algoma",
+    "label": "St. Joseph, Township of (3557008)",
+    "municipal_status": "Single Tier",
+    "official_name": "St. Joseph, Township of"
+  },
+  "3557011": {
+    "csd_name": "Laird",
+    "geographic_area": "Algoma",
+    "label": "Laird, Township of (3557011)",
+    "municipal_status": "Single Tier",
+    "official_name": "Laird, Township of"
+  },
+  "3557016": {
+    "csd_name": "Johnson",
+    "geographic_area": "Algoma",
+    "label": "Johnson, Township of (3557016)",
+    "municipal_status": "Single Tier",
+    "official_name": "Johnson, Township of"
+  },
+  "3557019": {
+    "csd_name": "Plummer Additional",
+    "geographic_area": "Algoma",
+    "label": "Plummer Additional, Township of (3557019)",
+    "municipal_status": "Single Tier",
+    "official_name": "Plummer Additional, Township of"
+  },
+  "3557021": {
+    "csd_name": "Bruce Mines",
+    "geographic_area": "Algoma",
+    "label": "Bruce Mines, Town of (3557021)",
+    "municipal_status": "Single Tier",
+    "official_name": "Bruce Mines, Town of"
+  },
+  "3557028": {
+    "csd_name": "Thessalon",
+    "geographic_area": "Algoma",
+    "label": "Thessalon, Town of (3557028)",
+    "municipal_status": "Single Tier",
+    "official_name": "Thessalon, Town of"
+  },
+  "3557035": {
+    "csd_name": "Huron Shores",
+    "geographic_area": "Algoma",
+    "label": "Huron Shores, Municipality of (3557035)",
+    "municipal_status": "Single Tier",
+    "official_name": "Huron Shores, Municipality of"
+  },
+  "3557038": {
+    "csd_name": "Blind River",
+    "geographic_area": "Algoma",
+    "label": "Blind River, Town of (3557038)",
+    "municipal_status": "Single Tier",
+    "official_name": "Blind River, Town of"
+  },
+  "3557039": {
+    "csd_name": "Spanish",
+    "geographic_area": "Algoma",
+    "label": "Spanish, Town of (3557039)",
+    "municipal_status": "Single Tier",
+    "official_name": "Spanish, Town of"
+  },
+  "3557040": {
+    "csd_name": "The North Shore",
+    "geographic_area": "Algoma",
+    "label": "The North Shore, Township of (3557040)",
+    "municipal_status": "Single Tier",
+    "official_name": "The North Shore, Township of"
+  },
+  "3557041": {
+    "csd_name": "Elliot Lake",
+    "geographic_area": "Algoma",
+    "label": "Elliot Lake, City of (3557041)",
+    "municipal_status": "Single Tier",
+    "official_name": "Elliot Lake, City of"
+  },
+  "3557051": {
+    "csd_name": "Macdonald, Meredith and Aberdeen Additional",
+    "geographic_area": "Algoma",
+    "label": "Macdonald, Meredith and Aberdeen Additional, Township of (3557051)",
+    "municipal_status": "Single Tier",
+    "official_name": "Macdonald, Meredith and Aberdeen Additional, Township of"
+  },
+  "3557061": {
+    "csd_name": "Sault Ste. Marie",
+    "geographic_area": "Algoma",
+    "label": "Sault Ste. Marie, City of (3557061)",
+    "municipal_status": "Single Tier",
+    "official_name": "Sault Ste. Marie, City of"
+  },
+  "3557066": {
+    "csd_name": "Prince",
+    "geographic_area": "Algoma",
+    "label": "Prince, Township of (3557066)",
+    "municipal_status": "Single Tier",
+    "official_name": "Prince, Township of"
+  },
+  "3557076": {
+    "csd_name": "Wawa",
+    "geographic_area": "Algoma",
+    "label": "Wawa, Municipality of (3557076)",
+    "municipal_status": "Single Tier",
+    "official_name": "Wawa, Municipality of"
+  },
+  "3557079": {
+    "csd_name": "Dubreuilville",
+    "geographic_area": "Algoma",
+    "label": "Dubreuilville, Township of (3557079)",
+    "municipal_status": "Single Tier",
+    "official_name": "Dubreuilville, Township of"
+  },
+  "3557091": {
+    "csd_name": "White River",
+    "geographic_area": "Algoma",
+    "label": "White River, Township of (3557091)",
+    "municipal_status": "Single Tier",
+    "official_name": "White River, Township of"
+  },
+  "3557096": {
+    "csd_name": "Hornepayne",
+    "geographic_area": "Algoma",
+    "label": "Hornepayne, Township of (3557096)",
+    "municipal_status": "Single Tier",
+    "official_name": "Hornepayne, Township of"
+  },
+  "3558001": {
+    "csd_name": "Neebing",
+    "geographic_area": "Thunder Bay",
+    "label": "Neebing, Municipality of (3558001)",
+    "municipal_status": "Single Tier",
+    "official_name": "Neebing, Municipality of"
+  },
+  "3558004": {
+    "csd_name": "Thunder Bay",
+    "geographic_area": "Thunder Bay",
+    "label": "Thunder Bay, City of (3558004)",
+    "municipal_status": "Single Tier",
+    "official_name": "Thunder Bay, City of"
+  },
+  "3558011": {
+    "csd_name": "Oliver Paipoonge",
+    "geographic_area": "Thunder Bay",
+    "label": "Oliver Paipoonge, Municipality of (3558011)",
+    "municipal_status": "Single Tier",
+    "official_name": "Oliver Paipoonge, Municipality of"
+  },
+  "3558012": {
+    "csd_name": "Gillies",
+    "geographic_area": "Thunder Bay",
+    "label": "Gillies, Township of (3558012)",
+    "municipal_status": "Single Tier",
+    "official_name": "Gillies, Township of"
+  },
+  "3558019": {
+    "csd_name": "Conmee",
+    "geographic_area": "Thunder Bay",
+    "label": "Conmee, Township of (3558019)",
+    "municipal_status": "Single Tier",
+    "official_name": "Conmee, Township of"
+  },
+  "3558028": {
+    "csd_name": "Shuniah",
+    "geographic_area": "Thunder Bay",
+    "label": "Shuniah, Municipality of (3558028)",
+    "municipal_status": "Single Tier",
+    "official_name": "Shuniah, Municipality of"
+  },
+  "3558034": {
+    "csd_name": "Dorion",
+    "geographic_area": "Thunder Bay",
+    "label": "Dorion, Township of (3558034)",
+    "municipal_status": "Single Tier",
+    "official_name": "Dorion, Township of"
+  },
+  "3558041": {
+    "csd_name": "Red Rock",
+    "geographic_area": "Thunder Bay",
+    "label": "Red Rock, Township of (3558041)",
+    "municipal_status": "Single Tier",
+    "official_name": "Red Rock, Township of"
+  },
+  "3558044": {
+    "csd_name": "Nipigon",
+    "geographic_area": "Thunder Bay",
+    "label": "Nipigon, Township of (3558044)",
+    "municipal_status": "Single Tier",
+    "official_name": "Nipigon, Township of"
+  },
+  "3558051": {
+    "csd_name": "Schreiber",
+    "geographic_area": "Thunder Bay",
+    "label": "Schreiber, Township of (3558051)",
+    "municipal_status": "Single Tier",
+    "official_name": "Schreiber, Township of"
+  },
+  "3558054": {
+    "csd_name": "Terrace Bay",
+    "geographic_area": "Thunder Bay",
+    "label": "Terrace Bay, Township of (3558054)",
+    "municipal_status": "Single Tier",
+    "official_name": "Terrace Bay, Township of"
+  },
+  "3558059": {
+    "csd_name": "Marathon",
+    "geographic_area": "Thunder Bay",
+    "label": "Marathon, Town of (3558059)",
+    "municipal_status": "Single Tier",
+    "official_name": "Marathon, Town of"
+  },
+  "3558066": {
+    "csd_name": "Manitouwadge",
+    "geographic_area": "Thunder Bay",
+    "label": "Manitouwadge, Township of (3558066)",
+    "municipal_status": "Single Tier",
+    "official_name": "Manitouwadge, Township of"
+  },
+  "3558075": {
+    "csd_name": "Greenstone",
+    "geographic_area": "Thunder Bay",
+    "label": "Greenstone, Municipality of (3558075)",
+    "municipal_status": "Single Tier",
+    "official_name": "Greenstone, Municipality of"
+  },
+  "3559001": {
+    "csd_name": "Atikokan",
+    "geographic_area": "Rainy River",
+    "label": "Atikokan, Town of (3559001)",
+    "municipal_status": "Single Tier",
+    "official_name": "Atikokan, Town of"
+  },
+  "3559011": {
+    "csd_name": "Alberton",
+    "geographic_area": "Rainy River",
+    "label": "Alberton, Township of (3559011)",
+    "municipal_status": "Single Tier",
+    "official_name": "Alberton, Township of"
+  },
+  "3559012": {
+    "csd_name": "Fort Frances",
+    "geographic_area": "Rainy River",
+    "label": "Fort Frances, Town of (3559012)",
+    "municipal_status": "Single Tier",
+    "official_name": "Fort Frances, Town of"
+  },
+  "3559016": {
+    "csd_name": "La Vallee",
+    "geographic_area": "Rainy River",
+    "label": "La Vallee, Township of (3559016)",
+    "municipal_status": "Single Tier",
+    "official_name": "La Vallee, Township of"
+  },
+  "3559019": {
+    "csd_name": "Emo",
+    "geographic_area": "Rainy River",
+    "label": "Emo, Township of (3559019)",
+    "municipal_status": "Single Tier",
+    "official_name": "Emo, Township of"
+  },
+  "3559024": {
+    "csd_name": "Chapple",
+    "geographic_area": "Rainy River",
+    "label": "Chapple, Township of (3559024)",
+    "municipal_status": "Single Tier",
+    "official_name": "Chapple, Township of"
+  },
+  "3559031": {
+    "csd_name": "Morley",
+    "geographic_area": "Rainy River",
+    "label": "Morley, Township of (3559031)",
+    "municipal_status": "Single Tier",
+    "official_name": "Morley, Township of"
+  },
+  "3559040": {
+    "csd_name": "Dawson",
+    "geographic_area": "Rainy River",
+    "label": "Dawson, Township of (3559040)",
+    "municipal_status": "Single Tier",
+    "official_name": "Dawson, Township of"
+  },
+  "3559042": {
+    "csd_name": "Rainy River",
+    "geographic_area": "Rainy River",
+    "label": "Rainy River, Town of (3559042)",
+    "municipal_status": "Single Tier",
+    "official_name": "Rainy River, Town of"
+  },
+  "3559047": {
+    "csd_name": "Lake of the Woods",
+    "geographic_area": "Rainy River",
+    "label": "Lake of the Woods, Township of (3559047)",
+    "municipal_status": "Single Tier",
+    "official_name": "Lake of the Woods, Township of"
+  },
+  "3560001": {
+    "csd_name": "Ignace",
+    "geographic_area": "Kenora",
+    "label": "Ignace, Township of (3560001)",
+    "municipal_status": "Single Tier",
+    "official_name": "Ignace, Township of"
+  },
+  "3560008": {
+    "csd_name": "Sioux Narrows-Nestor Falls",
+    "geographic_area": "Kenora",
+    "label": "Sioux Narrows-Nestor Falls, Township of (3560008)",
+    "municipal_status": "Single Tier",
+    "official_name": "Sioux Narrows-Nestor Falls, Township of"
+  },
+  "3560010": {
+    "csd_name": "Kenora",
+    "geographic_area": "Kenora",
+    "label": "Kenora, City of (3560010)",
+    "municipal_status": "Single Tier",
+    "official_name": "Kenora, City of"
+  },
+  "3560021": {
+    "csd_name": "Machin",
+    "geographic_area": "Kenora",
+    "label": "Machin, Township of (3560021)",
+    "municipal_status": "Single Tier",
+    "official_name": "Machin, Township of"
+  },
+  "3560027": {
+    "csd_name": "Dryden",
+    "geographic_area": "Kenora",
+    "label": "Dryden, City of (3560027)",
+    "municipal_status": "Single Tier",
+    "official_name": "Dryden, City of"
+  },
+  "3560032": {
+    "csd_name": "Ear Falls",
+    "geographic_area": "Kenora",
+    "label": "Ear Falls, Township of (3560032)",
+    "municipal_status": "Single Tier",
+    "official_name": "Ear Falls, Township of"
+  },
+  "3560034": {
+    "csd_name": "Sioux Lookout",
+    "geographic_area": "Kenora",
+    "label": "Sioux Lookout, Municipality of (3560034)",
+    "municipal_status": "Single Tier",
+    "official_name": "Sioux Lookout, Municipality of"
+  },
+  "3560042": {
+    "csd_name": "Red Lake",
+    "geographic_area": "Kenora",
+    "label": "Red Lake, Municipality of (3560042)",
+    "municipal_status": "Single Tier",
+    "official_name": "Red Lake, Municipality of"
+  },
+  "3560049": {
+    "csd_name": "Pickle Lake",
+    "geographic_area": "Kenora",
+    "label": "Pickle Lake, Township of (3560049)",
+    "municipal_status": "Single Tier",
+    "official_name": "Pickle Lake, Township of"
+  }
+}
