@@ -116,6 +116,26 @@ def load_categories() -> dict:
 
 
 @st.cache_data
+def load_ontario_csd_lookup() -> dict:
+    """Load the Ontario census subdivision code-to-name lookup."""
+    lookup_file = os.path.join("harmonization", "ontario_csd_lookup.json")
+    if os.path.exists(lookup_file):
+        with open(lookup_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+@st.cache_data
+def load_ontario_official_municipalities() -> dict:
+    """Load the official Ontario municipalities lookup keyed by CSD code."""
+    lookup_file = os.path.join("harmonization", "ontario_official_municipalities.json")
+    if os.path.exists(lookup_file):
+        with open(lookup_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+@st.cache_data
 def merge_data(filtered_data, bootstrap_data):
     """Merge filtered data with bootstrap weights on 'ONT_ID'."""
     merged = pd.merge(filtered_data, bootstrap_data, on='ONT_ID', how='left')

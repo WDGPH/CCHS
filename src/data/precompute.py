@@ -279,6 +279,67 @@ def precompute_all_cycles(
     return results
 
 
+def run_precompute_workflow(
+    cycles: List[str],
+    crosswalk: Dict,
+    categories: Dict,
+    data_path: str = "data",
+    save_dir: Path = PRECOMPUTE_DIR
+) -> Dict:
+    """
+    Run the full precompute workflow and return a compact status summary.
+
+    Args:
+        cycles: List of cycle years to precompute
+        crosswalk: Crosswalk dictionary
+        categories: Categories dictionary
+        data_path: Path to raw data files
+        save_dir: Directory to save precomputed files
+
+    Returns:
+        Dictionary with success flag, validation results, and per-cycle summary.
+    """
+    results = precompute_all_cycles(
+        cycles=cycles,
+        crosswalk=crosswalk,
+        categories=categories,
+        data_path=data_path,
+        save_dir=save_dir,
+    )
+
+    if not results:
+        return {
+            "success": False,
+            "results": {},
+            "validation": {},
+            "message": "No cycles were successfully precomputed.",
+        }
+
+    validation = validate_precomputed_data(list(results.keys()), save_dir)
+
+    try:
+        create_variable_availability_index(
+            cycles=list(results.keys()),
+            save_dir=save_dir,
+        )
+    except Exception as exc:
+        print(f"⚠️ Failed to create availability index: {exc}")
+
+    all_valid = all(validation.values()) if validation else False
+    return {
+        "success": all_valid,
+        "results": {
+            cycle: {
+                "record_count": result["metadata"]["record_count"],
+                "available_vars": len(result["metadata"]["available_vars"]),
+            }
+            for cycle, result in results.items()
+        },
+        "validation": validation,
+        "message": "Precompute completed successfully." if all_valid else "Precompute completed, but validation failed for one or more cycles.",
+    }
+
+
 def load_variable_availability_index(save_dir: Path = PRECOMPUTE_DIR) -> Dict[str, List[str]]:
     """
     Load the variable availability index (which variables exist in which cycles).

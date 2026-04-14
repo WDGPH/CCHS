@@ -1,0 +1,2887 @@
+{
+  "3501005": {
+    "label": "South Glengarry (3501005)",
+    "name": "South Glengarry",
+    "type": "TP"
+  },
+  "3501007": {
+    "label": "Akwesasne (Part) 59 (3501007)",
+    "name": "Akwesasne (Part) 59",
+    "type": "IRI"
+  },
+  "3501011": {
+    "label": "South Stormont (3501011)",
+    "name": "South Stormont",
+    "type": "TP"
+  },
+  "3501012": {
+    "label": "Cornwall (3501012)",
+    "name": "Cornwall",
+    "type": "CY"
+  },
+  "3501020": {
+    "label": "South Dundas (3501020)",
+    "name": "South Dundas",
+    "type": "MU"
+  },
+  "3501030": {
+    "label": "North Dundas (3501030)",
+    "name": "North Dundas",
+    "type": "TP"
+  },
+  "3501042": {
+    "label": "North Stormont (3501042)",
+    "name": "North Stormont",
+    "type": "TP"
+  },
+  "3501050": {
+    "label": "North Glengarry (3501050)",
+    "name": "North Glengarry",
+    "type": "TP"
+  },
+  "3502001": {
+    "label": "East Hawkesbury (3502001)",
+    "name": "East Hawkesbury",
+    "type": "TP"
+  },
+  "3502008": {
+    "label": "Hawkesbury (3502008)",
+    "name": "Hawkesbury",
+    "type": "T"
+  },
+  "3502010": {
+    "label": "Champlain (3502010)",
+    "name": "Champlain",
+    "type": "TP"
+  },
+  "3502023": {
+    "label": "Alfred and Plantagenet (3502023)",
+    "name": "Alfred and Plantagenet",
+    "type": "TP"
+  },
+  "3502025": {
+    "label": "The Nation / La Nation (3502025)",
+    "name": "The Nation / La Nation",
+    "type": "M"
+  },
+  "3502036": {
+    "label": "Clarence-Rockland (3502036)",
+    "name": "Clarence-Rockland",
+    "type": "C"
+  },
+  "3502044": {
+    "label": "Casselman (3502044)",
+    "name": "Casselman",
+    "type": "VL"
+  },
+  "3502048": {
+    "label": "Russell (3502048)",
+    "name": "Russell",
+    "type": "TP"
+  },
+  "3506008": {
+    "label": "Ottawa (3506008)",
+    "name": "Ottawa",
+    "type": "CV"
+  },
+  "3507004": {
+    "label": "Edwardsburgh/Cardinal (3507004)",
+    "name": "Edwardsburgh/Cardinal",
+    "type": "TP"
+  },
+  "3507006": {
+    "label": "Augusta (3507006)",
+    "name": "Augusta",
+    "type": "TP"
+  },
+  "3507008": {
+    "label": "Prescott (3507008)",
+    "name": "Prescott",
+    "type": "T"
+  },
+  "3507014": {
+    "label": "Elizabethtown-Kitley (3507014)",
+    "name": "Elizabethtown-Kitley",
+    "type": "TP"
+  },
+  "3507015": {
+    "label": "Brockville (3507015)",
+    "name": "Brockville",
+    "type": "CY"
+  },
+  "3507017": {
+    "label": "Front of Yonge (3507017)",
+    "name": "Front of Yonge",
+    "type": "TP"
+  },
+  "3507021": {
+    "label": "Leeds and the Thousand Islands (3507021)",
+    "name": "Leeds and the Thousand Islands",
+    "type": "TP"
+  },
+  "3507024": {
+    "label": "Gananoque (3507024)",
+    "name": "Gananoque",
+    "type": "T"
+  },
+  "3507033": {
+    "label": "Westport (3507033)",
+    "name": "Westport",
+    "type": "VL"
+  },
+  "3507040": {
+    "label": "Rideau Lakes (3507040)",
+    "name": "Rideau Lakes",
+    "type": "TP"
+  },
+  "3507042": {
+    "label": "Athens (3507042)",
+    "name": "Athens",
+    "type": "TP"
+  },
+  "3507052": {
+    "label": "Merrickville-Wolford (3507052)",
+    "name": "Merrickville-Wolford",
+    "type": "VL"
+  },
+  "3507065": {
+    "label": "North Grenville (3507065)",
+    "name": "North Grenville",
+    "type": "MU"
+  },
+  "3509001": {
+    "label": "Montague (3509001)",
+    "name": "Montague",
+    "type": "TP"
+  },
+  "3509004": {
+    "label": "Smiths Falls (3509004)",
+    "name": "Smiths Falls",
+    "type": "T"
+  },
+  "3509010": {
+    "label": "Drummond/North Elmsley (3509010)",
+    "name": "Drummond/North Elmsley",
+    "type": "TP"
+  },
+  "3509015": {
+    "label": "Tay Valley (3509015)",
+    "name": "Tay Valley",
+    "type": "TP"
+  },
+  "3509021": {
+    "label": "Perth (3509021)",
+    "name": "Perth",
+    "type": "T"
+  },
+  "3509024": {
+    "label": "Beckwith (3509024)",
+    "name": "Beckwith",
+    "type": "TP"
+  },
+  "3509028": {
+    "label": "Carleton Place (3509028)",
+    "name": "Carleton Place",
+    "type": "T"
+  },
+  "3509030": {
+    "label": "Mississippi Mills (3509030)",
+    "name": "Mississippi Mills",
+    "type": "T"
+  },
+  "3509039": {
+    "label": "Lanark Highlands (3509039)",
+    "name": "Lanark Highlands",
+    "type": "TP"
+  },
+  "3510005": {
+    "label": "Frontenac Islands (3510005)",
+    "name": "Frontenac Islands",
+    "type": "TP"
+  },
+  "3510010": {
+    "label": "Kingston (3510010)",
+    "name": "Kingston",
+    "type": "CY"
+  },
+  "3510020": {
+    "label": "South Frontenac (3510020)",
+    "name": "South Frontenac",
+    "type": "TP"
+  },
+  "3510035": {
+    "label": "Central Frontenac (3510035)",
+    "name": "Central Frontenac",
+    "type": "TP"
+  },
+  "3510045": {
+    "label": "North Frontenac (3510045)",
+    "name": "North Frontenac",
+    "type": "TP"
+  },
+  "3511005": {
+    "label": "Loyalist (3511005)",
+    "name": "Loyalist",
+    "type": "TP"
+  },
+  "3511015": {
+    "label": "Greater Napanee (3511015)",
+    "name": "Greater Napanee",
+    "type": "T"
+  },
+  "3511030": {
+    "label": "Stone Mills (3511030)",
+    "name": "Stone Mills",
+    "type": "TP"
+  },
+  "3511035": {
+    "label": "Addington Highlands (3511035)",
+    "name": "Addington Highlands",
+    "type": "TP"
+  },
+  "3512001": {
+    "label": "Tyendinaga (3512001)",
+    "name": "Tyendinaga",
+    "type": "TP"
+  },
+  "3512002": {
+    "label": "Deseronto (3512002)",
+    "name": "Deseronto",
+    "type": "T"
+  },
+  "3512004": {
+    "label": "Tyendinaga Mohawk Territory (3512004)",
+    "name": "Tyendinaga Mohawk Territory",
+    "type": "IRI"
+  },
+  "3512005": {
+    "label": "Belleville (3512005)",
+    "name": "Belleville",
+    "type": "CY"
+  },
+  "3512015": {
+    "label": "Quinte West (3512015)",
+    "name": "Quinte West",
+    "type": "CY"
+  },
+  "3512020": {
+    "label": "Stirling-Rawdon (3512020)",
+    "name": "Stirling-Rawdon",
+    "type": "TP"
+  },
+  "3512026": {
+    "label": "Centre Hastings (3512026)",
+    "name": "Centre Hastings",
+    "type": "MU"
+  },
+  "3512030": {
+    "label": "Tweed (3512030)",
+    "name": "Tweed",
+    "type": "MU"
+  },
+  "3512036": {
+    "label": "Madoc (3512036)",
+    "name": "Madoc",
+    "type": "TP"
+  },
+  "3512046": {
+    "label": "Marmora and Lake (3512046)",
+    "name": "Marmora and Lake",
+    "type": "MU"
+  },
+  "3512048": {
+    "label": "Tudor and Cashel (3512048)",
+    "name": "Tudor and Cashel",
+    "type": "TP"
+  },
+  "3512051": {
+    "label": "Limerick (3512051)",
+    "name": "Limerick",
+    "type": "TP"
+  },
+  "3512054": {
+    "label": "Wollaston (3512054)",
+    "name": "Wollaston",
+    "type": "TP"
+  },
+  "3512058": {
+    "label": "Faraday (3512058)",
+    "name": "Faraday",
+    "type": "TP"
+  },
+  "3512061": {
+    "label": "Bancroft (3512061)",
+    "name": "Bancroft",
+    "type": "T"
+  },
+  "3512065": {
+    "label": "Carlow/Mayo (3512065)",
+    "name": "Carlow/Mayo",
+    "type": "TP"
+  },
+  "3512076": {
+    "label": "Hastings Highlands (3512076)",
+    "name": "Hastings Highlands",
+    "type": "MU"
+  },
+  "3513020": {
+    "label": "Prince Edward County (3513020)",
+    "name": "Prince Edward County",
+    "type": "CY"
+  },
+  "3514004": {
+    "label": "Brighton (3514004)",
+    "name": "Brighton",
+    "type": "MU"
+  },
+  "3514014": {
+    "label": "Cramahe (3514014)",
+    "name": "Cramahe",
+    "type": "TP"
+  },
+  "3514019": {
+    "label": "Hamilton (3514019)",
+    "name": "Hamilton",
+    "type": "TP"
+  },
+  "3514020": {
+    "label": "Port Hope (3514020)",
+    "name": "Port Hope",
+    "type": "MU"
+  },
+  "3514021": {
+    "label": "Cobourg (3514021)",
+    "name": "Cobourg",
+    "type": "T"
+  },
+  "3514024": {
+    "label": "Alnwick/Haldimand (3514024)",
+    "name": "Alnwick/Haldimand",
+    "type": "TP"
+  },
+  "3514027": {
+    "label": "Alderville First Nation (3514027)",
+    "name": "Alderville First Nation",
+    "type": "IRI"
+  },
+  "3514045": {
+    "label": "Trent Hills (3514045)",
+    "name": "Trent Hills",
+    "type": "MU"
+  },
+  "3515003": {
+    "label": "Asphodel-Norwood (3515003)",
+    "name": "Asphodel-Norwood",
+    "type": "TP"
+  },
+  "3515005": {
+    "label": "Otonabee-South Monaghan (3515005)",
+    "name": "Otonabee-South Monaghan",
+    "type": "TP"
+  },
+  "3515008": {
+    "label": "Hiawatha First Nation (3515008)",
+    "name": "Hiawatha First Nation",
+    "type": "IRI"
+  },
+  "3515013": {
+    "label": "Cavan Monaghan (3515013)",
+    "name": "Cavan Monaghan",
+    "type": "TP"
+  },
+  "3515014": {
+    "label": "Peterborough (3515014)",
+    "name": "Peterborough",
+    "type": "CY"
+  },
+  "3515015": {
+    "label": "Selwyn (3515015)",
+    "name": "Selwyn",
+    "type": "TP"
+  },
+  "3515019": {
+    "label": "Curve Lake First Nation 35 (3515019)",
+    "name": "Curve Lake First Nation 35",
+    "type": "IRI"
+  },
+  "3515023": {
+    "label": "Douro-Dummer (3515023)",
+    "name": "Douro-Dummer",
+    "type": "TP"
+  },
+  "3515030": {
+    "label": "Havelock-Belmont-Methuen (3515030)",
+    "name": "Havelock-Belmont-Methuen",
+    "type": "TP"
+  },
+  "3515037": {
+    "label": "North Kawartha (3515037)",
+    "name": "North Kawartha",
+    "type": "TP"
+  },
+  "3515044": {
+    "label": "Trent Lakes (3515044)",
+    "name": "Trent Lakes",
+    "type": "MU"
+  },
+  "3516010": {
+    "label": "Kawartha Lakes (3516010)",
+    "name": "Kawartha Lakes",
+    "type": "CY"
+  },
+  "3518001": {
+    "label": "Pickering (3518001)",
+    "name": "Pickering",
+    "type": "CY"
+  },
+  "3518005": {
+    "label": "Ajax (3518005)",
+    "name": "Ajax",
+    "type": "T"
+  },
+  "3518009": {
+    "label": "Whitby (3518009)",
+    "name": "Whitby",
+    "type": "T"
+  },
+  "3518013": {
+    "label": "Oshawa (3518013)",
+    "name": "Oshawa",
+    "type": "CY"
+  },
+  "3518017": {
+    "label": "Clarington (3518017)",
+    "name": "Clarington",
+    "type": "MU"
+  },
+  "3518020": {
+    "label": "Scugog (3518020)",
+    "name": "Scugog",
+    "type": "TP"
+  },
+  "3518022": {
+    "label": "Mississaugas of Scugog Island (3518022)",
+    "name": "Mississaugas of Scugog Island",
+    "type": "IRI"
+  },
+  "3518029": {
+    "label": "Uxbridge (3518029)",
+    "name": "Uxbridge",
+    "type": "TP"
+  },
+  "3518039": {
+    "label": "Brock (3518039)",
+    "name": "Brock",
+    "type": "TP"
+  },
+  "3519028": {
+    "label": "Vaughan (3519028)",
+    "name": "Vaughan",
+    "type": "CY"
+  },
+  "3519036": {
+    "label": "Markham (3519036)",
+    "name": "Markham",
+    "type": "CY"
+  },
+  "3519038": {
+    "label": "Richmond Hill (3519038)",
+    "name": "Richmond Hill",
+    "type": "T"
+  },
+  "3519044": {
+    "label": "Whitchurch-Stouffville (3519044)",
+    "name": "Whitchurch-Stouffville",
+    "type": "T"
+  },
+  "3519046": {
+    "label": "Aurora (3519046)",
+    "name": "Aurora",
+    "type": "T"
+  },
+  "3519048": {
+    "label": "Newmarket (3519048)",
+    "name": "Newmarket",
+    "type": "T"
+  },
+  "3519049": {
+    "label": "King (3519049)",
+    "name": "King",
+    "type": "TP"
+  },
+  "3519054": {
+    "label": "East Gwillimbury (3519054)",
+    "name": "East Gwillimbury",
+    "type": "T"
+  },
+  "3519070": {
+    "label": "Georgina (3519070)",
+    "name": "Georgina",
+    "type": "T"
+  },
+  "3519076": {
+    "label": "Chippewas of Georgina Island First Nation (3519076)",
+    "name": "Chippewas of Georgina Island First Nation",
+    "type": "IRI"
+  },
+  "3520005": {
+    "label": "Toronto (3520005)",
+    "name": "Toronto",
+    "type": "C"
+  },
+  "3521005": {
+    "label": "Mississauga (3521005)",
+    "name": "Mississauga",
+    "type": "CY"
+  },
+  "3521010": {
+    "label": "Brampton (3521010)",
+    "name": "Brampton",
+    "type": "CY"
+  },
+  "3521024": {
+    "label": "Caledon (3521024)",
+    "name": "Caledon",
+    "type": "T"
+  },
+  "3522001": {
+    "label": "East Garafraxa (3522001)",
+    "name": "East Garafraxa",
+    "type": "TP"
+  },
+  "3522008": {
+    "label": "Amaranth (3522008)",
+    "name": "Amaranth",
+    "type": "TP"
+  },
+  "3522010": {
+    "label": "Grand Valley (3522010)",
+    "name": "Grand Valley",
+    "type": "T"
+  },
+  "3522012": {
+    "label": "Mono (3522012)",
+    "name": "Mono",
+    "type": "T"
+  },
+  "3522014": {
+    "label": "Orangeville (3522014)",
+    "name": "Orangeville",
+    "type": "T"
+  },
+  "3522016": {
+    "label": "Mulmur (3522016)",
+    "name": "Mulmur",
+    "type": "TP"
+  },
+  "3522019": {
+    "label": "Melancthon (3522019)",
+    "name": "Melancthon",
+    "type": "TP"
+  },
+  "3522021": {
+    "label": "Shelburne (3522021)",
+    "name": "Shelburne",
+    "type": "T"
+  },
+  "3523001": {
+    "label": "Puslinch (3523001)",
+    "name": "Puslinch",
+    "type": "TP"
+  },
+  "3523008": {
+    "label": "Guelph (3523008)",
+    "name": "Guelph",
+    "type": "CY"
+  },
+  "3523009": {
+    "label": "Guelph/Eramosa (3523009)",
+    "name": "Guelph/Eramosa",
+    "type": "TP"
+  },
+  "3523017": {
+    "label": "Erin (3523017)",
+    "name": "Erin",
+    "type": "T"
+  },
+  "3523025": {
+    "label": "Centre Wellington (3523025)",
+    "name": "Centre Wellington",
+    "type": "TP"
+  },
+  "3523033": {
+    "label": "Mapleton (3523033)",
+    "name": "Mapleton",
+    "type": "TP"
+  },
+  "3523043": {
+    "label": "Minto (3523043)",
+    "name": "Minto",
+    "type": "T"
+  },
+  "3523050": {
+    "label": "Wellington North (3523050)",
+    "name": "Wellington North",
+    "type": "TP"
+  },
+  "3524001": {
+    "label": "Oakville (3524001)",
+    "name": "Oakville",
+    "type": "T"
+  },
+  "3524002": {
+    "label": "Burlington (3524002)",
+    "name": "Burlington",
+    "type": "CY"
+  },
+  "3524009": {
+    "label": "Milton (3524009)",
+    "name": "Milton",
+    "type": "T"
+  },
+  "3524015": {
+    "label": "Halton Hills (3524015)",
+    "name": "Halton Hills",
+    "type": "T"
+  },
+  "3525005": {
+    "label": "Hamilton (3525005)",
+    "name": "Hamilton",
+    "type": "C"
+  },
+  "3526003": {
+    "label": "Fort Erie (3526003)",
+    "name": "Fort Erie",
+    "type": "T"
+  },
+  "3526011": {
+    "label": "Port Colborne (3526011)",
+    "name": "Port Colborne",
+    "type": "CY"
+  },
+  "3526014": {
+    "label": "Wainfleet (3526014)",
+    "name": "Wainfleet",
+    "type": "TP"
+  },
+  "3526021": {
+    "label": "West Lincoln (3526021)",
+    "name": "West Lincoln",
+    "type": "TP"
+  },
+  "3526028": {
+    "label": "Pelham (3526028)",
+    "name": "Pelham",
+    "type": "T"
+  },
+  "3526032": {
+    "label": "Welland (3526032)",
+    "name": "Welland",
+    "type": "CY"
+  },
+  "3526037": {
+    "label": "Thorold (3526037)",
+    "name": "Thorold",
+    "type": "CY"
+  },
+  "3526043": {
+    "label": "Niagara Falls (3526043)",
+    "name": "Niagara Falls",
+    "type": "CY"
+  },
+  "3526047": {
+    "label": "Niagara-on-the-Lake (3526047)",
+    "name": "Niagara-on-the-Lake",
+    "type": "T"
+  },
+  "3526053": {
+    "label": "St. Catharines (3526053)",
+    "name": "St. Catharines",
+    "type": "CY"
+  },
+  "3526057": {
+    "label": "Lincoln (3526057)",
+    "name": "Lincoln",
+    "type": "T"
+  },
+  "3526065": {
+    "label": "Grimsby (3526065)",
+    "name": "Grimsby",
+    "type": "T"
+  },
+  "3528018": {
+    "label": "Haldimand County (3528018)",
+    "name": "Haldimand County",
+    "type": "CY"
+  },
+  "3528035": {
+    "label": "New Credit (Part) 40A (3528035)",
+    "name": "New Credit (Part) 40A",
+    "type": "IRI"
+  },
+  "3528037": {
+    "label": "Six Nations (Part) 40 (3528037)",
+    "name": "Six Nations (Part) 40",
+    "type": "IRI"
+  },
+  "3528052": {
+    "label": "Norfolk County (3528052)",
+    "name": "Norfolk County",
+    "type": "CY"
+  },
+  "3529005": {
+    "label": "Brant (3529005)",
+    "name": "Brant",
+    "type": "CY"
+  },
+  "3529006": {
+    "label": "Brantford (3529006)",
+    "name": "Brantford",
+    "type": "CY"
+  },
+  "3529020": {
+    "label": "Six Nations (Part) 40 (3529020)",
+    "name": "Six Nations (Part) 40",
+    "type": "IRI"
+  },
+  "3529021": {
+    "label": "New Credit (Part) 40A (3529021)",
+    "name": "New Credit (Part) 40A",
+    "type": "IRI"
+  },
+  "3530004": {
+    "label": "North Dumfries (3530004)",
+    "name": "North Dumfries",
+    "type": "TP"
+  },
+  "3530010": {
+    "label": "Cambridge (3530010)",
+    "name": "Cambridge",
+    "type": "CY"
+  },
+  "3530013": {
+    "label": "Kitchener (3530013)",
+    "name": "Kitchener",
+    "type": "CY"
+  },
+  "3530016": {
+    "label": "Waterloo (3530016)",
+    "name": "Waterloo",
+    "type": "CY"
+  },
+  "3530020": {
+    "label": "Wilmot (3530020)",
+    "name": "Wilmot",
+    "type": "TP"
+  },
+  "3530027": {
+    "label": "Wellesley (3530027)",
+    "name": "Wellesley",
+    "type": "TP"
+  },
+  "3530035": {
+    "label": "Woolwich (3530035)",
+    "name": "Woolwich",
+    "type": "TP"
+  },
+  "3531011": {
+    "label": "Stratford (3531011)",
+    "name": "Stratford",
+    "type": "CY"
+  },
+  "3531013": {
+    "label": "Perth South (3531013)",
+    "name": "Perth South",
+    "type": "TP"
+  },
+  "3531016": {
+    "label": "St. Marys (3531016)",
+    "name": "St. Marys",
+    "type": "T"
+  },
+  "3531025": {
+    "label": "West Perth (3531025)",
+    "name": "West Perth",
+    "type": "MU"
+  },
+  "3531030": {
+    "label": "Perth East (3531030)",
+    "name": "Perth East",
+    "type": "TP"
+  },
+  "3531040": {
+    "label": "North Perth (3531040)",
+    "name": "North Perth",
+    "type": "MU"
+  },
+  "3532002": {
+    "label": "Norwich (3532002)",
+    "name": "Norwich",
+    "type": "TP"
+  },
+  "3532004": {
+    "label": "Tillsonburg (3532004)",
+    "name": "Tillsonburg",
+    "type": "T"
+  },
+  "3532012": {
+    "label": "South-West Oxford (3532012)",
+    "name": "South-West Oxford",
+    "type": "TP"
+  },
+  "3532018": {
+    "label": "Ingersoll (3532018)",
+    "name": "Ingersoll",
+    "type": "T"
+  },
+  "3532027": {
+    "label": "Zorra (3532027)",
+    "name": "Zorra",
+    "type": "TP"
+  },
+  "3532038": {
+    "label": "East Zorra-Tavistock (3532038)",
+    "name": "East Zorra-Tavistock",
+    "type": "TP"
+  },
+  "3532042": {
+    "label": "Woodstock (3532042)",
+    "name": "Woodstock",
+    "type": "CY"
+  },
+  "3532045": {
+    "label": "Blandford-Blenheim (3532045)",
+    "name": "Blandford-Blenheim",
+    "type": "TP"
+  },
+  "3534005": {
+    "label": "Bayham (3534005)",
+    "name": "Bayham",
+    "type": "MU"
+  },
+  "3534010": {
+    "label": "Malahide (3534010)",
+    "name": "Malahide",
+    "type": "TP"
+  },
+  "3534011": {
+    "label": "Aylmer (3534011)",
+    "name": "Aylmer",
+    "type": "T"
+  },
+  "3534020": {
+    "label": "Central Elgin (3534020)",
+    "name": "Central Elgin",
+    "type": "MU"
+  },
+  "3534021": {
+    "label": "St. Thomas (3534021)",
+    "name": "St. Thomas",
+    "type": "CY"
+  },
+  "3534024": {
+    "label": "Southwold (3534024)",
+    "name": "Southwold",
+    "type": "TP"
+  },
+  "3534030": {
+    "label": "Dutton/Dunwich (3534030)",
+    "name": "Dutton/Dunwich",
+    "type": "MU"
+  },
+  "3534042": {
+    "label": "West Elgin (3534042)",
+    "name": "West Elgin",
+    "type": "MU"
+  },
+  "3536020": {
+    "label": "Chatham-Kent (3536020)",
+    "name": "Chatham-Kent",
+    "type": "MU"
+  },
+  "3536029": {
+    "label": "Moravian 47 (3536029)",
+    "name": "Moravian 47",
+    "type": "IRI"
+  },
+  "3537001": {
+    "label": "Pelee (3537001)",
+    "name": "Pelee",
+    "type": "TP"
+  },
+  "3537003": {
+    "label": "Leamington (3537003)",
+    "name": "Leamington",
+    "type": "MU"
+  },
+  "3537013": {
+    "label": "Kingsville (3537013)",
+    "name": "Kingsville",
+    "type": "T"
+  },
+  "3537016": {
+    "label": "Essex (3537016)",
+    "name": "Essex",
+    "type": "T"
+  },
+  "3537028": {
+    "label": "Amherstburg (3537028)",
+    "name": "Amherstburg",
+    "type": "T"
+  },
+  "3537034": {
+    "label": "LaSalle (3537034)",
+    "name": "LaSalle",
+    "type": "T"
+  },
+  "3537039": {
+    "label": "Windsor (3537039)",
+    "name": "Windsor",
+    "type": "CY"
+  },
+  "3537048": {
+    "label": "Tecumseh (3537048)",
+    "name": "Tecumseh",
+    "type": "T"
+  },
+  "3537064": {
+    "label": "Lakeshore (3537064)",
+    "name": "Lakeshore",
+    "type": "T"
+  },
+  "3538003": {
+    "label": "St. Clair (3538003)",
+    "name": "St. Clair",
+    "type": "TP"
+  },
+  "3538004": {
+    "label": "Walpole Island 46 (3538004)",
+    "name": "Walpole Island 46",
+    "type": "IRI"
+  },
+  "3538007": {
+    "label": "Dawn-Euphemia (3538007)",
+    "name": "Dawn-Euphemia",
+    "type": "TP"
+  },
+  "3538015": {
+    "label": "Brooke-Alvinston (3538015)",
+    "name": "Brooke-Alvinston",
+    "type": "MU"
+  },
+  "3538016": {
+    "label": "Enniskillen (3538016)",
+    "name": "Enniskillen",
+    "type": "TP"
+  },
+  "3538018": {
+    "label": "Oil Springs (3538018)",
+    "name": "Oil Springs",
+    "type": "VL"
+  },
+  "3538019": {
+    "label": "Petrolia (3538019)",
+    "name": "Petrolia",
+    "type": "T"
+  },
+  "3538025": {
+    "label": "Sarnia 45 (3538025)",
+    "name": "Sarnia 45",
+    "type": "IRI"
+  },
+  "3538030": {
+    "label": "Sarnia (3538030)",
+    "name": "Sarnia",
+    "type": "CY"
+  },
+  "3538031": {
+    "label": "Point Edward (3538031)",
+    "name": "Point Edward",
+    "type": "VL"
+  },
+  "3538035": {
+    "label": "Plympton-Wyoming (3538035)",
+    "name": "Plympton-Wyoming",
+    "type": "T"
+  },
+  "3538040": {
+    "label": "Lambton Shores (3538040)",
+    "name": "Lambton Shores",
+    "type": "MU"
+  },
+  "3538043": {
+    "label": "Warwick (3538043)",
+    "name": "Warwick",
+    "type": "TP"
+  },
+  "3538056": {
+    "label": "Kettle Point 44 (3538056)",
+    "name": "Kettle Point 44",
+    "type": "IRI"
+  },
+  "3539002": {
+    "label": "Newbury (3539002)",
+    "name": "Newbury",
+    "type": "VL"
+  },
+  "3539005": {
+    "label": "Southwest Middlesex (3539005)",
+    "name": "Southwest Middlesex",
+    "type": "MU"
+  },
+  "3539015": {
+    "label": "Strathroy-Caradoc (3539015)",
+    "name": "Strathroy-Caradoc",
+    "type": "MU"
+  },
+  "3539017": {
+    "label": "Chippewas of the Thames First Nation 42 (3539017)",
+    "name": "Chippewas of the Thames First Nation 42",
+    "type": "IRI"
+  },
+  "3539018": {
+    "label": "Munsee-Delaware Nation 1 (3539018)",
+    "name": "Munsee-Delaware Nation 1",
+    "type": "IRI"
+  },
+  "3539021": {
+    "label": "Oneida 41 (3539021)",
+    "name": "Oneida 41",
+    "type": "IRI"
+  },
+  "3539027": {
+    "label": "Thames Centre (3539027)",
+    "name": "Thames Centre",
+    "type": "MU"
+  },
+  "3539033": {
+    "label": "Middlesex Centre (3539033)",
+    "name": "Middlesex Centre",
+    "type": "MU"
+  },
+  "3539036": {
+    "label": "London (3539036)",
+    "name": "London",
+    "type": "CY"
+  },
+  "3539041": {
+    "label": "North Middlesex (3539041)",
+    "name": "North Middlesex",
+    "type": "MU"
+  },
+  "3539047": {
+    "label": "Adelaide-Metcalfe (3539047)",
+    "name": "Adelaide-Metcalfe",
+    "type": "TP"
+  },
+  "3539060": {
+    "label": "Lucan Biddulph (3539060)",
+    "name": "Lucan Biddulph",
+    "type": "TP"
+  },
+  "3540005": {
+    "label": "South Huron (3540005)",
+    "name": "South Huron",
+    "type": "MU"
+  },
+  "3540010": {
+    "label": "Bluewater (3540010)",
+    "name": "Bluewater",
+    "type": "MU"
+  },
+  "3540025": {
+    "label": "Central Huron (3540025)",
+    "name": "Central Huron",
+    "type": "MU"
+  },
+  "3540028": {
+    "label": "Goderich (3540028)",
+    "name": "Goderich",
+    "type": "T"
+  },
+  "3540040": {
+    "label": "Huron East (3540040)",
+    "name": "Huron East",
+    "type": "MU"
+  },
+  "3540046": {
+    "label": "Howick (3540046)",
+    "name": "Howick",
+    "type": "TP"
+  },
+  "3540050": {
+    "label": "Morris-Turnberry (3540050)",
+    "name": "Morris-Turnberry",
+    "type": "MU"
+  },
+  "3540055": {
+    "label": "North Huron (3540055)",
+    "name": "North Huron",
+    "type": "TP"
+  },
+  "3540063": {
+    "label": "Ashfield-Colborne-Wawanosh (3540063)",
+    "name": "Ashfield-Colborne-Wawanosh",
+    "type": "TP"
+  },
+  "3541004": {
+    "label": "South Bruce (3541004)",
+    "name": "South Bruce",
+    "type": "MU"
+  },
+  "3541015": {
+    "label": "Huron-Kinloss (3541015)",
+    "name": "Huron-Kinloss",
+    "type": "TP"
+  },
+  "3541024": {
+    "label": "Kincardine (3541024)",
+    "name": "Kincardine",
+    "type": "MU"
+  },
+  "3541032": {
+    "label": "Brockton (3541032)",
+    "name": "Brockton",
+    "type": "MU"
+  },
+  "3541043": {
+    "label": "Arran-Elderslie (3541043)",
+    "name": "Arran-Elderslie",
+    "type": "MU"
+  },
+  "3541045": {
+    "label": "Saugeen Shores (3541045)",
+    "name": "Saugeen Shores",
+    "type": "T"
+  },
+  "3541055": {
+    "label": "South Bruce Peninsula (3541055)",
+    "name": "South Bruce Peninsula",
+    "type": "T"
+  },
+  "3541056": {
+    "label": "Chief's Point No. 28 (3541056)",
+    "name": "Chief's Point No. 28",
+    "type": "IRI"
+  },
+  "3541057": {
+    "label": "Saugeen 29 (3541057)",
+    "name": "Saugeen 29",
+    "type": "IRI"
+  },
+  "3541060": {
+    "label": "Neyaashiinigmiing 27 (3541060)",
+    "name": "Neyaashiinigmiing 27",
+    "type": "IRI"
+  },
+  "3541069": {
+    "label": "Northern Bruce Peninsula (3541069)",
+    "name": "Northern Bruce Peninsula",
+    "type": "MU"
+  },
+  "3542004": {
+    "label": "West Grey (3542004)",
+    "name": "West Grey",
+    "type": "MU"
+  },
+  "3542005": {
+    "label": "Southgate (3542005)",
+    "name": "Southgate",
+    "type": "TP"
+  },
+  "3542015": {
+    "label": "Grey Highlands (3542015)",
+    "name": "Grey Highlands",
+    "type": "MU"
+  },
+  "3542029": {
+    "label": "Hanover (3542029)",
+    "name": "Hanover",
+    "type": "T"
+  },
+  "3542037": {
+    "label": "Chatsworth (3542037)",
+    "name": "Chatsworth",
+    "type": "TP"
+  },
+  "3542045": {
+    "label": "The Blue Mountains (3542045)",
+    "name": "The Blue Mountains",
+    "type": "T"
+  },
+  "3542047": {
+    "label": "Meaford (3542047)",
+    "name": "Meaford",
+    "type": "MU"
+  },
+  "3542053": {
+    "label": "Georgian Bluffs (3542053)",
+    "name": "Georgian Bluffs",
+    "type": "TP"
+  },
+  "3542059": {
+    "label": "Owen Sound (3542059)",
+    "name": "Owen Sound",
+    "type": "CY"
+  },
+  "3543003": {
+    "label": "Adjala-Tosorontio (3543003)",
+    "name": "Adjala-Tosorontio",
+    "type": "TP"
+  },
+  "3543005": {
+    "label": "Clearview (3543005)",
+    "name": "Clearview",
+    "type": "TP"
+  },
+  "3543007": {
+    "label": "New Tecumseth (3543007)",
+    "name": "New Tecumseth",
+    "type": "T"
+  },
+  "3543009": {
+    "label": "Springwater (3543009)",
+    "name": "Springwater",
+    "type": "TP"
+  },
+  "3543014": {
+    "label": "Bradford West Gwillimbury (3543014)",
+    "name": "Bradford West Gwillimbury",
+    "type": "T"
+  },
+  "3543015": {
+    "label": "Severn (3543015)",
+    "name": "Severn",
+    "type": "TP"
+  },
+  "3543017": {
+    "label": "Innisfil (3543017)",
+    "name": "Innisfil",
+    "type": "T"
+  },
+  "3543019": {
+    "label": "Ramara (3543019)",
+    "name": "Ramara",
+    "type": "TP"
+  },
+  "3543021": {
+    "label": "Essa (3543021)",
+    "name": "Essa",
+    "type": "TP"
+  },
+  "3543023": {
+    "label": "Oro-Medonte (3543023)",
+    "name": "Oro-Medonte",
+    "type": "TP"
+  },
+  "3543031": {
+    "label": "Collingwood (3543031)",
+    "name": "Collingwood",
+    "type": "T"
+  },
+  "3543042": {
+    "label": "Barrie (3543042)",
+    "name": "Barrie",
+    "type": "CY"
+  },
+  "3543050": {
+    "label": "Chippewas of Rama First Nation (3543050)",
+    "name": "Chippewas of Rama First Nation",
+    "type": "IRI"
+  },
+  "3543052": {
+    "label": "Orillia (3543052)",
+    "name": "Orillia",
+    "type": "CY"
+  },
+  "3543064": {
+    "label": "Wasaga Beach (3543064)",
+    "name": "Wasaga Beach",
+    "type": "T"
+  },
+  "3543068": {
+    "label": "Tiny (3543068)",
+    "name": "Tiny",
+    "type": "TP"
+  },
+  "3543069": {
+    "label": "Christian Island 30 (3543069)",
+    "name": "Christian Island 30",
+    "type": "IRI"
+  },
+  "3543070": {
+    "label": "Christian Island 30A (3543070)",
+    "name": "Christian Island 30A",
+    "type": "IRI"
+  },
+  "3543071": {
+    "label": "Tay (3543071)",
+    "name": "Tay",
+    "type": "TP"
+  },
+  "3543072": {
+    "label": "Penetanguishene (3543072)",
+    "name": "Penetanguishene",
+    "type": "T"
+  },
+  "3543074": {
+    "label": "Midland (3543074)",
+    "name": "Midland",
+    "type": "T"
+  },
+  "3544002": {
+    "label": "Gravenhurst (3544002)",
+    "name": "Gravenhurst",
+    "type": "T"
+  },
+  "3544018": {
+    "label": "Bracebridge (3544018)",
+    "name": "Bracebridge",
+    "type": "T"
+  },
+  "3544027": {
+    "label": "Lake of Bays (3544027)",
+    "name": "Lake of Bays",
+    "type": "TP"
+  },
+  "3544042": {
+    "label": "Huntsville (3544042)",
+    "name": "Huntsville",
+    "type": "T"
+  },
+  "3544053": {
+    "label": "Muskoka Lakes (3544053)",
+    "name": "Muskoka Lakes",
+    "type": "TP"
+  },
+  "3544065": {
+    "label": "Georgian Bay (3544065)",
+    "name": "Georgian Bay",
+    "type": "TP"
+  },
+  "3544071": {
+    "label": "Wahta Mohawk Territory (3544071)",
+    "name": "Wahta Mohawk Territory",
+    "type": "IRI"
+  },
+  "3544073": {
+    "label": "Moose Point 79 (3544073)",
+    "name": "Moose Point 79",
+    "type": "IRI"
+  },
+  "3546005": {
+    "label": "Highlands East (3546005)",
+    "name": "Highlands East",
+    "type": "MU"
+  },
+  "3546015": {
+    "label": "Minden Hills (3546015)",
+    "name": "Minden Hills",
+    "type": "TP"
+  },
+  "3546018": {
+    "label": "Algonquin Highlands (3546018)",
+    "name": "Algonquin Highlands",
+    "type": "TP"
+  },
+  "3546024": {
+    "label": "Dysart et al (3546024)",
+    "name": "Dysart et al",
+    "type": "MU"
+  },
+  "3547002": {
+    "label": "Arnprior (3547002)",
+    "name": "Arnprior",
+    "type": "T"
+  },
+  "3547003": {
+    "label": "McNab/Braeside (3547003)",
+    "name": "McNab/Braeside",
+    "type": "TP"
+  },
+  "3547008": {
+    "label": "Greater Madawaska (3547008)",
+    "name": "Greater Madawaska",
+    "type": "TP"
+  },
+  "3547020": {
+    "label": "Brudenell, Lyndoch and Raglan (3547020)",
+    "name": "Brudenell, Lyndoch and Raglan",
+    "type": "TP"
+  },
+  "3547030": {
+    "label": "Madawaska Valley (3547030)",
+    "name": "Madawaska Valley",
+    "type": "TP"
+  },
+  "3547033": {
+    "label": "Killaloe, Hagarty and Richards (3547033)",
+    "name": "Killaloe, Hagarty and Richards",
+    "type": "TP"
+  },
+  "3547035": {
+    "label": "Bonnechere Valley (3547035)",
+    "name": "Bonnechere Valley",
+    "type": "TP"
+  },
+  "3547037": {
+    "label": "Pikwakanagan (Golden Lake 39) (3547037)",
+    "name": "Pikwakanagan (Golden Lake 39)",
+    "type": "IRI"
+  },
+  "3547043": {
+    "label": "Admaston/Bromley (3547043)",
+    "name": "Admaston/Bromley",
+    "type": "TP"
+  },
+  "3547046": {
+    "label": "Horton (3547046)",
+    "name": "Horton",
+    "type": "TP"
+  },
+  "3547048": {
+    "label": "Renfrew (3547048)",
+    "name": "Renfrew",
+    "type": "T"
+  },
+  "3547056": {
+    "label": "Whitewater Region (3547056)",
+    "name": "Whitewater Region",
+    "type": "TP"
+  },
+  "3547064": {
+    "label": "Pembroke (3547064)",
+    "name": "Pembroke",
+    "type": "CY"
+  },
+  "3547070": {
+    "label": "North Algona Wilberforce (3547070)",
+    "name": "North Algona Wilberforce",
+    "type": "TP"
+  },
+  "3547075": {
+    "label": "Laurentian Valley (3547075)",
+    "name": "Laurentian Valley",
+    "type": "TP"
+  },
+  "3547076": {
+    "label": "Petawawa (3547076)",
+    "name": "Petawawa",
+    "type": "T"
+  },
+  "3547090": {
+    "label": "Laurentian Hills (3547090)",
+    "name": "Laurentian Hills",
+    "type": "T"
+  },
+  "3547096": {
+    "label": "Deep River (3547096)",
+    "name": "Deep River",
+    "type": "T"
+  },
+  "3547098": {
+    "label": "Head, Clara and Maria (3547098)",
+    "name": "Head, Clara and Maria",
+    "type": "TP"
+  },
+  "3548001": {
+    "label": "South Algonquin (3548001)",
+    "name": "South Algonquin",
+    "type": "TP"
+  },
+  "3548013": {
+    "label": "Papineau-Cameron (3548013)",
+    "name": "Papineau-Cameron",
+    "type": "TP"
+  },
+  "3548019": {
+    "label": "Mattawan (3548019)",
+    "name": "Mattawan",
+    "type": "TP"
+  },
+  "3548021": {
+    "label": "Mattawa (3548021)",
+    "name": "Mattawa",
+    "type": "T"
+  },
+  "3548022": {
+    "label": "Calvin (3548022)",
+    "name": "Calvin",
+    "type": "MU"
+  },
+  "3548027": {
+    "label": "Bonfield (3548027)",
+    "name": "Bonfield",
+    "type": "TP"
+  },
+  "3548031": {
+    "label": "Chisholm (3548031)",
+    "name": "Chisholm",
+    "type": "TP"
+  },
+  "3548034": {
+    "label": "East Ferris (3548034)",
+    "name": "East Ferris",
+    "type": "MU"
+  },
+  "3548044": {
+    "label": "North Bay (3548044)",
+    "name": "North Bay",
+    "type": "CY"
+  },
+  "3548055": {
+    "label": "West Nipissing / Nipissing Ouest (3548055)",
+    "name": "West Nipissing / Nipissing Ouest",
+    "type": "M"
+  },
+  "3548069": {
+    "label": "Temagami (3548069)",
+    "name": "Temagami",
+    "type": "MU"
+  },
+  "3548072": {
+    "label": "Bear Island 1 (3548072)",
+    "name": "Bear Island 1",
+    "type": "IRI"
+  },
+  "3548073": {
+    "label": "Nipissing 10 (3548073)",
+    "name": "Nipissing 10",
+    "type": "IRI"
+  },
+  "3548091": {
+    "label": "Nipissing, Unorganized, South Part (3548091)",
+    "name": "Nipissing, Unorganized, South Part",
+    "type": "NO"
+  },
+  "3548094": {
+    "label": "Nipissing, Unorganized, North Part (3548094)",
+    "name": "Nipissing, Unorganized, North Part",
+    "type": "NO"
+  },
+  "3549003": {
+    "label": "Seguin (3549003)",
+    "name": "Seguin",
+    "type": "TP"
+  },
+  "3549005": {
+    "label": "The Archipelago (3549005)",
+    "name": "The Archipelago",
+    "type": "TP"
+  },
+  "3549012": {
+    "label": "McMurrich/Monteith (3549012)",
+    "name": "McMurrich/Monteith",
+    "type": "TP"
+  },
+  "3549014": {
+    "label": "Perry (3549014)",
+    "name": "Perry",
+    "type": "TP"
+  },
+  "3549018": {
+    "label": "Kearney (3549018)",
+    "name": "Kearney",
+    "type": "T"
+  },
+  "3549019": {
+    "label": "Armour (3549019)",
+    "name": "Armour",
+    "type": "TP"
+  },
+  "3549022": {
+    "label": "Burk's Falls (3549022)",
+    "name": "Burk's Falls",
+    "type": "VL"
+  },
+  "3549024": {
+    "label": "Ryerson (3549024)",
+    "name": "Ryerson",
+    "type": "TP"
+  },
+  "3549028": {
+    "label": "McKellar (3549028)",
+    "name": "McKellar",
+    "type": "TP"
+  },
+  "3549031": {
+    "label": "McDougall (3549031)",
+    "name": "McDougall",
+    "type": "MU"
+  },
+  "3549032": {
+    "label": "Parry Sound (3549032)",
+    "name": "Parry Sound",
+    "type": "T"
+  },
+  "3549036": {
+    "label": "Carling (3549036)",
+    "name": "Carling",
+    "type": "TP"
+  },
+  "3549039": {
+    "label": "Whitestone (3549039)",
+    "name": "Whitestone",
+    "type": "MU"
+  },
+  "3549043": {
+    "label": "Magnetawan (3549043)",
+    "name": "Magnetawan",
+    "type": "MU"
+  },
+  "3549046": {
+    "label": "Strong (3549046)",
+    "name": "Strong",
+    "type": "TP"
+  },
+  "3549048": {
+    "label": "Sundridge (3549048)",
+    "name": "Sundridge",
+    "type": "VL"
+  },
+  "3549051": {
+    "label": "Joly (3549051)",
+    "name": "Joly",
+    "type": "TP"
+  },
+  "3549054": {
+    "label": "Machar (3549054)",
+    "name": "Machar",
+    "type": "TP"
+  },
+  "3549056": {
+    "label": "South River (3549056)",
+    "name": "South River",
+    "type": "VL"
+  },
+  "3549060": {
+    "label": "Powassan (3549060)",
+    "name": "Powassan",
+    "type": "MU"
+  },
+  "3549066": {
+    "label": "Callander (3549066)",
+    "name": "Callander",
+    "type": "MU"
+  },
+  "3549071": {
+    "label": "Nipissing (3549071)",
+    "name": "Nipissing",
+    "type": "TP"
+  },
+  "3549072": {
+    "label": "Shawanaga 17 (3549072)",
+    "name": "Shawanaga 17",
+    "type": "IRI"
+  },
+  "3549073": {
+    "label": "Parry Island First Nation (3549073)",
+    "name": "Parry Island First Nation",
+    "type": "IRI"
+  },
+  "3549075": {
+    "label": "Henvey Inlet 2 (3549075)",
+    "name": "Henvey Inlet 2",
+    "type": "IRI"
+  },
+  "3549076": {
+    "label": "French River 13 (3549076)",
+    "name": "French River 13",
+    "type": "IRI"
+  },
+  "3549077": {
+    "label": "Dokis 9 (3549077)",
+    "name": "Dokis 9",
+    "type": "IRI"
+  },
+  "3549078": {
+    "label": "Magnetewan 1 (3549078)",
+    "name": "Magnetewan 1",
+    "type": "IRI"
+  },
+  "3549093": {
+    "label": "Naiscoutaing 17A (3549093)",
+    "name": "Naiscoutaing 17A",
+    "type": "IRI"
+  },
+  "3549095": {
+    "label": "Parry Sound, Unorganized, North East Part (3549095)",
+    "name": "Parry Sound, Unorganized, North East Part",
+    "type": "NO"
+  },
+  "3549096": {
+    "label": "Parry Sound, Unorganized, Centre Part (3549096)",
+    "name": "Parry Sound, Unorganized, Centre Part",
+    "type": "NO"
+  },
+  "3551001": {
+    "label": "Tehkummah (3551001)",
+    "name": "Tehkummah",
+    "type": "TP"
+  },
+  "3551006": {
+    "label": "Central Manitoulin (3551006)",
+    "name": "Central Manitoulin",
+    "type": "MU"
+  },
+  "3551011": {
+    "label": "Assiginack (3551011)",
+    "name": "Assiginack",
+    "type": "TP"
+  },
+  "3551017": {
+    "label": "Northeastern Manitoulin and the Islands (3551017)",
+    "name": "Northeastern Manitoulin and the Islands",
+    "type": "MU"
+  },
+  "3551021": {
+    "label": "Billings (3551021)",
+    "name": "Billings",
+    "type": "TP"
+  },
+  "3551026": {
+    "label": "Gore Bay (3551026)",
+    "name": "Gore Bay",
+    "type": "T"
+  },
+  "3551027": {
+    "label": "Gordon/Barrie Island (3551027)",
+    "name": "Gordon/Barrie Island",
+    "type": "MU"
+  },
+  "3551028": {
+    "label": "Burpee and Mills (3551028)",
+    "name": "Burpee and Mills",
+    "type": "TP"
+  },
+  "3551034": {
+    "label": "Cockburn Island (3551034)",
+    "name": "Cockburn Island",
+    "type": "TP"
+  },
+  "3551040": {
+    "label": "Whitefish River 4 (3551040)",
+    "name": "Whitefish River 4",
+    "type": "IRI"
+  },
+  "3551041": {
+    "label": "Sucker Creek 23 (3551041)",
+    "name": "Sucker Creek 23",
+    "type": "IRI"
+  },
+  "3551042": {
+    "label": "Sheguiandah 24 (3551042)",
+    "name": "Sheguiandah 24",
+    "type": "IRI"
+  },
+  "3551043": {
+    "label": "Wikwemikong Unceded (3551043)",
+    "name": "Wikwemikong Unceded",
+    "type": "IRI"
+  },
+  "3551044": {
+    "label": "Sheshegwaning 20 (3551044)",
+    "name": "Sheshegwaning 20",
+    "type": "IRI"
+  },
+  "3551045": {
+    "label": "M'Chigeeng 22 (3551045)",
+    "name": "M'Chigeeng 22",
+    "type": "IRI"
+  },
+  "3551094": {
+    "label": "Manitoulin, Unorganized, West Part (3551094)",
+    "name": "Manitoulin, Unorganized, West Part",
+    "type": "NO"
+  },
+  "3551100": {
+    "label": "Zhiibaahaasing 19A (3551100)",
+    "name": "Zhiibaahaasing 19A",
+    "type": "IRI"
+  },
+  "3552001": {
+    "label": "French River / Rivi\u00e8re des Fran\u00e7ais (3552001)",
+    "name": "French River / Rivi\u00e8re des Fran\u00e7ais",
+    "type": "M"
+  },
+  "3552004": {
+    "label": "St.-Charles (3552004)",
+    "name": "St.-Charles",
+    "type": "MU"
+  },
+  "3552013": {
+    "label": "Markstay-Warren (3552013)",
+    "name": "Markstay-Warren",
+    "type": "MU"
+  },
+  "3552023": {
+    "label": "Sables-Spanish Rivers (3552023)",
+    "name": "Sables-Spanish Rivers",
+    "type": "TP"
+  },
+  "3552026": {
+    "label": "Espanola (3552026)",
+    "name": "Espanola",
+    "type": "T"
+  },
+  "3552028": {
+    "label": "Baldwin (3552028)",
+    "name": "Baldwin",
+    "type": "TP"
+  },
+  "3552031": {
+    "label": "Nairn and Hyman (3552031)",
+    "name": "Nairn and Hyman",
+    "type": "TP"
+  },
+  "3552036": {
+    "label": "Killarney (3552036)",
+    "name": "Killarney",
+    "type": "MU"
+  },
+  "3552037": {
+    "label": "Point Grondine 3 (3552037)",
+    "name": "Point Grondine 3",
+    "type": "IRI"
+  },
+  "3552051": {
+    "label": "Whitefish Lake 6 (3552051)",
+    "name": "Whitefish Lake 6",
+    "type": "IRI"
+  },
+  "3552052": {
+    "label": "Mattagami 71 (3552052)",
+    "name": "Mattagami 71",
+    "type": "IRI"
+  },
+  "3552053": {
+    "label": "Chapleau 74A (3552053)",
+    "name": "Chapleau 74A",
+    "type": "IRI"
+  },
+  "3552054": {
+    "label": "Duck Lake 76B (3552054)",
+    "name": "Duck Lake 76B",
+    "type": "IRI"
+  },
+  "3552056": {
+    "label": "Chapleau Cree Fox Lake (3552056)",
+    "name": "Chapleau Cree Fox Lake",
+    "type": "IRI"
+  },
+  "3552058": {
+    "label": "Chapleau 75 (3552058)",
+    "name": "Chapleau 75",
+    "type": "IRI"
+  },
+  "3552092": {
+    "label": "Chapleau (3552092)",
+    "name": "Chapleau",
+    "type": "TP"
+  },
+  "3552093": {
+    "label": "Sudbury, Unorganized, North Part (3552093)",
+    "name": "Sudbury, Unorganized, North Part",
+    "type": "NO"
+  },
+  "3553005": {
+    "label": "Greater Sudbury / Grand Sudbury (3553005)",
+    "name": "Greater Sudbury / Grand Sudbury",
+    "type": "CV"
+  },
+  "3553040": {
+    "label": "Wahnapitei 11 (3553040)",
+    "name": "Wahnapitei 11",
+    "type": "IRI"
+  },
+  "3554001": {
+    "label": "Coleman (3554001)",
+    "name": "Coleman",
+    "type": "TP"
+  },
+  "3554006": {
+    "label": "Latchford (3554006)",
+    "name": "Latchford",
+    "type": "T"
+  },
+  "3554008": {
+    "label": "Cobalt (3554008)",
+    "name": "Cobalt",
+    "type": "T"
+  },
+  "3554014": {
+    "label": "Harris (3554014)",
+    "name": "Harris",
+    "type": "TP"
+  },
+  "3554020": {
+    "label": "Temiskaming Shores (3554020)",
+    "name": "Temiskaming Shores",
+    "type": "CY"
+  },
+  "3554021": {
+    "label": "Hudson (3554021)",
+    "name": "Hudson",
+    "type": "TP"
+  },
+  "3554024": {
+    "label": "Kerns (3554024)",
+    "name": "Kerns",
+    "type": "TP"
+  },
+  "3554026": {
+    "label": "Harley (3554026)",
+    "name": "Harley",
+    "type": "TP"
+  },
+  "3554029": {
+    "label": "Casey (3554029)",
+    "name": "Casey",
+    "type": "TP"
+  },
+  "3554032": {
+    "label": "Brethour (3554032)",
+    "name": "Brethour",
+    "type": "TP"
+  },
+  "3554034": {
+    "label": "Hilliard (3554034)",
+    "name": "Hilliard",
+    "type": "TP"
+  },
+  "3554036": {
+    "label": "Armstrong (3554036)",
+    "name": "Armstrong",
+    "type": "TP"
+  },
+  "3554038": {
+    "label": "Thornloe (3554038)",
+    "name": "Thornloe",
+    "type": "VL"
+  },
+  "3554042": {
+    "label": "James (3554042)",
+    "name": "James",
+    "type": "TP"
+  },
+  "3554044": {
+    "label": "Charlton and Dack (3554044)",
+    "name": "Charlton and Dack",
+    "type": "MU"
+  },
+  "3554049": {
+    "label": "Evanturel (3554049)",
+    "name": "Evanturel",
+    "type": "TP"
+  },
+  "3554052": {
+    "label": "Englehart (3554052)",
+    "name": "Englehart",
+    "type": "T"
+  },
+  "3554054": {
+    "label": "Chamberlain (3554054)",
+    "name": "Chamberlain",
+    "type": "TP"
+  },
+  "3554056": {
+    "label": "Matachewan (3554056)",
+    "name": "Matachewan",
+    "type": "TP"
+  },
+  "3554057": {
+    "label": "Matachewan 72 (3554057)",
+    "name": "Matachewan 72",
+    "type": "IRI"
+  },
+  "3554058": {
+    "label": "McGarry (3554058)",
+    "name": "McGarry",
+    "type": "TP"
+  },
+  "3554062": {
+    "label": "Larder Lake (3554062)",
+    "name": "Larder Lake",
+    "type": "TP"
+  },
+  "3554066": {
+    "label": "Gauthier (3554066)",
+    "name": "Gauthier",
+    "type": "TP"
+  },
+  "3554068": {
+    "label": "Kirkland Lake (3554068)",
+    "name": "Kirkland Lake",
+    "type": "T"
+  },
+  "3554091": {
+    "label": "Timiskaming, Unorganized, East Part (3554091)",
+    "name": "Timiskaming, Unorganized, East Part",
+    "type": "NO"
+  },
+  "3554094": {
+    "label": "Timiskaming, Unorganized, West Part (3554094)",
+    "name": "Timiskaming, Unorganized, West Part",
+    "type": "NO"
+  },
+  "3556014": {
+    "label": "Black River-Matheson (3556014)",
+    "name": "Black River-Matheson",
+    "type": "TP"
+  },
+  "3556027": {
+    "label": "Timmins (3556027)",
+    "name": "Timmins",
+    "type": "CY"
+  },
+  "3556031": {
+    "label": "Iroquois Falls (3556031)",
+    "name": "Iroquois Falls",
+    "type": "T"
+  },
+  "3556033": {
+    "label": "Abitibi 70 (3556033)",
+    "name": "Abitibi 70",
+    "type": "IRI"
+  },
+  "3556042": {
+    "label": "Cochrane (3556042)",
+    "name": "Cochrane",
+    "type": "T"
+  },
+  "3556048": {
+    "label": "Smooth Rock Falls (3556048)",
+    "name": "Smooth Rock Falls",
+    "type": "T"
+  },
+  "3556052": {
+    "label": "Fauquier-Strickland (3556052)",
+    "name": "Fauquier-Strickland",
+    "type": "TP"
+  },
+  "3556056": {
+    "label": "Moonbeam (3556056)",
+    "name": "Moonbeam",
+    "type": "TP"
+  },
+  "3556066": {
+    "label": "Kapuskasing (3556066)",
+    "name": "Kapuskasing",
+    "type": "T"
+  },
+  "3556070": {
+    "label": "Val Rita-Harty (3556070)",
+    "name": "Val Rita-Harty",
+    "type": "TP"
+  },
+  "3556073": {
+    "label": "Opasatika (3556073)",
+    "name": "Opasatika",
+    "type": "TP"
+  },
+  "3556076": {
+    "label": "Hearst (3556076)",
+    "name": "Hearst",
+    "type": "T"
+  },
+  "3556077": {
+    "label": "Mattice-Val C\u00f4t\u00e9 (3556077)",
+    "name": "Mattice-Val C\u00f4t\u00e9",
+    "type": "TP"
+  },
+  "3556091": {
+    "label": "Cochrane, Unorganized, South West Part (3556091)",
+    "name": "Cochrane, Unorganized, South West Part",
+    "type": "NO"
+  },
+  "3556092": {
+    "label": "Cochrane, Unorganized, North Part (3556092)",
+    "name": "Cochrane, Unorganized, North Part",
+    "type": "NO"
+  },
+  "3556093": {
+    "label": "Fort Albany (Part) 67 (3556093)",
+    "name": "Fort Albany (Part) 67",
+    "type": "IRI"
+  },
+  "3556094": {
+    "label": "Factory Island 1 (3556094)",
+    "name": "Factory Island 1",
+    "type": "IRI"
+  },
+  "3556095": {
+    "label": "Constance Lake 92 (3556095)",
+    "name": "Constance Lake 92",
+    "type": "IRI"
+  },
+  "3556096": {
+    "label": "Moose Factory 68 (3556096)",
+    "name": "Moose Factory 68",
+    "type": "IRI"
+  },
+  "3556098": {
+    "label": "Cochrane, Unorganized, South East Part (3556098)",
+    "name": "Cochrane, Unorganized, South East Part",
+    "type": "NO"
+  },
+  "3556100": {
+    "label": "Flying Post 73 (3556100)",
+    "name": "Flying Post 73",
+    "type": "IRI"
+  },
+  "3556102": {
+    "label": "New Post 69A (3556102)",
+    "name": "New Post 69A",
+    "type": "IRI"
+  },
+  "3556106": {
+    "label": "Moosonee (3556106)",
+    "name": "Moosonee",
+    "type": "TV"
+  },
+  "3557001": {
+    "label": "Jocelyn (3557001)",
+    "name": "Jocelyn",
+    "type": "TP"
+  },
+  "3557004": {
+    "label": "Hilton (3557004)",
+    "name": "Hilton",
+    "type": "TP"
+  },
+  "3557006": {
+    "label": "Hilton Beach (3557006)",
+    "name": "Hilton Beach",
+    "type": "VL"
+  },
+  "3557008": {
+    "label": "St. Joseph (3557008)",
+    "name": "St. Joseph",
+    "type": "TP"
+  },
+  "3557011": {
+    "label": "Laird (3557011)",
+    "name": "Laird",
+    "type": "TP"
+  },
+  "3557014": {
+    "label": "Tarbutt and Tarbutt Additional (3557014)",
+    "name": "Tarbutt and Tarbutt Additional",
+    "type": "TP"
+  },
+  "3557016": {
+    "label": "Johnson (3557016)",
+    "name": "Johnson",
+    "type": "TP"
+  },
+  "3557019": {
+    "label": "Plummer Additional (3557019)",
+    "name": "Plummer Additional",
+    "type": "TP"
+  },
+  "3557021": {
+    "label": "Bruce Mines (3557021)",
+    "name": "Bruce Mines",
+    "type": "T"
+  },
+  "3557026": {
+    "label": "Thessalon 12 (3557026)",
+    "name": "Thessalon 12",
+    "type": "IRI"
+  },
+  "3557028": {
+    "label": "Thessalon (3557028)",
+    "name": "Thessalon",
+    "type": "T"
+  },
+  "3557035": {
+    "label": "Huron Shores (3557035)",
+    "name": "Huron Shores",
+    "type": "MU"
+  },
+  "3557038": {
+    "label": "Blind River (3557038)",
+    "name": "Blind River",
+    "type": "T"
+  },
+  "3557039": {
+    "label": "Spanish (3557039)",
+    "name": "Spanish",
+    "type": "T"
+  },
+  "3557040": {
+    "label": "The North Shore (3557040)",
+    "name": "The North Shore",
+    "type": "TP"
+  },
+  "3557041": {
+    "label": "Elliot Lake (3557041)",
+    "name": "Elliot Lake",
+    "type": "CY"
+  },
+  "3557051": {
+    "label": "Macdonald, Meredith and Aberdeen Additional (3557051)",
+    "name": "Macdonald, Meredith and Aberdeen Additional",
+    "type": "TP"
+  },
+  "3557061": {
+    "label": "Sault Ste. Marie (3557061)",
+    "name": "Sault Ste. Marie",
+    "type": "CY"
+  },
+  "3557066": {
+    "label": "Prince (3557066)",
+    "name": "Prince",
+    "type": "TP"
+  },
+  "3557071": {
+    "label": "Sagamok (3557071)",
+    "name": "Sagamok",
+    "type": "IRI"
+  },
+  "3557072": {
+    "label": "Serpent River 7 (3557072)",
+    "name": "Serpent River 7",
+    "type": "IRI"
+  },
+  "3557073": {
+    "label": "Mississagi River 8 (3557073)",
+    "name": "Mississagi River 8",
+    "type": "IRI"
+  },
+  "3557074": {
+    "label": "Garden River 14 (3557074)",
+    "name": "Garden River 14",
+    "type": "IRI"
+  },
+  "3557075": {
+    "label": "Rankin Location 15D (3557075)",
+    "name": "Rankin Location 15D",
+    "type": "IRI"
+  },
+  "3557076": {
+    "label": "Wawa (3557076)",
+    "name": "Wawa",
+    "type": "MU"
+  },
+  "3557077": {
+    "label": "Goulais Bay 15A (3557077)",
+    "name": "Goulais Bay 15A",
+    "type": "IRI"
+  },
+  "3557078": {
+    "label": "Gros Cap 49 (3557078)",
+    "name": "Gros Cap 49",
+    "type": "IRI"
+  },
+  "3557079": {
+    "label": "Dubreuilville (3557079)",
+    "name": "Dubreuilville",
+    "type": "TP"
+  },
+  "3557091": {
+    "label": "White River (3557091)",
+    "name": "White River",
+    "type": "TP"
+  },
+  "3557092": {
+    "label": "Obadjiwan 15E (3557092)",
+    "name": "Obadjiwan 15E",
+    "type": "IRI"
+  },
+  "3557094": {
+    "label": "Algoma, Unorganized, South East Part (3557094)",
+    "name": "Algoma, Unorganized, South East Part",
+    "type": "NO"
+  },
+  "3557095": {
+    "label": "Algoma, Unorganized, North Part (3557095)",
+    "name": "Algoma, Unorganized, North Part",
+    "type": "NO"
+  },
+  "3557096": {
+    "label": "Hornepayne (3557096)",
+    "name": "Hornepayne",
+    "type": "TP"
+  },
+  "3558001": {
+    "label": "Neebing (3558001)",
+    "name": "Neebing",
+    "type": "MU"
+  },
+  "3558003": {
+    "label": "Fort William 52 (3558003)",
+    "name": "Fort William 52",
+    "type": "IRI"
+  },
+  "3558004": {
+    "label": "Thunder Bay (3558004)",
+    "name": "Thunder Bay",
+    "type": "CY"
+  },
+  "3558011": {
+    "label": "Oliver Paipoonge (3558011)",
+    "name": "Oliver Paipoonge",
+    "type": "MU"
+  },
+  "3558012": {
+    "label": "Gillies (3558012)",
+    "name": "Gillies",
+    "type": "TP"
+  },
+  "3558016": {
+    "label": "O'Connor (3558016)",
+    "name": "O'Connor",
+    "type": "TP"
+  },
+  "3558019": {
+    "label": "Conmee (3558019)",
+    "name": "Conmee",
+    "type": "TP"
+  },
+  "3558028": {
+    "label": "Shuniah (3558028)",
+    "name": "Shuniah",
+    "type": "MU"
+  },
+  "3558034": {
+    "label": "Dorion (3558034)",
+    "name": "Dorion",
+    "type": "TP"
+  },
+  "3558041": {
+    "label": "Red Rock (3558041)",
+    "name": "Red Rock",
+    "type": "TP"
+  },
+  "3558044": {
+    "label": "Nipigon (3558044)",
+    "name": "Nipigon",
+    "type": "TP"
+  },
+  "3558051": {
+    "label": "Schreiber (3558051)",
+    "name": "Schreiber",
+    "type": "TP"
+  },
+  "3558054": {
+    "label": "Terrace Bay (3558054)",
+    "name": "Terrace Bay",
+    "type": "TP"
+  },
+  "3558059": {
+    "label": "Marathon (3558059)",
+    "name": "Marathon",
+    "type": "T"
+  },
+  "3558060": {
+    "label": "Pic Mobert North (3558060)",
+    "name": "Pic Mobert North",
+    "type": "IRI"
+  },
+  "3558061": {
+    "label": "Pic Mobert South (3558061)",
+    "name": "Pic Mobert South",
+    "type": "IRI"
+  },
+  "3558062": {
+    "label": "Pic River 50 (3558062)",
+    "name": "Pic River 50",
+    "type": "IRI"
+  },
+  "3558063": {
+    "label": "Pays Plat 51 (3558063)",
+    "name": "Pays Plat 51",
+    "type": "IRI"
+  },
+  "3558064": {
+    "label": "Lake Helen 53A (3558064)",
+    "name": "Lake Helen 53A",
+    "type": "IRI"
+  },
+  "3558065": {
+    "label": "Gull River 55 (3558065)",
+    "name": "Gull River 55",
+    "type": "IRI"
+  },
+  "3558066": {
+    "label": "Manitouwadge (3558066)",
+    "name": "Manitouwadge",
+    "type": "TP"
+  },
+  "3558067": {
+    "label": "Ginoogaming First Nation (3558067)",
+    "name": "Ginoogaming First Nation",
+    "type": "IRI"
+  },
+  "3558068": {
+    "label": "Long Lake 58 (3558068)",
+    "name": "Long Lake 58",
+    "type": "IRI"
+  },
+  "3558069": {
+    "label": "Rocky Bay 1 (3558069)",
+    "name": "Rocky Bay 1",
+    "type": "IRI"
+  },
+  "3558074": {
+    "label": "Sand Point First Nation (3558074)",
+    "name": "Sand Point First Nation",
+    "type": "IRI"
+  },
+  "3558075": {
+    "label": "Greenstone (3558075)",
+    "name": "Greenstone",
+    "type": "MU"
+  },
+  "3558076": {
+    "label": "Aroland (3558076)",
+    "name": "Aroland",
+    "type": "S-\u00c9"
+  },
+  "3558077": {
+    "label": "Lake Nipigon (3558077)",
+    "name": "Lake Nipigon",
+    "type": "IRI"
+  },
+  "3558080": {
+    "label": "Ojibway Nation of Saugeen (Savant Lake) (3558080)",
+    "name": "Ojibway Nation of Saugeen (Savant Lake)",
+    "type": "IRI"
+  },
+  "3558085": {
+    "label": "Osnaburgh 63A (3558085)",
+    "name": "Osnaburgh 63A",
+    "type": "IRI"
+  },
+  "3558090": {
+    "label": "Thunder Bay, Unorganized (3558090)",
+    "name": "Thunder Bay, Unorganized",
+    "type": "NO"
+  },
+  "3558092": {
+    "label": "Red Rock 53 (3558092)",
+    "name": "Red Rock 53",
+    "type": "IRI"
+  },
+  "3558097": {
+    "label": "Whitesand (3558097)",
+    "name": "Whitesand",
+    "type": "IRI"
+  },
+  "3558100": {
+    "label": "Lac des Mille Lacs 22A1 (3558100)",
+    "name": "Lac des Mille Lacs 22A1",
+    "type": "IRI"
+  },
+  "3559001": {
+    "label": "Atikokan (3559001)",
+    "name": "Atikokan",
+    "type": "T"
+  },
+  "3559011": {
+    "label": "Alberton (3559011)",
+    "name": "Alberton",
+    "type": "TP"
+  },
+  "3559012": {
+    "label": "Fort Frances (3559012)",
+    "name": "Fort Frances",
+    "type": "T"
+  },
+  "3559016": {
+    "label": "La Vallee (3559016)",
+    "name": "La Vallee",
+    "type": "TP"
+  },
+  "3559019": {
+    "label": "Emo (3559019)",
+    "name": "Emo",
+    "type": "TP"
+  },
+  "3559024": {
+    "label": "Chapple (3559024)",
+    "name": "Chapple",
+    "type": "TP"
+  },
+  "3559026": {
+    "label": "Manitou Rapids 11 (3559026)",
+    "name": "Manitou Rapids 11",
+    "type": "IRI"
+  },
+  "3559031": {
+    "label": "Morley (3559031)",
+    "name": "Morley",
+    "type": "TP"
+  },
+  "3559040": {
+    "label": "Dawson (3559040)",
+    "name": "Dawson",
+    "type": "TP"
+  },
+  "3559042": {
+    "label": "Rainy River (3559042)",
+    "name": "Rainy River",
+    "type": "T"
+  },
+  "3559046": {
+    "label": "Assabaska (3559046)",
+    "name": "Assabaska",
+    "type": "IRI"
+  },
+  "3559047": {
+    "label": "Lake of the Woods (3559047)",
+    "name": "Lake of the Woods",
+    "type": "TP"
+  },
+  "3559051": {
+    "label": "Big Grassy River 35G (3559051)",
+    "name": "Big Grassy River 35G",
+    "type": "IRI"
+  },
+  "3559052": {
+    "label": "Big Island Mainland 93 (3559052)",
+    "name": "Big Island Mainland 93",
+    "type": "IRI"
+  },
+  "3559053": {
+    "label": "Saug-A-Gaw-Sing 1 (3559053)",
+    "name": "Saug-A-Gaw-Sing 1",
+    "type": "IRI"
+  },
+  "3559060": {
+    "label": "Neguaguon Lake 25D (3559060)",
+    "name": "Neguaguon Lake 25D",
+    "type": "IRI"
+  },
+  "3559061": {
+    "label": "Rainy Lake 18C (3559061)",
+    "name": "Rainy Lake 18C",
+    "type": "IRI"
+  },
+  "3559062": {
+    "label": "Agency 1 (3559062)",
+    "name": "Agency 1",
+    "type": "IRI"
+  },
+  "3559063": {
+    "label": "Couchiching 16A (3559063)",
+    "name": "Couchiching 16A",
+    "type": "IRI"
+  },
+  "3559064": {
+    "label": "Rainy Lake 26A (3559064)",
+    "name": "Rainy Lake 26A",
+    "type": "IRI"
+  },
+  "3559066": {
+    "label": "Seine River 23A (3559066)",
+    "name": "Seine River 23A",
+    "type": "IRI"
+  },
+  "3559068": {
+    "label": "Rainy Lake 17A (3559068)",
+    "name": "Rainy Lake 17A",
+    "type": "IRI"
+  },
+  "3559069": {
+    "label": "Rainy Lake 17B (3559069)",
+    "name": "Rainy Lake 17B",
+    "type": "IRI"
+  },
+  "3559089": {
+    "label": "Sturgeon Falls 23 (3559089)",
+    "name": "Sturgeon Falls 23",
+    "type": "IRI"
+  },
+  "3559090": {
+    "label": "Rainy River, Unorganized (3559090)",
+    "name": "Rainy River, Unorganized",
+    "type": "NO"
+  },
+  "3560001": {
+    "label": "Ignace (3560001)",
+    "name": "Ignace",
+    "type": "TP"
+  },
+  "3560004": {
+    "label": "Whitefish Bay 32A (3560004)",
+    "name": "Whitefish Bay 32A",
+    "type": "IRI"
+  },
+  "3560005": {
+    "label": "Whitefish Bay 33A (3560005)",
+    "name": "Whitefish Bay 33A",
+    "type": "IRI"
+  },
+  "3560008": {
+    "label": "Sioux Narrows-Nestor Falls (3560008)",
+    "name": "Sioux Narrows-Nestor Falls",
+    "type": "TP"
+  },
+  "3560010": {
+    "label": "Kenora (3560010)",
+    "name": "Kenora",
+    "type": "CY"
+  },
+  "3560021": {
+    "label": "Machin (3560021)",
+    "name": "Machin",
+    "type": "MU"
+  },
+  "3560024": {
+    "label": "Eagle Lake 27 (3560024)",
+    "name": "Eagle Lake 27",
+    "type": "IRI"
+  },
+  "3560027": {
+    "label": "Dryden (3560027)",
+    "name": "Dryden",
+    "type": "CY"
+  },
+  "3560032": {
+    "label": "Ear Falls (3560032)",
+    "name": "Ear Falls",
+    "type": "TP"
+  },
+  "3560034": {
+    "label": "Sioux Lookout (3560034)",
+    "name": "Sioux Lookout",
+    "type": "MU"
+  },
+  "3560042": {
+    "label": "Red Lake (3560042)",
+    "name": "Red Lake",
+    "type": "MU"
+  },
+  "3560046": {
+    "label": "Slate Falls (3560046)",
+    "name": "Slate Falls",
+    "type": "IRI"
+  },
+  "3560049": {
+    "label": "Pickle Lake (3560049)",
+    "name": "Pickle Lake",
+    "type": "TP"
+  },
+  "3560050": {
+    "label": "Fort Albany (Part) 67 (3560050)",
+    "name": "Fort Albany (Part) 67",
+    "type": "IRI"
+  },
+  "3560051": {
+    "label": "Attawapiskat 91A (3560051)",
+    "name": "Attawapiskat 91A",
+    "type": "IRI"
+  },
+  "3560052": {
+    "label": "Marten Falls 65 (3560052)",
+    "name": "Marten Falls 65",
+    "type": "IRI"
+  },
+  "3560053": {
+    "label": "Fort Hope 64 (3560053)",
+    "name": "Fort Hope 64",
+    "type": "IRI"
+  },
+  "3560054": {
+    "label": "Cat Lake 63C (3560054)",
+    "name": "Cat Lake 63C",
+    "type": "IRI"
+  },
+  "3560055": {
+    "label": "Osnaburgh 63B (3560055)",
+    "name": "Osnaburgh 63B",
+    "type": "IRI"
+  },
+  "3560056": {
+    "label": "Lac Seul 28 (3560056)",
+    "name": "Lac Seul 28",
+    "type": "IRI"
+  },
+  "3560057": {
+    "label": "Wabigoon Lake 27 (3560057)",
+    "name": "Wabigoon Lake 27",
+    "type": "IRI"
+  },
+  "3560058": {
+    "label": "English River 21 (3560058)",
+    "name": "English River 21",
+    "type": "IRI"
+  },
+  "3560059": {
+    "label": "Weagamow Lake 87 (3560059)",
+    "name": "Weagamow Lake 87",
+    "type": "IRI"
+  },
+  "3560060": {
+    "label": "Northwest Angle 33B (3560060)",
+    "name": "Northwest Angle 33B",
+    "type": "IRI"
+  },
+  "3560061": {
+    "label": "Wabaseemoong (3560061)",
+    "name": "Wabaseemoong",
+    "type": "IRI"
+  },
+  "3560063": {
+    "label": "Sabaskong Bay 35D (3560063)",
+    "name": "Sabaskong Bay 35D",
+    "type": "IRI"
+  },
+  "3560064": {
+    "label": "Shoal Lake 34B2 (3560064)",
+    "name": "Shoal Lake 34B2",
+    "type": "IRI"
+  },
+  "3560065": {
+    "label": "Lake of the Woods 37 (3560065)",
+    "name": "Lake of the Woods 37",
+    "type": "IRI"
+  },
+  "3560066": {
+    "label": "Kenora 38B (3560066)",
+    "name": "Kenora 38B",
+    "type": "IRI"
+  },
+  "3560067": {
+    "label": "Poplar Hill (3560067)",
+    "name": "Poplar Hill",
+    "type": "IRI"
+  },
+  "3560068": {
+    "label": "Shoal Lake 39A (3560068)",
+    "name": "Shoal Lake 39A",
+    "type": "IRI"
+  },
+  "3560069": {
+    "label": "Rat Portage 38A (3560069)",
+    "name": "Rat Portage 38A",
+    "type": "IRI"
+  },
+  "3560070": {
+    "label": "Deer Lake (3560070)",
+    "name": "Deer Lake",
+    "type": "IRI"
+  },
+  "3560071": {
+    "label": "Sandy Lake 88 (3560071)",
+    "name": "Sandy Lake 88",
+    "type": "IRI"
+  },
+  "3560075": {
+    "label": "Kitchenuhmaykoosib Aaki 84 (3560075)",
+    "name": "Kitchenuhmaykoosib Aaki 84",
+    "type": "IRI"
+  },
+  "3560076": {
+    "label": "Sachigo Lake 1 (3560076)",
+    "name": "Sachigo Lake 1",
+    "type": "IRI"
+  },
+  "3560077": {
+    "label": "Pikangikum 14 (3560077)",
+    "name": "Pikangikum 14",
+    "type": "IRI"
+  },
+  "3560078": {
+    "label": "Fort Severn 89 (3560078)",
+    "name": "Fort Severn 89",
+    "type": "IRI"
+  },
+  "3560079": {
+    "label": "Webequie (3560079)",
+    "name": "Webequie",
+    "type": "IRI"
+  },
+  "3560080": {
+    "label": "North Spirit Lake (3560080)",
+    "name": "North Spirit Lake",
+    "type": "IRI"
+  },
+  "3560081": {
+    "label": "Lansdowne House (3560081)",
+    "name": "Lansdowne House",
+    "type": "S-\u00c9"
+  },
+  "3560082": {
+    "label": "Shoal Lake (Part) 40 (3560082)",
+    "name": "Shoal Lake (Part) 40",
+    "type": "IRI"
+  },
+  "3560083": {
+    "label": "Whitefish Bay 34A (3560083)",
+    "name": "Whitefish Bay 34A",
+    "type": "IRI"
+  },
+  "3560084": {
+    "label": "Wabauskang 21 (3560084)",
+    "name": "Wabauskang 21",
+    "type": "IRI"
+  },
+  "3560085": {
+    "label": "Wunnumin 1 (3560085)",
+    "name": "Wunnumin 1",
+    "type": "IRI"
+  },
+  "3560086": {
+    "label": "Summer Beaver (3560086)",
+    "name": "Summer Beaver",
+    "type": "S-\u00c9"
+  },
+  "3560088": {
+    "label": "Wapekeka 2 (3560088)",
+    "name": "Wapekeka 2",
+    "type": "IRI"
+  },
+  "3560089": {
+    "label": "The Dalles 38C (3560089)",
+    "name": "The Dalles 38C",
+    "type": "IRI"
+  },
+  "3560090": {
+    "label": "Kenora, Unorganized (3560090)",
+    "name": "Kenora, Unorganized",
+    "type": "NO"
+  },
+  "3560091": {
+    "label": "Peawanuck (3560091)",
+    "name": "Peawanuck",
+    "type": "S-\u00c9"
+  },
+  "3560093": {
+    "label": "Neskantaga (3560093)",
+    "name": "Neskantaga",
+    "type": "IRI"
+  },
+  "3560095": {
+    "label": "Bearskin Lake (3560095)",
+    "name": "Bearskin Lake",
+    "type": "IRI"
+  },
+  "3560096": {
+    "label": "Kasabonika Lake (3560096)",
+    "name": "Kasabonika Lake",
+    "type": "IRI"
+  },
+  "3560097": {
+    "label": "Muskrat Dam Lake (3560097)",
+    "name": "Muskrat Dam Lake",
+    "type": "IRI"
+  },
+  "3560098": {
+    "label": "Kingfisher Lake 1 (3560098)",
+    "name": "Kingfisher Lake 1",
+    "type": "IRI"
+  },
+  "3560100": {
+    "label": "Wawakapewin (3560100)",
+    "name": "Wawakapewin",
+    "type": "IRI"
+  },
+  "3560104": {
+    "label": "Kee-Way-Win (3560104)",
+    "name": "Kee-Way-Win",
+    "type": "IRI"
+  }
+}

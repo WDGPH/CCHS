@@ -8,7 +8,7 @@ import pandas as pd
 import time
 
 # Import all modules from the refactored structure
-from config.settings import PAGE_CONFIG, DEFAULT_CYCLE, AVAILABLE_CYCLES
+from config.settings import APP_BRANDING, PAGE_CONFIG, DEFAULT_CYCLE, AVAILABLE_CYCLES
 from config.styles import CSS_STYLES
 from src.data.loader import (
     load_cycle_data, load_multi_cycle_data, 
@@ -55,24 +55,28 @@ def main():
     
     # Initialize session state
     initialize_session_state()
-    
-    # Header with logo
-    logo_col, title_col = st.columns([1, 4])
-    
-    with logo_col:
-        st.image("https://wdgpublichealth.ca/sites/all/themes/de_theme/logo.png")
-    
+
+    if APP_BRANDING.get("logo_url"):
+        logo_col, title_col = st.columns([1, 4])
+        with logo_col:
+            st.image(APP_BRANDING["logo_url"])
+    else:
+        title_col = st.container()
+
     with title_col:
         st.markdown("""
         <div style="padding: 1rem 0;">
             <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: var(--primary);">
-                CCHS Bootstrap Analysis Platform
+                {header_title}
             </h1>
             <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: var(--text-light);">
-                Canadian Community Health Survey Statistical Analysis Tool
+                {header_subtitle}
             </p>
         </div>
-        """, unsafe_allow_html=True)
+        """.format(
+            header_title=APP_BRANDING["header_title"],
+            header_subtitle=APP_BRANDING["header_subtitle"]
+        ), unsafe_allow_html=True)
     
     # Load harmonization data (needed for both modes)
     crosswalk = load_crosswalk()
@@ -228,7 +232,7 @@ def main():
     create_workflow_stepper(current_step)
     
     # Geographic filters with data preview
-    filter_by_district, filter_by_municipality_dropdown, district_codes, filter_by_health_region = create_geographic_filters_sidebar(data)
+    geographic_filters = create_geographic_filters_sidebar(data)
     
     # Inclusion flag filters (works for all cycles)
     selected_inclusion_flags = create_inclusion_flag_filters_sidebar(
@@ -250,7 +254,9 @@ def main():
         with st.spinner("🔄 Applying geographic and inclusion flag filters and preparing data..."):
             # Apply geographic filters first
             filtered_data = apply_region_filter(
-                data, filter_by_district, filter_by_health_region, district_codes
+                data,
+                district_codes=geographic_filters.get('district_codes'),
+                health_region_codes=geographic_filters.get('health_region_codes')
             )
             
             # Apply inclusion flag filters if any selected
@@ -904,7 +910,7 @@ def main():
     
     st.markdown(f"""
     <div style="text-align: center; color: var(--text-light); padding: 1rem;">
-        <p> Wellington-Dufferin-Guelph Public Health | CCHS Bootstrap Analysis Platform</p>
+        <p>{APP_BRANDING["footer_org"]} | {APP_BRANDING["header_title"]}</p>
         <p style="font-size: 0.8rem;">Mode: {analysis_mode} | Cycles: {cycles_str} | Powered by Streamlit & Bootstrap Analysis | Harmonization: {harmonization_status}</p>
     </div>
     """, unsafe_allow_html=True)
