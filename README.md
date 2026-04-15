@@ -45,12 +45,14 @@ harmonization/
 ```
 
 **Note**: These harmonization files are built using scripts (see [HARMONIZATION_WORKFLOW.md](HARMONIZATION_WORKFLOW.md))
+For adding a new survey year, see [ADDING_A_CYCLE.md](ADDING_A_CYCLE.md).
 
 ### Data File Specifications
 
 - **hsYYYY_on_distr.parquet**: Main survey data with respondent records
 - **hsYYYY_on_bootwt.parquet**: Bootstrap weights (columns starting with 'BSW')
 - **CCHS_YYYY_Recoded_Variables.csv**: Must contain 'Variable' and 'Description' columns
+- If your upstream files are SAS, an existing helper script is available at `/home/jovyan/helpers/sas.py` to convert `.sas7bdat` inputs to parquet.
 
 ## 🚀 Installation & Setup (Local Python)
 
