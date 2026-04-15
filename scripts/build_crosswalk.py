@@ -4,7 +4,7 @@ import difflib
 
 # Paths to harmonized JSONs for each cycle
 data_dir = "./harmonization"
-cycles = ["2021", "2022", "2023"]
+cycles = ["2021", "2022", "2023", "2024"]
 cycle_files = {cycle: os.path.join(data_dir, f"CCHS_{cycle}.json") for cycle in cycles}
 
 # Load variable descriptions for each cycle
