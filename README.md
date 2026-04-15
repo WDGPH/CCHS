@@ -7,7 +7,7 @@ A comprehensive Streamlit application for analyzing Canadian Community Health Su
 This application performs bootstrap analysis on CCHS Ontario data with **multi-cycle support**, allowing users to:
 - **Multi-cycle analysis**: Compare data across CCHS 2021, 2022, and 2023 cycles
 - **Variable harmonization**: Use pre-harmonized variable names across cycles
-- Filter data by geographic regions (districts, municipalities, health regions)
+- Filter data by geographic regions (districts, municipalities, multiple health regions / public health units)
 - Select multiple variables for analysis
 - Calculate prevalence rates with bootstrap confidence intervals
 - Generate cross-tabulation reports and cycle comparisons
@@ -45,12 +45,14 @@ harmonization/
 ```
 
 **Note**: These harmonization files are built using scripts (see [HARMONIZATION_WORKFLOW.md](HARMONIZATION_WORKFLOW.md))
+For adding a new survey year, see [ADDING_A_CYCLE.md](ADDING_A_CYCLE.md).
 
 ### Data File Specifications
 
 - **hsYYYY_on_distr.parquet**: Main survey data with respondent records
 - **hsYYYY_on_bootwt.parquet**: Bootstrap weights (columns starting with 'BSW')
 - **CCHS_YYYY_Recoded_Variables.csv**: Must contain 'Variable' and 'Description' columns
+- If your upstream files are SAS, an existing helper script is available at `/home/jovyan/helpers/sas.py` to convert `.sas7bdat` inputs to parquet.
 
 ## 🚀 Installation & Setup (Local Python)
 
@@ -132,8 +134,8 @@ docker stop cchs-bootstrap && docker rm cchs-bootstrap
 
 ### 3. Geographic Filtering
 - **District-level**: Filter by GEODVCSD codes
-- **Municipality**: Pre-configured filters for Wellington, Guelph, Dufferin
-- **Health Region**: Filter by GEODVHR4 codes
+- **Municipality**: Configurable municipality shortcuts per public health unit
+- **Health Region**: Filter by one or more GEODVHR4 codes
 
 ### 4. Bootstrap Analysis
 - Calculates weighted prevalence rates
