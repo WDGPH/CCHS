@@ -1,7 +1,7 @@
 import json
 import os
 
-cycles = ["2021", "2022", "2023"]
+cycles = ["2021", "2022", "2023", "2024"]
 harmonization_dir = "./harmonization"
 
 # Load crosswalk

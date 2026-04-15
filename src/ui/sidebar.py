@@ -542,19 +542,30 @@ def create_inclusion_flag_filters_sidebar(data=None, desc_dict=None):
             
             # Sort flags by variable name for consistency
             sorted_flags = sorted(inclusion_flags.items())
-            
-            # Show flags in checkboxes
+
+            flag_labels = {}
             for flag, desc in sorted_flags:
-                # Extract a short label from description (remove " - Inclusion Flag - (F)")
                 short_desc = desc.replace(" - Inclusion Flag - (F)", "").strip()
-                if not short_desc:
-                    short_desc = flag
-                
-                selected_flags[flag] = st.sidebar.checkbox(
-                    f"✅ {flag}: {short_desc}",
-                    value=False,
-                    help=desc,
-                    key=f"inclusion_flag_{flag}"
+                flag_labels[flag] = short_desc if short_desc else flag
+
+            selected_flag_names = st.sidebar.multiselect(
+                "Inclusion Flags",
+                options=[flag for flag, _ in sorted_flags],
+                default=[],
+                format_func=lambda flag: f"{flag}: {flag_labels[flag]}",
+                help="Choose one or more inclusion flags to restrict the dataset.",
+                key="selected_inclusion_flag_names",
+                placeholder="Select inclusion flags...",
+            )
+
+            selected_flags = {
+                flag: flag in selected_flag_names
+                for flag, _ in sorted_flags
+            }
+
+            if selected_flag_names:
+                st.sidebar.caption(
+                    f"Selected {len(selected_flag_names)} flag(s): {', '.join(selected_flag_names)}"
                 )
             
             # Show preview if any flags selected
