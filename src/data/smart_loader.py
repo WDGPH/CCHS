@@ -3,6 +3,7 @@
 import pandas as pd
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
+from src.data.loader import build_harmonization_mapping, restore_geography_aliases
 from src.data.precompute import (
     load_precomputed_data,
     load_precomputed_bootstrap,
@@ -39,6 +40,7 @@ def smart_load_cycle(
             status = check_precompute_status([cycle])
             if status.get(cycle, False):
                 data = load_precomputed_data(cycle)
+                data = restore_geography_aliases(data)
                 bootstrap = load_precomputed_bootstrap(cycle)
                 metadata = load_precomputed_metadata(cycle)
                 is_precomputed = True
@@ -58,19 +60,13 @@ def smart_load_cycle(
     raw_data, bootstrap_data = load_cycle_data(cycle)
     
     # Create harmonization mapping
-    rename_dict = {}
-    available_vars = []
-    
-    for harmonized_var, cycle_mapping in crosswalk.items():
-        cycle_specific_var = cycle_mapping.get(cycle)
-        
-        if cycle_specific_var and cycle_specific_var != "Not Available":
-            if cycle_specific_var in raw_data.columns:
-                rename_dict[cycle_specific_var] = harmonized_var
-                available_vars.append(harmonized_var)
+    rename_dict, available_vars = build_harmonization_mapping(
+        crosswalk, cycle, raw_data.columns
+    )
     
     # Apply harmonization
     harmonized_data = raw_data.rename(columns=rename_dict)
+    harmonized_data = restore_geography_aliases(harmonized_data)
     
     # Add CYCLE column
     harmonized_data['CYCLE'] = cycle
