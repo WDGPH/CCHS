@@ -16,8 +16,8 @@ APP_BRANDING = {
 }
 
 # Available cycles
-AVAILABLE_CYCLES = ["2021", "2022", "2023"]
-DEFAULT_CYCLE = "2023"
+AVAILABLE_CYCLES = ["2021", "2022", "2023", "2024"]
+DEFAULT_CYCLE = "2024"
 
 # File paths
 DATA_PATH = "data"

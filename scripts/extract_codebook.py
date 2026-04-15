@@ -2,6 +2,11 @@
 import PyPDF2
 import re
 import json
+from pathlib import Path
+
+cycle = "2024"
+codebook_path = Path(f"./codebooks/CCHS_{cycle}_DataDictionary_Freqs.pdf")
+output_path = Path(f"./harmonization/CCHS_{cycle}.json")
 
 def extract_variables_with_categories(pdf_path):
     variables = {}
@@ -55,12 +60,10 @@ def extract_variables_with_categories(pdf_path):
     return variables
 
 # Example usage:
-pdf_path = "./codebooks/CCHS_2023_DataDictionary_Freqs_ON.pdf"  # Input from codebooks folder
-variables = extract_variables_with_categories(pdf_path)
+variables = extract_variables_with_categories(codebook_path)
 
 # Save as JSON for harmonization pipeline
-test_json_path = "./harmonization/CCHS_2023.json"  # Output to harmonization folder
-with open(test_json_path, "w", encoding="utf-8") as f:
+with open(output_path, "w", encoding="utf-8") as f:
     json.dump(variables, f, indent=2, ensure_ascii=False)
 
-print(f"Extracted variable/category info saved to {test_json_path}")
+print(f"Extracted variable/category info saved to {output_path}")

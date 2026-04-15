@@ -7,6 +7,7 @@ import pickle
 import json
 from typing import Dict, List, Tuple, Optional
 import streamlit as st
+from src.data.loader import build_harmonization_mapping, restore_geography_aliases
 
 
 # Default precompute directory
@@ -172,19 +173,13 @@ def precompute_cycle_data(
     bootstrap_data = pd.read_parquet(bootstrap_file)
     
     # Create harmonization mapping for this cycle
-    rename_dict = {}
-    available_vars = []
-    
-    for harmonized_var, cycle_mapping in crosswalk.items():
-        cycle_specific_var = cycle_mapping.get(cycle)
-        
-        if cycle_specific_var and cycle_specific_var != "Not Available":
-            if cycle_specific_var in data.columns:
-                rename_dict[cycle_specific_var] = harmonized_var
-                available_vars.append(harmonized_var)
+    rename_dict, available_vars = build_harmonization_mapping(
+        crosswalk, cycle, data.columns
+    )
     
     # Apply harmonization (rename columns)
     harmonized_data = data.rename(columns=rename_dict)
+    harmonized_data = restore_geography_aliases(harmonized_data)
     
     # Handle duplicate columns (keep first occurrence only)
     # This can happen when multiple cycle-specific variables map to same harmonized name
