@@ -7,6 +7,58 @@ import streamlit as st
 from config.settings import DATA_PATH, AVAILABLE_CYCLES
 
 
+def build_harmonization_mapping(crosswalk: dict, cycle: str, available_columns) -> tuple[dict, list]:
+    """
+    Build a safe rename mapping for one cycle.
+
+    If multiple harmonized variables point at the same source column, prefer the
+    identity mapping (e.g. GEODVHR4 -> GEODVHR4) and otherwise keep the first
+    mapping encountered. This prevents exact-match geography columns from being
+    renamed away by alias entries later in the crosswalk.
+    """
+    rename_dict = {}
+    available_vars = []
+    available_column_set = set(available_columns)
+
+    for harmonized_var, cycle_mapping in crosswalk.items():
+        cycle_specific_var = cycle_mapping.get(cycle)
+        if not cycle_specific_var or cycle_specific_var == "Not Available":
+            continue
+        if cycle_specific_var not in available_column_set:
+            continue
+
+        existing_target = rename_dict.get(cycle_specific_var)
+        if existing_target is None:
+            rename_dict[cycle_specific_var] = harmonized_var
+            available_vars.append(harmonized_var)
+            continue
+
+        if existing_target == cycle_specific_var:
+            continue
+
+        if harmonized_var == cycle_specific_var:
+            rename_dict[cycle_specific_var] = harmonized_var
+            if existing_target in available_vars:
+                available_vars.remove(existing_target)
+            if harmonized_var not in available_vars:
+                available_vars.append(harmonized_var)
+
+    return rename_dict, available_vars
+
+
+def restore_geography_aliases(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Restore expected geography columns when an older harmonization pass renamed
+    them to alias fields.
+    """
+    restored = df.copy()
+
+    if 'GEODVHR4' not in restored.columns and 'GEODVOHR' in restored.columns:
+        restored['GEODVHR4'] = restored['GEODVOHR']
+
+    return restored
+
+
 @st.cache_data
 def load_cycle_data(cycle: str) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load main data and bootstrap data for a specific cycle."""
@@ -116,6 +168,26 @@ def load_categories() -> dict:
 
 
 @st.cache_data
+def load_ontario_csd_lookup() -> dict:
+    """Load the Ontario census subdivision code-to-name lookup."""
+    lookup_file = os.path.join("harmonization", "ontario_csd_lookup.json")
+    if os.path.exists(lookup_file):
+        with open(lookup_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+@st.cache_data
+def load_ontario_official_municipalities() -> dict:
+    """Load the official Ontario municipalities lookup keyed by CSD code."""
+    lookup_file = os.path.join("harmonization", "ontario_official_municipalities.json")
+    if os.path.exists(lookup_file):
+        with open(lookup_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+@st.cache_data
 def merge_data(filtered_data, bootstrap_data):
     """Merge filtered data with bootstrap weights on 'ONT_ID'."""
     merged = pd.merge(filtered_data, bootstrap_data, on='ONT_ID', how='left')
@@ -152,18 +224,14 @@ def load_multi_cycle_data(cycles: list, crosswalk: dict, categories: dict):
         if data is None or bootstrap_data is None:
             st.warning(f"Skipping cycle {cycle} due to missing data files.")
             continue
-        
-        # Build reverse mapping: cycle_specific_var -> harmonized_var for this cycle
-        # This is fast O(n) operation on crosswalk dictionary
+
         rename_dict = {}
         if crosswalk:
-            for harmonized_var, cycle_mapping in crosswalk.items():
-                cycle_specific_var = cycle_mapping.get(cycle)
-                if cycle_specific_var and cycle_specific_var in data.columns:
-                    rename_dict[cycle_specific_var] = harmonized_var
+            rename_dict, _ = build_harmonization_mapping(crosswalk, cycle, data.columns)
         
         # Apply harmonization - just column rename, no value transformation (fast!)
         harmonized_data = data.rename(columns=rename_dict) if rename_dict else data.copy()
+        harmonized_data = restore_geography_aliases(harmonized_data)
         harmonized_data['CYCLE'] = cycle
         
         combined_data_list.append(harmonized_data)

@@ -7,6 +7,7 @@ import pickle
 import json
 from typing import Dict, List, Tuple, Optional
 import streamlit as st
+from src.data.loader import build_harmonization_mapping, restore_geography_aliases
 
 
 # Default precompute directory
@@ -172,19 +173,13 @@ def precompute_cycle_data(
     bootstrap_data = pd.read_parquet(bootstrap_file)
     
     # Create harmonization mapping for this cycle
-    rename_dict = {}
-    available_vars = []
-    
-    for harmonized_var, cycle_mapping in crosswalk.items():
-        cycle_specific_var = cycle_mapping.get(cycle)
-        
-        if cycle_specific_var and cycle_specific_var != "Not Available":
-            if cycle_specific_var in data.columns:
-                rename_dict[cycle_specific_var] = harmonized_var
-                available_vars.append(harmonized_var)
+    rename_dict, available_vars = build_harmonization_mapping(
+        crosswalk, cycle, data.columns
+    )
     
     # Apply harmonization (rename columns)
     harmonized_data = data.rename(columns=rename_dict)
+    harmonized_data = restore_geography_aliases(harmonized_data)
     
     # Handle duplicate columns (keep first occurrence only)
     # This can happen when multiple cycle-specific variables map to same harmonized name
@@ -277,6 +272,67 @@ def precompute_all_cycles(
             traceback.print_exc()
     
     return results
+
+
+def run_precompute_workflow(
+    cycles: List[str],
+    crosswalk: Dict,
+    categories: Dict,
+    data_path: str = "data",
+    save_dir: Path = PRECOMPUTE_DIR
+) -> Dict:
+    """
+    Run the full precompute workflow and return a compact status summary.
+
+    Args:
+        cycles: List of cycle years to precompute
+        crosswalk: Crosswalk dictionary
+        categories: Categories dictionary
+        data_path: Path to raw data files
+        save_dir: Directory to save precomputed files
+
+    Returns:
+        Dictionary with success flag, validation results, and per-cycle summary.
+    """
+    results = precompute_all_cycles(
+        cycles=cycles,
+        crosswalk=crosswalk,
+        categories=categories,
+        data_path=data_path,
+        save_dir=save_dir,
+    )
+
+    if not results:
+        return {
+            "success": False,
+            "results": {},
+            "validation": {},
+            "message": "No cycles were successfully precomputed.",
+        }
+
+    validation = validate_precomputed_data(list(results.keys()), save_dir)
+
+    try:
+        create_variable_availability_index(
+            cycles=list(results.keys()),
+            save_dir=save_dir,
+        )
+    except Exception as exc:
+        print(f"⚠️ Failed to create availability index: {exc}")
+
+    all_valid = all(validation.values()) if validation else False
+    return {
+        "success": all_valid,
+        "results": {
+            cycle: {
+                "record_count": result["metadata"]["record_count"],
+                "available_vars": len(result["metadata"]["available_vars"]),
+            }
+            for cycle, result in results.items()
+        },
+        "validation": validation,
+        "message": "Precompute completed successfully." if all_valid else "Precompute completed, but validation failed for one or more cycles.",
+    }
 
 
 def load_variable_availability_index(save_dir: Path = PRECOMPUTE_DIR) -> Dict[str, List[str]]:

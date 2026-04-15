@@ -1,0 +1,6430 @@
+{
+  "VERDATE": {
+    "description": "Date of ﬁle creation",
+    "categories": {}
+  },
+  "REFPER": {
+    "description": "Reference period",
+    "categories": {}
+  },
+  "SAMPLEID": {
+    "description": "Record identiﬁer",
+    "categories": {}
+  },
+  "INSTANCE": {
+    "description": "Person identiﬁer of selected respondent - health interview",
+    "categories": {}
+  },
+  "COLMODE": {
+    "description": "Collection mode - 18+",
+    "categories": {}
+  },
+  "COL_LANG": {
+    "description": "Collection language",
+    "categories": {
+      "1": "English",
+      "2": "French"
+    }
+  },
+  "GEO_PRV": {
+    "description": "Province of residence of respondent",
+    "categories": {
+      "10": "NEWFOUNDLAND AND LABRADOR",
+      "11": "PRINCE EDWARD ISLAND",
+      "12": "NOVA SCOTIA",
+      "13": "NEW BRUNSWICK",
+      "24": "QUEBEC",
+      "35": "ONTARIO",
+      "46": "MANITOBA",
+      "47": "SASKATCHEWAN",
+      "48": "ALBERTA",
+      "59": "BRITISH COLUMBIA"
+    }
+  },
+  "GEODVPC": {
+    "description": "Postal code - (D)",
+    "categories": {}
+  },
+  "GEODVD21": {
+    "description": "2021 Census dissemination area (DA)",
+    "categories": {}
+  },
+  "GEODVD16": {
+    "description": "2016 Census dissemination area (DA) - (D)",
+    "categories": {}
+  },
+  "GEODVCSD": {
+    "description": "2021 Census subdivision (CSD) - (D)",
+    "categories": {}
+  },
+  "GEODVFED": {
+    "description": "2021 Census federal electoral district (FED) - (D)",
+    "categories": {}
+  },
+  "GEODVCD": {
+    "description": "2021 Census division (CD) - (D)",
+    "categories": {}
+  },
+  "GEODVCMA": {
+    "description": "2021 Census metropolitan area (CMA) - (D)",
+    "categories": {
+      "000": "No CMA assigned",
+      "001": "St. John’s",
+      "205": "Halifax",
+      "305": "Moncton",
+      "310": "Saint John",
+      "320": "Fredericton",
+      "408": "Saguenay",
+      "421": "Québec",
+      "433": "Sherbrooke",
+      "442": "Trois-Rivières",
+      "447": "Drummondville",
+      "462": "Montréal",
+      "505": "Ottawa-Gatineau",
+      "521": "Kingston",
+      "522": "Belleville-Quinte West",
+      "529": "Peterborough",
+      "532": "Oshawa",
+      "535": "Toronto",
+      "537": "Hamilton",
+      "539": "St. Catharines - Niagara",
+      "541": "Kitchener - Cambridge - Waterloo",
+      "543": "Brantford",
+      "550": "Guelph",
+      "555": "London",
+      "559": "Windsor",
+      "568": "Barrie",
+      "580": "Greater Sudbury / Grand Sudbury",
+      "595": "Thunder Bay",
+      "602": "Winnipeg",
+      "705": "Regina",
+      "725": "Saskatoon",
+      "810": "Lethbridge",
+      "825": "Calgary",
+      "830": "Red Deer",
+      "835": "Edmonton",
+      "915": "Kelowna",
+      "925": "Kamloops",
+      "930": "Chilliwack",
+      "932": "Abbotsford - Mission",
+      "933": "Vancouver",
+      "935": "Victoria",
+      "938": "Nanaimo"
+    }
+  },
+  "GEODVCA": {
+    "description": "2021 Census agglomeration (CA) - (D)",
+    "categories": {}
+  },
+  "GEODVSAT": {
+    "description": "Statistical area classiﬁcation type (SAT) - (D)",
+    "categories": {
+      "001": "CMA",
+      "002": "Tracted CA",
+      "003": "Non-tracted CA",
+      "004": "Strongly inﬂuenced zone",
+      "005": "Moderately inﬂuenced zone",
+      "006": "Weakly inﬂuenced zone",
+      "007": "Non-inﬂuenced zone"
+    }
+  },
+  "GEODVHR4": {
+    "description": "Health region - (D)",
+    "categories": {}
+  },
+  "GEODVP21": {
+    "description": "Peer group 2021 - (D)",
+    "categories": {
+      "01": "Health Region Peer Group A",
+      "02": "Health Region Peer Group B",
+      "03": "Health Region Peer Group C",
+      "04": "Health Region Peer Group D",
+      "05": "Health Region Peer Group E",
+      "06": "Health Region Peer Group F",
+      "07": "Health Region Peer Group G",
+      "08": "Health Region Peer Group H",
+      "09": "Health Region Peer Group I"
+    }
+  },
+  "GEODVUR": {
+    "description": "Population centre or rural area type - (D)",
+    "categories": {
+      "01": "Core",
+      "02": "Fringe",
+      "03": "Rural area inside of a CMA or CA",
+      "05": "Rural area outside of a CMA or CA",
+      "06": "Secondary core"
+    }
+  },
+  "GEODVUR2": {
+    "description": "Population centre or rural area type - grouped - (D)",
+    "categories": {
+      "1": "Population Centre",
+      "2": "Rural Area"
+    }
+  },
+  "GEODVPSZ": {
+    "description": "Population centre or rural area classiﬁcation - (D)",
+    "categories": {
+      "1": "Rural area (less than 1,000)",
+      "2": "Small population centre (1,000 to 29,999)"
+    }
+  },
+  "GEODVBHA": {
+    "description": "British Columbia Health Authority (BCHA) - (D)",
+    "categories": {}
+  },
+  "GEODVOHR": {
+    "description": "Ontario Health Region (OHR)",
+    "categories": {}
+  },
+  "GEODVASZ": {
+    "description": "Alberta subzone - (D)",
+    "categories": {}
+  },
+  "SAM_CP": {
+    "description": "Sampled collection period",
+    "categories": {}
+  },
+  "ADM_YOI": {
+    "description": "Y ear of interview",
+    "categories": {}
+  },
+  "ADM_MOI": {
+    "description": "Month of interview",
+    "categories": {
+      "01": "January",
+      "02": "February",
+      "03": "March",
+      "04": "April",
+      "05": "May",
+      "06": "June",
+      "07": "July",
+      "08": "August",
+      "09": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    }
+  },
+  "ADM_DOI": {
+    "description": "Day of interview",
+    "categories": {
+      "31": "Day of interview (1 to 31) 01 -"
+    }
+  },
+  "SAMDVLNK": {
+    "description": "Permission to link data - (D)",
+    "categories": {
+      "1": "Respondent agreed to link information"
+    }
+  },
+  "SAMDVSHR": {
+    "description": "Permission to share data - (D)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "DHHDVHSZ": {
+    "description": "Household size - (D)",
+    "categories": {
+      "13": "Number of persons in a household 01 -"
+    }
+  },
+  "DHHDVLVG": {
+    "description": "Living / family arrangement of selected respondent - (D)",
+    "categories": {
+      "01": "Unattached individual living alone",
+      "02": "Unattached individual living with others",
+      "03": "Individual living with spouse / partner",
+      "05": "Single parent living with children",
+      "06": "Child living with a single parent",
+      "08": "Child living with two parents",
+      "09": "Child living with two parents and siblings",
+      "10": "Other",
+      "99": "Not stated"
+    }
+  },
+  "DHHDV611": {
+    "description": "Number of persons in household between 6 and 11 years of age - (D)",
+    "categories": {
+      "04": "6 and 11 years of age00 -"
+    }
+  },
+  "DHHDVOKD": {
+    "description": "Number of persons in household 16 or 17 years of age - (D)",
+    "categories": {
+      "03": "years of age00 -"
+    }
+  },
+  "DHHDVL12": {
+    "description": "Number of persons in household less than 12 years of age - (D)",
+    "categories": {
+      "08": "12 years of age00 -"
+    }
+  },
+  "DHHDVYKD": {
+    "description": "Number of persons in household less than 16 years of age - (D)",
+    "categories": {
+      "08": "16 years old00 -"
+    }
+  },
+  "DHHDVLE5": {
+    "description": "Number of persons in household 5 years old or less - (D)",
+    "categories": {
+      "05": "old or less00 -"
+    }
+  },
+  "DHHDVA65": {
+    "description": "Number of persons in household aged 65 and older - (D)",
+    "categories": {
+      "08": "household00 -",
+      "99": "Not stated"
+    }
+  },
+  "DHHDVAOS": {
+    "description": "Age of spouse - (D)",
+    "categories": {
+      "168": "Age of respondent’s spouse 019 -",
+      "996": "Valid skip"
+    }
+  },
+  "DHHDVL18": {
+    "description": "Number of persons in household less than 18 years of age - (D)",
+    "categories": {
+      "08": "18 years of age00 -"
+    }
+  },
+  "PROXYSEX": {
+    "description": "Respondent gender and whether interview conducted by proxy",
+    "categories": {
+      "1": "Male, non proxy interview",
+      "2": "Female, non proxy interview",
+      "3": "Male, proxy interview",
+      "4": "Female, proxy interview"
+    }
+  },
+  "DWL_01A": {
+    "description": "Dwelling ownership - own or rent",
+    "categories": {
+      "1": "Y es, owned, even if it is still being paid for",
+      "2": "No, rented, even if no cash rent is paid",
+      "9": "Not stated"
+    }
+  },
+  "ED_05": {
+    "description": "Highest certiﬁcate, diploma or degree completed",
+    "categories": {
+      "03": "Trade certiﬁcate or diploma",
+      "06": "Bachelor’s degree (e.g. B.A., B.Sc., LL.B.)",
+      "99": "Not stated"
+    }
+  },
+  "EDDVR3": {
+    "description": "Highest level of education - respondent, 3 levels - (D)",
+    "categories": {
+      "1": "Less than secondary school graduation",
+      "9": "Not stated"
+    }
+  },
+  "EDDVH3": {
+    "description": "Highest level of education - household, 3 levels - (D)",
+    "categories": {
+      "1": "Less than secondary school graduation",
+      "9": "Not stated"
+    }
+  },
+  "AGE_01A": {
+    "description": "Y ear of birth",
+    "categories": {}
+  },
+  "AGE_01B": {
+    "description": "Month of birth",
+    "categories": {}
+  },
+  "AGE_01C": {
+    "description": "Day of birth",
+    "categories": {}
+  },
+  "AWCAGE": {
+    "description": "Age",
+    "categories": {
+      "121": "Age in years 018 -"
+    }
+  },
+  "DHH_SEX": {
+    "description": "Sex at birth",
+    "categories": {
+      "1": "Male",
+      "2": "Female"
+    }
+  },
+  "GDRA_10": {
+    "description": "Gender",
+    "categories": {
+      "1": "Man",
+      "2": "Woman",
+      "3": "Non-binary person",
+      "9": "Not stated"
+    }
+  },
+  "GENDER_2": {
+    "description": "Gender - imputed",
+    "categories": {
+      "1": "Men+",
+      "2": "Women+"
+    }
+  },
+  "DOMAC": {
+    "description": "Main activity - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "MA_01": {
+    "description": "Worked at job / business - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MA_01A": {
+    "description": "Main activity - worked at job / business - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MA_02": {
+    "description": "Main activity - 12 mo",
+    "categories": {
+      "01": "Looking for paid work",
+      "02": "Going to school",
+      "03": "Caring for your children",
+      "04": "Household work",
+      "05": "Retired",
+      "06": "Maternity, paternity or parental leave",
+      "07": "Long term illness",
+      "09": "Other",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "DOEDC": {
+    "description": "School attendance - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "EDC_10": {
+    "description": "Currently attending school / college / CEGEP / university",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "EDC_20": {
+    "description": "Student status",
+    "categories": {
+      "1": "Full-time student",
+      "2": "Part-time student",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOGEN": {
+    "description": "General health - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "GEN_01": {
+    "description": "Perceived health",
+    "categories": {
+      "1": "Excellent",
+      "2": "Very good",
+      "3": "Good",
+      "4": "Fair",
+      "5": "Poor",
+      "9": "Not stated"
+    }
+  },
+  "GEN_05": {
+    "description": "Perceived mental health",
+    "categories": {
+      "1": "Excellent",
+      "2": "Very good",
+      "3": "Good",
+      "4": "Fair",
+      "5": "Poor",
+      "9": "Not stated"
+    }
+  },
+  "GEN_10": {
+    "description": "Perceived life stress",
+    "categories": {
+      "1": "Not at all stressful",
+      "2": "Not very stressful",
+      "3": "A bit stressful",
+      "4": "Quite a bit stressful",
+      "5": "Extremely stressful",
+      "9": "Not stated"
+    }
+  },
+  "GEN_15": {
+    "description": "Perceived stress at work",
+    "categories": {
+      "1": "Not at all stressful",
+      "2": "Not very stressful",
+      "3": "A bit stressful",
+      "4": "Quite a bit stressful",
+      "5": "Extremely stressful",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "GEN_20": {
+    "description": "Sense of belonging to local community",
+    "categories": {
+      "1": "Very strong",
+      "2": "Somewhat strong",
+      "3": "Somewhat weak",
+      "4": "Very weak",
+      "9": "Not stated"
+    }
+  },
+  "DOLSM": {
+    "description": "Life satisfaction measures - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "LSM_01": {
+    "description": "Satisfaction with life in general",
+    "categories": {
+      "00": "Very dissatisﬁed",
+      "01": "|",
+      "02": "|",
+      "03": "|",
+      "04": "|",
+      "05": "|",
+      "06": "|",
+      "07": "|",
+      "08": "|",
+      "09": "V",
+      "10": "Very satisﬁed",
+      "99": "Not stated"
+    }
+  },
+  "LSMDVSWL": {
+    "description": "Satisfaction with life in general (D)",
+    "categories": {
+      "1": "Very satisﬁed",
+      "2": "Satisﬁed",
+      "3": "Neither satisﬁed nor dissatisﬁed",
+      "4": "Dissatisﬁed",
+      "5": "Very dissatisﬁed",
+      "9": "Not stated"
+    }
+  },
+  "DOPRS": {
+    "description": "Pregnancy - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "PRS_05": {
+    "description": "Currently pregnant",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOHWT": {
+    "description": "Height and weight - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "HWT_05A": {
+    "description": "Height (self-reported) - Feet",
+    "categories": {
+      "07": "Feet 03 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HWT_05B": {
+    "description": "Height (self-reported) - Inches",
+    "categories": {
+      "66": "Inches 00 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HWT_05C": {
+    "description": "Height (self-reported) - Centimetres",
+    "categories": {
+      "230": "Centimetres 110 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "HWT_40A": {
+    "description": "Weight (self-reported)",
+    "categories": {
+      "500": "Weight 030 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "HWT_40B": {
+    "description": "Weight (self-reported) - unit of measure in pounds or kilograms",
+    "categories": {
+      "1": "Pounds",
+      "2": "Kilograms",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HWTDVHTM": {
+    "description": "Height (metres) - self-reported - (D)",
+    "categories": {}
+  },
+  "HWTDVWTK": {
+    "description": "Weight (kilograms) - self-reported - (D)",
+    "categories": {}
+  },
+  "HWTDVBMI": {
+    "description": "Body mass index (self-reported) - (D)",
+    "categories": {}
+  },
+  "HWTDVISW": {
+    "description": "BMI classiﬁcation age 18 + (self-reported) - Intl standard - (D)",
+    "categories": {
+      "01": "Underweight",
+      "02": "Normal weight",
+      "03": "Overweight",
+      "04": "Obese - Class I",
+      "05": "Obese - Class II",
+      "06": "Obese - Class III",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HWTDVCOR": {
+    "description": "Body mass index (adjusted) - (D)",
+    "categories": {}
+  },
+  "HWTDVBCC": {
+    "description": "BMI classiﬁcation age 18 + (adjusted) - Intl standard - (D)",
+    "categories": {
+      "01": "Underweight",
+      "02": "Normal weight",
+      "03": "Overweight",
+      "04": "Obese - Class I",
+      "05": "Obese - Class II",
+      "06": "Obese - Class III",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "DOCCC": {
+    "description": "Chronic conditions - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "CCC_05": {
+    "description": "Has diabetes",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_10": {
+    "description": "Diabetes - age ﬁrst diagnosed",
+    "categories": {
+      "094": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CCC_15": {
+    "description": "Diabetes - diagnosed - during pregnancy",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_20": {
+    "description": "Diabetes - diagnosed - other than during pregnancy",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_26": {
+    "description": "Diabetes - diagnosed - type",
+    "categories": {
+      "1": "Type 1 diabetes",
+      "2": "Type 2 diabetes",
+      "3": "Other types of diabetes",
+      "4": "Don’t know",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_30": {
+    "description": "Diabetes - time between diagnosis and start of insulin",
+    "categories": {
+      "01": "Less than 1 month",
+      "02": "1 month to less than 2 months",
+      "03": "2 months to less than 6 months",
+      "04": "6 months to less than 1 year",
+      "05": "1 year or more",
+      "06": "Never",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "CCC_35": {
+    "description": "Diabetes - currently takes insulin",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_40": {
+    "description": "Diabetes - took pills to control blood sugar - 1 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_45": {
+    "description": "Has been diagnosed with cancer - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_50": {
+    "description": "Cancer - age ﬁrst diagnosed",
+    "categories": {
+      "097": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CCC_55": {
+    "description": "Cancer - received treatment - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_60A": {
+    "description": "Type of cancer - breast",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_65A": {
+    "description": "Type of cancer - prostate",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_60B": {
+    "description": "Type of cancer - colorectal",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_60C": {
+    "description": "Type of cancer - skin - melanoma",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_60D": {
+    "description": "Type of cancer - skin - non-melanoma",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_60E": {
+    "description": "Type of cancer - ovarian",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_60F": {
+    "description": "Type of cancer - cervical",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_60G": {
+    "description": "Type of cancer - uterine",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_60H": {
+    "description": "Type of cancer - lung",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_60I": {
+    "description": "Type of cancer - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_65": {
+    "description": "Has heart disease",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_70": {
+    "description": "Heart disease - age ﬁrst diagnosed",
+    "categories": {
+      "097": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CCC_75": {
+    "description": "Has had a heart attack - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_80": {
+    "description": "Has high blood pressure",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_85": {
+    "description": "High blood pressure - took medication - 1 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_90": {
+    "description": "Has had high blood cholesterol - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_95": {
+    "description": "Suffers from the effects of a stroke",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_100": {
+    "description": "Has osteoporosis",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_105": {
+    "description": "Has ﬁbromyalgia",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_110": {
+    "description": "Fibromyalgia - age ﬁrst symptoms",
+    "categories": {
+      "086": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CCC_115": {
+    "description": "Fibromyalgia - age ﬁrst diagnosed",
+    "categories": {
+      "092": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CCC_120": {
+    "description": "Has arthritis (e.g. osteoarthritis, rheumatoid arthritis, gout)",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_125": {
+    "description": "Has back problems (excluding scoliosis, ﬁbromyalgia and arthritis)",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_130": {
+    "description": "Back problems - diagnosed by health professional",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCC_135": {
+    "description": "Has a mood disorder (depression, bipolar, mania, dysthymia)",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_140": {
+    "description": "Has an anxiety disorder",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_145": {
+    "description": "Has a post-traumatic stress disorder",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_150": {
+    "description": "Has an attention deﬁcit/hyperactivity disorder",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_155": {
+    "description": "Has schizophrenia or other form of psychosis",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCC_160": {
+    "description": "Has an eating disorder",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CCCDVDIA": {
+    "description": "Diabetes type - 12 mo - (D)",
+    "categories": {
+      "1": "Type 1 diabetes",
+      "2": "Type 2 diabetes",
+      "3": "Gestational diabetes",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOCC1": {
+    "description": "Chronic conditions (1) - Inclusion Flag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "CC1_150": {
+    "description": "Has Alzheimer’s Disease / other dementia",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CC1_155": {
+    "description": "Has chronic fatigue syndrome",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CC1_160": {
+    "description": "Chronic fatigue syndrome - age ﬁrst symptoms",
+    "categories": {
+      "082": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CC1_165": {
+    "description": "Chronic fatigue syndrome - age ﬁrst diagnosed",
+    "categories": {
+      "079": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CC1_170": {
+    "description": "Has multiple chemical sensitivities (MCS)",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CC1_175": {
+    "description": "Multiple chemical sensitivities - age ﬁrst symptoms",
+    "categories": {
+      "085": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CC1_180": {
+    "description": "Multiple chemical sensitivities- age ﬁrst diagnosed",
+    "categories": {
+      "085": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "DOHUI": {
+    "description": "Health utility index - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "HUI_005": {
+    "description": "Vision - read newsprint without glasses / contacts",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HUI_010": {
+    "description": "Vision - read newsprint with glasses / contacts",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_015": {
+    "description": "Vision - able to see",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_030": {
+    "description": "Hearing - hear in a group without hearing aid",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HUI_035": {
+    "description": "Hearing - hear in a group with hearing aid",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_040": {
+    "description": "Hearing - able to hear",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_055": {
+    "description": "Speech - completely understood by strangers",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HUI_060": {
+    "description": "Speech - partially understood by strangers",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_065": {
+    "description": "Speech - completely understood by acquaintances",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_070": {
+    "description": "Speech - partially understood by acquaintances",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_075": {
+    "description": "Mobility - walk around neighbourhood without difﬁculty and support",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HUI_080": {
+    "description": "Mobility - able to walk",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_085": {
+    "description": "Mobility - requires mechanical support to walk",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_090": {
+    "description": "Mobility - requires help of person to walk",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_095": {
+    "description": "Mobility - requires wheelchair to get around",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_100": {
+    "description": "Mobility - requires wheelchair - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Often",
+      "3": "Sometimes",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_105": {
+    "description": "Mobility - requires help of person to get around in wheelchair",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_110": {
+    "description": "Dexterity - able to grasp and handle small objects",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HUI_115": {
+    "description": "Dexterity - limitations in hands / ﬁngers - requires help",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_120": {
+    "description": "Dexterity - requires help of person with tasks",
+    "categories": {
+      "1": "Some tasks",
+      "2": "Most tasks",
+      "3": "Almost all tasks",
+      "4": "All tasks",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_125": {
+    "description": "Dexterity - limitations hands / ﬁngers - requires special equipment",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_130": {
+    "description": "Emotion - self-perceived level of happiness",
+    "categories": {
+      "1": "Happy and interested in life",
+      "2": "Somewhat happy",
+      "3": "Somewhat unhappy",
+      "4": "Unhappy with little interest in life",
+      "5": "So unhappy, that life is not worthwhile",
+      "9": "Not stated"
+    }
+  },
+  "HUI_135": {
+    "description": "Cognition - ability to remember things",
+    "categories": {
+      "1": "Able to remember most things",
+      "2": "Somewhat forgetful",
+      "3": "Very forgetful",
+      "4": "Unable to remember anything at all",
+      "9": "Not stated"
+    }
+  },
+  "HUI_140": {
+    "description": "Cognition - ability to think and solve problems",
+    "categories": {
+      "1": "Able to think clearly and solve problems",
+      "2": "Having a little difﬁculty",
+      "3": "Having some difﬁculty",
+      "4": "Having a great deal of difﬁculty",
+      "5": "Unable to think or solve problems",
+      "9": "Not stated"
+    }
+  },
+  "HUI_145": {
+    "description": "Pain / discomfort - usually free of pain / discomfort",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HUI_150": {
+    "description": "Pain / discomfort - usual intensity",
+    "categories": {
+      "1": "Mild",
+      "2": "Moderate",
+      "3": "Severe",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUI_155": {
+    "description": "Pain / discomfort - prevented activities - frequency",
+    "categories": {
+      "1": "None",
+      "2": "A few",
+      "3": "Some",
+      "4": "Most",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUIVIS1": {
+    "description": "Vision - ability to recognize a friend without corrective lenses - (D)",
+    "categories": {
+      "1": "Able to recognize a friend without lenses",
+      "2": "Unable to recognize a friend without lenses",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUIVIS2": {
+    "description": "Vision - ability to recognize a friend with corrective lenses - (D)",
+    "categories": {
+      "1": "Able to recognize a friend with lenses",
+      "2": "Unable to recognize a friend with lenses",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUIDVVIS": {
+    "description": "Vision health status - (D)",
+    "categories": {
+      "01": "Able to see well",
+      "02": "Able to see well with lenses",
+      "03": "Unable to see distance, even with lenses",
+      "04": "Unable to see close, even with lenses",
+      "06": "Unable to see at all",
+      "99": "Not stated"
+    }
+  },
+  "HUIHEAR1": {
+    "description": "Hearing - hear in a quiet room without hearing aid - (D)",
+    "categories": {
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUIHEAR2": {
+    "description": "Hearing - hear in a quiet room with hearing aid - (D)",
+    "categories": {
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HUIDVHER": {
+    "description": "Hearing health status - (D)",
+    "categories": {
+      "01": "Can hear group/individual without aid",
+      "06": "Unable to hear at all",
+      "99": "Not stated"
+    }
+  },
+  "HUIDVSPE": {
+    "description": "Speech health status - (D)",
+    "categories": {
+      "1": "Able to be well understood",
+      "3": "Partially understood by acquaintances",
+      "4": "Unable to be understood by strangers",
+      "5": "Unable to be understood",
+      "9": "Not stated"
+    }
+  },
+  "HUIDVMOB": {
+    "description": "Mobility health status - (D)",
+    "categories": {
+      "01": "Able to walk without difﬁculty",
+      "02": "Limitations walking - no aid required",
+      "04": "Limitations walking - requires wheelchair",
+      "06": "Cannot walk at all",
+      "99": "Not stated"
+    }
+  },
+  "HUIDVDEX": {
+    "description": "Dexterity health status - (D)",
+    "categories": {
+      "01": "Full use of hands and ﬁngers",
+      "02": "Dexterity limitations, no help required",
+      "99": "Not stated"
+    }
+  },
+  "HUIDVEMO": {
+    "description": "Emotion health status - (D)",
+    "categories": {
+      "1": "Happy and interested in life",
+      "2": "Somewhat happy",
+      "3": "Somewhat unhappy",
+      "4": "Unhappy with little interest in life",
+      "5": "So unhappy, that life is not worthwhile",
+      "9": "Not stated"
+    }
+  },
+  "HUIDVCOG": {
+    "description": "Cognition health status - (D)",
+    "categories": {
+      "01": "Able to remember and think",
+      "03": "Somewhat forgetful and able to think",
+      "06": "Unable to remember and/or unable to think",
+      "99": "Not stated"
+    }
+  },
+  "HUIDVPAD": {
+    "description": "Pain health status - (D)",
+    "categories": {
+      "1": "No pain or discomfort",
+      "2": "Pain does not prevent activity",
+      "3": "Pain prevents a few activities",
+      "4": "Pain prevents some activities",
+      "5": "Pain prevents most activities",
+      "9": "Not stated"
+    }
+  },
+  "HUIDVHSI": {
+    "description": "Pain health status - (D)",
+    "categories": {}
+  },
+  "LTC_10": {
+    "description": "Self-identiﬁes as a person with a disability",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "DOADL": {
+    "description": "Activity of daily living - Inclusion Flag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "ADL_05": {
+    "description": "Difﬁculty common activities - preparing meals",
+    "categories": {
+      "1": "No difﬁculty",
+      "2": "Some difﬁculty, but no help required",
+      "4": "Cannot do at all",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ADL_10": {
+    "description": "Difﬁculty common activities - running errands",
+    "categories": {
+      "1": "No difﬁculty",
+      "2": "Some difﬁculty, but no help required",
+      "4": "Cannot do at all",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ADL_15": {
+    "description": "Difﬁculty common activities - everyday housework",
+    "categories": {
+      "1": "No difﬁculty",
+      "2": "Some difﬁculty, but no help required",
+      "4": "Cannot do at all",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ADL_20": {
+    "description": "Difﬁculty common activities - personal care",
+    "categories": {
+      "1": "No difﬁculty",
+      "2": "Some difﬁculty, but no help required",
+      "4": "Cannot do at all",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ADL_25": {
+    "description": "Difﬁculty common activities - moving inside the house",
+    "categories": {
+      "1": "No difﬁculty",
+      "2": "Some difﬁculty, but no help required",
+      "4": "Cannot do at all",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ADL_30": {
+    "description": "Difﬁculty common activities - personal ﬁnances",
+    "categories": {
+      "1": "No difﬁculty",
+      "2": "Some difﬁculty, but no help required",
+      "4": "Cannot do at all",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ADLDVIHS": {
+    "description": "Instrumental activity of daily living index - home support - (D)",
+    "categories": {
+      "12": "Score for daily activities - home support 00 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ADLDVIPC": {
+    "description": "Instrumental activity of daily living index - personal care - (D)",
+    "categories": {
+      "06": "mobility00 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "DOFGU": {
+    "description": "Canada’s Food Guide use - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "FGU_005": {
+    "description": "Has heard of Canada’s Food Guide",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "FGU_010": {
+    "description": "Has used information from Canada’s Food Guide",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FGU_015A": {
+    "description": "Used information",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FGU_015B": {
+    "description": "Used information- To determine how much to eat every day",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FGU_015C": {
+    "description": "Used information",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FGU_015D": {
+    "description": "Used information",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FGU_015E": {
+    "description": "Used information",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOUPE": {
+    "description": "Use of protective equipment - Inclusion Flag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "UPE_05": {
+    "description": "Bicycling - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_10": {
+    "description": "Bicycling - helmet - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_15": {
+    "description": "Rollerblading - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_20": {
+    "description": "Rollerblading - helmet - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_25": {
+    "description": "Rollerblading - wrist protectors - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_30": {
+    "description": "Rollerblading - elbow pads - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_35": {
+    "description": "Rollerblading - knee pads - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_40A": {
+    "description": "Downhill skiing - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_45": {
+    "description": "Downhill skiing - helmet - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_40B": {
+    "description": "Snowboarding - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_50": {
+    "description": "Snowboarding - helmet - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_55": {
+    "description": "Snowboarding - wrist protectors - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_60A": {
+    "description": "Skateboarding - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_65": {
+    "description": "Skateboarding - helmet - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_70": {
+    "description": "Skateboarding - wrist protectors - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_75": {
+    "description": "Skateboarding - elbow pads - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_80": {
+    "description": "Ice hockey - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "UPE_85": {
+    "description": "Ice hockey - mouth guard - frequency",
+    "categories": {
+      "1": "Always",
+      "2": "Most of the time",
+      "3": "Rarely",
+      "4": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOOPA": {
+    "description": "Other physical activities - Inclusion ﬂag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "OPA_10": {
+    "description": "Strenght-buidling exercises - num of days - 7 d",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "OPA_15": {
+    "description": "Flexibility exercises - num of days - 7 d",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "OPA_20": {
+    "description": "Vigorous-intensity exercises - num of days - 7 d",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "DOCSS": {
+    "description": "Current smoking status - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "CSS_05": {
+    "description": "Smoked a whole cigarette - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CSS_10": {
+    "description": "Smoked ﬁrst whole cigarette - age",
+    "categories": {
+      "073": "Age in years 001 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CSS_15": {
+    "description": "Smoked more than 100 cigarettes - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CSS_20": {
+    "description": "Smoked - frequency - 30 d",
+    "categories": {
+      "1": "Every day",
+      "2": "Less than 1X / day, but at least 1X / week",
+      "4": "Not at all",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CSS_25": {
+    "description": "Num of cigarettes smoked daily (daily smoker)",
+    "categories": {
+      "099": "Number of cigarettes 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CSS_35": {
+    "description": "Smoked 1 cigarette or more (occasional smoker) - Num of days - 30 d",
+    "categories": {
+      "31": "Number of days 00 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "CSS_30": {
+    "description": "Num of cigarettes smoked daily (occasional smoker)",
+    "categories": {
+      "050": "Number of cigarettes 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CSS_41": {
+    "description": "Stopped smoking for at least 24h - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOSPU": {
+    "description": "Smoking - past use - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "SPU_05": {
+    "description": "Smoked daily - lifetime (occasional / former smoker)",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_10": {
+    "description": "Stopped smoking - when (former occasional smoker)",
+    "categories": {
+      "1": "Less than one year ago",
+      "2": "1 year to less than 2 years ago",
+      "3": "2 years to less than 3 years ago",
+      "4": "3 or more years ago",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_15": {
+    "description": "Began smoking daily - age (daily / former daily smoker)",
+    "categories": {
+      "090": "Age in years 005 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "SPU_20": {
+    "description": "Num of cigarettes smoked daily (former daily smoker)",
+    "categories": {
+      "099": "Number of cigarettes 001 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "SPU_25": {
+    "description": "Stopped smoking daily - when (former daily smoker)",
+    "categories": {
+      "1": "Less than one year ago",
+      "2": "1 year to less than 2 years ago",
+      "3": "2 years to less than 3 years ago",
+      "4": "3 or more years ago",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_30": {
+    "description": "Quit smoking completely - (former daily smoker)",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_35": {
+    "description": "Quit smoking completely - when (former daily smoker)",
+    "categories": {
+      "1": "Less than one year ago",
+      "2": "1 year to less than 2 years ago",
+      "3": "2 years to less than 3 years ago",
+      "4": "3 or more years ago",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_40A": {
+    "description": "Help to quit smoking - nicotine replacement products - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_40I": {
+    "description": "Help to quit smoking - tobacco-free nicotine pouch - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_40B": {
+    "description": "Help to quit smoking - smoking cessation medications - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_40C": {
+    "description": "Help to quit smoking - internet-based program / app - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_40D": {
+    "description": "Help to quit smoking - vaping device / e-cigarette - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_40E": {
+    "description": "Help to quit smoking - deal with friend / family - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_40F": {
+    "description": "Help to quit smoking - reduce number of cigarettes - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_40G": {
+    "description": "Help to quit smoking - on their own - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_40H": {
+    "description": "Help to quit smoking - other - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_45A": {
+    "description": "Help to quit smoking completely - nicotine replacement prod - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_45I": {
+    "description": "Help to quit smoking completely - tobacco-free pouch - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_45B": {
+    "description": "Help to quit smoking completely - smoking cessation meds - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_45C": {
+    "description": "Help to quit smoking completely - internet-based program / app - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_45D": {
+    "description": "Help to quit smoking completely - vaping device / e-cigarette - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_45E": {
+    "description": "Help to quit smoking completely - deal with friend / family - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_45F": {
+    "description": "Help to quit smoking completely - reduce number of cigarettes - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_45G": {
+    "description": "Help to quit smoking completely - on their own - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPU_45H": {
+    "description": "Help to quit smoking completely - other - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SMKDVSTY": {
+    "description": "Smoking status (type 2) - traditional deﬁnition - (D)",
+    "categories": {
+      "01": "Current daily smoker",
+      "02": "Current occasional smoker",
+      "03": "Former daily smoker (non-smoker now)",
+      "05": "Experimental smoker (>1 cig, <100 cig)",
+      "99": "Not stated"
+    }
+  },
+  "SMKDVYCS": {
+    "description": "Num of years respondent has smoked daily - (D)",
+    "categories": {
+      "074": "daily000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "DOECV": {
+    "description": "Electronic cigarettes and vaping - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "ECV_05": {
+    "description": "Tried e-cigarette / vape - life",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "ECV_10": {
+    "description": "Tried e-cigarette / vape - age",
+    "categories": {
+      "085": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "ECV_15": {
+    "description": "Used e-cigarette / vape - freq - 30 d",
+    "categories": {
+      "1": "Every day",
+      "2": "At least once a week",
+      "3": "At least once in the past month",
+      "4": "Not at all",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ECV_21": {
+    "description": "Used e-cigarette / vape - last time - content",
+    "categories": {
+      "1": "E-cigarette / vaping device - with nicotine",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ECV_25A": {
+    "description": "Vaped - with nicotine - num of days - 30 d",
+    "categories": {
+      "30": "Number of days 01 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ECV_25B": {
+    "description": "Vaped - without nicotine - num of days - 30 d",
+    "categories": {
+      "30": "Number of days 01 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ECV_25C": {
+    "description": "Vaped - unknown content - num of days - 30 d",
+    "categories": {
+      "30": "Number of days 01 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ECV_30": {
+    "description": "Tried ﬁrst - e-cigarette / vape or cigarette",
+    "categories": {
+      "1": "E-cigarette or vaping device",
+      "2": "Cigarette",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ECVDVSMK": {
+    "description": "E-Cigarette / vaping device and cigarette use - (D)",
+    "categories": {
+      "1": "Tried e-cigarette/vaping device ﬁrst",
+      "2": "Tried cigarette ﬁrst",
+      "3": "Only tried e-cigarette/vaping device",
+      "4": "Only tried cigarette",
+      "9": "Not stated"
+    }
+  },
+  "DOALC": {
+    "description": "Alcohol use - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "ALC_05": {
+    "description": "Had a drink - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "ALC_10": {
+    "description": "Drank alcohol - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ALC_15": {
+    "description": "Drank alcohol - frequency - 12 mo",
+    "categories": {
+      "01": "Less than once a month",
+      "02": "Once a month",
+      "03": "2 to 3 times a month",
+      "04": "Once a week",
+      "05": "2 to 3 times a week",
+      "06": "4 to 5 times a week",
+      "07": "Daily or almost daily",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ALC_20": {
+    "description": "Drank 5+ / 4+ drinks one occasion - frequency - 12 mo",
+    "categories": {
+      "01": "Never",
+      "02": "Less than once a month",
+      "03": "Once a month",
+      "04": "2 to 3 times a month",
+      "05": "Once a week",
+      "06": "More than once a week",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ALCDVTTM": {
+    "description": "Type of drinker - 12 mo - (D)",
+    "categories": {
+      "1": "Regular drinker",
+      "2": "Occasional drinker",
+      "3": "Did not drink in the last 12 months",
+      "9": "Not stated"
+    }
+  },
+  "DOALW": {
+    "description": "Alcohol use - past week - Inclusion Flag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "ALW_05": {
+    "description": "Drank alcohol - 7 d",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "ALW_10": {
+    "description": "Number of drinks - yesterday",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "08": "8",
+      "09": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12",
+      "14": "14",
+      "15": "15",
+      "16": "16",
+      "18": "18",
+      "19": "19",
+      "20": "20",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ALW_15": {
+    "description": "Number of drinks - 2 days ago",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "08": "8",
+      "09": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12",
+      "15": "15",
+      "18": "18",
+      "20": "20",
+      "24": "24",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ALW_20": {
+    "description": "Number of drinks - 3 days ago",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "08": "8",
+      "09": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12",
+      "13": "13",
+      "14": "14",
+      "15": "15",
+      "20": "20",
+      "24": "24",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ALW_25": {
+    "description": "Number of drinks - 4 days ago",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "08": "8",
+      "09": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12",
+      "13": "13",
+      "15": "15",
+      "16": "16",
+      "18": "18",
+      "20": "20",
+      "24": "24",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ALW_30": {
+    "description": "Number of drinks - 5 days ago",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "08": "8",
+      "09": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12",
+      "13": "13",
+      "14": "14",
+      "15": "15",
+      "16": "16",
+      "17": "17",
+      "18": "18",
+      "20": "20",
+      "24": "24",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ALW_35": {
+    "description": "Number of drinks - 6 days ago",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "08": "8",
+      "09": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12",
+      "13": "13",
+      "14": "14",
+      "15": "15",
+      "16": "16",
+      "18": "18",
+      "20": "20",
+      "24": "24",
+      "26": "26",
+      "50": "50 or more",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ALW_40": {
+    "description": "Number of drinks - 7 days ago",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "08": "8",
+      "09": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12",
+      "13": "13",
+      "14": "14",
+      "15": "15",
+      "16": "16",
+      "18": "18",
+      "20": "20",
+      "24": "24",
+      "26": "26",
+      "48": "48",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "ALWDVWKY": {
+    "description": "Alcohol weekly consumption - (D)",
+    "categories": {
+      "000": "Has not had a drink in past week",
+      "182": "Number of drinks consumed in past week 001 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "ALWDVDL Y": {
+    "description": "Average daily alcohol consumption - (D)",
+    "categories": {
+      "026": "Average daily alcohol consumption 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "ALWDVRSK": {
+    "description": "Low risk drinking guideline adherence - (D)",
+    "categories": {
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOCAN": {
+    "description": "Cannabis use - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "CAN_05": {
+    "description": "Used cannabis - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CAN_05A": {
+    "description": "Used cannabis - once or more - lifetime",
+    "categories": {
+      "1": "Just once",
+      "2": "More than once",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_05B": {
+    "description": "Used cannabis - ﬁrst time - age",
+    "categories": {
+      "102": "Age in years 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CAN_05C": {
+    "description": "Used cannabis - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "CAN_10": {
+    "description": "Used cannabis - frequency - 12 mo",
+    "categories": {
+      "1": "Less than once a month",
+      "2": "1 to 3 times a month",
+      "3": "Once a week",
+      "4": "More than once a week",
+      "5": "Daily or almost daily",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_15A": {
+    "description": "Used cannabis - method - smoked - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_15B": {
+    "description": "Used cannabis - method - vaporized - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_15C": {
+    "description": "Used cannabis - method - swallowed - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_15D": {
+    "description": "Used cannabis - method - absorbed - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_15E": {
+    "description": "Used cannabis - method - other - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_15BA": {
+    "description": "Used cannabis - vaporized - dried ﬂower, leaf",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_15BB": {
+    "description": "Used cannabis - vaporized - cannabis liquid",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_15BC": {
+    "description": "Used cannabis - vaporized - cannabis solid",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_20": {
+    "description": "Used cannabis - method used most often - 12 mo",
+    "categories": {
+      "1": "Smoked",
+      "2": "Vaporized",
+      "3": "Swallowed",
+      "4": "Absorbed",
+      "5": "Other method",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_25A": {
+    "description": "Used cannabis - product - Dried ﬂower or leaf - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_25B": {
+    "description": "Used cannabis - product - hashish - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_25C": {
+    "description": "Used cannabis - product - cannabis oil - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_25D": {
+    "description": "Used cannabis - product - cannabis vape pens / cartridges - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_25E": {
+    "description": "Used cannabis - product - cannabis concentrates - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_25F": {
+    "description": "Used cannabis - product - cannabis edible food products - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_25G": {
+    "description": "Used cannabis - product - cannabis beverages - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_25H": {
+    "description": "Used cannabis - product - topicals - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_25I": {
+    "description": "Used cannabis - product - other - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_30": {
+    "description": "Used cannabis - purpose - 12 mo",
+    "categories": {
+      "1": "Non-medical purposes only",
+      "2": "Medical purposes only",
+      "3": "Both medical and non-medical purposes",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35A": {
+    "description": "Used cannabis - medical purpose - pain - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35B": {
+    "description": "Used cannabis - medical purpose - nausea vomiting - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35C": {
+    "description": "Used cannabis - medical purpose - lack of appetite - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35D": {
+    "description": "Used cannabis - medical purpose - headaches / migraines - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35E": {
+    "description": "Used cannabis - medical purpose - muscle spasms / seizures - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35F": {
+    "description": "Used cannabis - medical purpose - anxiety / depression - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35G": {
+    "description": "Used cannabis - medical purpose - symptoms of PTSD - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35H": {
+    "description": "Used cannabis - medical purpose - problems sleeping - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35I": {
+    "description": "Used cannabis - purpose - opioid withdrawal symptoms - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_35J": {
+    "description": "Used cannabis - medical purpose - other - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_40": {
+    "description": "Used cannabis - has a medical document for medical purposes use",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CAN_45": {
+    "description": "Used cannabis - num of days - 30 d",
+    "categories": {
+      "01": "Never",
+      "02": "1 day",
+      "03": "2 or 3 days",
+      "04": "1 or 2 days per week",
+      "05": "3 or 4 days per week",
+      "06": "5 or 6 days per week",
+      "07": "Daily",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "CAN_50": {
+    "description": "Used cannabis - daily - age",
+    "categories": {
+      "102": "Age in years 010 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CANDVF12": {
+    "description": "Cannabis - frequency of use - 12 mo - (D)",
+    "categories": {
+      "01": "Has not used cannabis - 12 mo",
+      "03": "Has used cannabis 1 to 3 times a month",
+      "04": "Has used cannabis once a week",
+      "06": "Has used cannabis daily / almost daily",
+      "99": "Not stated"
+    }
+  },
+  "CANDVLEO": {
+    "description": "Cannabis use - lifetime (excluding \"just once\") - (D)",
+    "categories": {
+      "9": "Not stated"
+    }
+  },
+  "CANDVLIO": {
+    "description": "Cannabis use - lifetime (including \"just once\") - (D)",
+    "categories": {
+      "1": "Has used cannabis - lifetime",
+      "2": "Has never used cannabis - lifetime",
+      "9": "Not stated"
+    }
+  },
+  "CANDVLS3": {
+    "description": "Cannabis user status - lifetime - 3 categories - (D)",
+    "categories": {
+      "1": "Non user",
+      "2": "Past user",
+      "3": "Current user",
+      "9": "Not stated"
+    }
+  },
+  "CANDVLS5": {
+    "description": "Cannabis user status - lifetime - 5 categories - (D)",
+    "categories": {
+      "1": "Has never used cannabis - lifetime",
+      "9": "Not stated"
+    }
+  },
+  "CANDVYEO": {
+    "description": "Cannabis use - 12 mo (excluding \"just once\") - (D)",
+    "categories": {
+      "1": "Has used cannabis - 12 mo",
+      "9": "Not stated"
+    }
+  },
+  "CANDVYIO": {
+    "description": "Cannabis use - 12 mo (including \"just once\") - (D)",
+    "categories": {
+      "1": "Has used cannabis - 12 mo",
+      "2": "Has not used cannabis - 12 mo",
+      "9": "Not stated"
+    }
+  },
+  "DOMEX": {
+    "description": "Maternal experience - Inclusion ﬂag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "MEX_05": {
+    "description": "Taking vitamin supplement containing folic acid",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_10": {
+    "description": "Given birth - past ﬁve years",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_12": {
+    "description": "Last pregnancy - single or multiple birth",
+    "categories": {
+      "1": "Single birth",
+      "2": "Multiple births",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_20": {
+    "description": "Baby’s date of birth - day",
+    "categories": {
+      "31": "Day 01 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "MEX_25": {
+    "description": "Baby’s date of birth - month",
+    "categories": {
+      "01": "January",
+      "02": "February",
+      "03": "March",
+      "04": "April",
+      "05": "May",
+      "06": "June",
+      "07": "July",
+      "08": "August",
+      "09": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "MEX_30": {
+    "description": "Baby’s date of birth - year",
+    "categories": {}
+  },
+  "MEX_40": {
+    "description": "Folic acid supplements during pregnancy - 3 months before",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "3": "Don’t know",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_50": {
+    "description": "Folic acid supplements during pregnancy - 3 ﬁrst months",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "3": "Don’t know",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_65": {
+    "description": "Iron supplements during pregnancy",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "3": "Don’t know",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_70": {
+    "description": "Weight before pregnancy",
+    "categories": {
+      "340": "Weight 006 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "MEX_75": {
+    "description": "Weight before pregnancy - pounds or kilograms",
+    "categories": {
+      "1": "Pounds",
+      "2": "Kilograms",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_80": {
+    "description": "Weight gained during pregnancy",
+    "categories": {
+      "199": "Weight gained -50 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "MEX_85": {
+    "description": "Weight gained during pregnancy - pounds or kilograms",
+    "categories": {
+      "1": "Pounds",
+      "2": "Kilograms",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_90": {
+    "description": "Co-sleeping with baby less than 12 mo - frequency",
+    "categories": {
+      "1": "Every day or almost every day",
+      "2": "Occasionally",
+      "3": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_100": {
+    "description": "Breasfed last baby",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_105": {
+    "description": "Did not breastfeed last baby - reason",
+    "categories": {
+      "1": "Did not want to breastfeed",
+      "2": "No support or information to breastfeed",
+      "3": "Medical condition",
+      "4": "Other",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_110": {
+    "description": "Still breastfeeding last baby",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_115A": {
+    "description": "Stopped breastfeeding - baby’s age",
+    "categories": {
+      "64": "Age 00 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "MEX_115B": {
+    "description": "Stopped breastfeeding - baby’s age - time period",
+    "categories": {
+      "1": "Days",
+      "2": "Weeks",
+      "3": "Months",
+      "4": "Y ears",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_120": {
+    "description": "Stopped breastfeeding - reason",
+    "categories": {
+      "01": "Not enough breast milk",
+      "02": "Child weaned themselves",
+      "03": "Planned to stop at this time",
+      "04": "Difﬁculty with breastfeeding",
+      "05": "Medical condition",
+      "06": "Other",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "MEX_125": {
+    "description": "Vitamin D supplement - baby less than 12 mo",
+    "categories": {
+      "1": "Every day or almost every day",
+      "2": "Occasionally",
+      "3": "Never",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_150": {
+    "description": "Introduction to liquids - during breastfeeding",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_155": {
+    "description": "Introduction to liquids - baby’s age",
+    "categories": {
+      "24": "Age 00 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "MEX_160": {
+    "description": "Introduction to liquids - baby’s age - time period",
+    "categories": {
+      "1": "Days",
+      "2": "Weeks",
+      "3": "Months",
+      "4": "Y ears",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_170": {
+    "description": "Introduction to solid food",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_175": {
+    "description": "Introduction to solid food - baby’s age",
+    "categories": {
+      "24": "Age 01 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "MEX_180": {
+    "description": "Introduction to solid food - baby’s age - time period",
+    "categories": {
+      "1": "Days",
+      "2": "Weeks",
+      "3": "Months",
+      "4": "Y ears",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_190": {
+    "description": "Introduction to solid food - ﬁrst solid food",
+    "categories": {
+      "1": "Infant cereals",
+      "2": "Fruits or vegetables",
+      "3": "Meat and meat alternatives",
+      "4": "Other",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEX_195": {
+    "description": "Introduction to liquids and solid food - reason",
+    "categories": {
+      "01": "Not enough breast milk",
+      "02": "Baby was ready",
+      "03": "Difﬁculty with breastfeeding",
+      "04": "Medical conditions",
+      "05": "Advice from health professional or family",
+      "06": "Returned to work or school",
+      "07": "Other",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "MEXDVBM6": {
+    "description": "Exclusively breastfed for 6 months (or more) - (D)",
+    "categories": {
+      "3": "Has not breastfed her last baby at all",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MEXDVLBM": {
+    "description": "Length of exclusive breastfeeding - (D)",
+    "categories": {
+      "01": "Less than 1 week",
+      "02": "1 week to less than 1 month",
+      "03": "1 month to less than 2 months",
+      "04": "2 months to less than 3 months",
+      "05": "3 months to less than 4 months",
+      "06": "4 months to less than 5 months",
+      "07": "5 months to less than 6 months",
+      "08": "6 months or more",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "MEXDVWBK": {
+    "description": "Weight before pregnancy (in kilograms) - (D)",
+    "categories": {}
+  },
+  "MEXDVWGK": {
+    "description": "Weight gained during pregnancy (in kilograms) - (D)",
+    "categories": {}
+  },
+  "DOPAP": {
+    "description": "Pap smear test - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "PAP_005": {
+    "description": "Had a Pap smear test - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_010": {
+    "description": "Pap smear test - last time",
+    "categories": {
+      "1": "Less than 1 year to 1 year ago",
+      "2": "More than 1 year to 2 years ago",
+      "3": "More than 2 years to 3 years ago",
+      "4": "More than 3 years to 5 years ago",
+      "5": "More than 5 years ago",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_015A": {
+    "description": "No Pap smear test - 3 yrs - lack of time",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_015B": {
+    "description": "No Pap smear test - 3 yrs - respondent did not think was necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_015C": {
+    "description": "No Pap smear test - 3 yrs - doctor did not think was necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_015D": {
+    "description": "No Pap smear test - 3 yrs - fear / discomfort",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_015E": {
+    "description": "No Pap smear test - 3 yrs - no health care providerr",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_015F": {
+    "description": "No Pap smear test - 3 yrs - hysterectomy",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_015G": {
+    "description": "No Pap smear test - 3 yrs - did not know it existed",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_015H": {
+    "description": "No Pap smear test - 3 yrs - had HPV Test instead",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_015I": {
+    "description": "No Pap smear test - 3 yrs - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PAP_020": {
+    "description": "Pap smear test - frequency",
+    "categories": {
+      "01": "It was the ﬁrst time",
+      "02": "More than once a year",
+      "04": "Every 3 years",
+      "05": "Less often than every 3 years",
+      "06": "No ﬁxed frequency",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "PAP_025": {
+    "description": "Had a HPV test - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "3": "Don’t know",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOMAM": {
+    "description": "Mammography- Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "MAM_005": {
+    "description": "Had a mammogram - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_010": {
+    "description": "Mammogram - last time",
+    "categories": {
+      "1": "Less than 1 year to 1 year ago",
+      "2": "More than 1 year to 2 years ago",
+      "3": "More than 2 years to 3 years ago",
+      "4": "More than 3 years to 5 years ago",
+      "5": "More than 5 years ago",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_015A": {
+    "description": "Reasons for having last mammogram- Family history of breast cancer",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_015B": {
+    "description": "Reasons for having last mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_015C": {
+    "description": "Reasons for having last mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_015D": {
+    "description": "Reasons for having last mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_015E": {
+    "description": "Reasons for having last mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_015F": {
+    "description": "Reasons for having last mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_015G": {
+    "description": "Reasons for having last mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_015H": {
+    "description": "Reasons for having last mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_020A": {
+    "description": "Reasons for not having mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_020B": {
+    "description": "Reasons for not having mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_020C": {
+    "description": "Reasons for not having mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_020D": {
+    "description": "Reasons for not having mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_020E": {
+    "description": "Reasons for not having mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_020F": {
+    "description": "Reasons for not having mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_020G": {
+    "description": "Reasons for not having mammogram",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "MAM_025": {
+    "description": "Mammogram - frequency",
+    "categories": {
+      "01": "It was the ﬁrst time",
+      "02": "More than once a year",
+      "04": "Every 3 years",
+      "05": "Less often than every 3 years",
+      "06": "No ﬁxed frequency",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "DOCCT": {
+    "description": "Colorectal cancer testing - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "CCT_005": {
+    "description": "Had fecal test - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_010": {
+    "description": "Fecal test - last time",
+    "categories": {
+      "1": "6 months ago or less",
+      "2": "More than 6 months to 1 year ago",
+      "3": "More than 1 year to 2 years ago",
+      "4": "More than 2 years to 5 years ago",
+      "5": "More than 5 years ago",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_015A": {
+    "description": "No fecal test - 2 yrs - lack of time",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_015B": {
+    "description": "No fecal test - 2 yrs - no access to test",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_015C": {
+    "description": "No fecal test - 2 yrs - respondent did not think necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_015D": {
+    "description": "No fecal test - 2 yrs - health care provider did not think necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_015E": {
+    "description": "No fecal test - 2 yrs - fear / discomfort",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_015F": {
+    "description": "No fecal test - 2 yrs - no doctor",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_015G": {
+    "description": "No fecal test - 2 yrs - had colonoscopy / sigmoidoscopy",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_015H": {
+    "description": "No fecal test - 2 yrs - did not know it existed",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_015I": {
+    "description": "No fecal test - 2 yrs - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_020": {
+    "description": "Fecal test - frequency",
+    "categories": {
+      "01": "It was the ﬁrst time",
+      "02": "More than once a year",
+      "03": "Every year",
+      "04": "Every 2 years",
+      "05": "Less than every 2 years",
+      "06": "No ﬁxed frequency",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "CCT_025": {
+    "description": "Had sigmoidoscopy / colonoscopy - lifetime",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_030A": {
+    "description": "No sigmoidoscopy / colonoscopy - lack of time",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_030B": {
+    "description": "No sigmoidoscopy / colonoscopy - no access to test",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_030C": {
+    "description": "No sigmoidoscopy / colonoscopy - respondent did not think necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_030D": {
+    "description": "No sigmoidoscopy / colonoscopy - doctor did not think necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_030E": {
+    "description": "No sigmoidoscopy / colonoscopy - fear / discomfort",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_030F": {
+    "description": "No sigmoidoscopy / colonoscopy - no doctor",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_030G": {
+    "description": "No sigmoidoscopy / colonoscopy - had a fecal test",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_030H": {
+    "description": "No sigmoidoscopy / colonoscopy - did not know it existed",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_030I": {
+    "description": "No sigmoidoscopy / colonoscopy - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_035": {
+    "description": "Which test - sigmoidoscopy / colonoscopy / both",
+    "categories": {
+      "1": "Colonoscopy",
+      "2": "Sigmoidoscopy",
+      "3": "Both",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_040": {
+    "description": "Sigmoidoscopy - last time",
+    "categories": {
+      "1": "1 year ago or less",
+      "2": "More than 1 year to 2 years ago",
+      "3": "More than 2 years to 5 years ago",
+      "4": "More than 5 years to 10 years ago",
+      "5": "More than 10 years ago",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_045A": {
+    "description": "No sigmoidoscopy - 10 yrs - lack of time",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_045B": {
+    "description": "No sigmoidoscopy - 10 yrs - no access to test",
+    "categories": {
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_045C": {
+    "description": "No sigmoidoscopy - 10 yrs - respondent did not think necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_045D": {
+    "description": "No sigmoidoscopy - 10 yrs - doctor did not think necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_045E": {
+    "description": "No sigmoidoscopy - 10 yrs - fear / discomfort",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_045F": {
+    "description": "No sigmoidoscopy - 10 yrs - no doctor",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_045G": {
+    "description": "No sigmoidoscopy - 10 yrs - had a different colorectal test",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_045H": {
+    "description": "No sigmoidoscopy - 10 yrs - did not know it existed",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_045I": {
+    "description": "No sigmoidoscopy - 10 yrs - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_050": {
+    "description": "Sigmoidoscopy - frequency",
+    "categories": {
+      "1": "It was the ﬁrst time",
+      "2": "More than once every 5 years",
+      "3": "Every 5 years",
+      "4": "Less than once every 5 years",
+      "5": "No ﬁxed frequency",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_055": {
+    "description": "Colonoscopy - last time",
+    "categories": {
+      "1": "1 year ago or less",
+      "2": "More than 1 year to 2 years ago",
+      "3": "More than 2 years to 5 years ago",
+      "4": "More than 5 years to 10 years ago",
+      "5": "More than 10 years ago",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_065A": {
+    "description": "No colonoscopy - 10 yrs - lack of time",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_065B": {
+    "description": "No colonoscopy - 10 yrs - no access to test",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_065C": {
+    "description": "No colonoscopy - 10 yrs - respondent did not think necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_065D": {
+    "description": "No colonoscopy - 10 yrs - doctor did not think necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_065E": {
+    "description": "No colonoscopy - 10 yrs - fear / discomfort",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_065F": {
+    "description": "No colonoscopy - 10 yrs - no doctor",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_065G": {
+    "description": "No colonoscopy - 10 yrs - had a different colorectal test",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_065H": {
+    "description": "No colonoscopy - 10 yrs - did not know it existed",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_065I": {
+    "description": "No colonoscopy - 10 yrs - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_070": {
+    "description": "Colonoscopy - frequency",
+    "categories": {
+      "1": "It was the ﬁrst time",
+      "2": "More than once every 10 years",
+      "3": "Every 10 years",
+      "4": "Less than once every 10 years",
+      "5": "No ﬁxed frequency",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_075": {
+    "description": "Sigmoidoscopy / colonoscopy - follow-up of results of fecal test",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CCT_080": {
+    "description": "Sigmoidoscopy / colonoscopy - family history, IBD, colorectal cancer",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOFLU": {
+    "description": "Flu shots - Inclusion Flag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "FLU_05": {
+    "description": "Had seasonal ﬂu vaccine - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FLU_10": {
+    "description": "Last seasonal ﬂu vaccine - month",
+    "categories": {
+      "01": "January",
+      "02": "February",
+      "03": "March",
+      "04": "April",
+      "05": "May",
+      "06": "June",
+      "07": "July",
+      "08": "August",
+      "09": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "FLU_15": {
+    "description": "Last seasonal ﬂu vaccine - current / last year",
+    "categories": {
+      "1": "This year",
+      "2": "Last year",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FLU_20A": {
+    "description": "No ﬂu vaccine - 12 mo - didn’t think necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FLU_20B": {
+    "description": "No ﬂu vaccine - 12 mo - concern about side effects",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FLU_20C": {
+    "description": "No ﬂu vaccine - 12 mo - ﬂu is not that severe",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FLU_20D": {
+    "description": "No ﬂu vaccine - 12 mo - ﬂu vaccine doesn’t work",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FLU_20E": {
+    "description": "No ﬂu vaccine - 12 mo - previous bad reaction",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FLU_20F": {
+    "description": "No ﬂu vaccine - 12 mo - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOVAC": {
+    "description": "Vaccines - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "VAC_05": {
+    "description": "Vaccines - likeliness getting recommended vaccines - excl. COVID/ﬂu",
+    "categories": {
+      "1": "Very likely",
+      "2": "Somewhat likely",
+      "3": "Somewhat unlikely",
+      "4": "Very unlikely",
+      "9": "Not stated"
+    }
+  },
+  "DOCOVV": {
+    "description": "COVID-19 Vaccination - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "COVV_005": {
+    "description": "COVID-19 vaccine - Num doses received - since start of the pandemic",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "08": "8",
+      "09": "9",
+      "10": "10",
+      "11": "11",
+      "12": "12",
+      "13": "13",
+      "14": "14",
+      "15": "15",
+      "17": "17",
+      "20": "20",
+      "99": "Not stated"
+    }
+  },
+  "COVV_010": {
+    "description": "COVID-19 vaccine - most recent dose - year",
+    "categories": {}
+  },
+  "COVV_015": {
+    "description": "COVID-19 vaccine - most recent dose - month",
+    "categories": {
+      "01": "January",
+      "02": "February",
+      "03": "March",
+      "04": "April",
+      "05": "May",
+      "06": "June",
+      "07": "July",
+      "08": "August",
+      "09": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "COVV_020": {
+    "description": "COVID-19 vaccine - annual booster recommended - likely to get it",
+    "categories": {
+      "1": "Very likely",
+      "2": "Somewhat likely",
+      "3": "Somewhat unlikely",
+      "4": "Very unlikely",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOCOVI": {
+    "description": "COVID-19 infections & symptoms - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "COVI_005": {
+    "description": "Number of COVID-19 infections - since start of the pandemic",
+    "categories": {
+      "00": "0",
+      "01": "1",
+      "02": "2",
+      "03": "3",
+      "04": "4",
+      "05": "5",
+      "06": "6",
+      "07": "7",
+      "08": "8",
+      "09": "9",
+      "10": "10",
+      "12": "12",
+      "15": "15",
+      "16": "16",
+      "20": "20",
+      "99": "Not stated"
+    }
+  },
+  "COVI_10A": {
+    "description": "Most recent COVID-19 Infection - Y ear",
+    "categories": {}
+  },
+  "COVI_10B": {
+    "description": "Most recent COVID-19 Infection - Month",
+    "categories": {
+      "01": "January",
+      "02": "February",
+      "03": "March",
+      "04": "April",
+      "05": "May",
+      "06": "June",
+      "07": "July",
+      "08": "August",
+      "09": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "DOPCC": {
+    "description": "COVID-19 symptoms- Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "PCC_005A": {
+    "description": "Unexplained symptoms - 3 or more months after having COVID-19",
+    "categories": {
+      "2": "Y es",
+      "3": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PCC_005B": {
+    "description": "Experienced new unexplained symptoms lasting 2 mo - start pandemic",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PCC_010": {
+    "description": "Continue to experience unexplained symptoms",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PCC_015": {
+    "description": "Experienced new unexplained symptoms - duration - Num of months",
+    "categories": {
+      "60": "Number of months 00 -",
+      "96": "Valid skip",
+      "97": "Don’t know",
+      "99": "Not stated"
+    }
+  },
+  "PCC_020": {
+    "description": "Unexplained symptoms at their worst - limited daily activites - freq",
+    "categories": {
+      "1": "Never",
+      "2": "Rarely",
+      "3": "Sometimes",
+      "4": "Often",
+      "5": "Always",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PCC_025": {
+    "description": "Unexplained symptoms - have changed",
+    "categories": {
+      "1": "Improved",
+      "2": "Worsened",
+      "3": "Stayed the same",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOPSI": {
+    "description": "Post COVID-19 condition (long COVID) - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "PSI_005": {
+    "description": "Experienced post COVID-19 condition - start pandemic",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PSI_010": {
+    "description": "Has had post COVID-19 condition - since start pandemic",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOPMS": {
+    "description": "Positive Mental Health - Inclusion Flag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "PMS_05": {
+    "description": "Felt optimistic about the future",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_10": {
+    "description": "Felt useful",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_15": {
+    "description": "Felt relaxed",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_20": {
+    "description": "Felt interested in other people",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_25": {
+    "description": "Had energy to spare",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_30": {
+    "description": "Dealt well with problems",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_35": {
+    "description": "Have been thinking clearly",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_40": {
+    "description": "Felt good about self",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_45": {
+    "description": "Felt close to other people",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_50": {
+    "description": "Felt conﬁdent",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_55": {
+    "description": "Have been able to make up your own mind about things",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_60": {
+    "description": "Felt loved",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_65": {
+    "description": "Have been interested in new things",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMS_70": {
+    "description": "Felt cheerful",
+    "categories": {
+      "1": "None of the time",
+      "2": "Rarely",
+      "3": "Some of the time",
+      "4": "Often",
+      "5": "All of the time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PMSDVWES": {
+    "description": "Warwick-Edinburgh Mental Well-being scale - (D)",
+    "categories": {
+      "14": "14",
+      "16": "16",
+      "17": "17",
+      "18": "18",
+      "19": "19",
+      "20": "20",
+      "21": "21",
+      "22": "22",
+      "23": "23",
+      "24": "24",
+      "25": "25",
+      "26": "26",
+      "27": "27",
+      "28": "28",
+      "29": "29",
+      "30": "30",
+      "31": "31",
+      "32": "32",
+      "33": "33",
+      "34": "34",
+      "35": "35",
+      "36": "36",
+      "37": "37",
+      "38": "38",
+      "39": "39",
+      "40": "40",
+      "41": "41",
+      "42": "42",
+      "43": "43",
+      "44": "44",
+      "45": "45",
+      "46": "46",
+      "47": "47",
+      "48": "48",
+      "49": "49",
+      "50": "50",
+      "51": "51",
+      "52": "52",
+      "53": "53",
+      "54": "54",
+      "55": "55",
+      "56": "56",
+      "57": "57",
+      "58": "58",
+      "59": "59",
+      "60": "60",
+      "61": "61",
+      "62": "62",
+      "63": "63",
+      "64": "64",
+      "65": "65",
+      "66": "66",
+      "67": "67",
+      "68": "68",
+      "69": "69",
+      "70": "70",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "DOCMH": {
+    "description": "Consultations about mental health - Inclusion Flag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "CMH_05": {
+    "description": "Consulted mental health professional - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "CMH_15A": {
+    "description": "Consulted family doctor / general practitioner - num of times - 12 mo",
+    "categories": {
+      "080": "Number of times 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CMH_15B": {
+    "description": "Consulted psychiatrist - num of times - 12 mo",
+    "categories": {
+      "110": "Number of times 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CMH_15C": {
+    "description": "Consulted psychologist - num of times - 12 mo",
+    "categories": {
+      "100": "Number of times 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CMH_15D": {
+    "description": "Consulted nurse - num of times - 12 mo",
+    "categories": {
+      "365": "Number of times 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CMH_15E": {
+    "description": "Consulted social worker - num of times - 12 mo",
+    "categories": {
+      "290": "Number of times 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "CMH_15F": {
+    "description": "Consulted other professional - num of times - 12 mo",
+    "categories": {
+      "100": "Number of times 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "DODEP": {
+    "description": "Mental health - Inclusion Flag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "DEP_005": {
+    "description": "Little interest / pleasure in doing things - 2 wks",
+    "categories": {
+      "1": "Not at all",
+      "2": "Several days",
+      "3": "More than half the days",
+      "4": "Nearly every day",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEP_010": {
+    "description": "Felt down / depressed / hopeless - 2 wks",
+    "categories": {
+      "1": "Not at all",
+      "2": "Several days",
+      "3": "More than half the days",
+      "4": "Nearly every day",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEP_015": {
+    "description": "Trouble falling / staying asleep / sleeping too much - 2 wks",
+    "categories": {
+      "1": "Not at all",
+      "2": "Several days",
+      "3": "More than half the days",
+      "4": "Nearly every day",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEP_020": {
+    "description": "Tired / little energy - 2 wks",
+    "categories": {
+      "1": "Not at all",
+      "2": "Several days",
+      "3": "More than half the days",
+      "4": "Nearly every day",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEP_025": {
+    "description": "Poor appetite / overate - 2 wks",
+    "categories": {
+      "1": "Not at all",
+      "2": "Several days",
+      "3": "More than half the days",
+      "4": "Nearly every day",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEP_030": {
+    "description": "Felt bad about yourself / failure / let down - 2 wks",
+    "categories": {
+      "1": "Not at all",
+      "2": "Several days",
+      "3": "More than half the days",
+      "4": "Nearly every day",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEP_035": {
+    "description": "Trouble concentrating on things - 2 wks",
+    "categories": {
+      "1": "Not at all",
+      "2": "Several days",
+      "3": "More than half the days",
+      "4": "Nearly every day",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEP_040": {
+    "description": "Moving or speaking slowly / ﬁdgety - 2 wks",
+    "categories": {
+      "1": "Not at all",
+      "2": "Several days",
+      "3": "More than half the days",
+      "4": "Nearly every day",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEP_045": {
+    "description": "Thoughts of better off dead / hurting yourself - 2 wks",
+    "categories": {
+      "1": "Not at all",
+      "2": "Several days",
+      "3": "More than half the days",
+      "4": "Nearly every day",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEP_050": {
+    "description": "Difﬁculty with work / taking care of things at home / relationships",
+    "categories": {
+      "1": "Not difﬁcult at all",
+      "2": "Somewhat difﬁcult",
+      "3": "Very difﬁcult",
+      "4": "Extremely difﬁcult",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DEPDVPHQ": {
+    "description": "Depression severity scale - (D)",
+    "categories": {
+      "27": "(PHQ-9)00 -",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "DEPDVSEV": {
+    "description": "Depression scale - severity of depression - (D)",
+    "categories": {
+      "0": "No depression",
+      "1": "Minimal depression",
+      "2": "Mild depression",
+      "3": "Moderate depression",
+      "4": "Moderately severe depression",
+      "5": "Severe depression",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOSPS": {
+    "description": "Social provisions - Inclusion Flag - (F)",
+    "categories": {
+      "0": "No",
+      "1": "Y es"
+    }
+  },
+  "SPS_015": {
+    "description": "Relationships - sense of emotional security and wellbeing",
+    "categories": {
+      "1": "Strongly agree",
+      "2": "Agree",
+      "3": "Disagree",
+      "4": "Strongly disagree",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPS_020": {
+    "description": "Relationships - someone to talk to about important decisions",
+    "categories": {
+      "1": "Strongly agree",
+      "2": "Agree",
+      "3": "Disagree",
+      "4": "Strongly disagree",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPS_025": {
+    "description": "Relationships - competence and skill are recognized",
+    "categories": {
+      "1": "Strongly agree",
+      "2": "Agree",
+      "3": "Disagree",
+      "4": "Strongly disagree",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPS_035": {
+    "description": "Relationships - part of a group who share attitudes and beliefs",
+    "categories": {
+      "1": "Strongly agree",
+      "2": "Agree",
+      "3": "Disagree",
+      "4": "Strongly disagree",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SPS_050": {
+    "description": "Relationships - people to count on in an emergency",
+    "categories": {
+      "1": "Strongly agree",
+      "2": "Agree",
+      "3": "Disagree",
+      "4": "Strongly disagree",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOLMAM": {
+    "description": "Labour market activities - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "LMAM_01": {
+    "description": "Worked at job / business - past week",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "3": "Permanently unable to work",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "LMAM_02": {
+    "description": "Absent from job / business - past week",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "LMAM_03": {
+    "description": "Absent from job / business - reason - past week",
+    "categories": {
+      "01": "Vacation",
+      "02": "Own illness or disability",
+      "03": "Caring for own children",
+      "04": "Caring for elder relative",
+      "05": "Maternity or parental leave",
+      "06": "Other personal or family responsibilities",
+      "07": "Labour dispute (strike or lockout)",
+      "09": "Seasonal layoff",
+      "10": "Casual job, no work available",
+      "11": "Work schedule",
+      "12": "Self-employed, no work available",
+      "13": "Seasonal business",
+      "14": "Other",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "DOLMA3": {
+    "description": "Labour market activities (LMA3) - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "LMA3_01": {
+    "description": "Employee or self-employed",
+    "categories": {
+      "1": "Employee",
+      "2": "Self-employed",
+      "3": "Working in a family business without pay",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOLMA4": {
+    "description": "Labour market activities (LMA4) - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "LMA4FQ01": {
+    "description": "Response entered - name of business (self-employed) - (F)",
+    "categories": {}
+  },
+  "LMA4FQ02": {
+    "description": "Response entered - name of company / business / person - (F)",
+    "categories": {}
+  },
+  "LMA4FQ03": {
+    "description": "Response entered - type of business / industry / service - (F)",
+    "categories": {}
+  },
+  "LBFCSIC": {
+    "description": "North American Industry Classiﬁcation System (NAICS) 2022",
+    "categories": {}
+  },
+  "DOLMA5": {
+    "description": "Labour market activities (LMA5) - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "LMA5FQ01": {
+    "description": "Response entered - type of work - (F)",
+    "categories": {}
+  },
+  "LMA5FQ02": {
+    "description": "Response entered - main activities / duties - (F)",
+    "categories": {}
+  },
+  "LBFCSOC": {
+    "description": "National Occupation Classiﬁcation (NOC) 2021",
+    "categories": {}
+  },
+  "DOLMA6": {
+    "description": "Labour market activities (LMA6) - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "LMA6_01": {
+    "description": "Usual num of hours worked / week - current main job",
+    "categories": {}
+  },
+  "DOLBF": {
+    "description": "Labour market activities (LBF) - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "LBF_11": {
+    "description": "Had more than one job / business - past week",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "LBF_12": {
+    "description": "Usual num of hours worked / week - current other job",
+    "categories": {}
+  },
+  "LBFDVHPW": {
+    "description": "Total usual number of hours worked / week - (D)",
+    "categories": {
+      "168": "Number of hours usually worked per week 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "LBFDVING": {
+    "description": "Industry group - (D)",
+    "categories": {
+      "01": "Agriculture, forestry, ﬁshing and hunting",
+      "02": "Mining, quarrying, and oil/gas extraction",
+      "03": "Utilities",
+      "04": "Construction",
+      "05": "Manufacturing",
+      "06": "Wholesale trade",
+      "07": "Retail trade",
+      "08": "Transportation and warehousing",
+      "09": "Information and cultural industries",
+      "10": "Finance and insurance",
+      "11": "Real estate and rental and leasing",
+      "15": "Educational services",
+      "16": "Health care and social assistance",
+      "17": "Arts, entertainment and recreation",
+      "18": "Accommodation and food services",
+      "20": "Public administration",
+      "95": "Could not be coded",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "LBFDVOCG": {
+    "description": "Occupation group - (D)",
+    "categories": {
+      "04": "Health occupations",
+      "07": "Sales and service occupations",
+      "10": "Occupations in manufacturing and utilities",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "LBFDVPFT": {
+    "description": "Full-time / part-time working status (for total usual hours) - (D)",
+    "categories": {
+      "1": "Full-time",
+      "2": "Part-time",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "LBFDVWSS": {
+    "description": "Working status last week - (D)",
+    "categories": {
+      "1": "Worked at a job / business - last week",
+      "2": "Absent from work / business - last week",
+      "3": "Did not have a job - last week",
+      "4": "Permanently unable to work",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOLM": {
+    "description": "Telework - Inclusion ﬂag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "LM_01A": {
+    "description": "Current main work location - outside home - ﬁxed location",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "LM_01B": {
+    "description": "Current main work location - outside home - no ﬁxed location",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "LM_01C": {
+    "description": "Current main work location - at home",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "LM_02": {
+    "description": "Proportion of hours worked at home - past week",
+    "categories": {
+      "1": "All your hours at home",
+      "3": "One quarter to half at home",
+      "4": "Less than a quarter at home",
+      "5": "No hours at home",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOIM": {
+    "description": "Place of birth, immigration and citizenship - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "IM_01A": {
+    "description": "Country of birth - Canada / Outside",
+    "categories": {
+      "1": "Born in Canada",
+      "2": "Born outside Canada",
+      "9": "Not stated"
+    }
+  },
+  "IM_01A1": {
+    "description": "Province / territory of birth",
+    "categories": {
+      "10": "Newfoundland and Labrador",
+      "11": "Prince Edward Island",
+      "12": "Nova Scotia",
+      "13": "New Brunswick",
+      "24": "Quebec",
+      "35": "Ontario",
+      "46": "Manitoba",
+      "47": "Saskatchewan",
+      "48": "Alberta",
+      "59": "British Columbia",
+      "60": "Yukon",
+      "61": "Northwest Territories",
+      "62": "Nunavut",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "SDCCCOB": {
+    "description": "Country of birth - coded",
+    "categories": {}
+  },
+  "IM_02": {
+    "description": "Y ear ﬁrst came to live in Canada",
+    "categories": {}
+  },
+  "IM_03": {
+    "description": "Landed immigrant - life",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "IM_04": {
+    "description": "Y ear ﬁrst became a landed immigrant",
+    "categories": {}
+  },
+  "IM_05A": {
+    "description": "Canadian citizen",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "IM_05B": {
+    "description": "Citizen of country other than Canada",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "IM_05A1": {
+    "description": "Canadian citizen by birth / natualization",
+    "categories": {
+      "1": "By birth",
+      "2": "By naturalization",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "SDCCCOC": {
+    "description": "Country of citizenship - coded - excludes Canada",
+    "categories": {}
+  },
+  "SDCDVCB": {
+    "description": "Country of birth - grouped - (D)",
+    "categories": {
+      "01": "Canada",
+      "02": "Other - North America",
+      "04": "Europe",
+      "05": "Africa",
+      "06": "Asia",
+      "07": "Oceania",
+      "08": "Antarctica and adjacent islands",
+      "99": "Not stated"
+    }
+  },
+  "SDCDVIMM": {
+    "description": "Immigrant ﬂag - (D)",
+    "categories": {
+      "1": "Non-immigrant (citizen by birth)",
+      "3": "Non-permanent resident",
+      "9": "Not stated"
+    }
+  },
+  "SDCDVRES": {
+    "description": "Number of years in Canada since immigration - (D)",
+    "categories": {
+      "102": "immigration000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "SDCDVALI": {
+    "description": "Age - respondent ﬁrst became a landed immigrant in Canada - (D)",
+    "categories": {
+      "097": "Age at time of immigration 000 -",
+      "996": "Valid skip",
+      "999": "Not stated"
+    }
+  },
+  "SDCDVABT": {
+    "description": "Indigenous Identity - (D)",
+    "categories": {
+      "2": "Non-Indigenous identity",
+      "9": "Not stated"
+    }
+  },
+  "SDCDVVM": {
+    "description": "Visible minority group of respondent - (D)",
+    "categories": {
+      "01": "South Asian",
+      "02": "Chinese",
+      "03": "Black",
+      "04": "Filipino",
+      "05": "Latin American",
+      "06": "Arab",
+      "07": "Southeast Asian",
+      "08": "West Asian",
+      "09": "Korean",
+      "10": "Japanese",
+      "11": "Visible minority n.i.e",
+      "12": "Multiple visible minorities",
+      "13": "Not a visible minority",
+      "99": "Not stated"
+    }
+  },
+  "SDCDVFLA": {
+    "description": "Visible minority ﬂag - (D)",
+    "categories": {
+      "1": "Visible minority",
+      "2": "Not a visible minority",
+      "9": "Not stated"
+    }
+  },
+  "SDCDVLHM": {
+    "description": "Language(s) spoken most often at home - (D)",
+    "categories": {
+      "01": "English",
+      "02": "French",
+      "03": "English and French",
+      "04": "English, French and Other",
+      "05": "English and Other",
+      "06": "French and Other",
+      "07": "Other",
+      "99": "Not stated"
+    }
+  },
+  "SDCDVFL1": {
+    "description": "Language 1st learned at home in childhood - mother tongue - (D)",
+    "categories": {
+      "01": "English",
+      "02": "French",
+      "03": "English and French",
+      "04": "English, French and Other",
+      "05": "English and Other",
+      "06": "French and Other",
+      "07": "Other",
+      "99": "Not stated"
+    }
+  },
+  "SDCDVFLS": {
+    "description": "First ofﬁcial language spoken - (D)",
+    "categories": {
+      "1": "English",
+      "2": "French",
+      "3": "English and French",
+      "4": "Neither English nor French",
+      "9": "Not stated"
+    }
+  },
+  "DOABM": {
+    "description": "Indigenous identity - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "ABM_01A": {
+    "description": "No indigenous identity",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "ABM_01B": {
+    "description": "Indigenous identity - First Nations",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "ABM_01C": {
+    "description": "Indigenous identity - Métis",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "ABM_01D": {
+    "description": "Indigenous identity - Inuk (Inuit)",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "DOPG": {
+    "description": "Population group - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "PG_05A": {
+    "description": "Belonging racial / cultural groups - White",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05B": {
+    "description": "Belonging racial / cultural groups - South Asian",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05C": {
+    "description": "Belonging racial / cultural groups - Chinese",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05D": {
+    "description": "Belonging racial / cultural groups - Black",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05E": {
+    "description": "Belonging racial / cultural groups - Filipino",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05F": {
+    "description": "Belonging racial / cultural groups - Arab",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05G": {
+    "description": "Belonging racial / cultural groups - Latin American",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05H": {
+    "description": "Belonging racial / cultural groups - Southeast Asian",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05I": {
+    "description": "Belonging racial / cultural groups - West Asian",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05J": {
+    "description": "Belonging racial / cultural groups - Korean",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "PG_05K": {
+    "description": "Belonging racial / cultural groups - Japanese",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "VMRNIE": {
+    "description": "Belonging racial / cultural groups - visible minority n.i.e.",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "VMROTHER": {
+    "description": "Belonging racial / cultural groups - not a visible minority",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOLAN": {
+    "description": "Language - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "LAN_01": {
+    "description": "Knowledge of ofﬁcial languages",
+    "categories": {
+      "1": "English only",
+      "2": "French only",
+      "3": "Both English and French",
+      "4": "Neither English nor French",
+      "9": "Not stated"
+    }
+  },
+  "LAN_02A": {
+    "description": "Language most often spoken at home - English",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "LAN_02B": {
+    "description": "Language most often spoken at home - French",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "LAN_02C": {
+    "description": "Language most often spoken at home - Other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "LAN_04A": {
+    "description": "Mother tongue - English",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "LAN_04B": {
+    "description": "Mother tongue - French",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "LAN_04C": {
+    "description": "Mother tongue - Other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "DOSOR": {
+    "description": "Sexual orientation - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "SOR_01": {
+    "description": "Sexual orientation",
+    "categories": {
+      "1": "Heterosexual",
+      "2": "Lesbian or gay",
+      "3": "Bisexual",
+      "4": "Or please specify",
+      "9": "Not stated"
+    }
+  },
+  "DOHMC": {
+    "description": "Home care services - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "HMC_005A": {
+    "description": "Home care services received - nursing care - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HMC_005B": {
+    "description": "Home care services received - other health care - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HMC_005C": {
+    "description": "Home care services received - medical equipment - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HMC_005D": {
+    "description": "Home care services received - personal / home support - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HMC_005E": {
+    "description": "Home care services received - palliative / end-of-life care - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HMC_005F": {
+    "description": "Home care services received - other services - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HMC_005G": {
+    "description": "No one in household received any home care services - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HMC_010A": {
+    "description": "Person who received home care services - nursing care",
+    "categories": {
+      "1": "Y ou",
+      "2": "Another member of the household",
+      "3": "Y ou and another member of the household",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_010B": {
+    "description": "Person who received home care services - other health care",
+    "categories": {
+      "1": "Y ou",
+      "2": "Another member of the household",
+      "3": "Y ou and another member of the household",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_010C": {
+    "description": "Person who received home care services - medical equipment",
+    "categories": {
+      "1": "Y ou",
+      "2": "Another member of the household",
+      "3": "Y ou and another member of the household",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_010D": {
+    "description": "Person who received home care services - personal / home support",
+    "categories": {
+      "1": "Y ou",
+      "2": "Another member of the household",
+      "3": "Y ou and another member of the household",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_010E": {
+    "description": "Person who received home care services - palliative care",
+    "categories": {
+      "1": "Y ou",
+      "2": "Another member of the household",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_010F": {
+    "description": "Person who received home care services - other services",
+    "categories": {
+      "1": "Y ou",
+      "2": "Another member of the household",
+      "3": "Y ou and another member of the household",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_015A": {
+    "description": "Duration services received - nursing care",
+    "categories": {
+      "01": "Less than 1 month",
+      "02": "1 month to less than 3 months",
+      "03": "3 months to less than 6 months",
+      "04": "6 months to less than 1 year",
+      "05": "1 year to 3 years",
+      "06": "More than 3 years",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_015B": {
+    "description": "Duration services received - other health care",
+    "categories": {
+      "01": "Less than 1 month",
+      "02": "1 month to less than 3 months",
+      "03": "3 months to less than 6 months",
+      "04": "6 months to less than 1 year",
+      "05": "1 year to 3 years",
+      "06": "More than 3 years",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_015C": {
+    "description": "Duration services received - medical equipment",
+    "categories": {
+      "01": "Less than 1 month",
+      "02": "1 month to less than 3 months",
+      "03": "3 months to less than 6 months",
+      "04": "6 months to less than 1 year",
+      "05": "1 year to 3 years",
+      "06": "More than 3 years",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_015D": {
+    "description": "Duration services received - personal / home support",
+    "categories": {
+      "01": "Less than 1 month",
+      "02": "1 month to less than 3 months",
+      "03": "3 months to less than 6 months",
+      "04": "6 months to less than 1 year",
+      "05": "1 year to 3 years",
+      "06": "More than 3 years",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_015E": {
+    "description": "Duration services received - palliative care",
+    "categories": {
+      "01": "Less than 1 month",
+      "02": "1 month to less than 3 months",
+      "03": "3 months to less than 6 months",
+      "04": "6 months to less than 1 year",
+      "05": "1 year to 3 years",
+      "06": "More than 3 years",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_015F": {
+    "description": "Duration services received - other services",
+    "categories": {
+      "01": "Less than 1 month",
+      "02": "1 month to less than 3 months",
+      "03": "3 months to less than 6 months",
+      "04": "6 months to less than 1 year",
+      "05": "1 year to 3 years",
+      "06": "More than 3 years",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_020A": {
+    "description": "Monthly cost services received - nursing care - 12 mo",
+    "categories": {
+      "01": "$0",
+      "02": "$1 to less than $50",
+      "03": "$50 to less than $100",
+      "04": "$100 to less than $200",
+      "05": "$200 to less than $300",
+      "06": "$300 to less than $400",
+      "07": "$400 to less than $1,000",
+      "08": "$1,000 and more",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_020B": {
+    "description": "Monthly cost services received - other health care - 12 mo",
+    "categories": {
+      "01": "$0",
+      "02": "$1 to less than $50",
+      "03": "$50 to less than $100",
+      "04": "$100 to less than $200",
+      "05": "$200 to less than $300",
+      "06": "$300 to less than $400",
+      "07": "$400 to less than $1,000",
+      "08": "$1,000 and more",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_020C": {
+    "description": "Monthly cost services received - medical equipment - 12 mo",
+    "categories": {
+      "01": "$0",
+      "02": "$1 to less than $50",
+      "03": "$50 to less than $100",
+      "04": "$100 to less than $200",
+      "05": "$200 to less than $300",
+      "06": "$300 to less than $400",
+      "07": "$400 to less than $1,000",
+      "08": "$1,000 and more",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_020D": {
+    "description": "Monthly cost services received - personal / home support - 12 mo",
+    "categories": {
+      "01": "$0",
+      "02": "$1 to less than $50",
+      "03": "$50 to less than $100",
+      "04": "$100 to less than $200",
+      "05": "$200 to less than $300",
+      "06": "$300 to less than $400",
+      "07": "$400 to less than $1,000",
+      "08": "$1,000 and more",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_020E": {
+    "description": "Monthly cost services received - palliative care - 12 mo",
+    "categories": {
+      "01": "$0",
+      "02": "$1 to less than $50",
+      "03": "$50 to less than $100",
+      "04": "$100 to less than $200",
+      "05": "$200 to less than $300",
+      "06": "$300 to less than $400",
+      "07": "$400 to less than $1,000",
+      "08": "$1,000 and more",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_020F": {
+    "description": "Monthly cost services received - other services - 12 mo",
+    "categories": {
+      "01": "$0",
+      "02": "$1 to less than $50",
+      "03": "$50 to less than $100",
+      "04": "$100 to less than $200",
+      "05": "$200 to less than $300",
+      "06": "$300 to less than $400",
+      "07": "$400 to less than $1,000",
+      "08": "$1,000 and more",
+      "96": "Valid skip",
+      "99": "Not stated"
+    }
+  },
+  "HMC_025A": {
+    "description": "Who paid home care services - out of own pocket",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_025B": {
+    "description": "Who paid home care services - family / friend in same household",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_025C": {
+    "description": "Who paid home care services - someone living outside the household",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_025D": {
+    "description": "Who paid home care services - insurance",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_025E": {
+    "description": "Who paid home care services - government",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_025F": {
+    "description": "Who paid home care services - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_030": {
+    "description": "Satisfaction with home care services received",
+    "categories": {
+      "1": "Very satisﬁed",
+      "2": "Somewhat satisﬁed",
+      "3": "Neither satisﬁed nor dissatisﬁed",
+      "4": "Somewhat dissatisﬁed",
+      "5": "Very dissatisﬁed",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_035A": {
+    "description": "Unsatisfactory home care services - poor quality",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_035B": {
+    "description": "Unsatisfactory home care services - needs not addressed",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_035C": {
+    "description": "Unsatisfactory home care services - insufﬁcient services",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_035D": {
+    "description": "Unsatisfactory home care services - long wait time",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_035E": {
+    "description": "Unsatisfactory home care services - other reason",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_037": {
+    "description": "Home care services helped stay at home",
+    "categories": {
+      "1": "Very helpful",
+      "2": "Somewhat helpful",
+      "3": "Not helpful",
+      "4": "Was unrelated to staying at home",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_038A": {
+    "description": "Home care services didn’t help stay at home - poor quality",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_038B": {
+    "description": "Home care services didn’t help stay at home - needs not addressed",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_038C": {
+    "description": "Home care services didn’t help stay at home - insufﬁcient services",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_038D": {
+    "description": "Home care services didn’t help stay at home - long wait time",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_038E": {
+    "description": "Home care services didn’t help stay at home - cost too high",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_038F": {
+    "description": "Home care services didn’t help stay at home - other reason",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_040": {
+    "description": "Perception home care services needed but not received - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "9": "Not stated"
+    }
+  },
+  "HMC_045": {
+    "description": "Home care services needed - for who",
+    "categories": {
+      "1": "Y ou only",
+      "2": "Other household member",
+      "3": "Y ou and other household member",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_050A": {
+    "description": "Home care services needed - nursing care",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_050B": {
+    "description": "Home care services needed - other health care",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_050C": {
+    "description": "Home care services needed - medical equipment",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_050D": {
+    "description": "Home care services needed - personal / home support",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_050E": {
+    "description": "Home care services needed - palliative / end-of-life care",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_050F": {
+    "description": "Home care services needed - other services",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055A": {
+    "description": "Home care services not received - not available in the area",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055B": {
+    "description": "Home care services not received - not available at time required",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055C": {
+    "description": "Home care services not received - waiting time too long",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055D": {
+    "description": "Home care services not received - cost",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055E": {
+    "description": "Home care services not received - didn’t get around to it",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055F": {
+    "description": "Home care services not received - didn’t know where to go",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055G": {
+    "description": "Home care services not received - language barrier",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055H": {
+    "description": "Home care services not received - decided not to seek services",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055I": {
+    "description": "Home care services not received - doctor didn’t think was necessary",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055J": {
+    "description": "Home care services not received - not eligible for home care",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055K": {
+    "description": "Home care services not received - still waiting for home care",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_055L": {
+    "description": "Home care services not received - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_060A": {
+    "description": "Home care services provider - govt Home Care Program",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_060B": {
+    "description": "Home care services provider - private agency",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_060C": {
+    "description": "Home care services provider - family member / friend / neighbour",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_060D": {
+    "description": "Home care services provider - volunteer organization",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_060E": {
+    "description": "Home care services provider - nowhere / did not try",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMC_060F": {
+    "description": "Home care services provider - other",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "HMCDVVRH": {
+    "description": "Received home care services - (D)",
+    "categories": {
+      "1": "Received some home care - 12 mo",
+      "9": "Not stated"
+    }
+  },
+  "HMCDVHLP": {
+    "description": "Households where home care services helped recipients stay home - (D)",
+    "categories": {
+      "2": "Services were not helpful",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "DOFSC": {
+    "description": "Food security - Inclusion Flag - (F)",
+    "categories": {
+      "1": "Y es"
+    }
+  },
+  "FSC_10": {
+    "description": "Worried food would run out - 12 mo",
+    "categories": {
+      "1": "Often true",
+      "2": "Sometimes true",
+      "3": "Never true",
+      "9": "Not stated"
+    }
+  },
+  "FSC_15": {
+    "description": "Food didn’t last and no money to buy more - 12 mo",
+    "categories": {
+      "1": "Often true",
+      "2": "Sometimes true",
+      "3": "Never true",
+      "9": "Not stated"
+    }
+  },
+  "FSC_20": {
+    "description": "Could not afford to eat balanced meals - 12 mo",
+    "categories": {
+      "1": "Often true",
+      "2": "Sometimes true",
+      "3": "Never true",
+      "9": "Not stated"
+    }
+  },
+  "FSC_25": {
+    "description": "Relied on few kinds of low-cost food to feed children - 12 mo",
+    "categories": {
+      "1": "Often true",
+      "2": "Sometimes true",
+      "3": "Never true",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_30": {
+    "description": "Could not feed children a balanced meal - 12 mo",
+    "categories": {
+      "1": "Often true",
+      "2": "Sometimes true",
+      "3": "Never true",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_35": {
+    "description": "Children were not eating enough - 12 mo",
+    "categories": {
+      "1": "Often true",
+      "2": "Sometimes true",
+      "3": "Never true",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_40": {
+    "description": "Adults skipped meals or cut size - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_45": {
+    "description": "Adults skipped meals or cut size - frequency - 12 mo",
+    "categories": {
+      "1": "Almost every month",
+      "2": "Some months but not every month",
+      "3": "Only 1 or 2 months",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_50": {
+    "description": "Ate less than felt should - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_55": {
+    "description": "Was hungry but couldn’t afford enough food - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_60": {
+    "description": "Lost weight because not enough money for food - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_65": {
+    "description": "Adults did not eat for whole day - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_70": {
+    "description": "Adults did not eat whole day - frequency - 12 mo",
+    "categories": {
+      "1": "Almost every month",
+      "2": "Some months but not every month",
+      "3": "Only 1 or 2 months",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_75": {
+    "description": "Cut size of children’s meals - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_80": {
+    "description": "Children skipped meals - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_85": {
+    "description": "Children skipped meals - frequency - 12 mo",
+    "categories": {
+      "1": "Almost every month",
+      "2": "Some months but not every month",
+      "3": "Only 1 or 2 months",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_90": {
+    "description": "Children were hungry but could not afford more food - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSC_95": {
+    "description": "Children did not eat for whole day - 12 mo",
+    "categories": {
+      "1": "Y es",
+      "2": "No",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSCDVAF2": {
+    "description": "Food security - adult status (including marginally) - (D)",
+    "categories": {
+      "0": "Food secure",
+      "1": "Marginally food insecure",
+      "2": "Moderately food insecure",
+      "3": "Severely food insecure",
+      "9": "Not stated"
+    }
+  },
+  "FSCDVCF2": {
+    "description": "Food security - child status (including marginally) - (D)",
+    "categories": {
+      "0": "Food secure",
+      "1": "Marginally food insecure",
+      "2": "Moderately food insecure",
+      "3": "Severely food insecure",
+      "6": "Valid skip",
+      "9": "Not stated"
+    }
+  },
+  "FSCDVHF2": {
+    "description": "Household food security status (including marginally) - (D)",
+    "categories": {
+      "0": "Food secure",
+      "1": "Marginally food insecure",
+      "2": "Moderately food insecure",
+      "3": "Severely food insecure",
+      "9": "Not stated"
+    }
+  },
+  "WTS_S": {
+    "description": "Weights - Share",
+    "categories": {}
+  }
+}
