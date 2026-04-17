@@ -144,3 +144,99 @@ AGE_GROUP_PRESETS = {
 }
 
 AGE_COLUMN = 'DHH_AGE'
+
+# Stratifier registry — harmonized variables validated across all CCHS cycles
+# (2021–2024) as suitable for subgroup / equity analysis. Each entry carries a
+# human-readable label, whether the categories are ordered (for SII/RII), and
+# value codes to exclude from analysis (skip/refusal/DK).
+STRATIFIER_REGISTRY = {
+    "AgeGroup": {
+        "label": "Age group",
+        "description": "Derived age group (from DHH_AGE / AWCAGE)",
+        "ordered": True,
+        "exclude_values": [],
+        "value_labels": None,
+        "kind": "derived",
+    },
+    "DHH_SEX": {
+        "label": "Sex at birth",
+        "description": "Respondent's sex at birth",
+        "ordered": False,
+        "exclude_values": [9],
+        "value_labels": {1: "Male", 2: "Female"},
+        "kind": "categorical",
+    },
+    "EDDVR3": {
+        "label": "Education (respondent, 3 levels)",
+        "description": "Highest level of education - respondent",
+        "ordered": True,
+        "exclude_values": [9],
+        "value_labels": {
+            1: "Less than secondary",
+            2: "Secondary graduate",
+            3: "Post-secondary",
+        },
+        "kind": "categorical",
+    },
+    "EDDVH3": {
+        "label": "Education (household, 3 levels)",
+        "description": "Highest level of education - household",
+        "ordered": True,
+        "exclude_values": [9],
+        "value_labels": {
+            1: "Less than secondary",
+            2: "Secondary graduate",
+            3: "Post-secondary",
+        },
+        "kind": "categorical",
+    },
+    "GEODVUR2": {
+        "label": "Urban / rural",
+        "description": "Population centre or rural area (grouped)",
+        "ordered": False,
+        "exclude_values": [],
+        "value_labels": {1: "Population centre", 2: "Rural area"},
+        "kind": "categorical",
+    },
+    "SDCDVIMM": {
+        "label": "Immigrant status",
+        "description": "Immigrant flag (cycle-specific coding — label columns preferred)",
+        "ordered": False,
+        "exclude_values": [9],
+        "value_labels": None,
+        "kind": "categorical",
+    },
+    "FSCDVHF2": {
+        "label": "Household food security",
+        "description": "Household food security status (0=secure → 3=severe)",
+        "ordered": True,
+        "exclude_values": [9],
+        "value_labels": {
+            0: "Food secure",
+            1: "Marginally insecure",
+            2: "Moderately insecure",
+            3: "Severely insecure",
+        },
+        "kind": "categorical",
+    },
+    "HWTDVBCC": {
+        "label": "BMI classification (adjusted)",
+        "description": "BMI classification age 18+, adjusted, Intl standard",
+        "ordered": True,
+        "exclude_values": [96, 99],
+        "value_labels": {
+            1: "Underweight",
+            2: "Normal",
+            3: "Overweight",
+            4: "Obese - Class I",
+            5: "Obese - Class II",
+            6: "Obese - Class III",
+        },
+        "kind": "categorical",
+    },
+}
+
+# Statistics Canada release guidance for CCHS share tables.
+MIN_UNWEIGHTED_N = 30
+CV_ACCEPTABLE = 16.6
+CV_USE_CAUTION = 33.3

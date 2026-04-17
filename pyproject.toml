@@ -23,3 +23,8 @@ dependencies = [
 
 [tool.streamlit]
 browser.gatherUsageStats = false
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]

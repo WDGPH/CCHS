@@ -933,9 +933,10 @@ def main():
         """, unsafe_allow_html=True)
         
         # Enhanced tabs with icons and descriptions
-        tab1, tab2, tab3 = st.tabs([
-            "📊 Crosstab Report", 
-            "👥 Age Group Analysis", 
+        tab1, tab2, tab_adv, tab3 = st.tabs([
+            "📊 Crosstab Report",
+            "👥 Age Group Analysis",
+            "🧮 Advanced Analytics",
             "💾 Data Export"
         ])
         
@@ -1109,7 +1110,7 @@ def main():
                 
                 # Additional export info
                 st.markdown(f"""
-                <div style="background: white; padding: 1rem; border-radius: 8px; 
+                <div style="background: white; padding: 1rem; border-radius: 8px;
                            margin-top: 1rem; border-left: 3px solid var(--secondary);">
                     <h5 style="margin: 0 0 0.5rem 0; color: var(--secondary);">📋 Excel Features</h5>
                     <ul style="margin: 0; padding-left: 1.2rem; color: var(--text-light);">
@@ -1120,7 +1121,30 @@ def main():
                     </ul>
                 </div>
                 """, unsafe_allow_html=True)
-        
+
+        with tab_adv:
+            st.markdown("""
+            <div style="background: var(--background-alt); padding: 1.5rem; border-radius: 12px;
+                        margin-bottom: 1.5rem; border-left: 4px solid var(--accent);">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">
+                    🧮 Advanced Analytics
+                </h4>
+                <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
+                    Stratified prevalence, group contrasts with proper bootstrap SEs,
+                    health-equity gradients (SII/RII), and Ontario benchmarking.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+            from src.ui.advanced import render_advanced_analytics_tab
+            render_advanced_analytics_tab(
+                merged_data=st.session_state.get('merged_data'),
+                selected_variables=st.session_state.get('selected_variables', []),
+                weight_col=weight_col,
+                province_merged=st.session_state.get('province_merged'),
+                local_label="Local PHU",
+                variable_descriptions=st.session_state.get('variable_descriptions', {}),
+            )
+
         st.markdown("</div>", unsafe_allow_html=True)
     
 

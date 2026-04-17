@@ -252,23 +252,27 @@ def main():
     # Main content area - Auto-merge data after filtering
     if apply_filters:
         with st.spinner("🔄 Applying geographic and inclusion flag filters and preparing data..."):
-            # Apply geographic filters first
+            age_bins = get_session_state('age_bins')
+            age_labels = get_session_state('age_labels')
+
+            # Build a province-wide base with the same definitional filters as local
+            # (inclusion flags + age groups) but WITHOUT the geographic filter — this
+            # is what benchmark_against() needs as its Ontario comparator.
+            base_data = data
+            if any(selected_inclusion_flags.values()):
+                base_data = apply_inclusion_flag_filters(base_data, selected_inclusion_flags)
+            base_data = create_age_groups(base_data, age_bins=age_bins, age_labels=age_labels)
+
+            province_merged = merge_data(base_data, bootstrap_data)
+            set_session_state('province_merged', province_merged)
+
+            # Local scope: apply the geographic filter on top of the shared base.
             filtered_data = apply_region_filter(
-                data,
+                base_data,
                 district_codes=geographic_filters.get('district_codes'),
                 health_region_codes=geographic_filters.get('health_region_codes')
             )
-            
-            # Apply inclusion flag filters if any selected
-            if any(selected_inclusion_flags.values()):
-                filtered_data = apply_inclusion_flag_filters(filtered_data, selected_inclusion_flags)
-            
-            # Add age groups with user-configured bins/labels
-            age_bins = get_session_state('age_bins')
-            age_labels = get_session_state('age_labels')
-            filtered_data = create_age_groups(filtered_data, age_bins=age_bins, age_labels=age_labels)
-            
-            # Automatically merge with bootstrap data (no manual step needed)
+
             merged_data = merge_data(filtered_data, bootstrap_data)
             
             # Check which cycles remain after filtering (for multi-cycle mode)
@@ -680,15 +684,17 @@ def main():
         
         # Tabs with Age Group Analysis
         if analysis_mode == "Multi-Cycle":
-            tab1, tab2, tab3 = st.tabs([
-                "📊 Results & Visualizations", 
+            tab1, tab2, tab_adv, tab3 = st.tabs([
+                "📊 Results & Visualizations",
                 "👥 Age Group Analysis",
+                "🧮 Advanced Analytics",
                 "💾 Export Data"
             ])
         else:
-            tab1, tab2, tab3 = st.tabs([
-                "📊 Results & Visualizations", 
+            tab1, tab2, tab_adv, tab3 = st.tabs([
+                "📊 Results & Visualizations",
                 "👥 Age Group Analysis",
+                "🧮 Advanced Analytics",
                 "💾 Export Data"
             ])
         
@@ -855,7 +861,30 @@ def main():
                                 st.warning("⚠️ No age group results generated. This may happen if data is insufficient for some age groups.")
                 else:
                     st.info("💡 Please select variables and run analysis first, then return to this tab for age group breakdown.")
-        
+
+        with tab_adv:
+            st.markdown("""
+            <div style="background: var(--background-alt); padding: 1.5rem; border-radius: 12px;
+                        margin-bottom: 1.5rem; border-left: 4px solid var(--accent);">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">
+                    🧮 Advanced Analytics
+                </h4>
+                <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">
+                    Stratified prevalence, group contrasts with proper bootstrap SEs,
+                    health-equity gradients (SII/RII), and Ontario / PHU benchmarking.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+            from src.ui.advanced import render_advanced_analytics_tab
+            render_advanced_analytics_tab(
+                merged_data=get_session_state('merged_data'),
+                selected_variables=get_session_state('selected_variables') or [],
+                weight_col=weight_col,
+                province_merged=get_session_state('province_merged'),
+                local_label="Local PHU",
+                variable_descriptions=merged_desc_dict,
+            )
+
         with tab3:
             # Consolidated export section
             st.subheader("Export Analysis Results")
