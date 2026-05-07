@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Set page configuration with custom theme
 st.set_page_config(
     page_title="Canadian Community Health Survey (CCHS) Analysis",
-    page_icon="https://wdgpublichealth.ca/sites/all/themes/de_theme/logo.png",
+    page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -409,14 +409,7 @@ def display_crosstab_report(combined_df):
 # 8. Main Streamlit application
 def main():
     # Add main title
-    # Create columns for logo and title
-    logo_col, title_col = st.columns([1, 4]) # Adjust ratio as needed, e.g., [1,5] or [2,5]
-
-    with logo_col:
-        st.image("https://wdgpublichealth.ca/sites/all/themes/de_theme/logo.png", use_container_width=True)
-
-    with title_col:
-        st.title("Canadian Community Health Survey (CCHS) Analysis")
+    st.title("Canadian Community Health Survey (CCHS) Analysis")
     
     # A. Load data
     data, bootstrap_data = load_data()

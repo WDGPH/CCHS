@@ -72,9 +72,11 @@ uv sync
 
 ### Run the Application
 ```bash
-uv run streamlit run main.py
+uv run streamlit run app.py
 ```
-(Or activate the environment: `source .venv/bin/activate` then `streamlit run main.py`.)
+(Or activate the environment: `source .venv/bin/activate` then `streamlit run app.py`.)
+
+For privacy-sensitive deployments, use `app.py` as the supported local-first entrypoint.
 
 > Note: requirements.txt retained only for legacy workflows; authoritative dependencies live in pyproject.toml.
 
