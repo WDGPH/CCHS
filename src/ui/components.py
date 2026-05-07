@@ -59,6 +59,7 @@ def create_content_card(title: str, description: str, gradient_class: str = "gra
                 </p>
             </div>
         </div>
+    </div>
     """
 
 
@@ -196,6 +197,19 @@ def get_quality_badge(cv_percent: float) -> str:
                 white-space: nowrap;" title="{label}">{text}</span>'''
 
 
+def get_release_badge(category: str) -> str:
+    """Get a CCHS 2022+ release-category badge."""
+    badge_config = {
+        "A": ("#2E7D32", "A", "Release with no warning"),
+        "E": ("#EF6C00", "E", "Release with caution warning"),
+        "F": ("#C62828", "F", "Suppress"),
+    }
+    color, text, label = badge_config.get(category, ("#616161", str(category), "Unclassified"))
+    return f'''<span style="background: {color}; color: white; padding: 2px 8px;
+                border-radius: 12px; font-size: 0.75rem; font-weight: 600;
+                white-space: nowrap;" title="{label}">{text}</span>'''
+
+
 def display_quality_legend():
     """Display legend explaining quality indicators."""
     st.markdown("""
@@ -212,6 +226,27 @@ def display_quality_legend():
             <span style="background: #F44336; color: white; padding: 2px 8px; border-radius: 12px; 
                         font-size: 0.75rem; font-weight: 600; margin-top: 0.3rem; display: inline-block;">Poor</span> 
             CV > 33.3% - Unreliable, consider suppressing
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+def display_release_flag_legend():
+    """Display the CCHS 2022+ release-category legend for proportions."""
+    st.markdown("""
+    <div style="background: var(--light-bg); padding: 1rem; border-radius: 8px; margin: 1rem 0;
+                border-left: 3px solid var(--secondary);">
+        <strong style="color: var(--primary);">CCHS 2022+ Release Flags:</strong><br>
+        <div style="margin-top: 0.5rem; font-size: 0.9rem;">
+            <span style="background: #2E7D32; color: white; padding: 2px 8px; border-radius: 12px;
+                        font-size: 0.75rem; font-weight: 600;">A</span>
+            Denominator >= 100 and effective sample size >= 60<br>
+            <span style="background: #EF6C00; color: white; padding: 2px 8px; border-radius: 12px;
+                        font-size: 0.75rem; font-weight: 600; margin-top: 0.3rem; display: inline-block;">E</span>
+            Release with caution warning<br>
+            <span style="background: #C62828; color: white; padding: 2px 8px; border-radius: 12px;
+                        font-size: 0.75rem; font-weight: 600; margin-top: 0.3rem; display: inline-block;">F</span>
+            Suppress if numerator < 10, denominator < 50, effective sample size < 30, or estimate/CI is not publishable
         </div>
     </div>
     """, unsafe_allow_html=True)
