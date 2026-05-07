@@ -3,7 +3,12 @@
 import streamlit as st
 import pandas as pd
 from typing import Optional
-from src.ui.components import create_enhanced_chart, get_quality_badge, display_quality_legend
+from src.ui.components import (
+    create_enhanced_chart,
+    display_quality_legend,
+    display_release_flag_legend,
+)
+from src.analysis.quality import QUALITY_FLAG_CYCLES
 
 
 def is_multi_cycle(results_df: pd.DataFrame) -> bool:
@@ -11,7 +16,15 @@ def is_multi_cycle(results_df: pd.DataFrame) -> bool:
     return 'CYCLE' in results_df.columns
 
 
-def display_results(result_df, variable, use_labels=False, variable_description: Optional[str] = None, show_info_expander=True, cycle_suffix=None):
+def display_results(
+    result_df,
+    variable,
+    use_labels=False,
+    variable_description: Optional[str] = None,
+    show_info_expander=True,
+    cycle_suffix=None,
+    standards_cycle: Optional[str] = None,
+):
     """Display the analysis results as a modern styled table and enhanced chart."""
     import hashlib
     
@@ -38,11 +51,12 @@ def display_results(result_df, variable, use_labels=False, variable_description:
                 </p>
             </div>
         </div>
+    </div>
     """, unsafe_allow_html=True)
     
     # Add filtering options AFTER the header
     st.markdown("**Display Options:**")
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         filter_skips = st.checkbox(
@@ -66,6 +80,19 @@ def display_results(result_df, variable, use_labels=False, variable_description:
             value=False,
             key=f"debug_{result_id}",
             help="Show values for debugging"
+        )
+
+    release_flag_available = (
+        'Release Category' in result_df.columns and str(standards_cycle) in QUALITY_FLAG_CYCLES
+    )
+
+    with col4:
+        show_release_flags = st.checkbox(
+            "🏷️ Release flags",
+            value=False,
+            key=f"show_release_flags_{result_id}",
+            help="Show CCHS release flags (A/E/F), counts, and effective sample size",
+            disabled=not release_flag_available,
         )
     
     # Apply filtering if requested
@@ -177,10 +204,24 @@ def display_results(result_df, variable, use_labels=False, variable_description:
                 st.write(f"• **{label}**: {recalc:.1f}% → {recalc:.1f}% of those who answered")
     
     # Display quality legend
-    display_quality_legend()
-    
+    if show_release_flags and release_flag_available:
+        display_release_flag_legend()
+        if recalculate_pct:
+            st.caption("Release flags reflect the original bootstrap estimate, not the recalculated display-only percentages.")
+    else:
+        display_quality_legend()
+
     # Add quality indicators to the dataframe
-    display_df['Quality'] = display_df['CV (%)'].apply(lambda cv: get_quality_badge(cv))
+    def _quality_label(cv):
+        if pd.isna(cv):
+            return ""
+        if cv < 16.6:
+            return "Good"
+        if cv < 33.3:
+            return "Caution"
+        return "Poor"
+
+    display_df['Quality'] = display_df['CV (%)'].apply(_quality_label)
     
     # Always use Label column for display in both table and plot if available
     if 'Label' in display_df.columns:
@@ -189,13 +230,26 @@ def display_results(result_df, variable, use_labels=False, variable_description:
     else:
         x_labels = display_df['Value'].astype(str)
     
-    # Reorder columns to put Quality after CV
+    # Reorder columns to put quality fields after CV
     cols = list(display_df.columns)
     if 'Quality' in cols:
         cols.remove('Quality')
         cv_idx = cols.index('CV (%)')
         cols.insert(cv_idx + 1, 'Quality')
-        display_df = display_df[cols]
+    if not show_release_flags:
+        cols = [
+            col for col in cols
+            if col not in {
+                'Unweighted Numerator',
+                'Unweighted Denominator',
+                'Effective Sample Size',
+                'Release Category',
+                'Release Action',
+                'Release Reason',
+            }
+        ]
+
+    display_df = display_df[cols]
     
     # Format dictionary for styling
     format_dict = {
@@ -205,22 +259,20 @@ def display_results(result_df, variable, use_labels=False, variable_description:
         'CI Lower': '{:.2f}',
         'CI Upper': '{:.2f}',
         'CV (%)': '{:.1f}%',
-        'Error': '{:.3f}'
+        'Error': '{:.3f}',
+        'Effective Sample Size': '{:.1f}'
     }
     
     # Add original prevalence format if it exists
     if 'Original Prevalence' in display_df.columns:
         format_dict['Original Prevalence'] = '{:.2f}%'
     
-    styled_df = display_df.style.background_gradient(
-        subset=['Prevalence'], 
-        cmap='viridis'
-    ).format(format_dict).set_properties(**{
-        'text-align': 'center',
-        'font-weight': '500'
-    })
-    
-    st.markdown(styled_df.to_html(escape=False), unsafe_allow_html=True)
+    table_df = display_df.copy()
+    for col, fmt in format_dict.items():
+        if col in table_df.columns:
+            table_df[col] = table_df[col].map(lambda x, f=fmt: f.format(x) if pd.notna(x) else "")
+
+    st.dataframe(table_df, use_container_width=True, hide_index=True)
     
     # Create and display enhanced chart using the filtered/recalculated display_df
     chart_title_var = variable_description if variable_description else variable
@@ -238,7 +290,6 @@ def display_results(result_df, variable, use_labels=False, variable_description:
     
     fig = create_enhanced_chart(chart_data, chart_title_var)
     st.pyplot(fig)
-    st.markdown("</div>", unsafe_allow_html=True)
     
     # Show weighted population with unique key
     show_weighted_pop = st.checkbox("Show weighted population", key=f"weighted_pop_{result_id}")
@@ -284,6 +335,7 @@ def display_multi_cycle_results(results_df: pd.DataFrame, variable: str, variabl
                 </p>
             </div>
         </div>
+    </div>
     """, unsafe_allow_html=True)
     
     var_results = results_df[results_df['Variable'] == variable].copy()
@@ -329,14 +381,19 @@ def display_multi_cycle_results(results_df: pd.DataFrame, variable: str, variabl
         else:
             st.info("Summary data not available")
     
-    st.markdown("</div>", unsafe_allow_html=True)
-    
     st.subheader("Detailed Results by Cycle")
     for cycle in cycles:
         with st.expander(f"Cycle {cycle} Results", expanded=False):
             cycle_results = var_results[var_results['CYCLE'] == cycle].copy()
             cycle_results = cycle_results.drop(columns=['CYCLE'])
-            display_results(cycle_results, variable, use_labels='Label' in cycle_results.columns, show_info_expander=False, cycle_suffix=cycle)
+            display_results(
+                cycle_results,
+                variable,
+                use_labels='Label' in cycle_results.columns,
+                show_info_expander=False,
+                cycle_suffix=cycle,
+                standards_cycle=cycle,
+            )
 
 
 def display_crosstab_report(combined_df):
