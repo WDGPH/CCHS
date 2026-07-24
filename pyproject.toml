@@ -5,7 +5,7 @@ description = "Streamlit app for CCHS bootstrap analysis"
 authors = [ { name = "Eswar Attuluri" } ]
 requires-python = ">=3.11"
 readme = "README.md"
-license = { text = "Proprietary" }
+license = { text = "MIT" }
 
 dependencies = [
   "streamlit==1.37.1",

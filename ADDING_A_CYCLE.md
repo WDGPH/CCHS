@@ -9,7 +9,7 @@ For a new cycle such as `2024`, keep the existing file naming pattern:
 ```text
 data/hs2024_on_distr.parquet
 data/hs2024_on_bootwt.parquet
-codebooks/CCHS_2024_DataDictionary_Freqs_ON.pdf
+codebooks/CCHS_2024_DataDictionary_Freqs.pdf
 harmonization/CCHS_2024.json
 ```
 
@@ -28,15 +28,15 @@ data/hs2024_on_bootwt.parquet
 
 `src/data/loader.py` loads those files dynamically from the cycle value, so matching the naming convention is required.
 
-If your source files arrive as SAS files, there is already an external helper at `/home/jovyan/helpers/sas.py` that converts `.sas7bdat` files to parquet. Update its `sas_files` list for the new cycle and run it from `/home/jovyan`:
+If your source files arrive as SAS files, you can convert `.sas7bdat` files to parquet before continuing. If you maintain a separate conversion helper outside this repository, update its `sas_files` list for the new cycle and run it in that environment:
 
 ```bash
-cd /home/jovyan
-source venv/bin/activate
-python helpers/sas.py
+# from the directory containing your SAS helper and data
+source <your-venv>/bin/activate
+python sas.py
 ```
 
-That helper writes parquet files beside the SAS inputs in `/home/jovyan/data`.
+That helper writes parquet files beside the SAS inputs.
 
 If you want a repo-local version of the same SAS helper pattern, use `scripts/convert_cycle_to_parquet.py`. It is intentionally simple: update the `cycle` value at the top of the file, make sure the `.sas7bdat` files are in `data/`, then run:
 
@@ -59,13 +59,13 @@ data/hs2024_on_bootwt.parquet
 
 ### 2. Add the codebook PDF
 
-Copy the cycle-specific codebook into `codebooks/`:
+Codebooks are not distributed with this repository. Obtain the cycle-specific data dictionary from Statistics Canada's public CCHS documentation, then place it in `codebooks/`:
 
 ```bash
-codebooks/CCHS_2024_DataDictionary_Freqs_ON.pdf
+codebooks/CCHS_2024_DataDictionary_Freqs.pdf
 ```
 
-This is the source used to build the cycle JSON used by the harmonization workflow.
+This is the source used to build the cycle JSON used by the harmonization workflow. `scripts/extract_codebook.py` expects the file at `codebooks/CCHS_<year>_DataDictionary_Freqs.pdf`.
 
 ### 3. Create `harmonization/CCHS_<year>.json`
 
