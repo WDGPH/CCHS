@@ -55,11 +55,14 @@ def extract_variables_with_categories(pdf_path):
     return variables
 
 # Example usage:
-pdf_path = "./codebooks/CCHS_2021_DataDictionary_Freqs_ON.pdf"  # Input from codebooks folder
+# Codebook PDFs are not distributed with this repo (see ADDING_A_CYCLE.md) —
+# obtain the relevant year's file from Statistics Canada and place it in codebooks/.
+cycle = "2024"
+pdf_path = f"./codebooks/CCHS_{cycle}_DataDictionary_Freqs.pdf"  # Input from codebooks folder
 variables = extract_variables_with_categories(pdf_path)
 
 # Save as JSON for harmonization pipeline
-test_json_path = "./harmonization/CCHS_2021_test.json"  # Output to harmonization folder
+test_json_path = f"./harmonization/CCHS_{cycle}_test.json"  # Output to harmonization folder
 with open(test_json_path, "w", encoding="utf-8") as f:
     json.dump(variables, f, indent=2, ensure_ascii=False)
 
