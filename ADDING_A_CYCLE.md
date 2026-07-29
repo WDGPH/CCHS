@@ -1,6 +1,6 @@
 # Adding a New CCHS Cycle
 
-This project already supports multi-cycle analysis. Adding a new cycle is mostly a data + harmonization workflow, plus a small config update so the UI exposes the new year.
+This project supports cycle-specific analysis and Multi-Cycle Trends. Trend mode calculates each year independently and compares estimates; it does not pool respondent records or weights across cycles. Adding a new cycle is mostly a data + harmonization workflow, plus a small config update so the UI exposes the new year.
 
 ## What the app expects
 
@@ -144,7 +144,7 @@ Expected outputs in `data/precomputed/`:
 ```text
 harmonized_data_2024.parquet
 harmonized_bootstrap_2024.parquet
-metadata_2024.pkl
+metadata_2024.json
 ```
 
 ### 8. Validate before shipping
@@ -182,4 +182,4 @@ For most new cycles, these are the files you should expect to update:
 - `crosswalk.json` regenerated and spot-checked
 - `categories.json` updated if needed
 - Precomputed files generated
-- App validated in single-cycle and multi-cycle modes
+- App validated in single-cycle and Multi-Cycle Trends modes

@@ -26,9 +26,13 @@ wheels/
 
 # Streamlit cache
 .streamlit/
+!.streamlit/
+!.streamlit/config.toml
 .cache/
 
 /data/
+/codebooks/*.pdf
+/.claude/settings.local.json
 
 # Precomputed data (large files - regenerate with scripts/precompute_cycles.py)
 data/precomputed/*.parquet

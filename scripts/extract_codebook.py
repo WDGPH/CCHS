@@ -1,5 +1,5 @@
 # Improved extraction for categories and harmonization structure
-import PyPDF2
+from pypdf import PdfReader
 import re
 import json
 from pathlib import Path
@@ -16,7 +16,7 @@ def extract_variables_with_categories(pdf_path):
     in_answer_categories = False
 
     with open(pdf_path, 'rb') as file:
-        reader = PyPDF2.PdfReader(file)
+        reader = PdfReader(file)
         for page in reader.pages:
             text = page.extract_text()
             lines = text.splitlines()

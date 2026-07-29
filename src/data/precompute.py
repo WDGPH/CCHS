@@ -3,7 +3,6 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
-import pickle
 import json
 from typing import Dict, List, Tuple, Optional
 import streamlit as st
@@ -29,8 +28,13 @@ def check_precompute_status(cycles: List[str], save_dir: Path = PRECOMPUTE_DIR) 
     
     for cycle in cycles:
         data_path = save_dir / f"harmonized_data_{cycle}.parquet"
-        meta_path = save_dir / f"metadata_{cycle}.pkl"
-        status[cycle] = data_path.exists() and meta_path.exists()
+        bootstrap_path = save_dir / f"harmonized_bootstrap_{cycle}.parquet"
+        meta_path = save_dir / f"metadata_{cycle}.json"
+        status[cycle] = (
+            data_path.exists()
+            and bootstrap_path.exists()
+            and meta_path.exists()
+        )
     
     return status
 
@@ -93,13 +97,13 @@ def load_precomputed_metadata(cycle: str, save_dir: Path = PRECOMPUTE_DIR) -> Di
     Raises:
         FileNotFoundError: If metadata doesn't exist
     """
-    path = save_dir / f"metadata_{cycle}.pkl"
+    path = save_dir / f"metadata_{cycle}.json"
     
     if not path.exists():
         raise FileNotFoundError(f"Metadata not found: {path}")
     
-    with open(path, 'rb') as f:
-        return pickle.load(f)
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 
 def get_common_variables(cycles: List[str], save_dir: Path = PRECOMPUTE_DIR) -> List[str]:
@@ -144,7 +148,7 @@ def precompute_cycle_data(
     Creates:
     - harmonized_data_{cycle}.parquet: Harmonized survey data
     - harmonized_bootstrap_{cycle}.parquet: Bootstrap weights with ONT_ID
-    - metadata_{cycle}.pkl: Variable metadata and availability
+    - metadata_{cycle}.json: Variable metadata and availability
     
     Args:
         cycle: Cycle year (e.g., "2021")
@@ -203,8 +207,10 @@ def precompute_cycle_data(
     cols_to_keep = list(set(available_vars + core_vars + ['CYCLE']) & set(harmonized_data.columns))
     harmonized_data = harmonized_data[cols_to_keep]
     
-    # Bootstrap data doesn't need harmonization (just ONT_ID and BSW columns)
+    # Cycle-qualified bootstrap data keeps trend comparisons independent and
+    # prevents repeated ONT_ID values in different years from cross-joining.
     harmonized_bootstrap = bootstrap_data.copy()
+    harmonized_bootstrap['CYCLE'] = cycle
     
     # Save harmonized data
     output_path = save_dir / f"harmonized_data_{cycle}.parquet"
@@ -224,9 +230,9 @@ def precompute_cycle_data(
         'harmonization_mapping': rename_dict
     }
     
-    metadata_path = save_dir / f"metadata_{cycle}.pkl"
-    with open(metadata_path, 'wb') as f:
-        pickle.dump(metadata, f)
+    metadata_path = save_dir / f"metadata_{cycle}.json"
+    with open(metadata_path, 'w', encoding='utf-8') as f:
+        json.dump(metadata, f, indent=2)
     
     print(f"✅ {cycle}: {len(available_vars)} variables, {len(harmonized_data):,} records")
     print(f"   Saved to: {output_path}")
@@ -419,6 +425,7 @@ def validate_precomputed_data(cycles: List[str], save_dir: Path = PRECOMPUTE_DIR
                 'ONT_ID' in data.columns,
                 len(bootstrap) > 0,
                 'ONT_ID' in bootstrap.columns,
+                'CYCLE' in bootstrap.columns,
                 len(metadata.get('available_vars', [])) > 0,
                 metadata.get('cycle') == cycle
             ]
