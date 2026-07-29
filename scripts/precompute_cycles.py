@@ -155,7 +155,7 @@ def main():
         print(f"  ✅ {vars_count} harmonized variables")
         print(f"  📁 harmonized_data_{cycle}.parquet")
         print(f"  📁 harmonized_bootstrap_{cycle}.parquet")
-        print(f"  📁 metadata_{cycle}.pkl")
+        print(f"  📁 metadata_{cycle}.json")
         
         total_vars += vars_count
         total_records += records
@@ -171,7 +171,7 @@ def main():
     print(f"💾 Data saved to: {output_dir}/")
     print("\n💡 Next steps:")
     print("   1. Restart your Streamlit app to use precomputed data")
-    print("   2. Multi-cycle analysis will now be much faster!")
+    print("   2. Multi-cycle trend analysis will now be much faster!")
     
     # Validate the precomputed data
     print("\n🔍 Running validation...")

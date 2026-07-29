@@ -78,10 +78,10 @@ $$
 
 ### 95% Confidence Interval
 $$
-\text{CI Lower}_g = \text{Prevalence}_g - 1.96 \times \text{StdDev}_g
+\text{CI Lower}_g = \text{Prevalence}_g - 2.0 \times \text{StdDev}_g
 $$
 $$
-\text{CI Upper}_g = \text{Prevalence}_g + 1.96 \times \text{StdDev}_g
+\text{CI Upper}_g = \text{Prevalence}_g + 2.0 \times \text{StdDev}_g
 $$
 
 ### Coefficient of Variation (CV)
@@ -91,12 +91,12 @@ $$
 
 ### Error Margin (for error bars)
 $$
-\text{Error}_g = 1.96 \times \text{StdDev}_g
+\text{Error}_g = 2.0 \times \text{StdDev}_g
 $$
 
 ## Notes
 - **Weighted Population**: Represents the estimated population size for each group, calculated as the sum of survey weights.
-- **Confidence Intervals**: Calculated using the standard deviation of bootstrap replicate prevalences (typically 95% CI: mean ± 1.96 * std).
+- **Confidence Intervals**: Calculated using the CCHS reporting convention of estimate ± 2.0 × bootstrap standard error.
 - **Bootstrap Weights**: Account for survey design and provide more accurate variance estimates than simple random sampling.
 
 ## Example Usage
@@ -106,6 +106,5 @@ display_results(result_df, 'SEX')
 ```
 
 ## References
-- [Statistics Canada: Bootstrap Weights](https://www150.statcan.gc.ca/n1/pub/12-002-x/2011001/article/11425-eng.html
-)
+- [Statistics Canada: Bootstrap Weights](https://www150.statcan.gc.ca/n1/pub/12-002-x/2011001/article/11425-eng.html)
 - [Bootstrap Methods and Their Application (Davison & Hinkley, 1997)](https://www.cambridge.org/core/books/bootstrap-methods-and-their-application/)

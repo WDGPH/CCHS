@@ -89,7 +89,7 @@ def display_results(
     with col4:
         show_release_flags = st.checkbox(
             "🏷️ Release flags",
-            value=False,
+            value=release_flag_available,
             key=f"show_release_flags_{result_id}",
             help="Show CCHS release flags (A/E/F), counts, and effective sample size",
             disabled=not release_flag_available,
@@ -221,7 +221,15 @@ def display_results(
             return "Caution"
         return "Poor"
 
-    display_df['Quality'] = display_df['CV (%)'].apply(_quality_label)
+    if release_flag_available:
+        release_quality = {
+            "A": "Release with no warning",
+            "E": "Release with caution",
+            "F": "Suppress",
+        }
+        display_df['Quality'] = display_df['Release Category'].map(release_quality).fillna("")
+    else:
+        display_df['Quality'] = display_df['CV (%)'].apply(_quality_label)
     
     # Always use Label column for display in both table and plot if available
     if 'Label' in display_df.columns:
@@ -327,7 +335,7 @@ def display_multi_cycle_results(results_df: pd.DataFrame, variable: str, variabl
                         border-radius: 2px; margin-right: 1rem;"></div>
             <div>
                 <h3 style="margin: 0; color: var(--primary); font-size: 1.5rem; font-weight: 600;">
-                    Multi-Cycle Analysis Results
+                    Multi-Cycle Trends Analysis Results
                 </h3>
                 <p style="margin: 4px 0 0 0; color: var(--text-light); font-weight: 500;">
                     Variable: <span style="color: var(--secondary); font-weight: 600;">{display_var}</span>
@@ -405,7 +413,7 @@ def display_crosstab_report(combined_df):
     report_id = str(uuid.uuid4())[:8]
     
     if is_multi:
-        st.write("### Multi-Cycle Crosstab Report (Prevalence)")
+        st.write("### Multi-Cycle Trends Crosstab Report (Prevalence)")
         st.info("📊 This report includes data from multiple cycles. Use filters below to focus on specific cycles.")
         
         cycles = sorted(combined_df['CYCLE'].unique())
