@@ -1,5 +1,8 @@
 """Data harmonization functions for multi-cycle CCHS analysis."""
 
+import re
+import unicodedata
+
 import pandas as pd
 from typing import Optional
 
@@ -13,6 +16,95 @@ def _category_key(value):
     if isinstance(value, float) and value.is_integer():
         return str(int(value))
     return str(value)
+
+
+def _normalize_metadata_text(value):
+    text = unicodedata.normalize("NFKC", str(value or "")).casefold()
+    return " ".join(re.sub(r"[^\w]+", " ", text).split())
+
+
+def assess_harmonized_compatibility(
+    variable: str,
+    cycles: list,
+    crosswalk: dict,
+    cycle_variable_info: dict,
+):
+    """Return whether a crosswalk entry is safe to pool and the reason.
+
+    Availability is not enough for pooling. This conservative check requires
+    equivalent normalized descriptions and equivalent category-label sets in
+    every selected cycle. Continuous variables are accepted when all cycles
+    consistently have no categorical metadata.
+    """
+    variable_crosswalk = crosswalk.get(variable, {})
+    metadata = []
+    for cycle_value in cycles:
+        cycle = str(cycle_value)
+        cycle_variable = variable_crosswalk.get(cycle)
+        if not cycle_variable:
+            return False, f"No crosswalk variable for cycle {cycle}."
+        variable_info = cycle_variable_info.get(cycle, {}).get(cycle_variable)
+        if not variable_info:
+            return False, f"No data-dictionary metadata for {cycle_variable} in {cycle}."
+        description = _normalize_metadata_text(variable_info.get("description"))
+        if not description:
+            return False, f"No description for {cycle_variable} in cycle {cycle}."
+        category_labels = {
+            _normalize_metadata_text(label)
+            for label in variable_info.get("categories", {}).values()
+            if _normalize_metadata_text(label)
+        }
+        metadata.append((cycle, cycle_variable, description, category_labels))
+
+    descriptions = {item[2] for item in metadata}
+    if len(descriptions) != 1:
+        details = "; ".join(
+            f"{cycle} {cycle_variable}"
+            for cycle, cycle_variable, _, _ in metadata
+        )
+        return False, f"Descriptions differ across mapped variables ({details})."
+
+    category_sets = [item[3] for item in metadata]
+    categorical_cycles = [
+        metadata[index][0]
+        for index, labels in enumerate(category_sets)
+        if labels
+    ]
+    if categorical_cycles and len(categorical_cycles) != len(metadata):
+        missing = [
+            metadata[index][0]
+            for index, labels in enumerate(category_sets)
+            if not labels
+        ]
+        return False, (
+            "Categorical metadata is missing for cycle(s): "
+            + ", ".join(missing)
+            + "."
+        )
+    if category_sets and any(labels != category_sets[0] for labels in category_sets[1:]):
+        return False, "Response category labels differ across cycles."
+
+    return True, "Descriptions and category structures match across cycles."
+
+
+def filter_poolable_variables(
+    variables: list,
+    cycles: list,
+    crosswalk: dict,
+    cycle_variable_info: dict,
+):
+    """Split common columns into poolable variables and incompatibility reasons."""
+    poolable = []
+    issues = {}
+    for variable in variables:
+        compatible, reason = assess_harmonized_compatibility(
+            variable, cycles, crosswalk, cycle_variable_info
+        )
+        if compatible:
+            poolable.append(variable)
+        else:
+            issues[variable] = reason
+    return poolable, issues
 
 
 def prepare_pooled_variable(

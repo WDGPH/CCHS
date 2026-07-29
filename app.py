@@ -16,7 +16,7 @@ from src.data.loader import (
     load_cycle_variable_info, load_crosswalk, load_categories, merge_data
 )
 from src.data.processor import create_age_groups, apply_region_filter, apply_inclusion_flag_filters
-from src.data.harmonizer import prepare_pooled_variable
+from src.data.harmonizer import filter_poolable_variables, prepare_pooled_variable
 from src.analysis.bootstrap import (
     run_bootstrap_analysis_for_all_values,
     run_cycle_pooled_analysis,
@@ -90,6 +90,7 @@ def main():
     analysis_mode = create_analysis_mode_selector()
     is_pooling_mode = analysis_mode == "Cycle Pooling"
     is_multi_cycle_mode = analysis_mode in {"Multi-Cycle Trends", "Cycle Pooling"}
+    pooling_compatibility_issues = {}
     
     # Handle mode switching with warning if user has active work
     previous_mode = get_session_state('analysis_mode')
@@ -203,6 +204,13 @@ def main():
         
         # Load cycle variable info for all selected cycles (for labels)
         cycle_var_info_dict = {cycle: load_cycle_variable_info(cycle) for cycle in selected_cycles}
+        if is_pooling_mode:
+            available_harmonized_vars, pooling_compatibility_issues = filter_poolable_variables(
+                available_harmonized_vars,
+                selected_cycles,
+                crosswalk,
+                cycle_var_info_dict,
+            )
         
         merged_desc_dict = merge_descriptions(json_desc_dict, desc_dict)
         
@@ -215,6 +223,20 @@ def main():
         
         display_data_metrics(data)
         st.info(f"📊 Data harmonized and combined from cycles: {cycles_str}")
+        if is_pooling_mode and pooling_compatibility_issues:
+            st.warning(
+                f"Excluded {len(pooling_compatibility_issues):,} common column(s) "
+                "from pooling because their meanings or category structures "
+                "are not equivalent across all selected cycles."
+            )
+            with st.expander("Review variables excluded from pooling"):
+                compatibility_df = pd.DataFrame(
+                    [
+                        {"Variable": variable, "Reason": reason}
+                        for variable, reason in pooling_compatibility_issues.items()
+                    ]
+                )
+                st.dataframe(compatibility_df, use_container_width=True)
         
         cycle = cycles_str
         use_harmonized = True
@@ -338,7 +360,7 @@ def main():
         # Get available harmonized variables
         if is_multi_cycle_mode:
             # For multi-cycle, use common harmonized variables
-            if not available_harmonized_vars and crosswalk:
+            if not available_harmonized_vars and crosswalk and not is_pooling_mode:
                 from src.data.harmonizer import get_common_harmonized_vars
                 data_dict_for_check = {}
                 for cycle_year in selected_cycles:
@@ -375,7 +397,7 @@ def main():
                 use_harmonized = True
                 st.info(f"Multi-cycle mode: Using {len(available_harmonized_vars)} harmonized variables available across all selected cycles")
             
-            if use_harmonized and available_harmonized_vars:
+            if use_harmonized:
                 variable_options = available_harmonized_vars
                 variable_labels = {}
                 for var in variable_options:

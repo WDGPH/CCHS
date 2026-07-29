@@ -4,7 +4,12 @@ import pandas as pd
 import pytest
 
 from src.analysis.bootstrap import run_cycle_pooled_analysis
-from src.data.harmonizer import POOLED_VALUE_COLUMN, prepare_pooled_variable
+from src.data.harmonizer import (
+    POOLED_VALUE_COLUMN,
+    assess_harmonized_compatibility,
+    filter_poolable_variables,
+    prepare_pooled_variable,
+)
 
 
 def test_pooling_scales_weights_to_average_annual_population():
@@ -243,3 +248,99 @@ def test_cycle_dictionary_crosswalk_detects_genuinely_missing_categories():
             cycle_variable_info=cycle_info,
             crosswalk=crosswalk,
         )
+
+
+def test_harmonized_compatibility_accepts_matching_meaning_and_categories():
+    crosswalk = {
+        "SMKDVSTY": {"2023": "SMKDVSTY", "2024": "SMKDVSTY"}
+    }
+    variable_info = {
+        cycle: {
+            "SMKDVSTY": {
+                "description": "Smoking status (type 2) - traditional definition - (D)",
+                "categories": {
+                    "01": "Current daily smoker",
+                    "03": "Former daily smoker (non-smoker now)",
+                },
+            }
+        }
+        for cycle in ("2023", "2024")
+    }
+
+    compatible, reason = assess_harmonized_compatibility(
+        "SMKDVSTY", ["2023", "2024"], crosswalk, variable_info
+    )
+
+    assert compatible is True
+    assert "match" in reason
+
+
+def test_harmonized_compatibility_rejects_same_name_with_different_meaning():
+    crosswalk = {"STATUS": {"2023": "STATUS", "2024": "STATUS"}}
+    variable_info = {
+        "2023": {
+            "STATUS": {"description": "Current smoking status", "categories": {}}
+        },
+        "2024": {
+            "STATUS": {"description": "Former smoking status", "categories": {}}
+        },
+    }
+
+    compatible, reason = assess_harmonized_compatibility(
+        "STATUS", ["2023", "2024"], crosswalk, variable_info
+    )
+
+    assert compatible is False
+    assert "Descriptions differ" in reason
+
+
+def test_harmonized_compatibility_rejects_changed_categories():
+    crosswalk = {"STATUS": {"2023": "OLD_STATUS", "2024": "STATUS"}}
+    variable_info = {
+        "2023": {
+            "OLD_STATUS": {
+                "description": "Smoking status",
+                "categories": {"1": "Daily", "2": "Occasional"},
+            }
+        },
+        "2024": {
+            "STATUS": {
+                "description": "Smoking status",
+                "categories": {"1": "Daily", "2": "Never"},
+            }
+        },
+    }
+
+    compatible, reason = assess_harmonized_compatibility(
+        "STATUS", ["2023", "2024"], crosswalk, variable_info
+    )
+
+    assert compatible is False
+    assert "category labels differ" in reason
+
+
+def test_poolable_filter_excludes_false_crosswalk_match():
+    crosswalk = {
+        "SAFE": {"2023": "SAFE", "2024": "SAFE"},
+        "SPU_10": {"2023": "SPU_10", "2024": "SPU_10B"},
+    }
+    variable_info = {
+        "2023": {
+            "SAFE": {"description": "Exact measure", "categories": {}},
+            "SPU_10": {"description": "Stopped smoking - when", "categories": {}},
+        },
+        "2024": {
+            "SAFE": {"description": "Exact measure", "categories": {}},
+            "SPU_10B": {"description": "Stopped smoking - year", "categories": {}},
+        },
+    }
+
+    poolable, issues = filter_poolable_variables(
+        ["SAFE", "SPU_10"],
+        ["2023", "2024"],
+        crosswalk,
+        variable_info,
+    )
+
+    assert poolable == ["SAFE"]
+    assert "SPU_10" in issues
