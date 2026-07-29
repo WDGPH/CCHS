@@ -189,9 +189,33 @@ def load_ontario_official_municipalities() -> dict:
 
 @st.cache_data
 def merge_data(filtered_data, bootstrap_data):
-    """Merge filtered data with bootstrap weights on 'ONT_ID'."""
-    merged = pd.merge(filtered_data, bootstrap_data, on='ONT_ID', how='left')
-    return merged
+    """Merge survey records with bootstrap weights without pooling cycles.
+
+    Multi-cycle trend analysis keeps each survey cycle independent. When a
+    ``CYCLE`` column is present, it must be present on both frames and becomes
+    part of the join key. The one-to-one validation prevents repeated IDs from
+    silently multiplying records and biasing estimates.
+    """
+    survey_has_cycle = 'CYCLE' in filtered_data.columns
+    bootstrap_has_cycle = 'CYCLE' in bootstrap_data.columns
+
+    if survey_has_cycle != bootstrap_has_cycle:
+        raise ValueError(
+            "Cycle-aware analysis requires a CYCLE column on both survey and "
+            "bootstrap data. Regenerate precomputed files if necessary."
+        )
+
+    join_columns = ['ONT_ID']
+    if survey_has_cycle:
+        join_columns.insert(0, 'CYCLE')
+
+    return pd.merge(
+        filtered_data,
+        bootstrap_data,
+        on=join_columns,
+        how='left',
+        validate='one_to_one',
+    )
 
 
 @st.cache_data
@@ -234,8 +258,11 @@ def load_multi_cycle_data(cycles: list, crosswalk: dict, categories: dict):
         harmonized_data = restore_geography_aliases(harmonized_data)
         harmonized_data['CYCLE'] = cycle
         
+        cycle_bootstrap = bootstrap_data.copy()
+        cycle_bootstrap['CYCLE'] = cycle
+
         combined_data_list.append(harmonized_data)
-        combined_bootstrap_list.append(bootstrap_data)
+        combined_bootstrap_list.append(cycle_bootstrap)
     
     if not combined_data_list:
         st.error("No valid cycles could be loaded.")

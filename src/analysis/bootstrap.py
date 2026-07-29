@@ -2,7 +2,7 @@
 
 import numpy as np
 import pandas as pd
-from config.settings import BOOTSTRAP_PREFIX, DEFAULT_WEIGHT_COLUMN
+from config.settings import BOOTSTRAP_PREFIX, CONFIDENCE_Z, DEFAULT_WEIGHT_COLUMN
 from src.analysis.quality import QUALITY_FLAG_CYCLES, apply_cchs_quality_flags
 
 
@@ -45,8 +45,8 @@ def run_bootstrap_analysis_for_all_values(
     # Compute variance, standard deviation, confidence intervals, etc.
     variance = ((replicate_prevalence_df.sub(base_prevalence, axis=0))**2).mean(axis=1)
     std_dev = np.sqrt(variance)
-    ci_lower = base_prevalence - 1.96 * std_dev
-    ci_upper = base_prevalence + 1.96 * std_dev
+    ci_lower = base_prevalence - CONFIDENCE_Z * std_dev
+    ci_upper = base_prevalence + CONFIDENCE_Z * std_dev
     cv = (std_dev / base_prevalence) * 100
 
     result_df = pd.DataFrame({
@@ -60,7 +60,7 @@ def run_bootstrap_analysis_for_all_values(
         'CI Lower': ci_lower.values,
         'CI Upper': ci_upper.values,
         'CV (%)': cv.values,
-        'Error': 1.96 * std_dev.values  # for error bars in plots
+        'Error': CONFIDENCE_Z * std_dev.values  # for error bars in plots
     }).reset_index(drop=True)
 
     if str(standards_cycle) in QUALITY_FLAG_CYCLES:

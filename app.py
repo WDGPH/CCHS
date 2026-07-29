@@ -115,13 +115,19 @@ def main():
     set_session_state('analysis_mode', analysis_mode)
     
     # Route to appropriate data loading based on mode
-    if analysis_mode == "Multi-Cycle":
+    if analysis_mode == "Multi-Cycle Trends":
         # Multi-cycle mode
         selected_cycles = create_multi_cycle_selector(crosswalk, {})
         
         if not selected_cycles:
             st.warning("⚠️ Please select at least one cycle to proceed.")
             st.stop()
+
+        st.info(
+            "Multi-Cycle Trends calculates estimates independently for each "
+            "selected cycle and compares them across years. It does not pool "
+            "respondent records across cycles."
+        )
         
         # Load multi-cycle harmonized data using smart loader
         from src.data.smart_loader import smart_load_multiple_cycles, get_common_vars_smart
@@ -177,7 +183,7 @@ def main():
         # Display data overview
         cycles_str = ', '.join(selected_cycles)
         st.markdown(create_content_card(
-            f"Multi-Cycle Dataset Overview - Cycles {cycles_str}",
+            f"Multi-Cycle Trends Dataset Overview - Cycles {cycles_str}",
             f"Combined and harmonized data from {len(selected_cycles)} survey cycle(s)"
         ), unsafe_allow_html=True)
         
@@ -270,7 +276,7 @@ def main():
             merged_data = merge_data(filtered_data, bootstrap_data)
             
             # Check which cycles remain after filtering (for multi-cycle mode)
-            if analysis_mode == "Multi-Cycle" and 'CYCLE' in merged_data.columns:
+            if analysis_mode == "Multi-Cycle Trends" and 'CYCLE' in merged_data.columns:
                 remaining_cycles = sorted(merged_data['CYCLE'].unique())
                 missing_cycles = [c for c in selected_cycles if c not in remaining_cycles]
                 
@@ -304,7 +310,7 @@ def main():
     merged_data = get_session_state('merged_data')
     if merged_data is not None:
         # Get available harmonized variables
-        if analysis_mode == "Multi-Cycle":
+        if analysis_mode == "Multi-Cycle Trends":
             # For multi-cycle, use common harmonized variables
             if not available_harmonized_vars and crosswalk:
                 from src.data.harmonizer import get_common_harmonized_vars
@@ -339,7 +345,7 @@ def main():
                     help="Use harmonized variable names that work across multiple cycles"
                 )
                 set_session_state('use_harmonized', use_harmonized)
-            elif analysis_mode == "Multi-Cycle":
+            elif analysis_mode == "Multi-Cycle Trends":
                 use_harmonized = True
                 st.info(f"Multi-cycle mode: Using {len(available_harmonized_vars)} harmonized variables available across all selected cycles")
             
@@ -411,7 +417,7 @@ def main():
             )
             
             # Analysis summary card
-            mode_display = f"{len(selected_cycles)} cycles" if analysis_mode == "Multi-Cycle" else f"Cycle {cycle}"
+            mode_display = f"{len(selected_cycles)} cycles" if analysis_mode == "Multi-Cycle Trends" else f"Cycle {cycle}"
             st.markdown(f"""
             <div style="background: linear-gradient(135deg, var(--light-bg) 0%, #E0F2F1 100%); 
                         padding: 1rem; border-radius: 12px; margin-top: 1rem; 
@@ -436,7 +442,7 @@ def main():
                 run_single = st.button("Analyze Selected Variables", type="primary")
             with col2:
                 with st.expander("Batch Analysis (All Variables)"):
-                    if analysis_mode == "Multi-Cycle":
+                    if analysis_mode == "Multi-Cycle Trends":
                         total_vars = len(available_harmonized_vars) if available_harmonized_vars else 0
                     elif use_harmonized and available_harmonized_vars:
                         total_vars = len(available_harmonized_vars)
@@ -473,7 +479,7 @@ def main():
                     """, unsafe_allow_html=True)
                     
                     try:
-                        if analysis_mode == "Multi-Cycle":
+                        if analysis_mode == "Multi-Cycle Trends":
                             # Multi-cycle analysis: run analysis per cycle
                             cycle_results_list = []
                             
@@ -570,7 +576,7 @@ def main():
             # Batch analysis with harmonization support
             if run_batch:
                 # Get all available variables based on harmonization setting
-                if analysis_mode == "Multi-Cycle":
+                if analysis_mode == "Multi-Cycle Trends":
                     analysis_variables = available_harmonized_vars if available_harmonized_vars else []
                 elif use_harmonized and available_harmonized_vars:
                     analysis_variables = available_harmonized_vars
@@ -596,7 +602,7 @@ def main():
                     progress_bar.progress((i + 1) / len(analysis_variables))
                     
                     try:
-                        if analysis_mode == "Multi-Cycle":
+                        if analysis_mode == "Multi-Cycle Trends":
                             # Multi-cycle batch analysis
                             cycle_results_list = []
                             for cycle_year in selected_cycles:
@@ -663,7 +669,7 @@ def main():
         st.markdown("---")
         
         # Enhanced results header with cycle info
-        if analysis_mode == "Multi-Cycle":
+        if analysis_mode == "Multi-Cycle Trends":
             cycles_str = ', '.join(selected_cycles)
             header_title = f"📈 Analysis Results Dashboard - Cycles {cycles_str}"
             header_subtitle = "Comprehensive multi-cycle bootstrap analysis results with harmonized variable labels"
@@ -695,7 +701,7 @@ def main():
         """, unsafe_allow_html=True)
         
         # Tabs with Age Group Analysis
-        if analysis_mode == "Multi-Cycle":
+        if analysis_mode == "Multi-Cycle Trends":
             tab1, tab2, tab3 = st.tabs([
                 "📊 Results & Visualizations", 
                 "👥 Age Group Analysis",
@@ -710,7 +716,7 @@ def main():
         
         with tab1:
             # Show visualizations and detailed results
-            if analysis_mode == "Multi-Cycle" and get_session_state('selected_variables'):
+            if analysis_mode == "Multi-Cycle Trends" and get_session_state('selected_variables'):
                 # Multi-cycle: show cycle comparison visualizations
                 st.subheader("Cycle Comparison Visualizations")
                 for variable in get_session_state('selected_variables'):
@@ -887,7 +893,7 @@ def main():
             with col1:
                 st.markdown("**CSV Format**")
                 csv = combined_results.to_csv().encode('utf-8')
-                if analysis_mode == "Multi-Cycle":
+                if analysis_mode == "Multi-Cycle Trends":
                     cycles_str = '_'.join(selected_cycles)
                     file_name = f"cchs_multi_cycle_{cycles_str}_results.csv"
                 else:
@@ -903,7 +909,7 @@ def main():
             
             with col2:
                 st.markdown("**Excel Format**")
-                if analysis_mode == "Multi-Cycle" and is_multi_cycle(combined_results):
+                if analysis_mode == "Multi-Cycle Trends" and is_multi_cycle(combined_results):
                     excel_data = create_multi_cycle_excel(combined_results, selected_cycles)
                     cycles_str = '_'.join(selected_cycles)
                     file_name = f"cchs_multi_cycle_{cycles_str}_results.xlsx"
@@ -921,7 +927,7 @@ def main():
         
     # Footer with cycle information
     st.markdown("---")
-    if analysis_mode == "Multi-Cycle":
+    if analysis_mode == "Multi-Cycle Trends":
         cycles_str = ', '.join(selected_cycles)
         harmonization_status = 'Enabled (Required)'
     else:
