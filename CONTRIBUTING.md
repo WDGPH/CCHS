@@ -17,8 +17,9 @@ requests, documentation improvements, and code.
 This project uses [uv](https://astral.sh/uv) for dependency management.
 
 ```bash
-uv sync                       # create the .venv and install dependencies
+uv sync --locked --dev        # create .venv from uv.lock, including test tools
 uv run streamlit run app.py   # run the app locally
+uv run pytest -q              # run synthetic-data tests
 ```
 
 Authoritative dependencies live in `pyproject.toml` (and `uv.lock`). Add a package
@@ -33,7 +34,7 @@ with `uv add package_name` and commit the updated manifest and lock file.
    ```
 3. **Make your changes**, following the existing project structure. Application code
    lives under `app.py`, `config/`, and `src/`; supporting scripts live under `scripts/`.
-4. **Test locally** to ensure existing functionality still works.
+4. **Test locally** with `uv run pytest -q` and ensure existing functionality still works.
 5. **Commit** with clear, descriptive messages:
    ```bash
    git commit -m "Add feature: short description"

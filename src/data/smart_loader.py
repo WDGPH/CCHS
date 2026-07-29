@@ -42,6 +42,11 @@ def smart_load_cycle(
                 data = load_precomputed_data(cycle)
                 data = restore_geography_aliases(data)
                 bootstrap = load_precomputed_bootstrap(cycle)
+                if 'CYCLE' not in bootstrap.columns:
+                    raise ValueError(
+                        f"Precomputed bootstrap data for {cycle} is missing CYCLE. "
+                        "Regenerate precomputed files."
+                    )
                 metadata = load_precomputed_metadata(cycle)
                 is_precomputed = True
                 return data, bootstrap, metadata, is_precomputed
@@ -70,6 +75,8 @@ def smart_load_cycle(
     
     # Add CYCLE column
     harmonized_data['CYCLE'] = cycle
+    bootstrap_data = bootstrap_data.copy()
+    bootstrap_data['CYCLE'] = cycle
     
     # Create metadata
     metadata = {

@@ -13,7 +13,7 @@ from src.data.loader import load_ontario_csd_lookup, load_ontario_official_munic
 
 
 def create_analysis_mode_selector():
-    """Create analysis mode selector (Single Cycle vs Multi-Cycle)."""
+    """Create the single-cycle or cross-cycle trend mode selector."""
     st.sidebar.markdown("""
     <div class="sidebar-card">
         <h3 style="margin: 0 0 1rem 0; color: var(--primary); display: flex; align-items: center;">
@@ -24,9 +24,13 @@ def create_analysis_mode_selector():
     
     analysis_mode = st.sidebar.radio(
         "Select Analysis Mode",
-        options=["Single Cycle", "Multi-Cycle"],
+        options=["Single Cycle", "Multi-Cycle Trends"],
         index=0,
-        help="Single Cycle: Analyze one survey year. Multi-Cycle: Compare across multiple years.",
+        help=(
+            "Single Cycle analyzes one survey year. Multi-Cycle Trends "
+            "calculates each selected year separately and compares estimates; "
+            "it does not pool respondent records across cycles."
+        ),
         key="analysis_mode_selector"
     )
     
@@ -132,7 +136,10 @@ def create_multi_cycle_selector(crosswalk=None, data_dict=None):
         "Select CCHS Cycles/Years",
         options=AVAILABLE_CYCLES,
         default=[DEFAULT_CYCLE],
-        help="Select one or more survey cycles to compare. Uses precomputed data when available, otherwise processes in real-time.",
+        help=(
+            "Select survey cycles for separate, cycle-specific estimates and "
+            "cross-year trends. Records are not pooled across cycles."
+        ),
         key="multi_cycle_selector"
     )
     
