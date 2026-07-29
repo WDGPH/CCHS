@@ -898,6 +898,23 @@ def main():
             </div>
             """, unsafe_allow_html=True)
             from src.ui.advanced import render_advanced_analytics_tab
+
+            # Reuse the response labels already attached to the base analysis
+            # results so Advanced Analysis never presents unexplained survey codes.
+            advanced_value_labels = {}
+            advanced_results = get_session_state('combined_results')
+            if (
+                isinstance(advanced_results, pd.DataFrame)
+                and {'Variable', 'Value', 'Label'}.issubset(advanced_results.columns)
+            ):
+                for variable_name, rows in advanced_results.groupby('Variable'):
+                    label_map = {}
+                    for _, row in rows[['Value', 'Label']].dropna().drop_duplicates().iterrows():
+                        value = row['Value']
+                        code = str(int(value)) if isinstance(value, float) and value.is_integer() else str(value)
+                        label_map[code] = str(row['Label'])
+                    advanced_value_labels[str(variable_name)] = label_map
+
             render_advanced_analytics_tab(
                 merged_data=get_session_state('merged_data'),
                 selected_variables=get_session_state('selected_variables') or [],
@@ -905,6 +922,7 @@ def main():
                 province_merged=get_session_state('province_merged'),
                 local_label="Local PHU",
                 variable_descriptions=merged_desc_dict,
+                outcome_value_labels=advanced_value_labels,
             )
 
         with tab3:

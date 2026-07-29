@@ -1,6 +1,6 @@
 """Streamlit UI for Tier 1 advanced analytics.
 
-Exposes three panels that all share a single variable picker:
+Exposes four question-led analysis paths that share one variable picker:
 
 * **Stratified prevalence** — per-level estimates with CI/CV/n and a quality flag.
 * **Group contrast** — one group vs another, with correct bootstrap SE on the
@@ -14,6 +14,7 @@ tab list with a single call to ``render_advanced_analytics_tab``.
 
 from __future__ import annotations
 
+from html import escape
 from typing import Optional
 
 import altair as alt
@@ -31,7 +32,7 @@ from config.settings import (
 )
 from src.analysis.benchmark import benchmark_against, rank_phu_on_outcome
 from src.analysis.difference import contrast_all_values
-from src.analysis.equity import equity_summary
+from src.analysis.equity import calculate_gap, calculate_sii_rii, equity_summary
 from src.analysis.stratified import apply_suppression, run_bootstrap_stratified
 
 
@@ -45,18 +46,182 @@ QUALITY_BADGE = {
 }
 
 ANALYTICS_PALETTE = {
-    "primary": "#0F766E",
-    "accent": "#F59E0B",
-    "accent_soft": "#FDE68A",
-    "danger": "#B91C1C",
-    "danger_soft": "#FCA5A5",
-    "neutral": "#475569",
-    "muted": "#CBD5E1",
+    # Okabe-Ito-inspired colours: distinguishable for common colour-vision
+    # deficiencies. Every use of colour is also paired with a text label.
+    "primary": "#0072B2",
+    "accent": "#E69F00",
+    "accent_soft": "#F6E5B5",
+    "danger": "#A51C30",
+    "danger_soft": "#F4CDD4",
+    "neutral": "#334155",
+    "muted": "#94A3B8",
 }
+
+ANALYSIS_PATHS = {
+    "Describe": {
+        "icon": "01",
+        "title": "Describe population patterns",
+        "question": "How does prevalence vary across population groups?",
+        "method": "Weighted prevalence · 95% confidence intervals · release quality",
+    },
+    "Compare": {
+        "icon": "02",
+        "title": "Compare two groups",
+        "question": "How large is the difference between two selected groups?",
+        "method": "Absolute difference · prevalence ratio · bootstrap inference",
+    },
+    "Equity": {
+        "icon": "03",
+        "title": "Assess an equity gradient",
+        "question": "Is burden distributed unequally across an ordered stratifier?",
+        "method": "Absolute gap · relative ratio · SII · RII",
+    },
+    "Benchmark": {
+        "icon": "04",
+        "title": "Benchmark place",
+        "question": "How does the local estimate compare with Ontario or peer PHUs?",
+        "method": "Local comparison · bootstrap difference · PHU ranking",
+    },
+}
+
+
+def _inject_advanced_styles() -> None:
+    """Small, scoped design layer for the analytics workspace."""
+    st.markdown(
+        """
+        <style>
+        .adv-hero {
+            background:
+                radial-gradient(circle at 92% 12%, rgba(120,162,47,.18), transparent 28%),
+                linear-gradient(135deg, #123B45 0%, #0D5661 58%, #0B6670 100%);
+            border-radius: 20px;
+            color: white;
+            margin: .15rem 0 1.1rem;
+            overflow: hidden;
+            padding: 1.65rem 1.8rem 1.45rem;
+            position: relative;
+        }
+        .adv-kicker {
+            color: #D9EFAB;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            margin-bottom: .55rem;
+            text-transform: uppercase;
+        }
+        .adv-hero h2 {
+            color: white;
+            font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+            letter-spacing: -.025em;
+            line-height: 1.12;
+            margin: 0;
+        }
+        .adv-hero p {
+            color: #DCECEF;
+            font-size: .96rem;
+            line-height: 1.55;
+            margin: .7rem 0 0;
+            max-width: 760px;
+        }
+        .adv-context {
+            align-items: center;
+            background: #F6F9F3;
+            border: 1px solid #DDE8D2;
+            border-radius: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .55rem 1.25rem;
+            margin: .6rem 0 1.2rem;
+            padding: .85rem 1rem;
+        }
+        .adv-context-item { color: #53606A; font-size: .78rem; }
+        .adv-context-item strong {
+            color: #173E46;
+            display: block;
+            font-size: .92rem;
+            margin-top: .08rem;
+        }
+        .adv-question {
+            background: #F7FAFC;
+            border: 1px solid #E2E8F0;
+            border-left: 4px solid #78A22F;
+            border-radius: 0 13px 13px 0;
+            margin: .35rem 0 1rem;
+            padding: .9rem 1rem;
+        }
+        .adv-question-title { color: #123B45; font-size: 1rem; font-weight: 750; }
+        .adv-question-copy { color: #53606A; font-size: .86rem; margin-top: .2rem; }
+        .adv-section-label {
+            color: #667085;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .09em;
+            margin: 1rem 0 .35rem;
+            text-transform: uppercase;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def _render_workspace_header(
+    merged_data: pd.DataFrame,
+    weight_col: str,
+    local_label: str,
+) -> None:
+    replicate_count = sum(str(c).startswith("BSW") for c in merged_data.columns)
+    st.markdown(
+        """
+        <section class="adv-hero">
+          <div class="adv-kicker">CCHS · Decision intelligence</div>
+          <h2>Advanced analysis studio</h2>
+          <p>Move from a population estimate to a defensible public-health
+          comparison. Choose the question first; the workspace will surface
+          the right measure, uncertainty, and interpretation.</p>
+        </section>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        f"""
+        <div class="adv-context">
+          <div class="adv-context-item">Geographic scope<strong>{escape(local_label or 'Current filtered population')}</strong></div>
+          <div class="adv-context-item">Analytic records<strong>{len(merged_data):,}</strong></div>
+          <div class="adv-context-item">Survey weight<strong>{escape(weight_col)}</strong></div>
+          <div class="adv-context-item">Bootstrap replicates<strong>{replicate_count:,}</strong></div>
+          <div class="adv-context-item">Interval<strong>95% confidence</strong></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def _render_path_intro(path: str) -> None:
+    info = ANALYSIS_PATHS[path]
+    st.markdown(
+        f"""
+        <div class="adv-question">
+          <div class="adv-question-title">{escape(info['question'])}</div>
+          <div class="adv-question-copy">{escape(info['method'])}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 def _value_label(value) -> str:
     return str(int(value)) if isinstance(value, (np.integer, int, float)) and float(value).is_integer() else str(value)
+
+
+def _outcome_label(value, labels: Optional[dict] = None, include_code: bool = True) -> str:
+    """Return a response label, with the source code retained for auditability."""
+    code = _value_label(value)
+    labels = labels or {}
+    label = labels.get(value, labels.get(code))
+    if label is None or str(label).strip() in {"", code}:
+        return f"Code {code} (label unavailable)"
+    return f"{label} (code {code})" if include_code else str(label)
 
 
 def _format_pct(value) -> str:
@@ -117,14 +282,14 @@ def _prepare_stratified_chart_data(stratified: pd.DataFrame, value) -> pd.DataFr
     return chart_data.sort_values("Prevalence", ascending=False)
 
 
-def _render_stratified_chart(stratified: pd.DataFrame) -> None:
+def _render_stratified_chart(stratified: pd.DataFrame, value_labels: Optional[dict] = None) -> None:
     values = sorted(stratified["Value"].dropna().unique().tolist())
     if not values:
         return
     selected_value = st.selectbox(
         "Visualize outcome value",
         options=values,
-        format_func=_value_label,
+        format_func=lambda value: _outcome_label(value, value_labels),
         key="adv_stratified_value_chart",
     )
     chart_data = _prepare_stratified_chart_data(stratified, selected_value)
@@ -137,7 +302,8 @@ def _render_stratified_chart(stratified: pd.DataFrame) -> None:
     _render_interpretation(
         "What this shows:",
         (
-            f"For outcome value `{_value_label(selected_value)}`, `{top_row['Stratum Label']}` has the highest "
+            f"For **{_outcome_label(selected_value, value_labels, include_code=False)}**, "
+            f"`{top_row['Stratum Label']}` has the highest "
             f"estimated prevalence at {_format_pct(top_row['Prevalence'])}, while "
             f"`{bottom_row['Stratum Label']}` is lowest at {_format_pct(bottom_row['Prevalence'])}."
         ),
@@ -206,22 +372,24 @@ def _render_stratified_chart(stratified: pd.DataFrame) -> None:
     )
 
 
-def _prepare_contrast_chart_data(table: pd.DataFrame) -> pd.DataFrame:
+def _prepare_contrast_chart_data(table: pd.DataFrame, value_labels: Optional[dict] = None) -> pd.DataFrame:
     chart_data = table.copy()
     if chart_data.empty:
         return chart_data
-    chart_data["Value Label"] = chart_data["Value"].map(_value_label)
+    chart_data["Value Label"] = chart_data["Value"].map(
+        lambda value: _outcome_label(value, value_labels, include_code=False)
+    )
     chart_data["Significance"] = np.where(
         chart_data["p-value"].fillna(1) < 0.05, "p < 0.05", "Not significant"
     )
     return chart_data
 
 
-def _render_contrast_charts(table: pd.DataFrame) -> None:
-    chart_data = _prepare_contrast_chart_data(table)
+def _render_contrast_charts(table: pd.DataFrame, value_labels: Optional[dict] = None) -> None:
+    chart_data = _prepare_contrast_chart_data(table, value_labels)
     if chart_data.empty:
         return
-    largest_gap = chart_data.iloc[chart_data["Difference (pp)"].abs().idxmax()]
+    largest_gap = chart_data.loc[chart_data["Difference (pp)"].abs().idxmax()]
     significant = int(chart_data["p-value"].fillna(1).lt(0.05).sum())
     direction = (
         f"{largest_gap['Group A']} higher"
@@ -231,7 +399,7 @@ def _render_contrast_charts(table: pd.DataFrame) -> None:
     _render_interpretation(
         "What this shows:",
         (
-            f"The largest separation is for outcome value `{_value_label(largest_gap['Value'])}`: "
+            f"The largest separation is for **{_outcome_label(largest_gap['Value'], value_labels, include_code=False)}**: "
             f"{direction} by {_format_pp(largest_gap['Difference (pp)'])}."
         ),
         (
@@ -243,7 +411,7 @@ def _render_contrast_charts(table: pd.DataFrame) -> None:
     _render_metric_row(
         [
             ("Largest gap", _format_pp(largest_gap["Difference (pp)"]), "Biggest prevalence difference between the two selected groups."),
-            ("Most different value", _value_label(largest_gap["Value"]), "Outcome value with the strongest separation."),
+            ("Most different response", _outcome_label(largest_gap["Value"], value_labels, include_code=False), "Response with the strongest separation."),
             ("Statistically clear", f"{significant}/{len(chart_data)}", "Count of outcome values with p-value below 0.05."),
         ]
     )
@@ -327,7 +495,7 @@ def _render_equity_charts(summary: pd.DataFrame) -> None:
     chart_data = _prepare_equity_chart_data(summary)
     if chart_data.empty:
         return
-    widest_gap = chart_data.iloc[chart_data["Absolute gap (pp)"].abs().idxmax()]
+    widest_gap = chart_data.loc[chart_data["Absolute gap (pp)"].abs().idxmax()]
     burden_side = (
         "disadvantaged group"
         if widest_gap["Absolute gap (pp)"] >= 0
@@ -403,7 +571,7 @@ def _render_equity_charts(summary: pd.DataFrame) -> None:
             st.altair_chart((rule + rii_chart).configure(**_chart_theme()["config"]), use_container_width=True)
 
 
-def _prepare_benchmark_long(table: pd.DataFrame) -> pd.DataFrame:
+def _prepare_benchmark_long(table: pd.DataFrame, value_labels: Optional[dict] = None) -> pd.DataFrame:
     chart_data = table.copy()
     if chart_data.empty:
         return chart_data
@@ -414,7 +582,9 @@ def _prepare_benchmark_long(table: pd.DataFrame) -> pd.DataFrame:
     prevalence_cols = [col for col in chart_data.columns if col.endswith("Prevalence (%)")]
     if len(prevalence_cols) < 2:
         return pd.DataFrame()
-    chart_data["Value Label"] = chart_data["Value"].map(_value_label)
+    chart_data["Value Label"] = chart_data["Value"].map(
+        lambda value: _outcome_label(value, value_labels, include_code=False)
+    )
     long = chart_data.melt(
         id_vars=["Value Label", "Difference (pp)", "p-value"],
         value_vars=prevalence_cols[:2],
@@ -425,12 +595,16 @@ def _prepare_benchmark_long(table: pd.DataFrame) -> pd.DataFrame:
     return long
 
 
-def _render_benchmark_comparison_chart(table: pd.DataFrame, title: str) -> None:
-    long = _prepare_benchmark_long(table)
+def _render_benchmark_comparison_chart(
+    table: pd.DataFrame,
+    title: str,
+    value_labels: Optional[dict] = None,
+) -> None:
+    long = _prepare_benchmark_long(table, value_labels)
     if long.empty:
         return
     chart_data = table.copy()
-    strongest = chart_data.iloc[chart_data["Difference (pp)"].abs().idxmax()]
+    strongest = chart_data.loc[chart_data["Difference (pp)"].abs().idxmax()]
     local_col, comp_col = [col for col in chart_data.columns if col.endswith("Prevalence (%)")][:2]
     local_name = local_col.replace(" Prevalence (%)", "")
     comp_name = comp_col.replace(" Prevalence (%)", "")
@@ -438,7 +612,7 @@ def _render_benchmark_comparison_chart(table: pd.DataFrame, title: str) -> None:
     _render_interpretation(
         "What this shows:",
         (
-            f"The biggest benchmark difference is for outcome value `{_value_label(strongest['Value'])}`. "
+            f"The biggest benchmark difference is for **{_outcome_label(strongest['Value'], value_labels, include_code=False)}**. "
             f"{direction} is higher by {_format_pp(strongest['Difference (pp)'])}."
         ),
         (
@@ -560,6 +734,7 @@ def _render_stratified_panel(
     stratifier_col: str,
     weight_col: str,
     variable_description: Optional[str] = None,
+    value_labels: Optional[dict] = None,
 ) -> pd.DataFrame:
     info = STRATIFIER_REGISTRY[stratifier_col]
     st.markdown(
@@ -587,14 +762,20 @@ def _render_stratified_panel(
         )
 
     suppressed = apply_suppression(strat)
-    _render_stratified_chart(suppressed)
+    _render_stratified_chart(suppressed, value_labels)
     display = suppressed.copy()
+    display.insert(
+        display.columns.get_loc("Value") + 1,
+        "Outcome response",
+        display["Value"].map(lambda value: _outcome_label(value, value_labels, include_code=False)),
+    )
     display["Quality"] = display["Quality"].map(lambda k: f"{QUALITY_BADGE[k][0]} {k}")
 
     cols = [
         "Stratum",
         "Stratum Label",
         "Value",
+        "Outcome response",
         "Prevalence",
         "CI Lower",
         "CI Upper",
@@ -603,24 +784,30 @@ def _render_stratified_panel(
         "Quality",
     ]
     cols = [c for c in cols if c in display.columns]
-    st.dataframe(
-        display[cols]
-        .style.format(
-            {
-                "Prevalence": "{:.2f}",
-                "CI Lower": "{:.2f}",
-                "CI Upper": "{:.2f}",
-                "CV (%)": "{:.1f}",
-            }
-        )
-        .background_gradient(subset=["Prevalence"], cmap="viridis"),
-        use_container_width=True,
+    styled = display[cols].style.format(
+        {
+            "Prevalence": "{:.2f}",
+            "CI Lower": "{:.2f}",
+            "CI Upper": "{:.2f}",
+            "CV (%)": "{:.1f}",
+        }
     )
+    if "Prevalence" in display and display["Prevalence"].notna().any():
+        styled = styled.background_gradient(subset=["Prevalence"], cmap="viridis")
+    st.dataframe(styled, use_container_width=True)
     st.caption(
         "Suppression rule: n < {n_min} or CV > {cv_hi:.1f}% → estimate suppressed. "
         "CV {cv_lo:.1f}–{cv_hi:.1f}% flagged as *caution*.".format(
             n_min=MIN_UNWEIGHTED_N, cv_lo=CV_ACCEPTABLE, cv_hi=CV_USE_CAUTION
         )
+    )
+    st.download_button(
+        "Download release-screened table (.csv)",
+        data=display[cols].to_csv(index=False).encode("utf-8"),
+        file_name=f"{variable}_{stratifier_col}_stratified.csv",
+        mime="text/csv",
+        help="Suppressed estimate fields remain blank in the downloaded file.",
+        key=f"adv_download_stratified_{variable}_{stratifier_col}",
     )
     return strat
 
@@ -630,6 +817,7 @@ def _render_contrast_panel(
     variable: str,
     stratifier_col: str,
     weight_col: str,
+    value_labels: Optional[dict] = None,
 ) -> None:
     levels = sorted(merged_data[stratifier_col].dropna().unique().tolist())
     excludes = STRATIFIER_REGISTRY[stratifier_col].get("exclude_values") or []
@@ -673,7 +861,13 @@ def _render_contrast_panel(
         st.warning("No values produced a contrast.")
         return
 
-    _render_contrast_charts(table)
+    _render_contrast_charts(table, value_labels)
+    table = table.copy()
+    table.insert(
+        table.columns.get_loc("Value") + 1,
+        "Outcome response",
+        table["Value"].map(lambda value: _outcome_label(value, value_labels, include_code=False)),
+    )
     st.dataframe(
         table.style.format(
             {
@@ -690,49 +884,187 @@ def _render_contrast_panel(
         use_container_width=True,
     )
     st.caption(
-        "p-values come from a two-sided z-test using the bootstrap SE of the **difference** — "
-        "this is the correct test; the older CI-overlap method is overly conservative."
+        "The p-value tests compatibility with no difference; it does not measure program "
+        "importance. Read it with the absolute difference and its 95% CI. Group-level "
+        "contrasts are exploratory and still require a release review before dissemination."
     )
 
 
 def _render_equity_panel(
     stratified: pd.DataFrame,
     stratifier_col: str,
+    value_labels: Optional[dict] = None,
 ) -> None:
     info = STRATIFIER_REGISTRY.get(stratifier_col, {})
     if not info.get("ordered"):
         st.info(
-            f"Equity gradient metrics (SII/RII) need an *ordered* stratifier. "
-            f"`{stratifier_col}` is categorical — only gap and ratio will be computed."
+            f"**{info.get('label', stratifier_col)} does not have a social order.** "
+            "An equity gradient needs groups that can be placed from a reference "
+            "end to a priority end. Use **Compare two groups** for this stratifier."
         )
+        return
     if stratified is None or stratified.empty:
-        st.warning("Run the stratified analysis above first.")
+        st.warning("No stratified estimates are available for this selection.")
         return
-    summary = equity_summary(stratified, stratifier_col)
-    if summary.empty:
-        st.warning("No equity summary could be produced.")
+
+    screened = apply_suppression(stratified)
+    values = sorted(screened["Value"].dropna().unique().tolist())
+    selected_value = st.selectbox(
+        "Outcome value to assess",
+        options=values,
+        format_func=lambda value: _outcome_label(value, value_labels),
+        key=f"equity_value_{stratifier_col}",
+        help="For a binary indicator, choose the value that represents the health outcome or burden of interest.",
+    )
+    value_rows = screened[screened["Value"] == selected_value].copy()
+    value_rows = value_rows.dropna(subset=["Stratum", "Prevalence"])
+    if len(value_rows) < 2:
+        st.warning("At least two population groups with usable estimates are required.")
         return
-    _render_equity_charts(summary)
-    st.dataframe(
-        summary.style.format(
-            {
-                "Prev. advantaged (%)": "{:.2f}",
-                "Prev. disadvantaged (%)": "{:.2f}",
-                "Absolute gap (pp)": "{:+.2f}",
-                "Relative ratio": "{:.2f}",
-                "SII (pp)": "{:+.2f}",
-                "RII": "{:.2f}",
-            },
-            na_rep="—",
-        ),
+
+    if "Stratum Label" not in value_rows.columns:
+        value_rows["Stratum Label"] = value_rows["Stratum"].map(_value_label)
+    value_rows["Stratum Label"] = value_rows["Stratum Label"].fillna(
+        value_rows["Stratum"].map(_value_label)
+    )
+
+    levels = sorted(value_rows["Stratum"].unique().tolist())
+    end_levels = [levels[0], levels[-1]]
+    labels = value_rows.set_index("Stratum")["Stratum Label"].to_dict()
+    st.markdown("**Tell us how to read the social order**")
+    st.caption(
+        "Equity direction comes from context—not from whichever group happens to have "
+        "the highest estimate. Choose the two ends before interpreting the gap."
+    )
+    end_a, end_b = st.columns(2)
+    with end_a:
+        reference = st.selectbox(
+            "Reference end (more resources / advantage)",
+            options=end_levels,
+            index=1,
+            format_func=lambda x: str(labels.get(x, x)),
+            key=f"equity_reference_{stratifier_col}",
+        )
+    remaining = [level for level in end_levels if level != reference]
+    with end_b:
+        priority = st.selectbox(
+            "Priority end (fewer resources / disadvantage)",
+            options=remaining,
+            index=0,
+            format_func=lambda x: str(labels.get(x, x)),
+            key=f"equity_priority_{stratifier_col}",
+        )
+
+    gap = calculate_gap(
+        screened,
+        selected_value,
+        advantaged_stratum=reference,
+        disadvantaged_stratum=priority,
+    )
+    reference_prev = gap.get("advantaged_prevalence", np.nan)
+    priority_prev = gap.get("disadvantaged_prevalence", np.nan)
+    gap_pp = gap.get("gap_pp", np.nan)
+    ratio = gap.get("ratio", np.nan)
+    reference_label = str(labels.get(reference, reference))
+    priority_label = str(labels.get(priority, priority))
+
+    if pd.isna(gap_pp):
+        st.warning("The selected end groups do not have enough information for a gap estimate.")
+        return
+
+    if abs(gap_pp) < 0.05:
+        plain_summary = (
+            f"The estimated prevalence is about the same at both ends of the selected social order "
+            f"({_format_pct(priority_prev)} vs {_format_pct(reference_prev)})."
+        )
+    else:
+        higher_lower = "higher" if gap_pp > 0 else "lower"
+        plain_summary = (
+            f"For **{_outcome_label(selected_value, value_labels, include_code=False)}**, prevalence in **{priority_label}** "
+            f"is **{abs(gap_pp):.1f} percentage points {higher_lower}** than in **{reference_label}** "
+            f"({_format_pct(priority_prev)} vs {_format_pct(reference_prev)})."
+        )
+    _render_interpretation(
+        "What this means:",
+        plain_summary,
+        "The end-group gap is the easiest equity measure to communicate. It describes a pattern, not a cause. "
+        "Check the confidence intervals and estimate quality before using the result for decisions.",
+    )
+    _render_metric_row(
+        [
+            ("Priority end", _format_pct(priority_prev), priority_label),
+            ("Reference end", _format_pct(reference_prev), reference_label),
+            ("Absolute gap", _format_pp(gap_pp), "Priority end minus reference end, in percentage points."),
+            ("Relative burden", _format_ratio(ratio), "Priority-end prevalence divided by reference-end prevalence."),
+        ]
+    )
+
+    order = sorted(levels)
+    if order.index(priority) > order.index(reference):
+        order = list(reversed(order))
+    sii_rii = calculate_sii_rii(
+        screened,
+        selected_value,
+        stratifier_col,
+        strata_order=order,
+    )
+
+    chart_rows = value_rows.copy()
+    chart_rows["Order"] = chart_rows["Stratum"].map({value: i for i, value in enumerate(order)})
+    chart_rows = chart_rows.sort_values("Order")
+    points = alt.Chart(chart_rows).mark_circle(size=125, color=ANALYTICS_PALETTE["primary"]).encode(
+        x=alt.X("Stratum Label:N", sort=chart_rows["Stratum Label"].tolist(), title=None),
+        y=alt.Y("Prevalence:Q", title="Prevalence (%)", scale=alt.Scale(zero=True)),
+        tooltip=[
+            alt.Tooltip("Stratum Label:N", title="Population group"),
+            alt.Tooltip("Prevalence:Q", title="Prevalence (%)", format=".1f"),
+            alt.Tooltip("CI Lower:Q", title="CI lower", format=".1f"),
+            alt.Tooltip("CI Upper:Q", title="CI upper", format=".1f"),
+            alt.Tooltip("Quality:N", title="Estimate quality"),
+        ],
+    )
+    intervals = alt.Chart(chart_rows).mark_rule(
+        color=ANALYTICS_PALETTE["primary"], strokeWidth=2
+    ).encode(
+        x=alt.X("Stratum Label:N", sort=chart_rows["Stratum Label"].tolist()),
+        y="CI Lower:Q",
+        y2="CI Upper:Q",
+    )
+    line = alt.Chart(chart_rows).mark_line(
+        color=ANALYTICS_PALETTE["muted"], strokeDash=[5, 4]
+    ).encode(
+        x=alt.X("Stratum Label:N", sort=chart_rows["Stratum Label"].tolist()),
+        y="Prevalence:Q",
+    )
+    st.altair_chart(
+        (intervals + line + points).properties(
+            title="Prevalence across the selected social order",
+            height=290,
+        ).configure(**_chart_theme()["config"]),
         use_container_width=True,
     )
-    st.caption(
-        "SII = disadvantaged-minus-advantaged prevalence from a population-weighted "
-        "regression across the whole ordered distribution (positive = burden on "
-        "disadvantaged group). RII > 1 means the disadvantaged group has a higher "
-        "rate at the extreme of the ordered scale."
-    )
+    st.caption("Left to right: priority end → reference end. Vertical lines are 95% confidence intervals.")
+
+    with st.expander("Across the whole gradient (technical measures)", expanded=False):
+        sii, rii = sii_rii.get("sii"), sii_rii.get("rii")
+        _render_metric_row(
+            [
+                (
+                    "Modelled absolute inequality (SII)",
+                    _format_pp(sii),
+                    "Modelled difference between the two ends, using every ordered group.",
+                ),
+                (
+                    "Modelled relative inequality (RII)",
+                    _format_ratio(rii),
+                    "Modelled priority-to-reference ratio, using every ordered group.",
+                ),
+            ]
+        )
+        st.caption(
+            "SII and RII use all groups and their weighted population sizes. They are most useful "
+            "when the ordering represents a meaningful socioeconomic gradient and the pattern is reasonably monotonic."
+        )
 
 
 def _render_benchmark_panel(
@@ -741,6 +1073,7 @@ def _render_benchmark_panel(
     variable: str,
     weight_col: str,
     local_label: str,
+    value_labels: Optional[dict] = None,
 ) -> None:
     if province_merged is None:
         st.info(
@@ -762,7 +1095,7 @@ def _render_benchmark_panel(
                 local_merged, province_merged, variable, comparator="ontario",
                 weight_col=weight_col, local_label=local_label,
             )
-        _render_benchmark_comparison_chart(table, "Local vs Ontario")
+        _render_benchmark_comparison_chart(table, "Local vs Ontario", value_labels)
         st.dataframe(
             table.style.format({c: "{:.2f}" for c in table.columns if "Prevalence" in c or c == "Difference (pp)"}),
             use_container_width=True,
@@ -783,12 +1116,13 @@ def _render_benchmark_panel(
                 comparator_health_region_codes=selected, weight_col=weight_col,
                 local_label=local_label,
             )
-        _render_benchmark_comparison_chart(table, "Local vs selected PHU comparator")
+        _render_benchmark_comparison_chart(table, "Local vs selected PHU comparator", value_labels)
         st.dataframe(table, use_container_width=True)
     else:
         value = st.selectbox(
             "Outcome value to rank on",
             options=sorted(local_merged[variable].dropna().unique().tolist()),
+            format_func=lambda value: _outcome_label(value, value_labels),
             key=f"bench_value_{variable}",
         )
         with st.spinner("Building league table..."):
@@ -812,11 +1146,15 @@ def render_advanced_analytics_tab(
     province_merged: Optional[pd.DataFrame] = None,
     local_label: str = "Local PHU",
     variable_descriptions: Optional[dict] = None,
+    outcome_value_labels: Optional[dict[str, dict]] = None,
 ) -> None:
-    """Render the full Tier 1 analytics tab. Call from main.py inside ``with tab_advanced:``."""
+    """Render the guided Tier 1 analytics workspace."""
     if merged_data is None or not selected_variables:
         st.info("Run the base bootstrap analysis first — then pick a variable here.")
         return
+
+    _inject_advanced_styles()
+    _render_workspace_header(merged_data, weight_col, local_label)
 
     available = _available_stratifiers(merged_data)
     if not available:
@@ -826,10 +1164,11 @@ def render_advanced_analytics_tab(
         )
         return
 
-    col_var, col_strat = st.columns(2)
+    st.markdown('<div class="adv-section-label">1 · Define the analysis</div>', unsafe_allow_html=True)
+    col_var, col_strat = st.columns((1.25, 1))
     with col_var:
         variable = st.selectbox(
-            "Variable to analyze",
+            "Health outcome or indicator",
             options=selected_variables,
             format_func=lambda v: (
                 f"{v} — {variable_descriptions[v]}" if variable_descriptions and v in variable_descriptions else v
@@ -838,32 +1177,79 @@ def render_advanced_analytics_tab(
         )
     with col_strat:
         stratifier = st.selectbox(
-            "Stratifier",
+            "Population stratifier",
             options=available,
             format_func=lambda s: f"{STRATIFIER_REGISTRY[s]['label']} ({s})",
             key="adv_stratifier",
         )
 
     variable_description = (variable_descriptions or {}).get(variable)
+    value_labels = (outcome_value_labels or {}).get(variable, {})
+    if variable_description:
+        st.caption(f"Indicator definition: {variable_description}")
 
-    sub_stratified, sub_contrast, sub_equity, sub_benchmark = st.tabs(
-        ["📊 Stratified prevalence", "⚖️ Group contrast", "📈 Equity gradient", "🏙️ Benchmark"]
+    st.markdown('<div class="adv-section-label">2 · Choose the public-health question</div>', unsafe_allow_html=True)
+    analysis_path = st.radio(
+        "Analysis path",
+        options=list(ANALYSIS_PATHS),
+        format_func=lambda key: f"{ANALYSIS_PATHS[key]['icon']}  {ANALYSIS_PATHS[key]['title']}",
+        horizontal=True,
+        label_visibility="collapsed",
+        key="adv_analysis_path",
     )
+    _render_path_intro(analysis_path)
 
-    with sub_stratified:
+    st.markdown('<div class="adv-section-label">3 · Review the evidence</div>', unsafe_allow_html=True)
+    if analysis_path == "Describe":
         stratified = _render_stratified_panel(
-            merged_data, variable, stratifier, weight_col, variable_description
+            merged_data,
+            variable,
+            stratifier,
+            weight_col,
+            variable_description,
+            value_labels,
         )
         st.session_state[f"_strat_cache_{variable}_{stratifier}"] = stratified
-
-    with sub_contrast:
-        _render_contrast_panel(merged_data, variable, stratifier, weight_col)
-
-    with sub_equity:
+    elif analysis_path == "Compare":
+        _render_contrast_panel(merged_data, variable, stratifier, weight_col, value_labels)
+    elif analysis_path == "Equity":
         stratified_cached = st.session_state.get(f"_strat_cache_{variable}_{stratifier}")
-        _render_equity_panel(stratified_cached, stratifier)
-
-    with sub_benchmark:
+        if stratified_cached is None:
+            label_col = (
+                f"{stratifier}_label"
+                if f"{stratifier}_label" in merged_data.columns
+                else None
+            )
+            with st.spinner("Preparing the stratified estimates used by the equity measures..."):
+                stratified_cached = run_bootstrap_stratified(
+                    merged_data,
+                    variable,
+                    stratifier,
+                    weight_col=weight_col,
+                    stratifier_label_col=label_col,
+                )
+            st.session_state[f"_strat_cache_{variable}_{stratifier}"] = stratified_cached
+        _render_equity_panel(stratified_cached, stratifier, value_labels)
+    else:
         _render_benchmark_panel(
-            merged_data, province_merged, variable, weight_col, local_label
+            merged_data,
+            province_merged,
+            variable,
+            weight_col,
+            local_label,
+            value_labels,
+        )
+
+    with st.expander("Method and interpretation guardrails", expanded=False):
+        st.markdown(
+            """
+            - Estimates are survey-weighted and uncertainty uses the supplied CCHS
+              bootstrap replicate weights.
+            - A 95% confidence interval describes sampling uncertainty, not bias,
+              causality, or program importance.
+            - Statistical evidence should be read alongside effect size, estimate
+              quality, local context, and feasibility of action.
+            - This is descriptive, cross-sectional analysis; observed differences
+              should not be interpreted as causal effects.
+            """
         )

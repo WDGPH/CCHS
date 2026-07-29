@@ -1,7 +1,7 @@
 # Advanced Analytics (Tier 1)
 
-This tab extends the base bootstrap prevalence analysis with four additional
-panels that every PHU-facing CCHS report eventually needs: **stratified
+This guided workspace extends the base bootstrap prevalence analysis with four
+question-led paths that every PHU-facing CCHS report eventually needs: **stratified
 prevalence**, **group contrast**, **equity gradient**, and **benchmarking**.
 
 All four share the same merged dataset (respondent rows + `BSW*` replicate
@@ -31,11 +31,15 @@ Both are written to `st.session_state` when the **Apply Filters** button fires
 
 ### Shared controls
 
-The tab's header has two selectors that feed **every** sub-panel:
+The workspace first asks the analyst to choose an outcome and stratifier, then
+choose the public-health question. Only the selected path is computed; this
+avoids rerunning every bootstrap workflow on each Streamlit interaction.
+
+The header has two selectors that feed **every** path:
 
 | Control      | Source                                | Used by                    |
 |--------------|---------------------------------------|----------------------------|
-| Variable     | `selected_variables` from session     | all four panels            |
+| Variable     | `selected_variables` from session     | all four paths             |
 | Stratifier   | `STRATIFIER_REGISTRY ∩ merged_data.columns` | stratified, contrast, equity |
 
 The stratifier list is intentionally constrained to a curated registry
@@ -45,7 +49,7 @@ value labels.
 
 ---
 
-## 2. Stratified prevalence (`📊 Stratified prevalence`)
+## 2. Describe population patterns
 
 **What it does.** Computes weighted prevalence of every value of the selected
 variable *within each level of the stratifier*. Normalisation is
@@ -76,7 +80,7 @@ suppressed table, the numeric columns are blanked out on suppressed rows.
 
 ---
 
-## 3. Group contrast (`⚖️ Group contrast`)
+## 3. Compare two groups
 
 **What it does.** Picks two levels of the stratifier (A and B) and produces
 one row per outcome value with: prevalence in each group, the absolute
@@ -123,10 +127,11 @@ not well-defined in that setting.
 
 ---
 
-## 4. Equity gradient (`📈 Equity gradient`)
+## 4. Assess an equity gradient
 
-Operates on the output of the Stratified panel (cached in
-`st.session_state[f"_strat_cache_{variable}_{stratifier}"]`). For each
+Operates on the stratified prevalence output (cached in
+`st.session_state[f"_strat_cache_{variable}_{stratifier}"]`). The workspace
+prepares it automatically when the equity path is selected. For each
 outcome value, reports:
 
 | Metric             | Definition                                           |
@@ -164,7 +169,7 @@ only reports gap/ratio.
 
 ---
 
-## 5. Benchmarking (`🏙️ Benchmark`)
+## 5. Benchmark place
 
 Compares the local PHU against either (a) all of Ontario, (b) one or more
 named comparator PHUs, or (c) the league table across every PHU.
@@ -220,12 +225,12 @@ on outcome X relative to every other PHU?"
 3. If ordered (ridit-based SII/RII will use it), make sure the numeric code
    order matches "advantaged → disadvantaged" — the regression is signed.
 
-### Add a new sub-panel
+### Add a new analysis path
 
-Each panel is a `_render_*_panel` function in `src/ui/advanced.py` that
-takes the shared frames and the selected variable/stratifier and writes to
-the current Streamlit container. Add it to the `st.tabs(...)` call inside
-`render_advanced_analytics_tab`.
+Each path is a `_render_*_panel` function in `src/ui/advanced.py` that takes
+the shared frames and the selected variable/stratifier and writes to the
+current Streamlit container. Add its metadata to `ANALYSIS_PATHS` and route it
+inside `render_advanced_analytics_tab`.
 
 ### Add a new benchmarking comparator
 
