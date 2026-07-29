@@ -76,6 +76,13 @@
     "municipal_status": "Lower Tier",
     "official_name": "Alfred and Plantagenet, Township of"
   },
+  "3502025": {
+    "csd_name": "The Nation / La Nation",
+    "geographic_area": "Prescott and Russell",
+    "label": "The Nation Municipality (3502025)",
+    "municipal_status": "Lower Tier",
+    "official_name": "The Nation Municipality"
+  },
   "3502036": {
     "csd_name": "Clarence-Rockland",
     "geographic_area": "Prescott and Russell",
@@ -433,6 +440,13 @@
     "municipal_status": "Lower Tier",
     "official_name": "Hastings Highlands, Municipality of"
   },
+  "3513020": {
+    "csd_name": "Prince Edward County",
+    "geographic_area": "Prince Edward",
+    "label": "Prince Edward, County of (3513020)",
+    "municipal_status": "Single Tier",
+    "official_name": "Prince Edward, County of"
+  },
   "3514004": {
     "csd_name": "Brighton",
     "geographic_area": "Northumberland",
@@ -446,6 +460,13 @@
     "label": "Cramahe, Township of (3514014)",
     "municipal_status": "Lower Tier",
     "official_name": "Cramahe, Township of"
+  },
+  "3514019": {
+    "csd_name": "Hamilton",
+    "geographic_area": "Northumberland",
+    "label": "Hamilton, Township of (3514019)",
+    "municipal_status": "Lower Tier",
+    "official_name": "Hamilton, Township of"
   },
   "3514020": {
     "csd_name": "Port Hope",
@@ -834,10 +855,10 @@
   },
   "3525005": {
     "csd_name": "Hamilton",
-    "geographic_area": "Northumberland",
-    "label": "Hamilton, Township of (3525005)",
-    "municipal_status": "Lower Tier",
-    "official_name": "Hamilton, Township of"
+    "geographic_area": "Hamilton",
+    "label": "Hamilton, City of (3525005)",
+    "municipal_status": "Single Tier",
+    "official_name": "Hamilton, City of"
   },
   "3526003": {
     "csd_name": "Fort Erie",
@@ -936,6 +957,13 @@
     "label": "Norfolk County (3528052)",
     "municipal_status": "Single Tier",
     "official_name": "Norfolk County"
+  },
+  "3529005": {
+    "csd_name": "Brant",
+    "geographic_area": "Brant",
+    "label": "Brant, County of (3529005)",
+    "municipal_status": "Single Tier",
+    "official_name": "Brant, County of"
   },
   "3529006": {
     "csd_name": "Brantford",
@@ -1913,9 +1941,9 @@
   "3548034": {
     "csd_name": "East Ferris",
     "geographic_area": "Nipissing",
-    "label": "East Ferris, Township of (3548034)",
+    "label": "East Ferris, Municipality of (3548034)",
     "municipal_status": "Single Tier",
-    "official_name": "East Ferris, Township of"
+    "official_name": "East Ferris, Municipality of"
   },
   "3548044": {
     "csd_name": "North Bay",
@@ -1923,6 +1951,13 @@
     "label": "North Bay, City of (3548044)",
     "municipal_status": "Single Tier",
     "official_name": "North Bay, City of"
+  },
+  "3548055": {
+    "csd_name": "West Nipissing / Nipissing Ouest",
+    "geographic_area": "Nipissing",
+    "label": "West Nipissing, Municipality of (3548055)",
+    "municipal_status": "Single Tier",
+    "official_name": "West Nipissing, Municipality of"
   },
   "3548069": {
     "csd_name": "Temagami",
@@ -1972,6 +2007,13 @@
     "label": "Armour, Township of (3549019)",
     "municipal_status": "Single Tier",
     "official_name": "Armour, Township of"
+  },
+  "3549022": {
+    "csd_name": "Burk's Falls",
+    "geographic_area": "Parry Sound",
+    "label": "Burk’s Falls, Village of (3549022)",
+    "municipal_status": "Single Tier",
+    "official_name": "Burk’s Falls, Village of"
   },
   "3549024": {
     "csd_name": "Ryerson",
@@ -2141,6 +2183,13 @@
     "municipal_status": "Single Tier",
     "official_name": "Cockburn Island, Township of"
   },
+  "3552001": {
+    "csd_name": "French River / Rivière des Français",
+    "geographic_area": "Sudbury",
+    "label": "French River, Municipality of (3552001)",
+    "municipal_status": "Single Tier",
+    "official_name": "French River, Municipality of"
+  },
   "3552004": {
     "csd_name": "St.-Charles",
     "geographic_area": "Sudbury",
@@ -2196,6 +2245,13 @@
     "label": "Chapleau, Township of (3552092)",
     "municipal_status": "Single Tier",
     "official_name": "Chapleau, Township of"
+  },
+  "3553005": {
+    "csd_name": "Greater Sudbury / Grand Sudbury",
+    "geographic_area": "Sudbury",
+    "label": "Greater Sudbury, City of (3553005)",
+    "municipal_status": "Single Tier",
+    "official_name": "Greater Sudbury, City of"
   },
   "3554001": {
     "csd_name": "Coleman",
@@ -2435,6 +2491,13 @@
     "municipal_status": "Single Tier",
     "official_name": "Hearst, Town of"
   },
+  "3556077": {
+    "csd_name": "Mattice-Val Côté",
+    "geographic_area": "Cochrane",
+    "label": "Mattice-Val Côté, Township of (3556077)",
+    "municipal_status": "Single Tier",
+    "official_name": "Mattice-Val Côté, Township of"
+  },
   "3556106": {
     "csd_name": "Moosonee",
     "geographic_area": "Cochrane",
@@ -2476,6 +2539,13 @@
     "label": "Laird, Township of (3557011)",
     "municipal_status": "Single Tier",
     "official_name": "Laird, Township of"
+  },
+  "3557014": {
+    "csd_name": "Tarbutt and Tarbutt Additional",
+    "geographic_area": "Algoma",
+    "label": "Tarbutt, Township of (3557014)",
+    "municipal_status": "Single Tier",
+    "official_name": "Tarbutt, Township of"
   },
   "3557016": {
     "csd_name": "Johnson",
@@ -2616,6 +2686,13 @@
     "label": "Gillies, Township of (3558012)",
     "municipal_status": "Single Tier",
     "official_name": "Gillies, Township of"
+  },
+  "3558016": {
+    "csd_name": "O'Connor",
+    "geographic_area": "Thunder Bay",
+    "label": "O’Connor, Township of (3558016)",
+    "municipal_status": "Single Tier",
+    "official_name": "O’Connor, Township of"
   },
   "3558019": {
     "csd_name": "Conmee",
