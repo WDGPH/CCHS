@@ -16,7 +16,11 @@ from src.data.loader import (
     load_cycle_variable_info, load_crosswalk, load_categories, merge_data
 )
 from src.data.processor import create_age_groups, apply_region_filter, apply_inclusion_flag_filters
-from src.analysis.bootstrap import run_bootstrap_analysis_for_all_values
+from src.data.harmonizer import prepare_pooled_variable
+from src.analysis.bootstrap import (
+    run_bootstrap_analysis_for_all_values,
+    run_cycle_pooled_analysis,
+)
 from src.ui.components import (
     display_data_metrics, create_content_card, create_workflow_stepper,
     get_quality_badge, display_quality_legend
@@ -84,6 +88,8 @@ def main():
     
     # Analysis mode selection in sidebar
     analysis_mode = create_analysis_mode_selector()
+    is_pooling_mode = analysis_mode == "Cycle Pooling"
+    is_multi_cycle_mode = analysis_mode in {"Multi-Cycle Trends", "Cycle Pooling"}
     
     # Handle mode switching with warning if user has active work
     previous_mode = get_session_state('analysis_mode')
@@ -115,19 +121,32 @@ def main():
     set_session_state('analysis_mode', analysis_mode)
     
     # Route to appropriate data loading based on mode
-    if analysis_mode == "Multi-Cycle Trends":
+    if is_multi_cycle_mode:
         # Multi-cycle mode
-        selected_cycles = create_multi_cycle_selector(crosswalk, {})
+        selected_cycles = create_multi_cycle_selector(
+            crosswalk, {}, pooling=is_pooling_mode
+        )
         
         if not selected_cycles:
             st.warning("⚠️ Please select at least one cycle to proceed.")
             st.stop()
 
-        st.info(
-            "Multi-Cycle Trends calculates estimates independently for each "
-            "selected cycle and compares them across years. It does not pool "
-            "respondent records across cycles."
-        )
+        if is_pooling_mode and len(selected_cycles) < 2:
+            st.warning("⚠️ Cycle Pooling requires at least two cycles.")
+            st.stop()
+
+        if is_pooling_mode:
+            st.info(
+                "Cycle Pooling combines all selected cycles into one average-period "
+                "estimate. Main and bootstrap weights are divided by the number "
+                "of cycles; uncertainty is calculated across independent cycles."
+            )
+        else:
+            st.info(
+                "Multi-Cycle Trends calculates estimates independently for each "
+                "selected cycle and compares them across years. It does not pool "
+                "respondent records across cycles."
+            )
         
         # Load multi-cycle harmonized data using smart loader
         from src.data.smart_loader import smart_load_multiple_cycles, get_common_vars_smart
@@ -143,6 +162,13 @@ def main():
         
         if not cycle_data_dict:
             st.error("❌ Failed to load multi-cycle data.")
+            st.stop()
+        if is_pooling_mode and set(cycle_data_dict) != set(selected_cycles):
+            failed_cycles = sorted(set(selected_cycles) - set(cycle_data_dict))
+            st.error(
+                "❌ Pooling stopped because these selected cycles could not be "
+                f"loaded: {', '.join(failed_cycles)}"
+            )
             st.stop()
         
         # Show performance info to user
@@ -183,7 +209,7 @@ def main():
         # Display data overview
         cycles_str = ', '.join(selected_cycles)
         st.markdown(create_content_card(
-            f"Multi-Cycle Trends Dataset Overview - Cycles {cycles_str}",
+            f"{'Cycle Pooling' if is_pooling_mode else 'Multi-Cycle Trends'} Dataset Overview - Cycles {cycles_str}",
             f"Combined and harmonized data from {len(selected_cycles)} survey cycle(s)"
         ), unsafe_allow_html=True)
         
@@ -276,7 +302,7 @@ def main():
             merged_data = merge_data(filtered_data, bootstrap_data)
             
             # Check which cycles remain after filtering (for multi-cycle mode)
-            if analysis_mode == "Multi-Cycle Trends" and 'CYCLE' in merged_data.columns:
+            if is_multi_cycle_mode and 'CYCLE' in merged_data.columns:
                 remaining_cycles = sorted(merged_data['CYCLE'].unique())
                 missing_cycles = [c for c in selected_cycles if c not in remaining_cycles]
                 
@@ -290,7 +316,7 @@ def main():
                 elif len(remaining_cycles) == 1:
                     st.warning(
                         f"⚠️ After applying filters, only 1 cycle remains: {remaining_cycles[0]}\n\n"
-                        "Multi-cycle comparison requires at least 2 cycles. "
+                        "Multi-cycle analysis requires at least 2 cycles. "
                         "Consider using Single Cycle mode or adjusting your filters."
                     )
             
@@ -310,7 +336,7 @@ def main():
     merged_data = get_session_state('merged_data')
     if merged_data is not None:
         # Get available harmonized variables
-        if analysis_mode == "Multi-Cycle Trends":
+        if is_multi_cycle_mode:
             # For multi-cycle, use common harmonized variables
             if not available_harmonized_vars and crosswalk:
                 from src.data.harmonizer import get_common_harmonized_vars
@@ -345,7 +371,7 @@ def main():
                     help="Use harmonized variable names that work across multiple cycles"
                 )
                 set_session_state('use_harmonized', use_harmonized)
-            elif analysis_mode == "Multi-Cycle Trends":
+            elif is_multi_cycle_mode:
                 use_harmonized = True
                 st.info(f"Multi-cycle mode: Using {len(available_harmonized_vars)} harmonized variables available across all selected cycles")
             
@@ -417,7 +443,7 @@ def main():
             )
             
             # Analysis summary card
-            mode_display = f"{len(selected_cycles)} cycles" if analysis_mode == "Multi-Cycle Trends" else f"Cycle {cycle}"
+            mode_display = f"{len(selected_cycles)} cycles" if is_multi_cycle_mode else f"Cycle {cycle}"
             st.markdown(f"""
             <div style="background: linear-gradient(135deg, var(--light-bg) 0%, #E0F2F1 100%); 
                         padding: 1rem; border-radius: 12px; margin-top: 1rem; 
@@ -442,7 +468,7 @@ def main():
                 run_single = st.button("Analyze Selected Variables", type="primary")
             with col2:
                 with st.expander("Batch Analysis (All Variables)"):
-                    if analysis_mode == "Multi-Cycle Trends":
+                    if is_multi_cycle_mode:
                         total_vars = len(available_harmonized_vars) if available_harmonized_vars else 0
                     elif use_harmonized and available_harmonized_vars:
                         total_vars = len(available_harmonized_vars)
@@ -479,7 +505,32 @@ def main():
                     """, unsafe_allow_html=True)
                     
                     try:
-                        if analysis_mode == "Multi-Cycle Trends":
+                        if is_pooling_mode:
+                            if 'CYCLE' not in merged_data.columns:
+                                st.error("❌ CYCLE column not found in merged data. Please apply filters again.")
+                                continue
+                            pool_data, pool_variable, labels_harmonized = prepare_pooled_variable(
+                                merged_data, variable, categories
+                            )
+                            result_df = run_cycle_pooled_analysis(
+                                pool_data,
+                                pool_variable,
+                                weight_col,
+                                standards_cycle=max(selected_cycles),
+                                expected_cycles=selected_cycles,
+                            )
+                            result_df['Variable'] = variable
+                            if labels_harmonized:
+                                result_df['Label'] = result_df['Value']
+                            elif categories:
+                                label_cycle = max(selected_cycles)
+                                result_df['Label'] = result_df['Value'].apply(
+                                    lambda value: get_value_label(
+                                        variable, value, label_cycle, categories
+                                    )
+                                )
+                            combined_results.append(result_df)
+                        elif analysis_mode == "Multi-Cycle Trends":
                             # Multi-cycle analysis: run analysis per cycle
                             cycle_results_list = []
                             
@@ -576,7 +627,7 @@ def main():
             # Batch analysis with harmonization support
             if run_batch:
                 # Get all available variables based on harmonization setting
-                if analysis_mode == "Multi-Cycle Trends":
+                if is_multi_cycle_mode:
                     analysis_variables = available_harmonized_vars if available_harmonized_vars else []
                 elif use_harmonized and available_harmonized_vars:
                     analysis_variables = available_harmonized_vars
@@ -602,7 +653,29 @@ def main():
                     progress_bar.progress((i + 1) / len(analysis_variables))
                     
                     try:
-                        if analysis_mode == "Multi-Cycle Trends":
+                        if is_pooling_mode:
+                            pool_data, pool_variable, labels_harmonized = prepare_pooled_variable(
+                                merged_data, variable, categories
+                            )
+                            result_df = run_cycle_pooled_analysis(
+                                pool_data,
+                                pool_variable,
+                                weight_col,
+                                standards_cycle=max(selected_cycles),
+                                expected_cycles=selected_cycles,
+                            )
+                            result_df['Variable'] = variable
+                            if labels_harmonized:
+                                result_df['Label'] = result_df['Value']
+                            elif categories:
+                                label_cycle = max(selected_cycles)
+                                result_df['Label'] = result_df['Value'].apply(
+                                    lambda value: get_value_label(
+                                        variable, value, label_cycle, categories
+                                    )
+                                )
+                            combined_results.append(result_df)
+                        elif analysis_mode == "Multi-Cycle Trends":
                             # Multi-cycle batch analysis
                             cycle_results_list = []
                             for cycle_year in selected_cycles:
@@ -669,11 +742,16 @@ def main():
         st.markdown("---")
         
         # Enhanced results header with cycle info
-        if analysis_mode == "Multi-Cycle Trends":
+        if is_multi_cycle_mode:
             cycles_str = ', '.join(selected_cycles)
-            header_title = f"📈 Analysis Results Dashboard - Cycles {cycles_str}"
-            header_subtitle = "Comprehensive multi-cycle bootstrap analysis results with harmonized variable labels"
-            badge_text = f"✅ {len(selected_cycles)} Cycles Complete"
+            if is_pooling_mode:
+                header_title = f"📈 Pooled Analysis Results - Cycles {cycles_str}"
+                header_subtitle = "One average-period estimate using scaled weights and independent-cycle bootstrap variance"
+                badge_text = f"✅ {len(selected_cycles)} Cycles Pooled"
+            else:
+                header_title = f"📈 Analysis Results Dashboard - Cycles {cycles_str}"
+                header_subtitle = "Comprehensive multi-cycle bootstrap analysis results with harmonized variable labels"
+                badge_text = f"✅ {len(selected_cycles)} Cycles Complete"
         else:
             header_title = f"📈 Analysis Results Dashboard - Cycle {cycle}"
             header_subtitle = f"Comprehensive bootstrap analysis results with {'harmonized ' if use_harmonized else ''}variable labels"
@@ -701,18 +779,11 @@ def main():
         """, unsafe_allow_html=True)
         
         # Tabs with Age Group Analysis
-        if analysis_mode == "Multi-Cycle Trends":
-            tab1, tab2, tab3 = st.tabs([
-                "📊 Results & Visualizations", 
-                "👥 Age Group Analysis",
-                "💾 Export Data"
-            ])
-        else:
-            tab1, tab2, tab3 = st.tabs([
-                "📊 Results & Visualizations", 
-                "👥 Age Group Analysis",
-                "💾 Export Data"
-            ])
+        tab1, tab2, tab3 = st.tabs([
+            "📊 Results & Visualizations",
+            "👥 Age Group Analysis",
+            "💾 Export Data",
+        ])
         
         with tab1:
             # Show visualizations and detailed results
@@ -724,9 +795,8 @@ def main():
                     display_multi_cycle_results(combined_results, variable, var_desc)
                 
                 st.markdown("---")
-            elif analysis_mode == "Single Cycle" and get_session_state('selected_variables'):
-                # Single-cycle: show standard bar charts for each variable
-                st.subheader("Variable Analysis Results")
+            elif analysis_mode in {"Single Cycle", "Cycle Pooling"} and get_session_state('selected_variables'):
+                st.subheader("Pooled Variable Analysis Results" if is_pooling_mode else "Variable Analysis Results")
                 for variable in get_session_state('selected_variables'):
                     var_results = combined_results[combined_results['Variable'] == variable].copy()
                     if not var_results.empty:
@@ -736,7 +806,7 @@ def main():
                             variable,
                             use_labels='Label' in var_results.columns,
                             variable_description=var_desc,
-                            standards_cycle=cycle,
+                            standards_cycle=(max(selected_cycles) if is_pooling_mode else cycle),
                         )
                 
                 st.markdown("---")
@@ -811,19 +881,38 @@ def main():
                                         
                                         # Run bootstrap analysis for this age group
                                         try:
-                                            result_df = run_bootstrap_analysis_for_all_values(
-                                                group_data,
-                                                actual_varname,
-                                                'WTS_S',
-                                                standards_cycle=cycle,
-                                            )
+                                            if is_pooling_mode:
+                                                pool_data, pool_variable, labels_harmonized = prepare_pooled_variable(
+                                                    group_data, actual_varname, categories
+                                                )
+                                                result_df = run_cycle_pooled_analysis(
+                                                    pool_data,
+                                                    pool_variable,
+                                                    'WTS_S',
+                                                    standards_cycle=max(selected_cycles),
+                                                    expected_cycles=selected_cycles,
+                                                )
+                                            else:
+                                                result_df = run_bootstrap_analysis_for_all_values(
+                                                    group_data,
+                                                    actual_varname,
+                                                    'WTS_S',
+                                                    standards_cycle=cycle,
+                                                )
                                             result_df['AgeGroup'] = age_group
                                             result_df['Variable'] = selected_age_var
                                             
                                             # Add labels if available
-                                            if use_harmonized and categories:
+                                            if is_pooling_mode and labels_harmonized:
+                                                result_df['Label'] = result_df['Value']
+                                            elif use_harmonized and categories:
                                                 result_df['Label'] = result_df['Value'].apply(
-                                                    lambda v: get_value_label(selected_age_var, v, cycle, categories)
+                                                    lambda v: get_value_label(
+                                                        selected_age_var,
+                                                        v,
+                                                        max(selected_cycles) if is_pooling_mode else cycle,
+                                                        categories,
+                                                    )
                                                 )
                                             
                                             age_group_results.append(result_df)
@@ -893,9 +982,10 @@ def main():
             with col1:
                 st.markdown("**CSV Format**")
                 csv = combined_results.to_csv().encode('utf-8')
-                if analysis_mode == "Multi-Cycle Trends":
+                if is_multi_cycle_mode:
                     cycles_str = '_'.join(selected_cycles)
-                    file_name = f"cchs_multi_cycle_{cycles_str}_results.csv"
+                    prefix = "cchs_pooled" if is_pooling_mode else "cchs_multi_cycle"
+                    file_name = f"{prefix}_{cycles_str}_results.csv"
                 else:
                     file_name = f"cchs_{cycle}_results.csv"
                 
@@ -914,8 +1004,14 @@ def main():
                     cycles_str = '_'.join(selected_cycles)
                     file_name = f"cchs_multi_cycle_{cycles_str}_results.xlsx"
                 else:
-                    excel_data = create_excel_download(combined_results, f"CCHS_{cycle}_Analysis")
-                    file_name = f"cchs_{cycle}_results.xlsx"
+                    if is_pooling_mode:
+                        cycles_str = '_'.join(selected_cycles)
+                        sheet_name = f"CCHS_Pooled_{cycles_str}"
+                        file_name = f"cchs_pooled_{cycles_str}_results.xlsx"
+                    else:
+                        sheet_name = f"CCHS_{cycle}_Analysis"
+                        file_name = f"cchs_{cycle}_results.xlsx"
+                    excel_data = create_excel_download(combined_results, sheet_name)
                 
                 st.download_button(
                     label="Download Excel",
@@ -927,7 +1023,7 @@ def main():
         
     # Footer with cycle information
     st.markdown("---")
-    if analysis_mode == "Multi-Cycle Trends":
+    if is_multi_cycle_mode:
         cycles_str = ', '.join(selected_cycles)
         harmonization_status = 'Enabled (Required)'
     else:

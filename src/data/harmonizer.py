@@ -4,6 +4,71 @@ import pandas as pd
 from typing import Optional
 
 
+POOLED_VALUE_COLUMN = "__POOLED_HARMONIZED_VALUE__"
+
+
+def _category_key(value):
+    if pd.isna(value):
+        return None
+    if isinstance(value, float) and value.is_integer():
+        return str(int(value))
+    return str(value)
+
+
+def prepare_pooled_variable(
+    data: pd.DataFrame,
+    variable: str,
+    categories: dict,
+    cycle_col: str = "CYCLE",
+):
+    """Prepare comparable response values for cycle pooling.
+
+    When category mappings exist, every observed cycle must have a mapping and
+    every observed non-null value must be mapped. This prevents unlike codes
+    from being silently pooled. If no selected cycle has mappings, the shared
+    raw values are retained (for continuous variables and stable code sets).
+
+    Returns a copied frame, the analysis column name, and whether labels were
+    harmonized.
+    """
+    if variable not in data.columns or cycle_col not in data.columns:
+        raise ValueError(
+            f"Pooling requires both {variable!r} and {cycle_col!r} columns."
+        )
+
+    mappings = categories.get(variable, {}).get("mappings", {}) if categories else {}
+    cycles = [str(value) for value in data[cycle_col].dropna().unique()]
+    cycle_mappings = {cycle: mappings.get(cycle, {}) for cycle in cycles}
+    cycles_with_mappings = [cycle for cycle, mapping in cycle_mappings.items() if mapping]
+
+    if not cycles_with_mappings:
+        return data, variable, False
+    if len(cycles_with_mappings) != len(cycles):
+        missing = sorted(set(cycles) - set(cycles_with_mappings))
+        raise ValueError(
+            f"Category harmonization for {variable} is incomplete; no mapping "
+            f"is available for cycle(s): {', '.join(missing)}."
+        )
+
+    result = data.copy()
+    result[POOLED_VALUE_COLUMN] = pd.NA
+    for cycle, mapping in cycle_mappings.items():
+        mask = result[cycle_col].astype(str).eq(cycle)
+        values = result.loc[mask, variable]
+        keys = values.map(_category_key)
+        unmapped = sorted(set(keys.dropna()) - set(mapping))
+        if unmapped:
+            preview = ", ".join(unmapped[:5])
+            suffix = " ..." if len(unmapped) > 5 else ""
+            raise ValueError(
+                f"Category harmonization for {variable} has unmapped value(s) "
+                f"in cycle {cycle}: {preview}{suffix}."
+            )
+        result.loc[mask, POOLED_VALUE_COLUMN] = keys.map(mapping).to_numpy()
+
+    return result, POOLED_VALUE_COLUMN, True
+
+
 def harmonize_variable_names(df: pd.DataFrame, cycle: str, crosswalk: dict) -> pd.DataFrame:
     """
     Rename cycle-specific variable names to harmonized names using crosswalk.
@@ -114,4 +179,3 @@ def get_common_harmonized_vars(cycles: list, crosswalk: dict, data_dict: dict) -
             common_vars.append(harmonized_var)
     
     return common_vars
-
