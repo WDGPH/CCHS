@@ -183,7 +183,6 @@ def main():
         
         display_data_metrics(data)
         st.info(f"📊 Data harmonized and combined from cycles: {cycles_str}")
-        st.markdown("</div>", unsafe_allow_html=True)
         
         cycle = cycles_str
         use_harmonized = True
@@ -212,7 +211,6 @@ def main():
         ), unsafe_allow_html=True)
         
         display_data_metrics(data)
-        st.markdown("</div>", unsafe_allow_html=True)
         
         available_harmonized_vars = []
         use_harmonized = False
@@ -305,7 +303,6 @@ def main():
         ), unsafe_allow_html=True)
         
         display_data_metrics(filtered_data)
-        st.markdown("</div>", unsafe_allow_html=True)
     
     # Variable analysis section with harmonization support
     merged_data = get_session_state('merged_data')
@@ -512,7 +509,12 @@ def main():
                                     continue
                                 
                                 # Run bootstrap analysis
-                                result_df = run_bootstrap_analysis_for_all_values(cycle_data, variable, weight_col)
+                                result_df = run_bootstrap_analysis_for_all_values(
+                                    cycle_data,
+                                    variable,
+                                    weight_col,
+                                    standards_cycle=cycle_year,
+                                )
                                 result_df['CYCLE'] = cycle_year
                                 result_df['Variable'] = variable
                                 
@@ -541,7 +543,12 @@ def main():
                             else:
                                 actual_varname = variable
                             
-                            result_df = run_bootstrap_analysis_for_all_values(merged_data, actual_varname, weight_col)
+                            result_df = run_bootstrap_analysis_for_all_values(
+                                merged_data,
+                                actual_varname,
+                                weight_col,
+                                standards_cycle=cycle,
+                            )
                             
                             # Add value labels from cycle-specific JSON (ALWAYS, not just for harmonized)
                             result_df['Label'] = result_df['Value'].apply(
@@ -601,7 +608,12 @@ def main():
                                 if cycle_data.empty:
                                     continue
                                 
-                                result_df = run_bootstrap_analysis_for_all_values(cycle_data, variable, weight_col)
+                                result_df = run_bootstrap_analysis_for_all_values(
+                                    cycle_data,
+                                    variable,
+                                    weight_col,
+                                    standards_cycle=cycle_year,
+                                )
                                 result_df['CYCLE'] = cycle_year
                                 result_df['Variable'] = variable
                                 
@@ -623,7 +635,12 @@ def main():
                             else:
                                 actual_varname = variable
                             
-                            result_df = run_bootstrap_analysis_for_all_values(merged_data, actual_varname, weight_col)
+                            result_df = run_bootstrap_analysis_for_all_values(
+                                merged_data,
+                                actual_varname,
+                                weight_col,
+                                standards_cycle=cycle,
+                            )
                             
                             if use_harmonized and categories:
                                 result_df['Label'] = result_df['Value'].apply(
@@ -644,8 +661,6 @@ def main():
                 progress_bar.empty()
                 status_text.empty()
         
-        st.markdown("</div>", unsafe_allow_html=True)
-    
     # Consolidated results dashboard (removed duplicate crosstab section)
     combined_results = get_session_state('combined_results')
     if combined_results is not None:
@@ -680,6 +695,7 @@ def main():
                     {badge_text}
                 </div>
             </div>
+        </div>
         """, unsafe_allow_html=True)
         
         # Tabs with Age Group Analysis
@@ -715,7 +731,13 @@ def main():
                     var_results = combined_results[combined_results['Variable'] == variable].copy()
                     if not var_results.empty:
                         var_desc = merged_desc_dict.get(variable, variable)
-                        display_results(var_results, variable, use_labels='Label' in var_results.columns, variable_description=var_desc)
+                        display_results(
+                            var_results,
+                            variable,
+                            use_labels='Label' in var_results.columns,
+                            variable_description=var_desc,
+                            standards_cycle=cycle,
+                        )
                 
                 st.markdown("---")
             
@@ -790,9 +812,10 @@ def main():
                                         # Run bootstrap analysis for this age group
                                         try:
                                             result_df = run_bootstrap_analysis_for_all_values(
-                                                group_data, 
-                                                actual_varname, 
-                                                'WTS_S'
+                                                group_data,
+                                                actual_varname,
+                                                'WTS_S',
+                                                standards_cycle=cycle,
                                             )
                                             result_df['AgeGroup'] = age_group
                                             result_df['Variable'] = selected_age_var
@@ -837,7 +860,6 @@ def main():
                                 )
                                 
                                 st.dataframe(styled_age_crosstab, use_container_width=True)
-                                st.markdown("</div>", unsafe_allow_html=True)
                                 
                                 # Show detailed breakdown
                                 with st.expander("📋 View Detailed Age Group Breakdown", expanded=False):
@@ -926,8 +948,6 @@ def main():
                     use_container_width=True
                 )
         
-        st.markdown("</div>", unsafe_allow_html=True)
-    
     # Footer with cycle information
     st.markdown("---")
     if analysis_mode == "Multi-Cycle":

@@ -52,7 +52,7 @@ For adding a new survey year, see [ADDING_A_CYCLE.md](ADDING_A_CYCLE.md).
 - **hsYYYY_on_distr.parquet**: Main survey data with respondent records
 - **hsYYYY_on_bootwt.parquet**: Bootstrap weights (columns starting with 'BSW')
 - **CCHS_YYYY_Recoded_Variables.csv**: Must contain 'Variable' and 'Description' columns
-- If your upstream files are SAS, an existing helper script is available at `/home/jovyan/helpers/sas.py` to convert `.sas7bdat` inputs to parquet.
+- If your upstream files are SAS, use the included helper script `scripts/convert_cycle_to_parquet.py` to convert `.sas7bdat` inputs to parquet.
 
 ## 🚀 Installation & Setup (Local Python)
 
@@ -72,9 +72,11 @@ uv sync
 
 ### Run the Application
 ```bash
-uv run streamlit run main.py
+uv run streamlit run app.py
 ```
-(Or activate the environment: `source .venv/bin/activate` then `streamlit run main.py`.)
+(Or activate the environment: `source .venv/bin/activate` then `streamlit run app.py`.)
+
+For privacy-sensitive deployments, use `app.py` as the supported local-first entrypoint.
 
 > Note: requirements.txt retained only for legacy workflows; authoritative dependencies live in pyproject.toml.
 
@@ -328,8 +330,11 @@ Modify CSS variables in the `st.markdown()` section:
 
 ## 🤝 Contributing
 
-This project is internal to WDG Public Health. For guidelines on contributing, see [CONTRIBUTING.md](CONTRIBUTING.md).
+This project is open source under the MIT license and contributions are welcome. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for how to report issues, propose changes, and open pull requests.
 
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 

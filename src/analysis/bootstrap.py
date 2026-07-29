@@ -3,9 +3,15 @@
 import numpy as np
 import pandas as pd
 from config.settings import BOOTSTRAP_PREFIX, DEFAULT_WEIGHT_COLUMN
+from src.analysis.quality import QUALITY_FLAG_CYCLES, apply_cchs_quality_flags
 
 
-def run_bootstrap_analysis_for_all_values(merged_data, variable_col, weight_col=DEFAULT_WEIGHT_COLUMN):
+def run_bootstrap_analysis_for_all_values(
+    merged_data,
+    variable_col,
+    weight_col=DEFAULT_WEIGHT_COLUMN,
+    standards_cycle=None,
+):
     """
     Perform bootstrap analysis using vectorized groupby operations.
     Computes weighted prevalences and bootstrap variances.
@@ -20,6 +26,8 @@ def run_bootstrap_analysis_for_all_values(merged_data, variable_col, weight_col=
     # Compute weighted sums for the base weight grouped by the selected variable
     base_numerators = merged_data.groupby(variable_col)[weight_col].sum()
     base_prevalence = (base_numerators / total_weight_base) * 100
+    unweighted_numerators = merged_data.groupby(variable_col).size()
+    unweighted_denominator = merged_data[variable_col].notna().sum()
 
     # Weighted population for each group (sum of weights)
     weighted_population = base_numerators
@@ -44,6 +52,8 @@ def run_bootstrap_analysis_for_all_values(merged_data, variable_col, weight_col=
     result_df = pd.DataFrame({
         'Value': base_prevalence.index,
         'Prevalence': base_prevalence.values,
+        'Unweighted Numerator': unweighted_numerators.reindex(base_prevalence.index).values,
+        'Unweighted Denominator': unweighted_denominator,
         'Weighted Population': weighted_population.values,
         'Variance': variance.values,
         'Standard Deviation': std_dev.values,
@@ -52,5 +62,8 @@ def run_bootstrap_analysis_for_all_values(merged_data, variable_col, weight_col=
         'CV (%)': cv.values,
         'Error': 1.96 * std_dev.values  # for error bars in plots
     }).reset_index(drop=True)
-    
+
+    if str(standards_cycle) in QUALITY_FLAG_CYCLES:
+        result_df = apply_cchs_quality_flags(result_df)
+
     return result_df
