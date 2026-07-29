@@ -174,3 +174,72 @@ def test_pooling_rejects_unmapped_observed_category():
 
     with pytest.raises(ValueError, match="unmapped value.*9"):
         prepare_pooled_variable(data, "OUTCOME", categories)
+
+
+def test_cycle_dictionaries_override_incomplete_generated_mapping():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2023", "2024"],
+            "SMKDVSTY": ["03", "03"],
+        }
+    )
+    generated_categories = {
+        "SMKDVSTY": {
+            "mappings": {
+                "2023": {"03": "No"},
+                "2024": {},
+            }
+        }
+    }
+    cycle_info = {
+        "2023": {
+            "SMKDVSTY": {
+                "categories": {"03": "Former daily smoker (non-smoker now)"}
+            }
+        },
+        "2024": {
+            "SMKDVSTY": {
+                "categories": {"03": "Former daily smoker (non-smoker now)"}
+            }
+        },
+    }
+    crosswalk = {
+        "SMKDVSTY": {"2023": "SMKDVSTY", "2024": "SMKDVSTY"}
+    }
+
+    prepared, variable, harmonized = prepare_pooled_variable(
+        data,
+        "SMKDVSTY",
+        generated_categories,
+        cycle_variable_info=cycle_info,
+        crosswalk=crosswalk,
+    )
+
+    assert harmonized is True
+    assert prepared[variable].tolist() == [
+        "Former daily smoker (non-smoker now)",
+        "Former daily smoker (non-smoker now)",
+    ]
+
+
+def test_cycle_dictionary_crosswalk_detects_genuinely_missing_categories():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2022", "2023"],
+            "SPU_10": [2020, 1],
+        }
+    )
+    cycle_info = {
+        "2022": {"SPU_10B": {"categories": {}}},
+        "2023": {"SPU_10": {"categories": {"1": "Less than one year ago"}}},
+    }
+    crosswalk = {"SPU_10": {"2022": "SPU_10B", "2023": "SPU_10"}}
+
+    with pytest.raises(ValueError, match="incomplete.*2022"):
+        prepare_pooled_variable(
+            data,
+            "SPU_10",
+            {},
+            cycle_variable_info=cycle_info,
+            crosswalk=crosswalk,
+        )

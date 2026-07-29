@@ -46,11 +46,12 @@ The mean squared replicate deviation is calculated for each cycle, and these
 independent-cycle variance contributions are summed. This avoids imposing a
 false covariance by pairing replicate numbers across separate annual files.
 
-Only variables present in every cycle are offered. When category mappings are
-available, observed response codes must map completely in every selected cycle;
-otherwise the pooled estimate is stopped. All selected cycles must also retain
-records after filtering and provide complete, finite, non-negative main and
-replicate weights.
+Only variables present in every cycle are offered. Cycle-specific data-dictionary
+categories take precedence over generated category mappings. Observed response
+codes must map completely in every selected cycle when categorical metadata is
+available; otherwise the pooled estimate is stopped. All selected cycles must
+also retain records after filtering and provide complete, finite, non-negative
+main and replicate weights.
 
 ## Key Functions
 - `run_bootstrap_analysis_for_all_values`: Core function for bootstrap analysis.

@@ -510,7 +510,11 @@ def main():
                                 st.error("❌ CYCLE column not found in merged data. Please apply filters again.")
                                 continue
                             pool_data, pool_variable, labels_harmonized = prepare_pooled_variable(
-                                merged_data, variable, categories
+                                merged_data,
+                                variable,
+                                categories,
+                                cycle_variable_info=cycle_var_info_dict,
+                                crosswalk=crosswalk,
                             )
                             result_df = run_cycle_pooled_analysis(
                                 pool_data,
@@ -655,7 +659,11 @@ def main():
                     try:
                         if is_pooling_mode:
                             pool_data, pool_variable, labels_harmonized = prepare_pooled_variable(
-                                merged_data, variable, categories
+                                merged_data,
+                                variable,
+                                categories,
+                                cycle_variable_info=cycle_var_info_dict,
+                                crosswalk=crosswalk,
                             )
                             result_df = run_cycle_pooled_analysis(
                                 pool_data,
@@ -883,7 +891,11 @@ def main():
                                         try:
                                             if is_pooling_mode:
                                                 pool_data, pool_variable, labels_harmonized = prepare_pooled_variable(
-                                                    group_data, actual_varname, categories
+                                                    group_data,
+                                                    actual_varname,
+                                                    categories,
+                                                    cycle_variable_info=cycle_var_info_dict,
+                                                    crosswalk=crosswalk,
                                                 )
                                                 result_df = run_cycle_pooled_analysis(
                                                     pool_data,

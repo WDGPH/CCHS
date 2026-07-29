@@ -20,13 +20,16 @@ def prepare_pooled_variable(
     variable: str,
     categories: dict,
     cycle_col: str = "CYCLE",
+    cycle_variable_info: Optional[dict] = None,
+    crosswalk: Optional[dict] = None,
 ):
     """Prepare comparable response values for cycle pooling.
 
-    When category mappings exist, every observed cycle must have a mapping and
-    every observed non-null value must be mapped. This prevents unlike codes
-    from being silently pooled. If no selected cycle has mappings, the shared
-    raw values are retained (for continuous variables and stable code sets).
+    Cycle-specific data-dictionary categories are authoritative when supplied;
+    the generated categories file is only a fallback. When category mappings
+    exist, every observed cycle and non-null value must be mapped. This prevents
+    unlike codes from being silently pooled. If no selected cycle has mappings,
+    shared raw values are retained (for continuous variables and stable codes).
 
     Returns a copied frame, the analysis column name, and whether labels were
     harmonized.
@@ -36,8 +39,22 @@ def prepare_pooled_variable(
             f"Pooling requires both {variable!r} and {cycle_col!r} columns."
         )
 
-    mappings = categories.get(variable, {}).get("mappings", {}) if categories else {}
     cycles = [str(value) for value in data[cycle_col].dropna().unique()]
+    if cycle_variable_info is not None:
+        mappings = {}
+        variable_crosswalk = (crosswalk or {}).get(variable, {})
+        for cycle in cycles:
+            cycle_variable = variable_crosswalk.get(cycle) or variable
+            variable_info = cycle_variable_info.get(cycle, {}).get(
+                cycle_variable, {}
+            )
+            mappings[cycle] = variable_info.get("categories", {})
+    else:
+        mappings = (
+            categories.get(variable, {}).get("mappings", {})
+            if categories
+            else {}
+        )
     cycle_mappings = {cycle: mappings.get(cycle, {}) for cycle in cycles}
     cycles_with_mappings = [cycle for cycle, mapping in cycle_mappings.items() if mapping]
 
