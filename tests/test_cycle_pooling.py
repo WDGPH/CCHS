@@ -1,0 +1,346 @@
+from __future__ import annotations
+
+import pandas as pd
+import pytest
+
+from src.analysis.bootstrap import run_cycle_pooled_analysis
+from src.data.harmonizer import (
+    POOLED_VALUE_COLUMN,
+    assess_harmonized_compatibility,
+    filter_poolable_variables,
+    prepare_pooled_variable,
+)
+
+
+def test_pooling_scales_weights_to_average_annual_population():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2022", "2022", "2023", "2023"],
+            "OUTCOME": [0, 1, 0, 1],
+            "WTS_S": [1.0, 3.0, 2.0, 2.0],
+            "BSW1": [1.0, 3.0, 2.0, 2.0],
+            "BSW2": [1.0, 3.0, 2.0, 2.0],
+        }
+    )
+
+    result = run_cycle_pooled_analysis(
+        data, "OUTCOME", expected_cycles=["2022", "2023"]
+    ).set_index("Value")
+
+    assert result.loc[1, "Prevalence"] == pytest.approx(62.5)
+    assert result.loc[1, "Weighted Population"] == pytest.approx(2.5)
+    assert result.loc[0, "Weighted Population"] == pytest.approx(1.5)
+    assert result.loc[1, "Standard Deviation"] == pytest.approx(0.0)
+    assert result.loc[1, "Unweighted Numerator"] == 2
+    assert result.loc[1, "Unweighted Denominator"] == 4
+    assert result.loc[1, "Cycle Count"] == 2
+    assert result.loc[1, "Pooled Cycles"] == "2022, 2023"
+
+
+def test_pooling_sums_independent_cycle_variance_contributions():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2022", "2022", "2023", "2023"],
+            "OUTCOME": [0, 1, 0, 1],
+            "WTS_S": [1.0, 1.0, 1.0, 1.0],
+            "BSW1": [1.2, 0.8, 1.2, 0.8],
+            "BSW2": [0.8, 1.2, 0.8, 1.2],
+        }
+    )
+
+    result = run_cycle_pooled_analysis(data, "OUTCOME").set_index("Value")
+
+    # Each annual estimate has variance 100. Averaging two independent cycles
+    # gives 100 / 2 = 50, rather than pairing same-numbered replicates and
+    # implicitly treating their movements as correlated.
+    assert result.loc[1, "Prevalence"] == pytest.approx(50.0)
+    assert result.loc[1, "Variance"] == pytest.approx(50.0)
+    assert result.loc[1, "Standard Deviation"] == pytest.approx(50.0**0.5)
+
+
+def test_pooling_supports_more_than_two_cycles():
+    rows = []
+    for cycle in ("2021", "2022", "2023"):
+        rows.extend(
+            [
+                {"CYCLE": cycle, "OUTCOME": 0, "WTS_S": 1.0, "BSW1": 1.0},
+                {"CYCLE": cycle, "OUTCOME": 1, "WTS_S": 1.0, "BSW1": 1.0},
+            ]
+        )
+
+    result = run_cycle_pooled_analysis(pd.DataFrame(rows), "OUTCOME")
+
+    assert set(result["Cycle Count"]) == {3}
+    assert result["Weighted Population"].sum() == pytest.approx(2.0)
+    assert result["Prevalence"].tolist() == pytest.approx([50.0, 50.0])
+
+
+def test_pooling_rejects_one_cycle():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2023", "2023"],
+            "OUTCOME": [0, 1],
+            "WTS_S": [1.0, 1.0],
+            "BSW1": [1.0, 1.0],
+        }
+    )
+
+    with pytest.raises(ValueError, match="at least two"):
+        run_cycle_pooled_analysis(data, "OUTCOME")
+
+
+def test_pooling_rejects_selected_cycle_lost_after_filtering():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2022", "2022", "2023", "2023"],
+            "OUTCOME": [0, 1, 0, 1],
+            "WTS_S": [1.0, 1.0, 1.0, 1.0],
+            "BSW1": [1.0, 1.0, 1.0, 1.0],
+        }
+    )
+
+    with pytest.raises(ValueError, match="missing: 2024"):
+        run_cycle_pooled_analysis(
+            data,
+            "OUTCOME",
+            expected_cycles=["2022", "2023", "2024"],
+        )
+
+
+def test_pooling_rejects_incomplete_replicate_weights():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2022", "2023"],
+            "OUTCOME": [0, 1],
+            "WTS_S": [1.0, 1.0],
+            "BSW1": [1.0, None],
+        }
+    )
+
+    with pytest.raises(ValueError, match="missing main or bootstrap weights"):
+        run_cycle_pooled_analysis(data, "OUTCOME")
+
+
+def test_pooling_harmonizes_different_cycle_codes_to_shared_labels():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2022", "2023"],
+            "OUTCOME": [1, 7],
+        }
+    )
+    categories = {
+        "OUTCOME": {
+            "mappings": {
+                "2022": {"1": "Yes"},
+                "2023": {"7": "Yes"},
+            }
+        }
+    }
+
+    prepared, variable, harmonized = prepare_pooled_variable(
+        data, "OUTCOME", categories
+    )
+
+    assert variable == POOLED_VALUE_COLUMN
+    assert harmonized is True
+    assert prepared[variable].tolist() == ["Yes", "Yes"]
+
+
+def test_pooling_rejects_partial_category_harmonization():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2022", "2023"],
+            "OUTCOME": [1, 1],
+        }
+    )
+    categories = {
+        "OUTCOME": {"mappings": {"2022": {"1": "Yes"}, "2023": {}}}
+    }
+
+    with pytest.raises(ValueError, match="incomplete.*2023"):
+        prepare_pooled_variable(data, "OUTCOME", categories)
+
+
+def test_pooling_rejects_unmapped_observed_category():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2022", "2023"],
+            "OUTCOME": [1, 9],
+        }
+    )
+    categories = {
+        "OUTCOME": {
+            "mappings": {
+                "2022": {"1": "Yes"},
+                "2023": {"1": "Yes"},
+            }
+        }
+    }
+
+    with pytest.raises(ValueError, match="unmapped value.*9"):
+        prepare_pooled_variable(data, "OUTCOME", categories)
+
+
+def test_cycle_dictionaries_override_incomplete_generated_mapping():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2023", "2024"],
+            "SMKDVSTY": ["03", "03"],
+        }
+    )
+    generated_categories = {
+        "SMKDVSTY": {
+            "mappings": {
+                "2023": {"03": "No"},
+                "2024": {},
+            }
+        }
+    }
+    cycle_info = {
+        "2023": {
+            "SMKDVSTY": {
+                "categories": {"03": "Former daily smoker (non-smoker now)"}
+            }
+        },
+        "2024": {
+            "SMKDVSTY": {
+                "categories": {"03": "Former daily smoker (non-smoker now)"}
+            }
+        },
+    }
+    crosswalk = {
+        "SMKDVSTY": {"2023": "SMKDVSTY", "2024": "SMKDVSTY"}
+    }
+
+    prepared, variable, harmonized = prepare_pooled_variable(
+        data,
+        "SMKDVSTY",
+        generated_categories,
+        cycle_variable_info=cycle_info,
+        crosswalk=crosswalk,
+    )
+
+    assert harmonized is True
+    assert prepared[variable].tolist() == [
+        "Former daily smoker (non-smoker now)",
+        "Former daily smoker (non-smoker now)",
+    ]
+
+
+def test_cycle_dictionary_crosswalk_detects_genuinely_missing_categories():
+    data = pd.DataFrame(
+        {
+            "CYCLE": ["2022", "2023"],
+            "SPU_10": [2020, 1],
+        }
+    )
+    cycle_info = {
+        "2022": {"SPU_10B": {"categories": {}}},
+        "2023": {"SPU_10": {"categories": {"1": "Less than one year ago"}}},
+    }
+    crosswalk = {"SPU_10": {"2022": "SPU_10B", "2023": "SPU_10"}}
+
+    with pytest.raises(ValueError, match="incomplete.*2022"):
+        prepare_pooled_variable(
+            data,
+            "SPU_10",
+            {},
+            cycle_variable_info=cycle_info,
+            crosswalk=crosswalk,
+        )
+
+
+def test_harmonized_compatibility_accepts_matching_meaning_and_categories():
+    crosswalk = {
+        "SMKDVSTY": {"2023": "SMKDVSTY", "2024": "SMKDVSTY"}
+    }
+    variable_info = {
+        cycle: {
+            "SMKDVSTY": {
+                "description": "Smoking status (type 2) - traditional definition - (D)",
+                "categories": {
+                    "01": "Current daily smoker",
+                    "03": "Former daily smoker (non-smoker now)",
+                },
+            }
+        }
+        for cycle in ("2023", "2024")
+    }
+
+    compatible, reason = assess_harmonized_compatibility(
+        "SMKDVSTY", ["2023", "2024"], crosswalk, variable_info
+    )
+
+    assert compatible is True
+    assert "match" in reason
+
+
+def test_harmonized_compatibility_rejects_same_name_with_different_meaning():
+    crosswalk = {"STATUS": {"2023": "STATUS", "2024": "STATUS"}}
+    variable_info = {
+        "2023": {
+            "STATUS": {"description": "Current smoking status", "categories": {}}
+        },
+        "2024": {
+            "STATUS": {"description": "Former smoking status", "categories": {}}
+        },
+    }
+
+    compatible, reason = assess_harmonized_compatibility(
+        "STATUS", ["2023", "2024"], crosswalk, variable_info
+    )
+
+    assert compatible is False
+    assert "Descriptions differ" in reason
+
+
+def test_harmonized_compatibility_rejects_changed_categories():
+    crosswalk = {"STATUS": {"2023": "OLD_STATUS", "2024": "STATUS"}}
+    variable_info = {
+        "2023": {
+            "OLD_STATUS": {
+                "description": "Smoking status",
+                "categories": {"1": "Daily", "2": "Occasional"},
+            }
+        },
+        "2024": {
+            "STATUS": {
+                "description": "Smoking status",
+                "categories": {"1": "Daily", "2": "Never"},
+            }
+        },
+    }
+
+    compatible, reason = assess_harmonized_compatibility(
+        "STATUS", ["2023", "2024"], crosswalk, variable_info
+    )
+
+    assert compatible is False
+    assert "category labels differ" in reason
+
+
+def test_poolable_filter_excludes_false_crosswalk_match():
+    crosswalk = {
+        "SAFE": {"2023": "SAFE", "2024": "SAFE"},
+        "SPU_10": {"2023": "SPU_10", "2024": "SPU_10B"},
+    }
+    variable_info = {
+        "2023": {
+            "SAFE": {"description": "Exact measure", "categories": {}},
+            "SPU_10": {"description": "Stopped smoking - when", "categories": {}},
+        },
+        "2024": {
+            "SAFE": {"description": "Exact measure", "categories": {}},
+            "SPU_10B": {"description": "Stopped smoking - year", "categories": {}},
+        },
+    }
+
+    poolable, issues = filter_poolable_variables(
+        ["SAFE", "SPU_10"],
+        ["2023", "2024"],
+        crosswalk,
+        variable_info,
+    )
+
+    assert poolable == ["SAFE"]
+    assert "SPU_10" in issues

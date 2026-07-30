@@ -15,17 +15,12 @@ age-stratified analysis, exports, and comparisons across annual cycles.
 - **Single Cycle** calculates estimates for one CCHS year.
 - **Multi-Cycle Trends** calculates each selected year independently and compares
   the resulting estimates across years.
+- **Cycle Pooling** combines two or more selected years into one average-period
+  estimate to improve precision for small geographic populations.
 
 Multi-Cycle Trends does **not** pool respondent-level records or weights across
-cycles. Cycle pooling is a requested future feature and will require a separately
-validated statistical design before implementation.
-
-### Future cycle-pooling work
-
-Pooling is intentionally out of scope for the current release. A future design
-must define combined-cycle weights, target population and time-period semantics,
-variance estimation, cycle effects, comparability rules, and release-quality
-validation before any pooled estimate is exposed in the interface.
+cycles. Cycle Pooling is a separate workflow with explicit pooled-weight,
+variance, harmonization, and completeness checks.
 
 Supported configurations currently include CCHS 2021, 2022, 2023, and 2024.
 
@@ -95,6 +90,33 @@ Harmonized names make equivalent variables easier to compare, but analysts must
 still confirm that concepts and response categories are comparable across years.
 The generated crosswalk uses automated matching and requires subject-matter
 review.
+
+## Cycle-pooling workflow
+
+1. Select **Cycle Pooling** and choose at least two cycles.
+2. Apply the same geography, inclusion, and age settings to every cycle.
+3. Choose variables available across all selected cycles.
+4. Run the analysis and review the single pooled estimate, confidence interval,
+   release flag, and combined unweighted sample size.
+
+For `K` selected annual cycles, every main and bootstrap weight is scaled by
+`1 / K`. Weighted populations therefore represent the average annual population
+over the selected period, not the sum of annual populations. Prevalence is a
+population-weighted average-period estimate.
+
+Cycles are treated as independent samples for variance estimation. Replicates
+replace one cycle's scaled weights at a time, and the resulting cycle-specific
+variance contributions are summed. Replicate numbers from different annual
+files are not treated as paired or correlated.
+
+Pooling stops when a selected cycle has no records after filtering, replicate
+weights are missing or invalid, or category mappings are only partially
+harmonized. Cycle-specific data-dictionary categories are used ahead of the
+generated category file so incomplete generated mappings do not block otherwise
+compatible cycles. Pooling increases sample size but does not repair a change in survey
+concept, collection method, geography, or target population. Analysts must
+confirm that the selected cycles and variables are substantively comparable and
+that an average-period estimate is appropriate.
 
 ## Statistical outputs
 

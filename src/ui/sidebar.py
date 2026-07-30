@@ -24,12 +24,13 @@ def create_analysis_mode_selector():
     
     analysis_mode = st.sidebar.radio(
         "Select Analysis Mode",
-        options=["Single Cycle", "Multi-Cycle Trends"],
+        options=["Single Cycle", "Multi-Cycle Trends", "Cycle Pooling"],
         index=0,
         help=(
             "Single Cycle analyzes one survey year. Multi-Cycle Trends "
-            "calculates each selected year separately and compares estimates; "
-            "it does not pool respondent records across cycles."
+            "calculates each selected year separately and compares estimates. "
+            "Cycle Pooling combines two or more years into one average-period "
+            "estimate with scaled survey and bootstrap weights."
         ),
         key="analysis_mode_selector"
     )
@@ -58,7 +59,7 @@ def create_cycle_selector():
     return cycle
 
 
-def create_multi_cycle_selector(crosswalk=None, data_dict=None):
+def create_multi_cycle_selector(crosswalk=None, data_dict=None, pooling=False):
     """
     Create multi-cycle selection component with precompute support.
     Falls back to real-time processing if precomputed data unavailable.
@@ -135,8 +136,10 @@ def create_multi_cycle_selector(crosswalk=None, data_dict=None):
     selected_cycles = st.sidebar.multiselect(
         "Select CCHS Cycles/Years",
         options=AVAILABLE_CYCLES,
-        default=[DEFAULT_CYCLE],
+        default=(AVAILABLE_CYCLES[-2:] if pooling else [DEFAULT_CYCLE]),
         help=(
+            "Select at least two cycles to combine into one pooled estimate."
+            if pooling else
             "Select survey cycles for separate, cycle-specific estimates and "
             "cross-year trends. Records are not pooled across cycles."
         ),
