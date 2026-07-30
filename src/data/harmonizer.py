@@ -1,91 +1,72 @@
 """Data harmonization functions for multi-cycle CCHS analysis."""
 
-import pandas as pd
-from typing import Optional
+import difflib
 
 
-def harmonize_variable_names(df: pd.DataFrame, cycle: str, crosswalk: dict) -> pd.DataFrame:
+def build_crosswalk(cycles: list, descriptions: dict, cutoff: float = 0.6) -> dict:
     """
-    Rename cycle-specific variable names to harmonized names using crosswalk.
-    
+    Build a crosswalk mapping reference-cycle variable names to each cycle's
+    matching variable name, by fuzzy-matching variable descriptions.
+
+    The last entry in `cycles` is treated as the reference cycle: every
+    other cycle's variable is matched against each reference variable's
+    description via difflib.get_close_matches (single best match). This is
+    a heuristic textual match, not an authoritative concordance - unmatched
+    or ambiguous descriptions are recorded as None and should be reviewed.
+
     Args:
-        df: DataFrame with cycle-specific column names
-        cycle: Cycle year (e.g., "2021", "2022", "2023")
-        crosswalk: Crosswalk dictionary mapping harmonized_var -> {cycle: cycle_specific_var}
-    
+        cycles: Cycle years in order, with the reference cycle last
+        descriptions: Dict mapping cycle -> {variable_name: description}
+        cutoff: difflib similarity cutoff (0-1) for a match to count
+
     Returns:
-        DataFrame with harmonized column names (original columns preserved if not in crosswalk)
+        Dict mapping reference_var -> {cycle: cycle_specific_var_or_None}
     """
-    result_df = df.copy()
-    rename_dict = {}
-    
-    for harmonized_var, cycle_mapping in crosswalk.items():
-        cycle_specific_var = cycle_mapping.get(cycle)
-        if cycle_specific_var and cycle_specific_var in result_df.columns:
-            rename_dict[cycle_specific_var] = harmonized_var
-    
-    result_df = result_df.rename(columns=rename_dict)
-    return result_df
+    reference_cycle = cycles[-1]
+    reference_vars = descriptions[reference_cycle]
+
+    crosswalk = {}
+    for ref_var, ref_desc in reference_vars.items():
+        crosswalk[ref_var] = {reference_cycle: ref_var}
+        for cycle in cycles[:-1]:
+            candidates = descriptions[cycle]
+            best_match = difflib.get_close_matches(ref_desc, candidates.values(), n=1, cutoff=cutoff)
+            if best_match:
+                for var, desc in candidates.items():
+                    if desc == best_match[0]:
+                        crosswalk[ref_var][cycle] = var
+                        break
+            else:
+                crosswalk[ref_var][cycle] = None
+
+    return crosswalk
 
 
-def harmonize_values(df: pd.DataFrame, cycle: str, categories: dict, harmonized_vars: Optional[list] = None) -> pd.DataFrame:
+def auto_harmonize(label: str) -> str:
     """
-    Add harmonized label columns for categorical variables while preserving original values.
-    
-    Args:
-        df: DataFrame with harmonized variable names
-        cycle: Cycle year (e.g., "2021", "2022", "2023")
-        categories: Categories dictionary mapping harmonized_var -> {mappings: {cycle: {value: label}}}
-        harmonized_vars: Optional list of harmonized variables to process. If None, processes all variables in categories.
-    
-    Returns:
-        DataFrame with added {var}_label columns containing harmonized labels
-    """
-    result_df = df.copy()
-    
-    vars_to_process = harmonized_vars if harmonized_vars else list(categories.keys())
-    
-    for harmonized_var in vars_to_process:
-        if harmonized_var not in result_df.columns:
-            continue
-        
-        cat_info = categories.get(harmonized_var, {})
-        mappings = cat_info.get("mappings", {})
-        cycle_mapping = mappings.get(cycle, {})
-        
-        if not cycle_mapping:
-            continue
-        
-        label_col = f"{harmonized_var}_label"
-        
-        def map_value(val):
-            if pd.isna(val):
-                return None
-            val_str = str(int(val)) if isinstance(val, float) and val.is_integer() else str(val)
-            return cycle_mapping.get(val_str, val_str)
-        
-        result_df[label_col] = result_df[harmonized_var].apply(map_value)
-    
-    return result_df
+    Normalize a raw codebook category label into a shared harmonized category.
 
-
-def apply_harmonization(df: pd.DataFrame, cycle: str, crosswalk: dict, categories: dict, harmonized_vars: Optional[list] = None) -> pd.DataFrame:
+    Order matters: "not stated", "valid skip", "don't know", and "female"
+    each contain "no" or "male" as a substring (e.g. "**no**t stated",
+    "fe**male**"), so the more specific phrases must be checked before the
+    shorter "no"/"male" rules or they get misclassified.
     """
-    Apply both variable name and value harmonization to a DataFrame.
-    
-    Args:
-        df: DataFrame with cycle-specific column names and values
-        cycle: Cycle year (e.g., "2021", "2022", "2023")
-        crosswalk: Crosswalk dictionary for variable name mapping
-        categories: Categories dictionary for value label mapping
-        harmonized_vars: Optional list of harmonized variables to process for value harmonization
-    
-    Returns:
-        DataFrame with harmonized column names and added label columns
-    """
-    result_df = harmonize_variable_names(df, cycle, crosswalk)
-    result_df = harmonize_values(result_df, cycle, categories, harmonized_vars)
-    return result_df
+    l = label.lower()
+    if "not stated" in l:
+        return "Not stated"
+    if "valid skip" in l:
+        return "Valid skip"
+    if "don’t know" in l or "don't know" in l:
+        return "Don't know"
+    if "female" in l:
+        return "Female"
+    if "male" in l:
+        return "Male"
+    if "yes" in l:
+        return "Yes"
+    if "no" in l:
+        return "No"
+    return label.strip()
 
 
 def get_common_harmonized_vars(cycles: list, crosswalk: dict, data_dict: dict) -> list:

@@ -101,7 +101,6 @@ def create_multi_cycle_selector(crosswalk=None, data_dict=None):
                         result = run_precompute_workflow(
                             cycles=AVAILABLE_CYCLES,
                             crosswalk=crosswalk,
-                            categories={},
                         )
                     if result["success"]:
                         st.cache_data.clear()
@@ -123,7 +122,6 @@ def create_multi_cycle_selector(crosswalk=None, data_dict=None):
                         result = run_precompute_workflow(
                             cycles=summary['missing_cycles'],
                             crosswalk=crosswalk,
-                            categories={},
                         )
                     if result["success"]:
                         st.cache_data.clear()

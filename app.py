@@ -135,9 +135,8 @@ def main():
         
         with st.spinner("🔄 Loading multi-cycle data..."):
             cycle_data_dict = smart_load_multiple_cycles(
-                selected_cycles, 
-                crosswalk, 
-                categories,
+                selected_cycles,
+                crosswalk,
                 use_precompute=ENABLE_PRECOMPUTING
             )
         
@@ -165,9 +164,8 @@ def main():
         
         # Get common harmonized variables (fast if precomputed)
         available_harmonized_vars = get_common_vars_smart(
-            selected_cycles, 
-            crosswalk, 
-            categories,
+            selected_cycles,
+            crosswalk,
             use_precompute=ENABLE_PRECOMPUTING
         )
         

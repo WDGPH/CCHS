@@ -1,5 +1,12 @@
 import json
 import os
+import sys
+from pathlib import Path
+
+# Add project root to path so `src` is importable when run as a script
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from src.data.harmonizer import auto_harmonize
 
 cycles = ["2021", "2022", "2023", "2024"]
 harmonization_dir = "./harmonization"
@@ -14,25 +21,7 @@ for cycle in cycles:
     with open(os.path.join(harmonization_dir, f"CCHS_{cycle}.json"), encoding="utf-8") as f:
         cycle_vars[cycle] = json.load(f)
 
-# Example: harmonize common categories for all cycles
-def auto_harmonize(label):
-    l = label.lower()
-    if "yes" in l:
-        return "Yes"
-    if "no" in l:
-        return "No"
-    if "not stated" in l:
-        return "Not stated"
-    if "valid skip" in l:
-        return "Valid skip"
-    if "don’t know" in l or "don't know" in l:
-        return "Don't know"
-    if "male" in l:
-        return "Male"
-    if "female" in l:
-        return "Female"
-    return label.strip()
-
+# Harmonize common categories for all cycles
 harmonized = {}
 for concept_var, mapping in crosswalk.items():
     harmonized[concept_var] = {
