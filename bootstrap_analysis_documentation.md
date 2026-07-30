@@ -50,18 +50,21 @@ Let:
 
 ### Weighted Population
 For group $g$:
+
 $$
 \text{Weighted Population}_g = \sum_{i \in g} w_i
 $$
 
 ### Weighted Prevalence (Main Weight)
 For group $g$:
+
 $$
 \text{Prevalence}_g = \frac{\sum_{i \in g} w_i}{\sum_{i} w_i} \times 100
 $$
 
 ### Weighted Prevalence (Bootstrap Replicates)
 For each bootstrap replicate $b$:
+
 $$
 \text{Prevalence}_g^{(b)} = \frac{\sum_{i \in g} w_{i}^{(b)}}{\sum_{i} w_{i}^{(b)}} \times 100
 $$
@@ -106,5 +109,5 @@ display_results(result_df, 'SEX')
 ```
 
 ## References
-- [Statistics Canada: Bootstrap Weights](https://www150.statcan.gc.ca/n1/pub/12-002-x/2011001/article/11425-eng.html)
-- [Bootstrap Methods and Their Application (Davison & Hinkley, 1997)](https://www.cambridge.org/core/books/bootstrap-methods-and-their-application/)
+- [Statistics Canada: Weighted Estimation and Bootstrap Variance Estimation for Analyzing Survey Data](https://www150.statcan.gc.ca/n1/pub/12-002-x/2014001/article/11901-eng.htm)
+- [Bootstrap Methods and Their Application (Davison & Hinkley, 1997)](https://doi.org/10.1017/CBO9780511802843)
