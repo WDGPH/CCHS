@@ -34,6 +34,15 @@ wheels/
 /codebooks/*.pdf
 /.claude/settings.local.json
 
+# CCHS codebook-derived harmonization metadata (extracted from restricted
+# codebooks under each organization's own CCHS data-sharing terms) -
+# regenerate locally with scripts/extract_codebook.py, build_crosswalk.py,
+# and harmonize_categories.py. See ADDING_A_CYCLE.md.
+/harmonization/CCHS_*.json
+/harmonization/crosswalk.json
+/harmonization/categories.json
+/harmonization/cchs_harmonization_provenance.json
+
 # Precomputed data (large files - regenerate with scripts/precompute_cycles.py)
 data/precomputed/*.parquet
 data/precomputed/*.pkl
