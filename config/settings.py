@@ -32,7 +32,7 @@ WELLINGTON_CODES = {
     3523017: 'Erin',
     3523043: 'Minto',
     3523025: 'Centre Wellington',
-    3523009: 'Duelph Eramosa',
+    3523009: 'Guelph/Eramosa',
     3523033: 'Mapleton',
     3523050: 'Wellington North',
     3523001: 'Puslinch'
@@ -108,6 +108,7 @@ KNOWN_HEALTH_REGION_LABELS = {
 # Analysis settings
 DEFAULT_WEIGHT_COLUMN = "WTS_S"
 CONFIDENCE_LEVEL = 0.95
+CONFIDENCE_Z = 2.0
 BOOTSTRAP_PREFIX = "BSW"
 
 # Age group settings
