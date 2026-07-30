@@ -1,36 +1,81 @@
+/* Palette sourced from the WDG Public Health Power BI theme (MyTheme1.json) */
 [data-md-color-primary="wdgph"] {
-  --md-primary-fg-color: #0d748b;
-  --md-primary-fg-color--light: #3d96ab;
-  --md-primary-fg-color--dark: #095361;
+  --md-primary-fg-color: #00566b;
+  --md-primary-fg-color--light: #008c8c;
+  --md-primary-fg-color--dark: #184b52;
   --md-primary-bg-color: hsla(0, 0%, 100%, 1);
   --md-primary-bg-color--light: hsla(0, 0%, 100%, 0.7);
 }
 
 [data-md-color-primary="black"] {
   --md-primary-fg-color: #181818;
-  --md-primary-fg-color--light: #3d96ab;
-  --md-primary-fg-color--dark: #095361;
-  --md-primary-bg-color: #0d748b;
+  --md-primary-fg-color--light: #008c8c;
+  --md-primary-fg-color--dark: #184b52;
+  --md-primary-bg-color: #00566b;
 }
 
 [data-md-color-accent="wdgph"] {
-  --md-accent-fg-color: #0d748b;
-  --md-accent-fg-color--transparent: #0d748b1a;
+  --md-accent-fg-color: #76a82a;
+  --md-accent-fg-color--transparent: #76a82a1a;
   --md-accent-bg-color: #fff;
   --md-accent-bg-color--light: #ffffffb3;
 }
 
 [data-md-color-scheme="slate"][data-md-color-primary="black"] {
-  --md-typeset-a-color: #0d748b;
+  --md-typeset-a-color: #009e9a;
 }
 
 [data-md-color-scheme="default"] {
-  /* Default light mode styling */
+  --md-typeset-a-color: #00566b;
+  --md-default-fg-color--light: #08343a;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-typeset-a-color: #0d748b;
+  --md-typeset-a-color: #009e9a;
   /* Dark mode styling */
+}
+
+/* Admonition accents mapped to the theme's good/bad semantic colors */
+.md-typeset .admonition.tip,
+.md-typeset .admonition.success,
+.md-typeset details.tip,
+.md-typeset details.success {
+  border-color: #76a82a;
+}
+
+.md-typeset .tip > .admonition-title,
+.md-typeset .success > .admonition-title,
+.md-typeset .tip > summary,
+.md-typeset .success > summary {
+  background-color: #76a82a1a;
+}
+
+.md-typeset .tip > .admonition-title::before,
+.md-typeset .success > .admonition-title::before,
+.md-typeset .tip > summary::before,
+.md-typeset .success > summary::before {
+  background-color: #76a82a;
+}
+
+.md-typeset .admonition.danger,
+.md-typeset .admonition.failure,
+.md-typeset details.danger,
+.md-typeset details.failure {
+  border-color: #b84a3a;
+}
+
+.md-typeset .danger > .admonition-title,
+.md-typeset .failure > .admonition-title,
+.md-typeset .danger > summary,
+.md-typeset .failure > summary {
+  background-color: #b84a3a1a;
+}
+
+.md-typeset .danger > .admonition-title::before,
+.md-typeset .failure > .admonition-title::before,
+.md-typeset .danger > summary::before,
+.md-typeset .failure > summary::before {
+  background-color: #b84a3a;
 }
 
 /* WDGPH logo css styling to match overrides/partial/copyright.html */
@@ -85,7 +130,7 @@
 }
 
 .wdgph-icon {
-  color: #0d748b;
+  color: #00566b;
   opacity: 0.7;
   margin-right: 0.2em;
 }
