@@ -56,4 +56,4 @@ with `uv add package_name` and commit the updated manifest and lock file.
 ## Contact
 
 For questions that are not suited to a public issue, you can reach the maintainer at
-dna.automation@wdgpublichealth.ca.
+innovation@wdgpublichealth.ca.

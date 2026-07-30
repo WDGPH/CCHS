@@ -12,7 +12,7 @@ Instead, use one of the following private channels:
 
 1. **Preferred:** GitHub's [private vulnerability reporting](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)
    feature (the "Report a vulnerability" button under the repository's **Security** tab).
-2. **Fallback:** Email dna.automation@wdgpublichealth.ca with a description of the issue.
+2. **Fallback:** Email innovation@wdgpublichealth.ca with a description of the issue.
 
 When reporting, please include as much of the following as you can:
 
