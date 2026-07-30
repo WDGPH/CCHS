@@ -1,0 +1,93 @@
+extra_css:
+  - stylesheets/extra.css
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/WDGPH/CCHS
+markdown_extensions:
+  - attr_list
+  - admonition
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.snippets:
+      base_path:
+        - "."
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+nav:
+  - Home: index.md
+  - Adding a New CCHS Cycle: ADDING_A_CYCLE.md
+  - Bootstrap Methodology: bootstrap_analysis_documentation.md
+  - Data Quality and Privacy:
+      - CCHS 2024 Data Quality Standards: CCHS_2024_Data_Quality_Standards.md
+      - Privacy and Security Guide: CCHS_Data_Privacy_Security_Guide.md
+  - Third-Party Data and Licensing: THIRD_PARTY_DATA.md
+  - Code Reference: reference.md
+  - Contributing: CONTRIBUTING.md
+  - Security Policy: SECURITY.md
+  - Code of Conduct: CODE_OF_CONDUCT.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            members_order: source
+            separate_signature: true
+            show_overloads: true
+            show_submodules: false
+            show_root_heading: true
+            show_root_full_path: true
+            show_root_toc_entry: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+repo_url: https://github.com/WDGPH/CCHS
+repo_name: WDGPH/CCHS
+site_name: CCHS Bootstrap Analysis Tool
+site_description: Documentation for the WDGPH CCHS Bootstrap Analysis Tool
+theme:
+  custom_dir: docs/overrides
+  favicon: assets/wdgph-logo.png
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/wdgph-logo.png
+  logo_footer: assets/wdgph-logo.png
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: wdgph
+      accent: wdgph
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: wdgph
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode

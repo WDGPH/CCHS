@@ -26,3 +26,10 @@ dependencies = [
 dev = [
   "pytest>=9.0.3",
 ]
+docs = [
+  "mkdocs>=1.6.0",
+  "mkdocs-material>=9.5.15",
+  "pymdown-extensions>=10.21.2",
+  "mkdocstrings>=1.0.4",
+  "mkdocstrings-python>=1.10.0",
+]

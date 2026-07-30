@@ -10,6 +10,10 @@ age-stratified analysis, exports, and comparisons across annual cycles.
 > responsible for following their CCHS data-sharing agreements, organizational
 > privacy policies, and applicable release standards.
 
+Full documentation, including the methodology and code reference, is published
+at <https://wdgph.github.io/CCHS/> (see [Enabling the docs site](#enabling-the-docs-site)
+if it isn't live yet).
+
 ## Analysis modes
 
 - **Single Cycle** calculates estimates for one CCHS year.
@@ -162,6 +166,35 @@ uv run python -m compileall -q app.py config scripts src
 ```
 
 Tests and continuous integration do not require CCHS data.
+
+## Documentation site
+
+The docs site is built with [MkDocs](https://www.mkdocs.org/) and the
+[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme,
+pulling its content from this README and the other project markdown files.
+
+```bash
+uv sync --group docs
+uv run mkdocs serve
+```
+
+Open <http://127.0.0.1:8000>. Edits to the markdown files it references are
+picked up automatically.
+
+### Enabling the docs site
+
+The `docs` workflow (`.github/workflows/docs.yml`) builds the site on every
+push to `main` and publishes it to the `gh-pages` branch. To serve it on
+GitHub Pages:
+
+1. Go to the repository's **Settings** tab.
+2. Navigate to **Pages** in the left sidebar.
+3. Under **Source**, select **Deploy from a branch**.
+4. Choose the **gh-pages** branch and **/ (root)** folder.
+5. Click **Save**.
+
+The site becomes available at `https://wdgph.github.io/CCHS/` after the first
+successful run of the workflow on `main`.
 
 ## Repository structure
 
