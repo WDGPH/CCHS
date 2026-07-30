@@ -1,0 +1,46 @@
+{
+  "generated_by": "scripts/generate_geographic_lookups.py",
+  "generated_on": "2026-07-29",
+  "outputs": {
+    "harmonization/ontario_csd_lookup.json": {
+      "records": 577,
+      "sha256": "ce0543d43068f6eebbbf78e5b5b24b65c3fdc439ffca4b9ef594fbbd02996848"
+    },
+    "harmonization/ontario_official_municipalities.json": {
+      "included_statuses": [
+        "Lower Tier",
+        "Single Tier"
+      ],
+      "records": 414,
+      "sha256": "9cc9f2b4d58a762685830836fc34f9d253297eb167a89250564aa29d9a94c7f5",
+      "source_status_counts": {
+        "Lower Tier": 241,
+        "Single Tier": 173,
+        "Upper Tier": 30
+      }
+    }
+  },
+  "sources": [
+    {
+      "licence": "Statistics Canada Open Licence",
+      "licence_url": "https://www.statcan.gc.ca/en/terms-conditions/open-licence",
+      "name": "Statistics Canada 2021 Census Geographic Attribute File",
+      "reference_date": "2021-01-01",
+      "release_or_update_date": "2022-02-09",
+      "retrieved_on": "2026-07-29",
+      "sha256": "918aa8502d9d95b1ae5ce437ed9674e0977ec55977c08b8d01822a9dab6fe5da",
+      "url": "https://www12.statcan.gc.ca/census-recensement/2021/geo/aip-pia/attribute-attribs/files-fichiers/2021_92-151_X.zip"
+    },
+    {
+      "licence": "Open Government Licence – Ontario, version 1.0",
+      "licence_url": "https://www.ontario.ca/page/open-government-licence-ontario",
+      "name": "Ontario Ministry of Municipal Affairs and Housing List of municipalities",
+      "reference_date": "2026-05-26",
+      "release_or_update_date": "2026-06-03",
+      "retrieved_on": "2026-07-29",
+      "sha256": "5370b4e1b3804d10059c67513db9ea59d61bba964096f8e5b35f4a8afd973196",
+      "url": "https://data.ontario.ca/dataset/62e83cbc-0731-4d66-abdc-2f2b31bcd76c/resource/6783a586-6b05-4a73-9663-e60a6963c91e/download/municipalities_-_en_2026-0526.csv"
+    }
+  ],
+  "transformation": "The StatCan GAF was deduplicated to Ontario CSD code, name, and type. Ontario lower-tier and single-tier municipalities were matched to CSDs using normalized official names, bilingual StatCan name components, and the explicit audited override in the generator. Upper-tier records were excluded because they are not census subdivisions."
+}
