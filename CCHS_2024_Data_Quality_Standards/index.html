@@ -1283,7 +1283,7 @@
 <hr />
 <h2 id="release-rules-for-proportions-table-101">Release Rules for Proportions (Table 10.1)<a class="headerlink" href="#release-rules-for-proportions-table-101" title="Permanent link">&para;</a></h2>
 <p><strong>Effective Sample Size formula:</strong></p>
-<p>$$\text{Effective Sample Size} = \frac{\hat{p}(1-\hat{p})}{\text{Var}(\hat{p})} = \frac{1-\hat{p}}{\hat{p} \cdot CV^2}$$</p>
+<div class="arithmatex">\[\text{Effective Sample Size} = \frac{\hat{p}(1-\hat{p})}{\text{Var}(\hat{p})} = \frac{1-\hat{p}}{\hat{p} \cdot CV^2}\]</div>
 <table>
 <thead>
 <tr>
@@ -1294,7 +1294,7 @@
 </thead>
 <tbody>
 <tr>
-<td>$n_2 \geq 100$ <strong>and</strong> $\frac{1-\hat{p}}{\hat{p} \cdot CV^2} \geq 60$</td>
+<td><span class="arithmatex">\(n_2 \geq 100\)</span> <strong>and</strong> <span class="arithmatex">\(\frac{1-\hat{p}}{\hat{p} \cdot CV^2} \geq 60\)</span></td>
 <td><strong>A</strong></td>
 <td>Release with no warning</td>
 </tr>
@@ -1304,15 +1304,15 @@
 <td>Release with quality warning</td>
 </tr>
 <tr>
-<td>$n_2 &lt; 50$ <strong>or</strong> $\frac{1-\hat{p}}{\hat{p} \cdot CV^2} &lt; 30$ <strong>or</strong> $n_1 &lt; 10$</td>
+<td><span class="arithmatex">\(n_2 &lt; 50\)</span> <strong>or</strong> <span class="arithmatex">\(\frac{1-\hat{p}}{\hat{p} \cdot CV^2} &lt; 30\)</span> <strong>or</strong> <span class="arithmatex">\(n_1 &lt; 10\)</span></td>
 <td><strong>F</strong></td>
 <td>Suppress</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>$n_1$ = unweighted count in <strong>numerator</strong></li>
-<li>$n_2$ = unweighted count in <strong>denominator</strong></li>
+<li><span class="arithmatex">\(n_1\)</span> = unweighted count in <strong>numerator</strong></li>
+<li><span class="arithmatex">\(n_2\)</span> = unweighted count in <strong>denominator</strong></li>
 <li>Estimates of <strong>0% or 100% should never be published</strong></li>
 </ul>
 <hr />
@@ -1327,12 +1327,12 @@
 </thead>
 <tbody>
 <tr>
-<td>$n \geq 100$ <strong>and</strong> $CV \leq 25\%$</td>
+<td><span class="arithmatex">\(n \geq 100\)</span> <strong>and</strong> <span class="arithmatex">\(CV \leq 25\%\)</span></td>
 <td><strong>A</strong></td>
 <td>Release with no warning</td>
 </tr>
 <tr>
-<td>$50 \leq n &lt; 100$ <strong>and</strong> $CV \leq 35\%$</td>
+<td><span class="arithmatex">\(50 \leq n &lt; 100\)</span> <strong>and</strong> <span class="arithmatex">\(CV \leq 35\%\)</span></td>
 <td><strong>E</strong></td>
 <td>Release with quality warning</td>
 </tr>
@@ -1344,8 +1344,8 @@
 </tbody>
 </table>
 <ul>
-<li>For <strong>counts and totals</strong>: $n$ = unweighted count of respondents with nonzero values</li>
-<li>For <strong>means</strong>: $n$ = unweighted count of all respondents contributing to the estimate (including zeros)</li>
+<li>For <strong>counts and totals</strong>: <span class="arithmatex">\(n\)</span> = unweighted count of respondents with nonzero values</li>
+<li>For <strong>means</strong>: <span class="arithmatex">\(n\)</span> = unweighted count of all respondents contributing to the estimate (including zeros)</li>
 </ul>
 <hr />
 <h2 id="release-rules-for-differences-and-ratios">Release Rules for Differences and Ratios<a class="headerlink" href="#release-rules-for-differences-and-ratios" title="Permanent link">&para;</a></h2>
@@ -1358,13 +1358,13 @@
 <hr />
 <h2 id="confidence-intervals">Confidence Intervals<a class="headerlink" href="#confidence-intervals" title="Permanent link">&para;</a></h2>
 <h3 id="general-formula">General Formula<a class="headerlink" href="#general-formula" title="Permanent link">&para;</a></h3>
-<p>$$CI_{\hat{X}} = \left[\hat{X} - z \cdot \hat{X} \cdot \alpha_X,\quad \hat{X} + z \cdot \hat{X} \cdot \alpha_X\right]$$</p>
-<p>Where $\alpha_X$ is the coefficient of variation (CV) of the estimate.</p>
+<div class="arithmatex">\[CI_{\hat{X}} = \left[\hat{X} - z \cdot \hat{X} \cdot \alpha_X,\quad \hat{X} + z \cdot \hat{X} \cdot \alpha_X\right]\]</div>
+<p>Where <span class="arithmatex">\(\alpha_X\)</span> is the coefficient of variation (CV) of the estimate.</p>
 <h3 id="z-values-by-confidence-level">Z values by confidence level<a class="headerlink" href="#z-values-by-confidence-level" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>$z$</th>
+<th><span class="arithmatex">\(z\)</span></th>
 <th>Confidence Level</th>
 </tr>
 </thead>
@@ -1393,21 +1393,21 @@
 - A bound is implausible (e.g., a negative lower bound for a proportion)</p>
 <hr />
 <h2 id="standard-error-of-a-difference">Standard Error of a Difference<a class="headerlink" href="#standard-error-of-a-difference" title="Permanent link">&para;</a></h2>
-<p>$$\sigma_d = \sqrt{(\hat{X}_1 \cdot \alpha_1)^2 + (\hat{X}_2 \cdot \alpha_2)^2}$$</p>
-<p>$$CV_d = \frac{\sigma_d}{d}, \quad \text{where } d = \hat{X}_1 - \hat{X}_2$$</p>
+<div class="arithmatex">\[\sigma_d = \sqrt{(\hat{X}_1 \cdot \alpha_1)^2 + (\hat{X}_2 \cdot \alpha_2)^2}\]</div>
+<div class="arithmatex">\[CV_d = \frac{\sigma_d}{d}, \quad \text{where } d = \hat{X}_1 - \hat{X}_2\]</div>
 <blockquote>
 <p>This formula is exact for <strong>independent</strong> subgroups. It <strong>overstates</strong> error when estimates are positively correlated and <strong>understates</strong> it when negatively correlated.</p>
 </blockquote>
 <hr />
 <h2 id="standard-error-of-a-ratio-non-subset-numerator">Standard Error of a Ratio (non-subset numerator)<a class="headerlink" href="#standard-error-of-a-ratio-non-subset-numerator" title="Permanent link">&para;</a></h2>
-<p>$$\sigma_{\hat{R}} = \hat{R}\sqrt{\alpha_1^2 + \alpha_2^2}$$</p>
-<p>$$CV_{\hat{R}} = \frac{\sigma_{\hat{R}}}{\hat{R}} = \sqrt{\alpha_1^2 + \alpha_2^2}$$</p>
+<div class="arithmatex">\[\sigma_{\hat{R}} = \hat{R}\sqrt{\alpha_1^2 + \alpha_2^2}\]</div>
+<div class="arithmatex">\[CV_{\hat{R}} = \frac{\sigma_{\hat{R}}}{\hat{R}} = \sqrt{\alpha_1^2 + \alpha_2^2}\]</div>
 <blockquote>
 <p>If the numerator <strong>is a subset</strong> of the denominator, convert to a percentage and use the proportion rules instead.</p>
 </blockquote>
 <hr />
 <h2 id="z-test-for-significance-of-differences">Z-test for Significance of Differences<a class="headerlink" href="#z-test-for-significance-of-differences" title="Permanent link">&para;</a></h2>
-<p>$$z = \frac{\hat{X}_1 - \hat{X}_2}{\sigma_d}$$</p>
+<div class="arithmatex">\[z = \frac{\hat{X}_1 - \hat{X}_2}{\sigma_d}\]</div>
 <table>
 <thead>
 <tr>
@@ -1417,11 +1417,11 @@
 </thead>
 <tbody>
 <tr>
-<td>$-2 \leq z \leq 2$</td>
+<td><span class="arithmatex">\(-2 \leq z \leq 2\)</span></td>
 <td>Difference is <strong>not significant</strong> at the 5% level</td>
 </tr>
 <tr>
-<td>$z &lt; -2$ or $z &gt; 2$</td>
+<td><span class="arithmatex">\(z &lt; -2\)</span> or <span class="arithmatex">\(z &gt; 2\)</span></td>
 <td>Difference is <strong>significant</strong> at the 5% level</td>
 </tr>
 </tbody>
@@ -1438,15 +1438,15 @@
 <tbody>
 <tr>
 <td>Master / Share file — characteristic</td>
-<td>$n \geq 10$</td>
+<td><span class="arithmatex">\(n \geq 10\)</span></td>
 </tr>
 <tr>
 <td>Master / Share file — domain (for proportions)</td>
-<td>$n \geq 20$</td>
+<td><span class="arithmatex">\(n \geq 20\)</span></td>
 </tr>
 <tr>
 <td>CV lookup table approximations</td>
-<td>$n \geq 30$</td>
+<td><span class="arithmatex">\(n \geq 30\)</span></td>
 </tr>
 <tr>
 <td>Estimates of 0% or 100%</td>
@@ -1504,7 +1504,7 @@
 <tr>
 <td>CV lookup tables</td>
 <td>Quick approximations only</td>
-<td>Approximate and unofficial; requires $n \geq 30$</td>
+<td>Approximate and unofficial; requires <span class="arithmatex">\(n \geq 30\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -1517,11 +1517,11 @@
 <p>Only the bootstrap methodology properly accounts for the stratified, clustered, multi-frame nature of the CCHS design when calculating variance.</p>
 <hr />
 <h2 id="worked-example-95-ci-for-a-proportion">Worked Example: 95% CI for a Proportion<a class="headerlink" href="#worked-example-95-ci-for-a-proportion" title="Permanent link">&para;</a></h2>
-<p>Given: 71.2% of people who smoke at all smoke daily ($n_2 = 9{,}234$, numerator $= 3{,}665{,}449$, $CV = 1.3\%$)</p>
-<p>$$CI = {0.712 - (2)(0.712)(0.013),\ 0.712 + (2)(0.712)(0.013)} = {0.693,\ 0.731}$$</p>
+<p>Given: 71.2% of people who smoke at all smoke daily (<span class="arithmatex">\(n_2 = 9{,}234\)</span>, numerator <span class="arithmatex">\(= 3{,}665{,}449\)</span>, <span class="arithmatex">\(CV = 1.3\%\)</span>)</p>
+<div class="arithmatex">\[CI = \{0.712 - (2)(0.712)(0.013),\ 0.712 + (2)(0.712)(0.013)\} = \{0.693,\ 0.731\}\]</div>
 <p><strong>Release check:</strong></p>
-<p>$$\frac{1-\hat{p}}{\hat{p} \cdot CV^2} = \frac{1 - 0.712}{(0.712)(0.013^2)} = 2{,}393 \geq 60 \quad \checkmark$$</p>
-<p>$n_2 = 9{,}234 \geq 100 \quad \checkmark$ → <strong>Category A — release with no warning</strong></p>
+<div class="arithmatex">\[\frac{1-\hat{p}}{\hat{p} \cdot CV^2} = \frac{1 - 0.712}{(0.712)(0.013^2)} = 2{,}393 \geq 60 \quad \checkmark\]</div>
+<p><span class="arithmatex">\(n_2 = 9{,}234 \geq 100 \quad \checkmark\)</span> → <strong>Category A — release with no warning</strong></p>
 
 
 
@@ -1640,6 +1640,10 @@
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

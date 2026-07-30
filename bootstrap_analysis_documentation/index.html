@@ -1333,50 +1333,50 @@
 </ul>
 <h2 id="formulas-used-in-bootstrap-analysis">Formulas Used in Bootstrap Analysis<a class="headerlink" href="#formulas-used-in-bootstrap-analysis" title="Permanent link">&para;</a></h2>
 <p>Let:
-- $i$ index the records in the dataset
-- $g$ index the groups (values) of the variable being analyzed
-- $w_i$ be the main survey weight for record $i$
-- $w_{i}^{(b)}$ be the $b$-th bootstrap weight for record $i$
-- $y_i$ be an indicator variable (1 if record $i$ is in group $g$, 0 otherwise)
-- $B$ be the number of bootstrap replicates</p>
+- <span class="arithmatex">\(i\)</span> index the records in the dataset
+- <span class="arithmatex">\(g\)</span> index the groups (values) of the variable being analyzed
+- <span class="arithmatex">\(w_i\)</span> be the main survey weight for record <span class="arithmatex">\(i\)</span>
+- <span class="arithmatex">\(w_{i}^{(b)}\)</span> be the <span class="arithmatex">\(b\)</span>-th bootstrap weight for record <span class="arithmatex">\(i\)</span>
+- <span class="arithmatex">\(y_i\)</span> be an indicator variable (1 if record <span class="arithmatex">\(i\)</span> is in group <span class="arithmatex">\(g\)</span>, 0 otherwise)
+- <span class="arithmatex">\(B\)</span> be the number of bootstrap replicates</p>
 <h3 id="weighted-population">Weighted Population<a class="headerlink" href="#weighted-population" title="Permanent link">&para;</a></h3>
-<p>For group $g$:
+<p>For group <span class="arithmatex">\(g\)</span>:
 $$
 \text{Weighted Population}<em _in="\in" g="g" i="i">g = \sum</em> w_i
 $$</p>
 <h3 id="weighted-prevalence-main-weight">Weighted Prevalence (Main Weight)<a class="headerlink" href="#weighted-prevalence-main-weight" title="Permanent link">&para;</a></h3>
-<p>For group $g$:
+<p>For group <span class="arithmatex">\(g\)</span>:
 $$
 \text{Prevalence}<em _in="\in" g="g" i="i">g = \frac{\sum</em> \times 100
 $$} w_i}{\sum_{i} w_i</p>
 <h3 id="weighted-prevalence-bootstrap-replicates">Weighted Prevalence (Bootstrap Replicates)<a class="headerlink" href="#weighted-prevalence-bootstrap-replicates" title="Permanent link">&para;</a></h3>
-<p>For each bootstrap replicate $b$:
+<p>For each bootstrap replicate <span class="arithmatex">\(b\)</span>:
 $$
 \text{Prevalence}<em _in="\in" g="g" i="i">g^{(b)} = \frac{\sum</em> \times 100
 $$} w_{i}^{(b)}}{\sum_{i} w_{i}^{(b)}</p>
 <h3 id="variance-bootstrap">Variance (Bootstrap)<a class="headerlink" href="#variance-bootstrap" title="Permanent link">&para;</a></h3>
-<p>$$
-\text{Variance}<em b="1">g = \frac{1}{B} \sum</em>_g \right)^2
-$$}^{B} \left( \text{Prevalence}_g^{(b)} - \text{Prevalence</p>
+<div class="arithmatex">\[
+\text{Variance}_g = \frac{1}{B} \sum_{b=1}^{B} \left( \text{Prevalence}_g^{(b)} - \text{Prevalence}_g \right)^2
+\]</div>
 <h3 id="standard-deviation">Standard Deviation<a class="headerlink" href="#standard-deviation" title="Permanent link">&para;</a></h3>
-<p>$$
+<div class="arithmatex">\[
 \text{StdDev}_g = \sqrt{\text{Variance}_g}
-$$</p>
+\]</div>
 <h3 id="95-confidence-interval">95% Confidence Interval<a class="headerlink" href="#95-confidence-interval" title="Permanent link">&para;</a></h3>
-<p>$$
+<div class="arithmatex">\[
 \text{CI Lower}_g = \text{Prevalence}_g - 2.0 \times \text{StdDev}_g
 $$
 $$
 \text{CI Upper}_g = \text{Prevalence}_g + 2.0 \times \text{StdDev}_g
-$$</p>
+\]</div>
 <h3 id="coefficient-of-variation-cv">Coefficient of Variation (CV)<a class="headerlink" href="#coefficient-of-variation-cv" title="Permanent link">&para;</a></h3>
-<p>$$
+<div class="arithmatex">\[
 \text{CV}_g = \frac{\text{StdDev}_g}{\text{Prevalence}_g} \times 100
-$$</p>
+\]</div>
 <h3 id="error-margin-for-error-bars">Error Margin (for error bars)<a class="headerlink" href="#error-margin-for-error-bars" title="Permanent link">&para;</a></h3>
-<p>$$
+<div class="arithmatex">\[
 \text{Error}_g = 2.0 \times \text{StdDev}_g
-$$</p>
+\]</div>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Weighted Population</strong>: Represents the estimated population size for each group, calculated as the sum of survey weights.</li>
@@ -1510,6 +1510,10 @@ $$</p>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
