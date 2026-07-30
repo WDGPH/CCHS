@@ -1340,20 +1340,20 @@
 - <span class="arithmatex">\(y_i\)</span> be an indicator variable (1 if record <span class="arithmatex">\(i\)</span> is in group <span class="arithmatex">\(g\)</span>, 0 otherwise)
 - <span class="arithmatex">\(B\)</span> be the number of bootstrap replicates</p>
 <h3 id="weighted-population">Weighted Population<a class="headerlink" href="#weighted-population" title="Permanent link">&para;</a></h3>
-<p>For group <span class="arithmatex">\(g\)</span>:
-$$
-\text{Weighted Population}<em _in="\in" g="g" i="i">g = \sum</em> w_i
-$$</p>
+<p>For group <span class="arithmatex">\(g\)</span>:</p>
+<div class="arithmatex">\[
+\text{Weighted Population}_g = \sum_{i \in g} w_i
+\]</div>
 <h3 id="weighted-prevalence-main-weight">Weighted Prevalence (Main Weight)<a class="headerlink" href="#weighted-prevalence-main-weight" title="Permanent link">&para;</a></h3>
-<p>For group <span class="arithmatex">\(g\)</span>:
-$$
-\text{Prevalence}<em _in="\in" g="g" i="i">g = \frac{\sum</em> \times 100
-$$} w_i}{\sum_{i} w_i</p>
+<p>For group <span class="arithmatex">\(g\)</span>:</p>
+<div class="arithmatex">\[
+\text{Prevalence}_g = \frac{\sum_{i \in g} w_i}{\sum_{i} w_i} \times 100
+\]</div>
 <h3 id="weighted-prevalence-bootstrap-replicates">Weighted Prevalence (Bootstrap Replicates)<a class="headerlink" href="#weighted-prevalence-bootstrap-replicates" title="Permanent link">&para;</a></h3>
-<p>For each bootstrap replicate <span class="arithmatex">\(b\)</span>:
-$$
-\text{Prevalence}<em _in="\in" g="g" i="i">g^{(b)} = \frac{\sum</em> \times 100
-$$} w_{i}^{(b)}}{\sum_{i} w_{i}^{(b)}</p>
+<p>For each bootstrap replicate <span class="arithmatex">\(b\)</span>:</p>
+<div class="arithmatex">\[
+\text{Prevalence}_g^{(b)} = \frac{\sum_{i \in g} w_{i}^{(b)}}{\sum_{i} w_{i}^{(b)}} \times 100
+\]</div>
 <h3 id="variance-bootstrap">Variance (Bootstrap)<a class="headerlink" href="#variance-bootstrap" title="Permanent link">&para;</a></h3>
 <div class="arithmatex">\[
 \text{Variance}_g = \frac{1}{B} \sum_{b=1}^{B} \left( \text{Prevalence}_g^{(b)} - \text{Prevalence}_g \right)^2
@@ -1389,8 +1389,8 @@ $$
 </span></code></pre></div>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://www150.statcan.gc.ca/n1/pub/12-002-x/2011001/article/11425-eng.html">Statistics Canada: Bootstrap Weights</a></li>
-<li><a href="https://www.cambridge.org/core/books/bootstrap-methods-and-their-application/">Bootstrap Methods and Their Application (Davison &amp; Hinkley, 1997)</a></li>
+<li><a href="https://www150.statcan.gc.ca/n1/pub/12-002-x/2014001/article/11901-eng.htm">Statistics Canada: Weighted Estimation and Bootstrap Variance Estimation for Analyzing Survey Data</a></li>
+<li><a href="https://doi.org/10.1017/CBO9780511802843">Bootstrap Methods and Their Application (Davison &amp; Hinkley, 1997)</a></li>
 </ul>
 
 
