@@ -58,6 +58,15 @@ between years.
 `data/` and local codebook PDFs are Git-ignored. Do not commit CCHS microdata,
 derived respondent-level files, bootstrap weights, or codebooks.
 
+The `harmonization/CCHS_<year>.json`, `crosswalk.json`, and `categories.json`
+files are also Git-ignored and not distributed with this repository, since
+they are extracted from codebook documentation each organization must obtain
+under its own CCHS agreement. Generate them locally with
+`scripts/extract_codebook.py`, `scripts/build_crosswalk.py`, and
+`scripts/harmonize_categories.py` - see
+[Adding a New CCHS Cycle](ADDING_A_CYCLE.md) and
+[Third-party data and metadata](THIRD_PARTY_DATA.md).
+
 ## Install and run locally
 
 Requirements:
