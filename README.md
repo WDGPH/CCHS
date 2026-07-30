@@ -1,5 +1,9 @@
 # CCHS Bootstrap Analysis Tool
 
+[![CI](https://github.com/WDGPH/CCHS/actions/workflows/ci.yml/badge.svg)](https://github.com/WDGPH/CCHS/actions/workflows/ci.yml)
+[![docs](https://github.com/WDGPH/CCHS/actions/workflows/docs.yml/badge.svg)](https://github.com/WDGPH/CCHS/actions/workflows/docs.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A local Streamlit application for public health analysts and epidemiologists who
 work with Canadian Community Health Survey (CCHS) data. It supports geographic
 filtering, bootstrap prevalence estimates, CCHS release-quality indicators,
