@@ -8,7 +8,7 @@ readme = "README.md"
 license = { text = "MIT" }
 
 dependencies = [
-  "streamlit==1.60.0",
+  "streamlit==1.62.0",
   "pandas==3.0.5",
   "numpy==2.4.6",
   "pyarrow==24.0.0",
