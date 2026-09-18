@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/WDGPH/CCHS/actions/workflows/ci.yml/badge.svg)](https://github.com/WDGPH/CCHS/actions/workflows/ci.yml)
 [![docs](https://github.com/WDGPH/CCHS/actions/workflows/docs.yml/badge.svg)](https://github.com/WDGPH/CCHS/actions/workflows/docs.yml)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/WDGPH/CCHS)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A local Streamlit application for public health analysts and epidemiologists who
