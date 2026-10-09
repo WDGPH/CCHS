@@ -12,6 +12,29 @@ from src.data.harmonizer import (
 )
 
 
+def test_pooled_variance_matches_external_r_survey_benchmark():
+    # Independently obtained with scripts/validate_pooled_variance.R:
+    # R 4.6.0, survey 4.5; explicit full replicate weights and mse=True.
+    # Unequal annual weights and changing replicate totals exercise the ratio.
+    data = pd.DataFrame({
+        "CYCLE": ["2022", "2022", "2023", "2023", "2024", "2024"],
+        "OUTCOME": [1, 0, 1, 0, 1, 0],
+        "WTS_S": [2, 3, 4, 2, 3, 6],
+        "BSW1": [3, 2, 5, 3, 2, 7],
+        "BSW2": [1, 5, 2, 2, 4, 4],
+        "BSW3": [4, 4, 6, 1, 5, 8],
+    })
+    result = run_cycle_pooled_analysis(data, "OUTCOME").set_index("Value")
+    assert result.loc[1, "Prevalence"] == pytest.approx(45.0, abs=1e-12)
+    assert result.loc[1, "Variance"] == pytest.approx(
+        85.542898251371724, rel=1e-12, abs=1e-12
+    )
+    assert result.loc[0, "Variance"] == pytest.approx(
+        85.542898251371724, rel=1e-12, abs=1e-12
+    )
+    assert result.loc[1, "Weighted Population"] == pytest.approx(3.0)
+
+
 def test_pooling_scales_weights_to_average_annual_population():
     data = pd.DataFrame(
         {

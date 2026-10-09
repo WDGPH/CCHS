@@ -76,12 +76,14 @@ def run_cycle_pooled_analysis(
     cycles. The pooled weighted population therefore represents an average
     annual population, rather than the sum of annual populations.
 
-    CCHS cycles are independent samples. For each cycle, replicate estimates
+    Assuming the annual samples are independent, replicate estimates
     replace only that cycle's scaled main weights with its scaled bootstrap
     weights while the other cycles remain at their main weights. The pooled
     variance is the sum of those cycle-specific replicate variances. This
-    avoids the arbitrary cross-cycle covariance introduced by pairing
-    replicate numbers from independent cycle files.
+    uses separate sets of perturbations rather than relying on alignment of
+    replicate numbers across cycle files. Independence and the 1/B replicate
+    variance scale must be confirmed for the supplied annual weight files.
+    See bootstrap_analysis_documentation.md for formulas and source guidance.
     """
     if variable_col not in merged_data.columns:
         raise ValueError(f"Cycle pooling is missing required column(s): {variable_col}")
