@@ -38,3 +38,9 @@ wheels/
 data/precomputed/*.parquet
 data/precomputed/*.pkl
 data/precomputed/*.json
+
+# Local variable dictionaries and generated harmonization metadata
+/harmonization/CCHS_*.json
+/harmonization/categories.json
+/harmonization/crosswalk.json
+/harmonization/cchs_harmonization_provenance.json
