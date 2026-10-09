@@ -121,6 +121,34 @@ def test_pooling_rejects_incomplete_replicate_weights():
         run_cycle_pooled_analysis(data, "OUTCOME")
 
 
+def test_pooling_excludes_null_outcomes_from_all_denominators():
+    data = pd.DataFrame({
+        "CYCLE": ["2023", "2023", "2023", "2024", "2024", "2024"],
+        "OUTCOME": [1, None, 0, 1, 0, None],
+        "WTS_S": [1., 999., 1., 2., 1., 999.],
+        "BSW1": [1.2, 99999., .8, 2.4, .6, 99999.],
+        "BSW2": [.8, 99999., 1.2, 1.6, 1.4, 99999.],
+    })
+    result = run_cycle_pooled_analysis(data, "OUTCOME").set_index("Value")
+    assert result.loc[1, "Prevalence"] == pytest.approx(60.)
+    assert result.loc[1, "Weighted Population"] == pytest.approx(1.5)
+    assert result.loc[1, "Unweighted Numerator"] == 2
+    assert result.loc[1, "Unweighted Denominator"] == 4
+    # Cycle 2023 perturbs prevalence by +/-4 points; 2024 by +/-8.
+    assert result.loc[1, "Variance"] == pytest.approx(4.**2 + 8.**2)
+    assert result["Prevalence"].sum() == pytest.approx(100.)
+
+
+@pytest.mark.parametrize("expected_cycles", [None, ["2022", "2023", "2024"]])
+def test_pooling_rejects_cycle_without_any_observed_responses(expected_cycles):
+    data = pd.DataFrame({
+        "CYCLE": ["2022", "2023", "2024"], "OUTCOME": [1, 0, None],
+        "WTS_S": [1., 1., 1.], "BSW1": [1., 1., 1.],
+    })
+    with pytest.raises(ValueError, match="missing: 2024"):
+        run_cycle_pooled_analysis(data, "OUTCOME", expected_cycles=expected_cycles)
+
+
 def test_pooling_harmonizes_different_cycle_codes_to_shared_labels():
     data = pd.DataFrame(
         {

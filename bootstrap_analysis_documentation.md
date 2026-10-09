@@ -3,6 +3,12 @@
 ## Overview
 Bootstrap analysis is a statistical resampling technique used to estimate the variability (such as variance, standard deviation, and confidence intervals) of a statistic (e.g., prevalence) by repeatedly sampling from the data with replacement. In this project, bootstrapping is used to provide robust estimates of prevalence and associated uncertainty for survey data, accounting for complex survey design via bootstrap weights.
 
+Null outcomes are excluded from main-weight, replicate-weight, and unweighted
+denominators together. Explicit survey response codes (including valid skip,
+not stated, and refusal) remain categories in the default analysis. To estimate
+among retained response categories, use the response-domain recalculation option.
+Pooling stops if a selected cycle has no non-null responses for the variable.
+
 ## Process Steps
 
 ### 1. Data Preparation

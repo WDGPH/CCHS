@@ -69,8 +69,17 @@ def run_cycle_pooled_analysis(
     avoids the arbitrary cross-cycle covariance introduced by pairing
     replicate numbers from independent cycle files.
     """
+    if variable_col not in merged_data.columns:
+        raise ValueError(f"Cycle pooling is missing required column(s): {variable_col}")
+    if expected_cycles is None and cycle_col in merged_data.columns:
+        expected_cycles = merged_data[cycle_col].dropna().unique()
+    # A null outcome cannot contribute to a response numerator or denominator.
+    # Explicit survey codes such as valid skip remain ordinary categories.
+    analysis_data = merged_data.loc[merged_data[variable_col].notna()]
+    if analysis_data.empty:
+        raise ValueError("Cycle pooling has no non-missing responses to analyze.")
     cycles, bootstrap_cols, numeric_weights = _validate_pooling_inputs(
-        merged_data, variable_col, weight_col, cycle_col
+        analysis_data, variable_col, weight_col, cycle_col
     )
     if expected_cycles is not None:
         expected = {str(cycle) for cycle in expected_cycles}
@@ -88,7 +97,7 @@ def run_cycle_pooled_analysis(
                 + "; ".join(details)
                 + ")."
             )
-    data = merged_data.copy()
+    data = analysis_data.copy()
     data[[weight_col, *bootstrap_cols]] = numeric_weights
 
     cycle_count = len(cycles)
@@ -177,12 +186,17 @@ def run_bootstrap_analysis_for_all_values(
     Perform bootstrap analysis using vectorized groupby operations.
     Computes weighted prevalences and bootstrap variances.
     """
+    merged_data = merged_data.loc[merged_data[variable_col].notna()]
+    if merged_data.empty:
+        raise ValueError("No non-missing responses to analyze.")
     # Identify bootstrap weight columns (those starting with 'BSW')
     bootstrap_cols = _bootstrap_columns(merged_data)
     
     # Precompute total weights for base and bootstrap replicates
     total_weight_base = merged_data[weight_col].sum()
     total_weights_boot = {col: merged_data[col].sum() for col in bootstrap_cols}
+    if total_weight_base <= 0 or any(total <= 0 for total in total_weights_boot.values()):
+        raise ValueError("Response denominators require positive main and bootstrap weight totals.")
     
     # Compute weighted sums for the base weight grouped by the selected variable
     base_numerators = merged_data.groupby(variable_col)[weight_col].sum()
