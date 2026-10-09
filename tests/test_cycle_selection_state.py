@@ -144,3 +144,36 @@ def test_app_recalculates_pooled_results_from_prepared_data(synthetic_app):
     assert not app.error
     assert any("Recalculated estimates" in message.value for message in app.success)
     pd.testing.assert_frame_equal(app.session_state["combined_results"], original)
+
+
+def test_reapplying_filters_discards_previous_results(synthetic_app):
+    app = synthetic_app.run()
+    app.radio(key="analysis_mode_selector").set_value("Cycle Pooling").run()
+    apply_filters(app)
+    analyze(app)
+
+    apply_filters(app)
+
+    assert not app.exception
+    assert app.session_state["merged_data"] is not None
+    assert app.session_state["combined_results"] is None
+    assert app.session_state["selected_variables"] == ["OUTCOME"]
+
+
+def test_failed_analysis_cannot_display_results_from_previous_run(synthetic_app, monkeypatch):
+    from src.analysis import bootstrap
+
+    app = synthetic_app.run()
+    app.radio(key="analysis_mode_selector").set_value("Cycle Pooling").run()
+    apply_filters(app)
+    analyze(app)
+
+    def fail(*args, **kwargs):
+        raise ValueError("Synthetic analysis failure")
+
+    monkeypatch.setattr(bootstrap, "run_cycle_pooled_analysis", fail)
+    next(button for button in app.button if button.label == "Analyze Selected Variables").click().run()
+
+    assert not app.exception
+    assert any("Synthetic analysis failure" in error.value for error in app.error)
+    assert app.session_state["combined_results"] is None

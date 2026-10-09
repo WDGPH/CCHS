@@ -310,6 +310,9 @@ def main():
     
     # Main content area - Auto-merge data after filtering
     if apply_filters:
+        # Prepared data and results belong to the previously applied filters.
+        for state_key in ['filtered_data', 'merged_data', 'combined_results']:
+            set_session_state(state_key, None)
         with st.spinner("🔄 Applying geographic and inclusion flag filters and preparing data..."):
             # Apply geographic filters first
             filtered_data = apply_region_filter(
@@ -511,6 +514,7 @@ def main():
             
             # Single variable analysis with harmonization support
             if run_single:
+                set_session_state('combined_results', None)
                 combined_results = []
                 progress_bar = st.progress(0)
                 status_text = st.empty()
@@ -659,6 +663,7 @@ def main():
             
             # Batch analysis with harmonization support
             if run_batch:
+                set_session_state('combined_results', None)
                 # Get all available variables based on harmonization setting
                 if is_multi_cycle_mode:
                     analysis_variables = available_harmonized_vars if available_harmonized_vars else []
