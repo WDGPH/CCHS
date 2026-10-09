@@ -65,4 +65,4 @@ and generated analysis data out of commits.
 ## Contact
 
 For questions that are not suited to a public issue, you can reach the maintainer at
-dna.automation@wdgpublichealth.ca.
+innovation@wdgpublichealth.ca.

@@ -94,7 +94,9 @@ def main():
             print(f"   Invalid/missing: {', '.join(invalid_cycles)}")
             return 1
     
-    # Load crosswalk and categories
+    # Load crosswalk (used for column renaming) and validate categories.json
+    # (used at display time by the app, not by precompute, but a broken file
+    # here should be caught before shipping)
     print("\n📋 Loading crosswalk and categories...")
     try:
         crosswalk = load_crosswalk()
@@ -102,22 +104,21 @@ def main():
     except Exception as e:
         print(f"❌ Failed to load crosswalk: {e}")
         return 1
-    
+
     try:
         categories = load_categories()
         print(f"✅ Loaded categories: {len(categories)} variables with mappings")
     except Exception as e:
         print(f"❌ Failed to load categories: {e}")
         return 1
-    
+
     # Precompute all cycles
     print(f"\n🔄 Precomputing {len(args.cycles)} cycle(s)...")
     print("-" * 80)
-    
+
     results = precompute_all_cycles(
         cycles=args.cycles,
         crosswalk=crosswalk,
-        categories=categories,
         data_path=args.data_path,
         save_dir=output_dir
     )

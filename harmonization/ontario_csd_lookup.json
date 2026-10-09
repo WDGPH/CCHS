@@ -1800,8 +1800,8 @@
     "type": "IRI"
   },
   "3552001": {
-    "label": "French River / Rivi\u00e8re des Fran\u00e7ais (3552001)",
-    "name": "French River / Rivi\u00e8re des Fran\u00e7ais",
+    "label": "French River / Rivière des Français (3552001)",
+    "name": "French River / Rivière des Français",
     "type": "M"
   },
   "3552004": {
@@ -2085,8 +2085,8 @@
     "type": "T"
   },
   "3556077": {
-    "label": "Mattice-Val C\u00f4t\u00e9 (3556077)",
-    "name": "Mattice-Val C\u00f4t\u00e9",
+    "label": "Mattice-Val Côté (3556077)",
+    "name": "Mattice-Val Côté",
     "type": "TP"
   },
   "3556091": {
@@ -2437,7 +2437,7 @@
   "3558076": {
     "label": "Aroland (3558076)",
     "name": "Aroland",
-    "type": "S-\u00c9"
+    "type": "S-É"
   },
   "3558077": {
     "label": "Lake Nipigon (3558077)",
@@ -2802,7 +2802,7 @@
   "3560081": {
     "label": "Lansdowne House (3560081)",
     "name": "Lansdowne House",
-    "type": "S-\u00c9"
+    "type": "S-É"
   },
   "3560082": {
     "label": "Shoal Lake (Part) 40 (3560082)",
@@ -2827,7 +2827,7 @@
   "3560086": {
     "label": "Summer Beaver (3560086)",
     "name": "Summer Beaver",
-    "type": "S-\u00c9"
+    "type": "S-É"
   },
   "3560088": {
     "label": "Wapekeka 2 (3560088)",
@@ -2847,7 +2847,7 @@
   "3560091": {
     "label": "Peawanuck (3560091)",
     "name": "Peawanuck",
-    "type": "S-\u00c9"
+    "type": "S-É"
   },
   "3560093": {
     "label": "Neskantaga (3560093)",

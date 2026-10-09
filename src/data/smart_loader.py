@@ -17,18 +17,16 @@ from src.data.precompute import (
 def smart_load_cycle(
     cycle: str,
     crosswalk: Dict = None,
-    categories: Dict = None,
     use_precompute: bool = True
 ) -> Tuple[pd.DataFrame, pd.DataFrame, Dict, bool]:
     """
     Smart loader that uses precomputed data when available, falls back to real-time.
-    
+
     Args:
         cycle: Cycle name (e.g., "2021")
         crosswalk: Crosswalk dictionary (needed for real-time harmonization)
-        categories: Categories dictionary (needed for real-time harmonization)
         use_precompute: Whether to attempt using precomputed data
-    
+
     Returns:
         Tuple of (harmonized_data, bootstrap_data, metadata, is_precomputed)
     """
@@ -93,18 +91,16 @@ def smart_load_cycle(
 def smart_load_multiple_cycles(
     cycles: List[str],
     crosswalk: Dict = None,
-    categories: Dict = None,
     use_precompute: bool = True
 ) -> Dict[str, Dict]:
     """
     Load multiple cycles using smart loading.
-    
+
     Args:
         cycles: List of cycle years to load
         crosswalk: Crosswalk dictionary (needed for real-time fallback)
-        categories: Categories dictionary (needed for real-time fallback)
         use_precompute: Whether to attempt using precomputed data
-    
+
     Returns:
         Dict mapping cycle -> {
             'data': DataFrame,
@@ -114,11 +110,11 @@ def smart_load_multiple_cycles(
         }
     """
     results = {}
-    
+
     for cycle in cycles:
         try:
             data, bootstrap, metadata, is_precomputed = smart_load_cycle(
-                cycle, crosswalk, categories, use_precompute
+                cycle, crosswalk, use_precompute
             )
             results[cycle] = {
                 'data': data,
@@ -138,19 +134,17 @@ def smart_load_multiple_cycles(
 def get_common_vars_smart(
     cycles: List[str],
     crosswalk: Dict = None,
-    categories: Dict = None,
     use_precompute: bool = True
 ) -> List[str]:
     """
     Get common variables across cycles using smart approach.
     Uses precomputed metadata when available for speed.
-    
+
     Args:
         cycles: List of cycle years
         crosswalk: Crosswalk dictionary (needed for real-time fallback)
-        categories: Categories dictionary
         use_precompute: Whether to attempt using precomputed data
-    
+
     Returns:
         Sorted list of common harmonized variable names
     """
@@ -158,20 +152,20 @@ def get_common_vars_smart(
     if use_precompute:
         status = check_precompute_status(cycles)
         all_precomputed = all(status.get(c, False) for c in cycles)
-        
+
         if all_precomputed:
             # Fast path - use precomputed metadata
             try:
                 return get_common_variables(cycles)
             except Exception as e:
                 print(f"⚠️ Failed to get common vars from precomputed: {e}")
-    
+
     # Slow path - load and check manually
-    cycle_data = smart_load_multiple_cycles(cycles, crosswalk, categories, use_precompute)
-    
+    cycle_data = smart_load_multiple_cycles(cycles, crosswalk, use_precompute)
+
     if not cycle_data:
         return []
-    
+
     # Get intersection of available vars
     all_vars = [set(result['metadata']['available_vars']) for result in cycle_data.values()]
     common = set.intersection(*all_vars) if all_vars else set()
@@ -181,24 +175,22 @@ def get_common_vars_smart(
 def load_and_combine_cycles_smart(
     cycles: List[str],
     crosswalk: Dict = None,
-    categories: Dict = None,
     use_precompute: bool = True
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Load multiple cycles and combine into single DataFrames.
     Smart loader that uses precomputed data when available.
-    
+
     Args:
         cycles: List of cycle years to load and combine
         crosswalk: Crosswalk dictionary (needed for real-time fallback)
-        categories: Categories dictionary
         use_precompute: Whether to attempt using precomputed data
-    
+
     Returns:
         Tuple of (combined_data, combined_bootstrap)
     """
     # Load all cycles
-    cycle_data = smart_load_multiple_cycles(cycles, crosswalk, categories, use_precompute)
+    cycle_data = smart_load_multiple_cycles(cycles, crosswalk, use_precompute)
     
     if not cycle_data:
         raise ValueError("No cycles were successfully loaded")

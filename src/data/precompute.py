@@ -138,25 +138,26 @@ def get_common_variables(cycles: List[str], save_dir: Path = PRECOMPUTE_DIR) -> 
 def precompute_cycle_data(
     cycle: str,
     crosswalk: Dict,
-    categories: Dict,
     data_path: str = "data",
     save_dir: Path = PRECOMPUTE_DIR
 ) -> Tuple[pd.DataFrame, pd.DataFrame, Dict]:
     """
     Precompute harmonized data for a single cycle.
-    
+
     Creates:
     - harmonized_data_{cycle}.parquet: Harmonized survey data
     - harmonized_bootstrap_{cycle}.parquet: Bootstrap weights with ONT_ID
     - metadata_{cycle}.json: Variable metadata and availability
-    
+
+    Category value labels are not baked in here - they're resolved at
+    display time from categories.json via get_value_label().
+
     Args:
         cycle: Cycle year (e.g., "2021")
         crosswalk: Crosswalk dictionary for variable harmonization
-        categories: Categories dictionary for value label harmonization
         data_path: Path to raw data files
         save_dir: Directory to save precomputed files
-    
+
     Returns:
         Tuple of (harmonized_data, harmonized_bootstrap, metadata)
     """
@@ -243,29 +244,27 @@ def precompute_cycle_data(
 def precompute_all_cycles(
     cycles: List[str],
     crosswalk: Dict,
-    categories: Dict,
     data_path: str = "data",
     save_dir: Path = PRECOMPUTE_DIR
 ) -> Dict[str, Dict]:
     """
     Precompute data for all specified cycles.
-    
+
     Args:
         cycles: List of cycle years to precompute
         crosswalk: Crosswalk dictionary
-        categories: Categories dictionary
         data_path: Path to raw data files
         save_dir: Directory to save precomputed files
-    
+
     Returns:
         Dictionary mapping cycle -> {'data': DataFrame, 'bootstrap': DataFrame, 'metadata': Dict}
     """
     results = {}
-    
+
     for cycle in cycles:
         try:
             data, bootstrap, meta = precompute_cycle_data(
-                cycle, crosswalk, categories, data_path, save_dir
+                cycle, crosswalk, data_path, save_dir
             )
             results[cycle] = {
                 'data': data,
@@ -283,7 +282,6 @@ def precompute_all_cycles(
 def run_precompute_workflow(
     cycles: List[str],
     crosswalk: Dict,
-    categories: Dict,
     data_path: str = "data",
     save_dir: Path = PRECOMPUTE_DIR
 ) -> Dict:
@@ -293,7 +291,6 @@ def run_precompute_workflow(
     Args:
         cycles: List of cycle years to precompute
         crosswalk: Crosswalk dictionary
-        categories: Categories dictionary
         data_path: Path to raw data files
         save_dir: Directory to save precomputed files
 
@@ -303,7 +300,6 @@ def run_precompute_workflow(
     results = precompute_all_cycles(
         cycles=cycles,
         crosswalk=crosswalk,
-        categories=categories,
         data_path=data_path,
         save_dir=save_dir,
     )

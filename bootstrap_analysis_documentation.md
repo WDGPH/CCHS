@@ -90,18 +90,21 @@ Let:
 
 ### Weighted Population
 For group $g$:
+
 $$
 \text{Weighted Population}_g = \sum_{i \in g} w_i
 $$
 
 ### Weighted Prevalence (Main Weight)
 For group $g$:
+
 $$
 \text{Prevalence}_g = \frac{\sum_{i \in g} w_i}{\sum_{i} w_i} \times 100
 $$
 
 ### Weighted Prevalence (Bootstrap Replicates)
 For each bootstrap replicate $b$:
+
 $$
 \text{Prevalence}_g^{(b)} = \frac{\sum_{i \in g} w_{i}^{(b)}}{\sum_{i} w_{i}^{(b)}} \times 100
 $$
@@ -162,7 +165,7 @@ requirements. Tests use synthetic records and contain no local variable metadata
 | Replicate variance specification | Use squared deviations about the full-sample estimate with explicit replicate scaling; verify weight type and scaling for the supplied files. | Lumley, **svrepdesign**, arguments `mse`, `scale`, `rscales`, `combined.weights`, and `bootstrap.average`, [official survey package documentation](https://r-survey.r-forge.r-project.org/pkgdown/docs/reference/svrepdesign.html). |
 | Label normalization | NFKC normalization and case folding reconcile spelling representation; description/category matching is a screening check. Reject duplicate or malformed labels rather than infer a recode. | [Python Unicode normalization](https://docs.python.org/3/library/unicodedata.html#unicodedata.normalize) and [case folding](https://docs.python.org/3/library/stdtypes.html#str.casefold); substantive comparability remains subject-matter review under Thomas and Wannell (2009). |
 | Input integrity and stale results | Reject incomplete identities, invalid weights, or empty selected domains; discard prepared results when their inputs change. | Application engineering safeguards, verified by regression tests; these are not claimed as separately prescribed Statistics Canada rules. |
-| Release indicators and confidence convention | Existing implementation uses `z=2`, and A/E/F proportion rules transcribed from the CCHS 2024 guide. | [Local transcription of Sections 10–11](docs/CCHS_2024_Data_Quality_Standards.md), August 2025 edition. The original guide is not available in this checkout; those edition-specific rules still require source verification before publication. |
+| Release indicators and confidence convention | Existing implementation uses `z=2`, and A/E/F proportion rules transcribed from the CCHS 2024 guide. | [Local transcription of Sections 10–11](https://github.com/WDGPH/CCHS/blob/main/docs/CCHS_2024_Data_Quality_Standards.md), August 2025 edition. The original guide is not available in this checkout; those edition-specific rules still require source verification before publication. |
 
 ### Exact pooled estimator
 
@@ -228,3 +231,7 @@ combined CCHS weight release.
 - Minimum age, code normalization, and description matching do not harmonize
   question universes, collection-mode effects, geography boundaries, or missing
   response mechanisms. The analyst review remains necessary.
+
+## References
+- [Statistics Canada: Weighted Estimation and Bootstrap Variance Estimation for Analyzing Survey Data](https://www150.statcan.gc.ca/n1/pub/12-002-x/2014001/article/11901-eng.htm)
+- [Bootstrap Methods and Their Application (Davison & Hinkley, 1997)](https://doi.org/10.1017/CBO9780511802843)
