@@ -13,9 +13,27 @@ POOLED_VALUE_COLUMN = "__POOLED_HARMONIZED_VALUE__"
 def _category_key(value):
     if pd.isna(value):
         return None
-    if isinstance(value, float) and value.is_integer():
-        return str(int(value))
-    return str(value)
+    key = str(value).strip()
+    # Survey files often store integer codes as floats while dictionaries use
+    # zero-padded strings. Normalize both sides without rounding other codes.
+    if re.fullmatch(r"[+-]?\d+(?:\.0+)?", key):
+        return str(int(key.partition(".")[0]))
+    return key
+
+
+def _normalize_category_mapping(mapping, variable, cycle):
+    normalized = {}
+    for code, label in mapping.items():
+        key = _category_key(code)
+        if key is None:
+            raise ValueError(f"Category mapping for {variable} in cycle {cycle} has a missing code.")
+        if key in normalized and normalized[key] != label:
+            raise ValueError(
+                f"Category mapping for {variable} in cycle {cycle} has conflicting "
+                f"labels for equivalent code {key}."
+            )
+        normalized[key] = label
+    return normalized
 
 
 def _normalize_metadata_text(value):
@@ -147,7 +165,10 @@ def prepare_pooled_variable(
             if categories
             else {}
         )
-    cycle_mappings = {cycle: mappings.get(cycle, {}) for cycle in cycles}
+    cycle_mappings = {
+        cycle: _normalize_category_mapping(mappings.get(cycle, {}), variable, cycle)
+        for cycle in cycles
+    }
     cycles_with_mappings = [cycle for cycle, mapping in cycle_mappings.items() if mapping]
 
     if not cycles_with_mappings:

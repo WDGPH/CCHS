@@ -146,6 +146,42 @@ def test_pooling_harmonizes_different_cycle_codes_to_shared_labels():
     assert prepared[variable].tolist() == ["Yes", "Yes"]
 
 
+@pytest.mark.parametrize("values", [[1.0, 3.0], [1, 3], ["01", "03"], [" 1.0 ", "003"]])
+def test_pooling_matches_numeric_and_zero_padded_category_codes(values):
+    data = pd.DataFrame({"CYCLE": ["2023", "2024"], "OUTCOME": values})
+    categories = {"OUTCOME": {"mappings": {
+        "2023": {"01": "Daily", "03": "Former"},
+        "2024": {"1": "Daily", "3": "Former"},
+    }}}
+
+    prepared, column, _ = prepare_pooled_variable(data, "OUTCOME", categories)
+
+    assert prepared[column].tolist() == ["Daily", "Former"]
+
+
+def test_pooling_does_not_round_fractional_or_alphanumeric_codes():
+    data = pd.DataFrame({"CYCLE": ["2023", "2024"], "OUTCOME": [1.5, "01A"]})
+    categories = {"OUTCOME": {"mappings": {
+        "2023": {"1.5": "Fractional", "1": "Integer"},
+        "2024": {"01A": "Alphanumeric", "1": "Integer"},
+    }}}
+
+    prepared, column, _ = prepare_pooled_variable(data, "OUTCOME", categories)
+
+    assert prepared[column].tolist() == ["Fractional", "Alphanumeric"]
+
+
+def test_pooling_rejects_conflicting_equivalent_category_codes():
+    data = pd.DataFrame({"CYCLE": ["2023", "2024"], "OUTCOME": [1, 1]})
+    categories = {"OUTCOME": {"mappings": {
+        "2023": {"01": "Yes", "1": "No"},
+        "2024": {"1": "Yes"},
+    }}}
+
+    with pytest.raises(ValueError, match="conflicting.*equivalent code 1"):
+        prepare_pooled_variable(data, "OUTCOME", categories)
+
+
 def test_pooling_rejects_partial_category_harmonization():
     data = pd.DataFrame(
         {
