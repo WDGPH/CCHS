@@ -56,14 +56,37 @@ Trends** to see year-to-year changes.
             st.markdown("""
 **Where does the weighting approach come from?**
 
+**Recent official guidance and applications**
+
+- [CCHS 2024 methodology](https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&Id=1531795),
+  **Description**: users can combine collection years with consistent design
+  and population representation to study smaller populations or rare characteristics.
+- [Islam and Gilmour, *Mood disorders among older Canadians* (17 December 2025)](https://www150.statcan.gc.ca/n1/pub/82-003-x/2025012/article/00002-eng.htm),
+  **Analytical approach**: Statistics Canada combines nine annual cycles
+  (2015–2023), rescales both sampling and bootstrap weights by a factor of nine,
+  and interprets estimates as the average population over those years.
+- [Islam and Gilmour, *Anxiety disorders among older Canadians* (18 December 2024)](https://www150.statcan.gc.ca/n1/pub/82-003-x/2024012/article/00001-eng.htm),
+  **Analytical approach**: eight annual cycles (2015–2022) are pooled, with sampling
+  weights rescaled by a factor of eight and an average-population interpretation.
+- [Official CCHS 2023/2024 combined-data release (16 December 2025)](https://www150.statcan.gc.ca/n1/daily-quotidien/251216/dq251216d-eng.htm),
+  **Note to readers**: the two-year reference period represents the average
+  population aged 18+. This release describes Statistics Canada's own combined
+  file; pooling annual files in this application does not reproduce that file.
+
+These recent publications support period pooling and rescaling. The studies are
+applications to particular questions and populations, not blanket approval to
+combine any years or validation of this application's exact variance calculation.
+
+**Foundational explanation**
+
 [Thomas and Wannell (2009), *Combining cycles of the Canadian Community Health
 Survey*](https://www150.statcan.gc.ca/n1/pub/82-003-x/2009001/article/10795/findings-resultats-eng.htm),
 section **The pooled approach**, describes combining respondent records and
 bootstrap files, and rescaling weights to represent the population of interest.
 The [CCHS 2010 User Guide](https://www.statcan.gc.ca/en/statistical-programs/document/3226_D7_T9_V8),
 section **8.8, Weighting for a two-year file**, gives the example of dividing
-annual weights by two. This application extends the equal scaling to the number
-of selected annual cycles.
+annual weights by two. The 2010 guide is historical background; the recent
+Statistics Canada studies above show continued use of the pooling approach.
 
 **How does this application calculate uncertainty?**
 
