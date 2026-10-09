@@ -41,6 +41,7 @@ from src.ui.sidebar import (
     create_apply_filters_section
 )
 from src.ui.results import display_results, display_crosstab_report, display_multi_cycle_results, is_multi_cycle
+from src.ui.pooling_guidance import display_pooling_guidance
 from src.utils.session import (
     initialize_session_state, get_session_state, set_session_state,
     synchronize_analysis_cycles,
@@ -146,11 +147,7 @@ def main():
             st.stop()
 
         if is_pooling_mode:
-            st.info(
-                "Cycle Pooling combines all selected cycles into one average-period "
-                "estimate. Main and bootstrap weights are divided by the number "
-                "of cycles; uncertainty is calculated across independent cycles."
-            )
+            display_pooling_guidance(selected_cycles)
         else:
             st.info(
                 "Multi-Cycle Trends calculates estimates independently for each "
