@@ -89,6 +89,47 @@ def test_pooling_rejects_one_cycle():
         run_cycle_pooled_analysis(data, "OUTCOME")
 
 
+@pytest.mark.parametrize("bad_cycle", [None, float("nan"), "", "  "])
+def test_pooling_rejects_unidentified_records(bad_cycle):
+    data = pd.DataFrame({
+        "CYCLE": ["2023", "2024", bad_cycle], "OUTCOME": [0, 1, None],
+        "WTS_S": [1., 1., 99.], "BSW1": [1., 1., 999.],
+    })
+    with pytest.raises(ValueError, match="cycle identifier for every record"):
+        run_cycle_pooled_analysis(data, "OUTCOME", expected_cycles=["2023", "2024"])
+
+
+def test_pooling_does_not_count_mixed_identifier_types_as_two_cycles():
+    data = pd.DataFrame({
+        "CYCLE": [2023, "2023"], "OUTCOME": [0, 1],
+        "WTS_S": [1., 1.], "BSW1": [1., 1.],
+    })
+    with pytest.raises(ValueError, match="at least two"):
+        run_cycle_pooled_analysis(data, "OUTCOME")
+
+
+def test_pooling_normalizes_cycle_identifiers_for_variance_and_completeness():
+    data = pd.DataFrame({
+        "CYCLE": [2023, " 2023 ", "2024", "2024"], "OUTCOME": [0, 1, 0, 1],
+        "WTS_S": [1., 1., 1., 1.], "BSW1": [1.2, .8, 1.2, .8],
+        "BSW2": [.8, 1.2, .8, 1.2],
+    })
+    result = run_cycle_pooled_analysis(
+        data, "OUTCOME", expected_cycles=["2023", "2024"]
+    ).set_index("Value")
+    assert result.loc[1, "Cycle Count"] == 2
+    assert result.loc[1, "Variance"] == pytest.approx(50.)
+
+
+def test_pooling_rejects_a_cycle_with_no_positive_main_weight():
+    data = pd.DataFrame({
+        "CYCLE": ["2023", "2024"], "OUTCOME": [0, 1],
+        "WTS_S": [0., 1.], "BSW1": [0., 1.],
+    })
+    with pytest.raises(ValueError, match="positive main-weight totals.*2023"):
+        run_cycle_pooled_analysis(data, "OUTCOME")
+
+
 def test_pooling_rejects_selected_cycle_lost_after_filtering():
     data = pd.DataFrame(
         {

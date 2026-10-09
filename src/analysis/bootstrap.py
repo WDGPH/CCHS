@@ -11,6 +11,15 @@ def _bootstrap_columns(data):
     return [col for col in data.columns if col.startswith(BOOTSTRAP_PREFIX)]
 
 
+def _cycle_labels(data, cycle_col):
+    if cycle_col not in data.columns:
+        raise ValueError(f"Cycle pooling is missing required column(s): {cycle_col}")
+    labels = data[cycle_col].astype(str).str.strip()
+    if data[cycle_col].isna().any() or labels.eq("").any():
+        raise ValueError("Cycle pooling requires a non-missing, non-blank cycle identifier for every record.")
+    return labels
+
+
 def _validate_pooling_inputs(data, variable_col, weight_col, cycle_col):
     required = {cycle_col, variable_col, weight_col}
     missing = required.difference(data.columns)
@@ -20,7 +29,8 @@ def _validate_pooling_inputs(data, variable_col, weight_col, cycle_col):
             + ", ".join(sorted(missing))
         )
 
-    cycles = [str(value) for value in data[cycle_col].dropna().unique()]
+    cycle_labels = _cycle_labels(data, cycle_col)
+    cycles = cycle_labels.unique().tolist()
     if len(cycles) < 2:
         raise ValueError("Cycle pooling requires at least two non-empty cycles.")
 
@@ -44,6 +54,10 @@ def _validate_pooling_inputs(data, variable_col, weight_col, cycle_col):
         raise ValueError("Cycle pooling does not allow negative survey weights.")
     if numeric_weights[weight_col].sum() <= 0:
         raise ValueError("Cycle pooling requires a positive total survey weight.")
+    cycle_totals = numeric_weights[weight_col].groupby(cycle_labels).sum()
+    if (cycle_totals <= 0).any():
+        invalid = ", ".join(cycle_totals.index[cycle_totals <= 0])
+        raise ValueError(f"Cycle pooling requires positive main-weight totals in every cycle: {invalid}.")
 
     return cycles, bootstrap_cols, numeric_weights
 
@@ -71,8 +85,9 @@ def run_cycle_pooled_analysis(
     """
     if variable_col not in merged_data.columns:
         raise ValueError(f"Cycle pooling is missing required column(s): {variable_col}")
-    if expected_cycles is None and cycle_col in merged_data.columns:
-        expected_cycles = merged_data[cycle_col].dropna().unique()
+    original_cycles = _cycle_labels(merged_data, cycle_col)
+    if expected_cycles is None:
+        expected_cycles = original_cycles.unique()
     # A null outcome cannot contribute to a response numerator or denominator.
     # Explicit survey codes such as valid skip remain ordinary categories.
     analysis_data = merged_data.loc[merged_data[variable_col].notna()]
@@ -82,7 +97,7 @@ def run_cycle_pooled_analysis(
         analysis_data, variable_col, weight_col, cycle_col
     )
     if expected_cycles is not None:
-        expected = {str(cycle) for cycle in expected_cycles}
+        expected = {str(cycle).strip() for cycle in expected_cycles}
         observed = set(cycles)
         if observed != expected:
             missing = sorted(expected - observed)
@@ -98,6 +113,7 @@ def run_cycle_pooled_analysis(
                 + ")."
             )
     data = analysis_data.copy()
+    data[cycle_col] = _cycle_labels(data, cycle_col)
     data[[weight_col, *bootstrap_cols]] = numeric_weights
 
     cycle_count = len(cycles)
@@ -111,7 +127,7 @@ def run_cycle_pooled_analysis(
 
     variance = pd.Series(0.0, index=base_prevalence.index)
     for cycle in cycles:
-        cycle_mask = data[cycle_col].astype(str).eq(cycle)
+        cycle_mask = data[cycle_col].eq(cycle)
         cycle_data = data.loc[cycle_mask]
 
         cycle_main_denominator = cycle_data[weight_col].sum() * scale

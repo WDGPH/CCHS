@@ -66,6 +66,9 @@ codes must map completely in every selected cycle when categorical metadata is
 available; otherwise the pooled estimate is stopped. All selected cycles must
 also retain records after filtering and provide complete, finite, non-negative
 main and replicate weights.
+Every input record must have a non-null, non-blank cycle identifier. Each cycle
+must have a positive main-weight total in the analyzed response domain; a cycle
+with records but zero main weight cannot count toward the annual average.
 
 ## Key Functions
 - `run_bootstrap_analysis_for_all_values`: Core function for bootstrap analysis.

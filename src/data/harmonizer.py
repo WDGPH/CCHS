@@ -171,7 +171,7 @@ def prepare_pooled_variable(
             f"Pooling requires both {variable!r} and {cycle_col!r} columns."
         )
 
-    cycles = [str(value) for value in data[cycle_col].dropna().unique()]
+    cycles = data[cycle_col].dropna().astype(str).str.strip().unique().tolist()
     if cycle_variable_info is not None:
         mappings = {}
         variable_crosswalk = (crosswalk or {}).get(variable, {})
@@ -215,7 +215,7 @@ def prepare_pooled_variable(
     result = data.copy()
     result[POOLED_VALUE_COLUMN] = pd.NA
     for cycle, mapping in cycle_mappings.items():
-        mask = result[cycle_col].astype(str).eq(cycle)
+        mask = result[cycle_col].astype(str).str.strip().eq(cycle)
         values = result.loc[mask, variable]
         keys = values.map(_category_key)
         unmapped = sorted(set(keys.dropna()) - set(mapping))
