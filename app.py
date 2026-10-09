@@ -36,7 +36,10 @@ from src.ui.sidebar import (
     create_apply_filters_section
 )
 from src.ui.results import display_results, display_crosstab_report, display_multi_cycle_results, is_multi_cycle
-from src.utils.session import initialize_session_state, get_session_state, set_session_state
+from src.utils.session import (
+    initialize_session_state, get_session_state, set_session_state,
+    synchronize_analysis_cycles,
+)
 from src.utils.helpers import (
     validate_data_columns, 
     create_excel_download, 
@@ -127,6 +130,7 @@ def main():
         selected_cycles = create_multi_cycle_selector(
             crosswalk, {}, pooling=is_pooling_mode
         )
+        synchronize_analysis_cycles(selected_cycles)
         
         if not selected_cycles:
             st.warning("⚠️ Please select at least one cycle to proceed.")
@@ -244,6 +248,7 @@ def main():
     else:
         # Single cycle mode - use sidebar selector only
         cycle = create_cycle_selector()
+        synchronize_analysis_cycles([cycle])
         set_session_state('cycle', cycle)
         
         # Load data based on selected cycle
