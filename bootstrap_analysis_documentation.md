@@ -46,6 +46,14 @@ The mean squared replicate deviation is calculated for each cycle, and these
 independent-cycle variance contributions are summed. This avoids imposing a
 false covariance by pairing replicate numbers across separate annual files.
 
+The results table's **Recalculate %** option reruns the analysis on records in
+the displayed response categories. Main and replicate denominators, variance,
+confidence intervals, sample counts, and release flags all use that response
+domain. Intervals are never obtained by scaling the original interval. A separate
+CSV download contains the recalculated results; the main export retains the
+original analysis. Recalculation is unavailable without respondent data and
+stops if a selected cycle has no records in the retained response domain.
+
 Only variables present in every cycle are offered. Cycle-specific data-dictionary
 categories take precedence over generated category mappings. Observed response
 codes must map completely in every selected cycle when categorical metadata is

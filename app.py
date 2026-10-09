@@ -6,6 +6,7 @@ Main entry point using modular components with multi-cycle support
 import streamlit as st
 import pandas as pd
 import time
+from functools import partial
 
 # Import all modules from the refactored structure
 from config.settings import APP_BRANDING, PAGE_CONFIG, DEFAULT_CYCLE, AVAILABLE_CYCLES
@@ -21,6 +22,7 @@ from src.analysis.bootstrap import (
     run_bootstrap_analysis_for_all_values,
     run_cycle_pooled_analysis,
 )
+from src.analysis.domains import recalculate_response_domain
 from src.ui.components import (
     display_data_metrics, create_content_card, create_workflow_stepper,
     get_quality_badge, display_quality_legend
@@ -774,6 +776,27 @@ def main():
     # Consolidated results dashboard (removed duplicate crosstab section)
     combined_results = get_session_state('combined_results')
     if combined_results is not None:
+        def response_recalculator(variable, results, cycle_year=None):
+            analysis_data = get_session_state('merged_data')
+            if analysis_data is None:
+                return None
+            if cycle_year is not None:
+                analysis_data = analysis_data.loc[analysis_data['CYCLE'].eq(cycle_year)]
+            actual_variable = (
+                get_cycle_varname(variable, cycle, crosswalk)
+                if analysis_mode == "Single Cycle" and use_harmonized and crosswalk
+                else variable
+            )
+            return partial(
+                recalculate_response_domain, analysis_data, actual_variable,
+                original_results=results, pooling=is_pooling_mode,
+                standards_cycle=(max(selected_cycles) if is_pooling_mode else cycle_year or cycle),
+                expected_cycles=(selected_cycles if is_pooling_mode else None),
+                categories=categories,
+                cycle_variable_info=(cycle_var_info_dict if is_pooling_mode else None),
+                crosswalk=crosswalk,
+            )
+
         st.markdown("---")
         
         # Enhanced results header with cycle info
@@ -827,7 +850,14 @@ def main():
                 st.subheader("Cycle Comparison Visualizations")
                 for variable in get_session_state('selected_variables'):
                     var_desc = merged_desc_dict.get(variable, None)
-                    display_multi_cycle_results(combined_results, variable, var_desc)
+                    display_multi_cycle_results(
+                        combined_results, variable, var_desc,
+                        recalculate_by_cycle=lambda year, var=variable: response_recalculator(
+                            var, combined_results.loc[
+                                combined_results['Variable'].eq(var) & combined_results['CYCLE'].eq(year)
+                            ], year,
+                        ),
+                    )
                 
                 st.markdown("---")
             elif analysis_mode in {"Single Cycle", "Cycle Pooling"} and get_session_state('selected_variables'):
@@ -842,6 +872,7 @@ def main():
                             use_labels='Label' in var_results.columns,
                             variable_description=var_desc,
                             standards_cycle=(max(selected_cycles) if is_pooling_mode else cycle),
+                            recalculate=response_recalculator(variable, var_results),
                         )
                 
                 st.markdown("---")

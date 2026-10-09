@@ -25,6 +25,7 @@ def display_results(
     show_info_expander=True,
     cycle_suffix=None,
     standards_cycle: Optional[str] = None,
+    recalculate=None,
 ):
     """Display the analysis results as a modern styled table and enhanced chart."""
     import hashlib
@@ -72,8 +73,9 @@ def display_results(
             "🔄 Recalculate %",
             value=False,
             key=f"recalc_pct_{result_id}",
-            help="Show % only among those who answered"
-        )
+            help="Recompute estimates and bootstrap uncertainty for the displayed response categories",
+            disabled=recalculate is None,
+        ) and recalculate is not None
     
     with col3:
         show_debug = st.checkbox(
@@ -127,24 +129,20 @@ def display_results(
         else:
             st.warning("⚠️ No skip/missing categories detected")
     
-    # Recalculate percentages if requested
+    # Changing the response domain requires a new analysis of replicate weights.
     if recalculate_pct and not display_df.empty:
-        total_valid = display_df['Weighted Population'].sum()
-        if total_valid > 0:
-            display_df = display_df.copy()
-            display_df['Original Prevalence'] = display_df['Prevalence'].copy()
-            display_df['Prevalence'] = (display_df['Weighted Population'] / total_valid) * 100
-            
-            # Recalculate confidence intervals proportionally
-            # Avoid division by zero
-            with pd.option_context('mode.chained_assignment', None):
-                scale_factor = display_df['Prevalence'] / display_df['Original Prevalence'].replace(0, 1)
-                display_df['CI Lower'] = display_df['Prevalence'] - (display_df['Error'] * scale_factor).fillna(0)
-                display_df['CI Upper'] = display_df['Prevalence'] + (display_df['Error'] * scale_factor).fillna(0)
-            
-            st.success(f"✅ Recalculated among {filtered_count} response(s) (weighted pop: {total_valid:,.0f})")
-        else:
-            st.error("❌ Cannot recalculate: no valid weighted population")
+        try:
+            display_df = recalculate(display_df['Value'].tolist())
+        except ValueError as error:
+            st.error(f"Cannot recalculate this response domain: {error}")
+            return
+        st.success(f"✅ Recalculated estimates, uncertainty, and release flags for {len(display_df)} response categories")
+        st.download_button(
+            "Download recalculated results (CSV)",
+            display_df.to_csv(index=False).encode('utf-8'),
+            file_name=f"cchs_{variable}_response_domain.csv",
+            mime="text/csv", key=f"recalculated_csv_{result_id}",
+        )
     
     # Add info box explaining response categories with actual data examples (only if not nested)
     if show_info_expander:
@@ -191,7 +189,7 @@ def display_results(
     if show_release_flags and release_flag_available:
         display_release_flag_legend()
         if recalculate_pct:
-            st.caption("Release flags reflect the original bootstrap estimate, not the recalculated display-only percentages.")
+            st.caption("Release flags use the recalculated response domain. The main export contains the original analysis; use the response-domain download for these results.")
     else:
         display_quality_legend()
 
@@ -299,7 +297,7 @@ def display_results(
             rename_dict[var] = new_name
 
 
-def display_multi_cycle_results(results_df: pd.DataFrame, variable: str, variable_description: Optional[str] = None):
+def display_multi_cycle_results(results_df: pd.DataFrame, variable: str, variable_description: Optional[str] = None, recalculate_by_cycle=None):
     """Display multi-cycle analysis results with comparison visualizations."""
     from src.ui.comparisons import (
         plot_cycle_trends, 
@@ -385,6 +383,7 @@ def display_multi_cycle_results(results_df: pd.DataFrame, variable: str, variabl
                 show_info_expander=False,
                 cycle_suffix=cycle,
                 standards_cycle=cycle,
+                recalculate=(recalculate_by_cycle(cycle) if recalculate_by_cycle else None),
             )
 
 

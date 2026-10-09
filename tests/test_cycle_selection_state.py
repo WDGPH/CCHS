@@ -127,3 +127,20 @@ def test_single_cycle_change_discards_previous_analysis(synthetic_app):
     apply_filters(app)
     assert set(app.session_state["merged_data"]["CYCLE"]) == {new_cycle}
     assert app.multiselect(key="variable_multiselect").value == []
+
+
+def test_app_recalculates_pooled_results_from_prepared_data(synthetic_app):
+    app = synthetic_app.run()
+    app.radio(key="analysis_mode_selector").set_value("Cycle Pooling").run()
+    apply_filters(app)
+    analyze(app)
+    original = app.session_state["combined_results"].copy()
+
+    recalculate = next(cb for cb in app.checkbox if cb.label == "🔄 Recalculate %")
+    assert not recalculate.disabled
+    recalculate.check().run()
+
+    assert not app.exception
+    assert not app.error
+    assert any("Recalculated estimates" in message.value for message in app.success)
+    pd.testing.assert_frame_equal(app.session_state["combined_results"], original)
