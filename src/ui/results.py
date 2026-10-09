@@ -9,6 +9,7 @@ from src.ui.components import (
     display_release_flag_legend,
 )
 from src.analysis.quality import QUALITY_FLAG_CYCLES
+from src.analysis.domains import is_nonresponse_label
 
 
 def is_multi_cycle(results_df: pd.DataFrame) -> bool:
@@ -108,13 +109,6 @@ def display_results(
         st.write("Value column:", display_df['Value'].tolist())
     
     if filter_skips:
-        # Define skip/missing patterns to filter
-        skip_patterns = [
-            'valid skip', 'skip', 'not stated', 'not stated', 'don\'t know', 
-            'refusal', 'not applicable', 'refused', 'n/a', 'na', 
-            'missing', 'dk', 'ns'
-        ]
-        
         # Check which column to filter on
         filter_column = None
         if 'Label' in display_df.columns and display_df['Label'].notna().any():
@@ -124,17 +118,7 @@ def display_results(
             filter_column = 'Value'
             st.write(f"🔍 Filtering on: {filter_column} column")
         
-        # Create mask - keep rows that DON'T contain any skip patterns
-        def should_keep_row(val):
-            if pd.isna(val):
-                return True
-            val_str = str(val).lower().strip()
-            for pattern in skip_patterns:
-                if pattern in val_str:
-                    return False
-            return True
-        
-        mask = display_df[filter_column].apply(should_keep_row)
+        mask = ~display_df[filter_column].apply(is_nonresponse_label)
         display_df = display_df[mask].copy()
         filtered_count = len(display_df)
         
