@@ -24,17 +24,12 @@ if it isn't live yet).
 - **Single Cycle** calculates estimates for one CCHS year.
 - **Multi-Cycle Trends** calculates each selected year independently and compares
   the resulting estimates across years.
+- **Cycle Pooling** combines two or more selected years into one average-period
+  estimate to improve precision for small geographic populations.
 
 Multi-Cycle Trends does **not** pool respondent-level records or weights across
-cycles. Cycle pooling is a requested future feature and will require a separately
-validated statistical design before implementation.
-
-### Future cycle-pooling work
-
-Pooling is intentionally out of scope for the current release. A future design
-must define combined-cycle weights, target population and time-period semantics,
-variance estimation, cycle effects, comparability rules, and release-quality
-validation before any pooled estimate is exposed in the interface.
+cycles. Cycle Pooling is a separate workflow with explicit pooled-weight,
+variance, harmonization, and completeness checks.
 
 Supported configurations currently include CCHS 2021, 2022, 2023, and 2024.
 
@@ -113,6 +108,48 @@ Harmonized names make equivalent variables easier to compare, but analysts must
 still confirm that concepts and response categories are comparable across years.
 The generated crosswalk uses automated matching and requires subject-matter
 review.
+
+## Cycle-pooling workflow
+
+1. Select **Cycle Pooling** and choose at least two cycles.
+2. Apply the same geography, inclusion, and age settings to every cycle.
+3. Choose variables available across all selected cycles.
+4. Run the analysis and review the single pooled estimate, confidence interval,
+   release flag, and combined unweighted sample size.
+
+Pooling enforces the common minimum age across selected cycles: 12+ for
+2021–2022, and 18+ whenever 2023 or 2024 is included. Complete numeric respondent
+ages are required. A selected cycle must retain records after this restriction.
+Selections crossing the 2022 redesign require an explicit analyst compatibility
+review. Geographic filtering across 2016 and 2021 census vintages also requires
+review of boundaries and codes. The review is scoped to the selected cycles and
+filters; it does not certify that the survey concepts are comparable. Population
+scope and review status are included in pooled exports.
+
+These age and design requirements follow Statistics Canada's methodology for
+[2022](https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&Id=1383236) and
+[2023](https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&Id=1496481).
+
+For `K` selected annual cycles, every main and bootstrap weight is scaled by
+`1 / K`. Weighted populations therefore represent the average annual population
+over the selected period, not the sum of annual populations. Prevalence is a
+population-weighted average-period estimate.
+
+Cycles are treated as independent samples for variance estimation. Replicates
+replace one cycle's scaled weights at a time, and the resulting cycle-specific
+variance contributions are summed. Replicate numbers from different annual
+files are not treated as paired or correlated.
+
+Pooling stops when a selected cycle has no records after filtering, replicate
+weights are missing or invalid, or category mappings are only partially
+harmonized. Cycle-specific data-dictionary categories are used ahead of the
+generated category file so incomplete generated mappings do not block otherwise
+compatible cycles. Equivalent label spellings use a shared category identity;
+malformed labels and duplicate labels for distinct codes stop pooling until the
+dictionary has been reviewed. Pooling increases sample size but does not repair a change in survey
+concept, collection method, geography, or target population. Analysts must
+confirm that the selected cycles and variables are substantively comparable and
+that an average-period estimate is appropriate.
 
 ## Statistical outputs
 
