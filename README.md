@@ -113,7 +113,9 @@ Pooling stops when a selected cycle has no records after filtering, replicate
 weights are missing or invalid, or category mappings are only partially
 harmonized. Cycle-specific data-dictionary categories are used ahead of the
 generated category file so incomplete generated mappings do not block otherwise
-compatible cycles. Pooling increases sample size but does not repair a change in survey
+compatible cycles. Equivalent label spellings use a shared category identity;
+malformed labels and duplicate labels for distinct codes stop pooling until the
+dictionary has been reviewed. Pooling increases sample size but does not repair a change in survey
 concept, collection method, geography, or target population. Analysts must
 confirm that the selected cycles and variables are substantively comparable and
 that an average-period estimate is appropriate.

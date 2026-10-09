@@ -41,6 +41,26 @@ def _normalize_metadata_text(value):
     return " ".join(re.sub(r"[^\w]+", " ", text).split())
 
 
+def _validated_category_mapping(mapping, variable, cycle):
+    normalized = _normalize_category_mapping(mapping, variable, cycle)
+    label_codes = {}
+    for code, label in normalized.items():
+        label_key = _normalize_metadata_text(label)
+        if not isinstance(label, str) or not label_key:
+            raise ValueError(
+                f"Category mapping for {variable} in cycle {cycle} has an empty "
+                f"or malformed label for code {code}."
+            )
+        if label_key in label_codes:
+            raise ValueError(
+                f"Category mapping for {variable} in cycle {cycle} has ambiguous "
+                f"duplicate labels for codes {label_codes[label_key]} and {code}. "
+                "Review the data dictionary before pooling."
+            )
+        label_codes[label_key] = code
+    return normalized
+
+
 def assess_harmonized_compatibility(
     variable: str,
     cycles: list,
@@ -67,11 +87,13 @@ def assess_harmonized_compatibility(
         description = _normalize_metadata_text(variable_info.get("description"))
         if not description:
             return False, f"No description for {cycle_variable} in cycle {cycle}."
-        category_labels = {
-            _normalize_metadata_text(label)
-            for label in variable_info.get("categories", {}).values()
-            if _normalize_metadata_text(label)
-        }
+        try:
+            mapping = _validated_category_mapping(
+                variable_info.get("categories", {}), variable, cycle
+            )
+        except ValueError as error:
+            return False, str(error)
+        category_labels = {_normalize_metadata_text(label) for label in mapping.values()}
         metadata.append((cycle, cycle_variable, description, category_labels))
 
     descriptions = {item[2] for item in metadata}
@@ -166,7 +188,7 @@ def prepare_pooled_variable(
             else {}
         )
     cycle_mappings = {
-        cycle: _normalize_category_mapping(mappings.get(cycle, {}), variable, cycle)
+        cycle: _validated_category_mapping(mappings.get(cycle, {}), variable, cycle)
         for cycle in cycles
     }
     cycles_with_mappings = [cycle for cycle, mapping in cycle_mappings.items() if mapping]
@@ -179,6 +201,16 @@ def prepare_pooled_variable(
             f"Category harmonization for {variable} is incomplete; no mapping "
             f"is available for cycle(s): {', '.join(missing)}."
         )
+
+    # Use the same identity rule for compatibility checks and response grouping.
+    # Choose stable display labels regardless of cycle selection order.
+    canonical_labels = {}
+    for cycle in sorted(cycle_mappings):
+        for label in cycle_mappings[cycle].values():
+            canonical_labels.setdefault(
+                _normalize_metadata_text(label),
+                " ".join(unicodedata.normalize("NFKC", label).split()),
+            )
 
     result = data.copy()
     result[POOLED_VALUE_COLUMN] = pd.NA
@@ -194,7 +226,11 @@ def prepare_pooled_variable(
                 f"Category harmonization for {variable} has unmapped value(s) "
                 f"in cycle {cycle}: {preview}{suffix}."
             )
-        result.loc[mask, POOLED_VALUE_COLUMN] = keys.map(mapping).to_numpy()
+        canonical_mapping = {
+            code: canonical_labels[_normalize_metadata_text(label)]
+            for code, label in mapping.items()
+        }
+        result.loc[mask, POOLED_VALUE_COLUMN] = keys.map(canonical_mapping).to_numpy()
 
     return result, POOLED_VALUE_COLUMN, True
 

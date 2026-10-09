@@ -182,6 +182,48 @@ def test_pooling_rejects_conflicting_equivalent_category_codes():
         prepare_pooled_variable(data, "OUTCOME", categories)
 
 
+def test_pooling_uses_one_category_for_equivalent_label_spellings():
+    data = pd.DataFrame({
+        "CYCLE": ["2024", "2023"], "OUTCOME": [7, 1],
+        "WTS_S": [1., 1.], "BSW1": [1., 1.],
+    })
+    categories = {"OUTCOME": {"mappings": {
+        "2023": {"1": "Very Satisﬁed"},
+        "2024": {"7": " very satisfied "},
+    }}}
+
+    prepared, column, _ = prepare_pooled_variable(data, "OUTCOME", categories)
+    result = run_cycle_pooled_analysis(prepared, column)
+
+    assert result["Value"].tolist() == ["Very Satisfied"]
+    assert result["Prevalence"].tolist() == [100.0]
+    assert result["Unweighted Numerator"].tolist() == [2]
+
+
+@pytest.mark.parametrize("mapping", [
+    {"01": "|", "08": "|"},
+    {"1": "Same", "2": "same"},
+    {"1": ""},
+    {"1": None},
+])
+def test_pooling_rejects_ambiguous_or_malformed_dictionary_labels(mapping):
+    data = pd.DataFrame({"CYCLE": ["2023", "2024"], "OUTCOME": [1, 1]})
+    crosswalk = {"OUTCOME": {"2023": "OUTCOME", "2024": "OUTCOME"}}
+    info = {cycle: {"OUTCOME": {
+        "description": "Synthetic outcome", "categories": mapping,
+    }} for cycle in ["2023", "2024"]}
+
+    compatible, reason = assess_harmonized_compatibility(
+        "OUTCOME", ["2023", "2024"], crosswalk, info
+    )
+    assert compatible is False
+    assert "label" in reason
+    with pytest.raises(ValueError, match="label"):
+        prepare_pooled_variable(
+            data, "OUTCOME", {}, cycle_variable_info=info, crosswalk=crosswalk
+        )
+
+
 def test_pooling_rejects_partial_category_harmonization():
     data = pd.DataFrame(
         {
