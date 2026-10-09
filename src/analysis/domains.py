@@ -66,4 +66,7 @@ def recalculate_response_domain(
         result["Label"] = result["Value"].map(original["Label"])
     if "Variable" in original:
         result["Variable"] = original["Variable"].iloc[0]
+    for column in ["Population Minimum Age", "Compatibility Review"]:
+        if column in original:
+            result[column] = original[column].iloc[0]
     return result

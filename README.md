@@ -99,6 +99,19 @@ review.
 4. Run the analysis and review the single pooled estimate, confidence interval,
    release flag, and combined unweighted sample size.
 
+Pooling enforces the common minimum age across selected cycles: 12+ for
+2021–2022, and 18+ whenever 2023 or 2024 is included. Complete numeric respondent
+ages are required. A selected cycle must retain records after this restriction.
+Selections crossing the 2022 redesign require an explicit analyst compatibility
+review. Geographic filtering across 2016 and 2021 census vintages also requires
+review of boundaries and codes. The review is scoped to the selected cycles and
+filters; it does not certify that the survey concepts are comparable. Population
+scope and review status are included in pooled exports.
+
+These age and design requirements follow Statistics Canada's methodology for
+[2022](https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&Id=1383236) and
+[2023](https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&Id=1496481).
+
 For `K` selected annual cycles, every main and bootstrap weight is scaled by
 `1 / K`. Weighted populations therefore represent the average annual population
 over the selected period, not the sum of annual populations. Prevalence is a

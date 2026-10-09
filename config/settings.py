@@ -19,6 +19,17 @@ APP_BRANDING = {
 AVAILABLE_CYCLES = ["2021", "2022", "2023", "2024"]
 DEFAULT_CYCLE = "2024"
 
+# Pooling must use a common age population and review known design/geography
+# breaks. Update this policy explicitly when adding a survey year.
+# Sources: Statistics Canada survey 3226 methodology for 2022 and 2023;
+# GEODVCSD vintage in the corresponding cycle dictionaries.
+POOLING_CYCLE_POLICIES = {
+    "2021": {"minimum_age": 12, "design": "pre_2022", "csd_vintage": 2016},
+    "2022": {"minimum_age": 12, "design": "2022_onwards", "csd_vintage": 2016},
+    "2023": {"minimum_age": 18, "design": "2022_onwards", "csd_vintage": 2021},
+    "2024": {"minimum_age": 18, "design": "2022_onwards", "csd_vintage": 2021},
+}
+
 # File paths
 DATA_PATH = "data"
 HARMONIZATION_PATH = "harmonization"

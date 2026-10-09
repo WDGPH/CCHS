@@ -7,6 +7,8 @@ import streamlit as st
 import pandas as pd
 import time
 from functools import partial
+import hashlib
+import json
 
 # Import all modules from the refactored structure
 from config.settings import APP_BRANDING, PAGE_CONFIG, DEFAULT_CYCLE, AVAILABLE_CYCLES
@@ -17,6 +19,7 @@ from src.data.loader import (
     load_cycle_variable_info, load_crosswalk, load_categories, merge_data
 )
 from src.data.processor import create_age_groups, apply_region_filter, apply_inclusion_flag_filters
+from src.data.pooling import get_pooling_policy, prepare_pooling_population, annotate_pooling_population
 from src.data.harmonizer import filter_poolable_variables, prepare_pooled_variable
 from src.analysis.bootstrap import (
     run_bootstrap_analysis_for_all_values,
@@ -307,6 +310,32 @@ def main():
     
     # Apply filters button
     apply_filters = create_apply_filters_section()
+
+    pooling_policy = None
+    pooling_reviewed = False
+    if is_pooling_mode:
+        geography_filtered = any(geographic_filters.values())
+        pooling_policy = get_pooling_policy(selected_cycles, geography_filtered)
+        st.info(f"Pooled estimates use the common population aged {pooling_policy['minimum_age']} and older.")
+        if pooling_policy['review_reasons']:
+            for reason in pooling_policy['review_reasons']:
+                st.warning(reason)
+            review_context = json.dumps(
+                [sorted(selected_cycles), geographic_filters, selected_inclusion_flags],
+                sort_keys=True, default=str,
+            )
+            review_key = hashlib.sha256(review_context.encode()).hexdigest()[:16]
+            pooling_reviewed = st.sidebar.checkbox(
+                "I have reviewed survey-design and geography compatibility for these cycles and filters",
+                key=f"pooling_compatibility_review_{review_key}",
+            )
+            if not pooling_reviewed:
+                for state_key in ['filtered_data', 'merged_data', 'combined_results']:
+                    set_session_state(state_key, None)
+                set_session_state('selected_variables', [])
+                st.session_state.pop('variable_multiselect', None)
+                st.info("Complete the compatibility review before preparing pooled data.")
+                st.stop()
     
     # Main content area - Auto-merge data after filtering
     if apply_filters:
@@ -324,6 +353,16 @@ def main():
             # Apply inclusion flag filters if any selected
             if any(selected_inclusion_flags.values()):
                 filtered_data = apply_inclusion_flag_filters(filtered_data, selected_inclusion_flags)
+
+            if is_pooling_mode:
+                try:
+                    filtered_data = prepare_pooling_population(
+                        filtered_data, selected_cycles, reviewed=pooling_reviewed,
+                        geography_filtered=geography_filtered,
+                    )
+                except ValueError as error:
+                    st.error(f"Pooling stopped: {error}")
+                    st.stop()
             
             # Add age groups with user-configured bins/labels
             age_bins = get_session_state('age_bins')
@@ -557,6 +596,7 @@ def main():
                                 expected_cycles=selected_cycles,
                             )
                             result_df['Variable'] = variable
+                            annotate_pooling_population(result_df, pooling_policy)
                             if labels_harmonized:
                                 result_df['Label'] = result_df['Value']
                             elif categories:
@@ -707,6 +747,7 @@ def main():
                                 expected_cycles=selected_cycles,
                             )
                             result_df['Variable'] = variable
+                            annotate_pooling_population(result_df, pooling_policy)
                             if labels_harmonized:
                                 result_df['Label'] = result_df['Value']
                             elif categories:
@@ -967,6 +1008,7 @@ def main():
                                                     standards_cycle=max(selected_cycles),
                                                     expected_cycles=selected_cycles,
                                                 )
+                                                annotate_pooling_population(result_df, pooling_policy)
                                             else:
                                                 result_df = run_bootstrap_analysis_for_all_values(
                                                     group_data,
