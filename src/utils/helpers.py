@@ -85,7 +85,7 @@ def get_cycle_value_label(varname: str, value, cycle_var_info: dict) -> str:
     
     Args:
         varname: Variable name (cycle-specific, not harmonized)
-        value: The value to get label for
+        value (object): The value to get label for
         cycle_var_info: Full cycle variable info from CCHS_YYYY.json
     
     Returns:

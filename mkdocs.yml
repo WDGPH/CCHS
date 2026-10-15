@@ -1,13 +1,6 @@
-extra_css:
-  - stylesheets/extra.css
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-extra:
-  generator: false
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/WDGPH/CCHS
 markdown_extensions:
   - attr_list
   - admonition
@@ -62,37 +55,6 @@ repo_url: https://github.com/WDGPH/CCHS
 repo_name: WDGPH/CCHS
 site_name: CCHS Bootstrap Analysis Tool
 site_description: Documentation for the WDGPH CCHS Bootstrap Analysis Tool
+site_url: https://wdgph.github.io/docs/cchs/latest/
 theme:
-  custom_dir: docs/overrides
-  favicon: assets/wdgph-logo.png
-  features:
-    - content.code.annotate
-    - content.code.copy
-    - navigation.footer
-    - navigation.indexes
-    - navigation.instant
-    - navigation.tabs
-    - navigation.top
-    - search.suggest
-    - search.highlight
-    - toc.follow
-  icon:
-    repo: fontawesome/brands/github
-  logo: assets/wdgph-logo.png
-  logo_footer: assets/wdgph-logo.png
   name: material
-  palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: wdgph
-      accent: wdgph
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: black
-      accent: wdgph
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode

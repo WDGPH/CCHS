@@ -1,7 +1,7 @@
 # CCHS Bootstrap Analysis Tool
 
 [![CI](https://github.com/WDGPH/CCHS/actions/workflows/ci.yml/badge.svg)](https://github.com/WDGPH/CCHS/actions/workflows/ci.yml)
-[![docs](https://github.com/WDGPH/CCHS/actions/workflows/docs.yml/badge.svg)](https://github.com/WDGPH/CCHS/actions/workflows/docs.yml)
+[![Docs](https://img.shields.io/badge/docs-PHIZ-blue)](https://wdgph.github.io/docs/cchs/)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/WDGPH/CCHS)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -16,8 +16,7 @@ age-stratified analysis, exports, and comparisons across annual cycles.
 > privacy policies, and applicable release standards.
 
 Full documentation, including the methodology and code reference, is published
-at <https://wdgph.github.io/CCHS/> (see [Enabling the docs site](#enabling-the-docs-site)
-if it isn't live yet).
+at <https://wdgph.github.io/docs/cchs/>.
 
 ## Analysis modes
 
@@ -174,32 +173,41 @@ Tests and continuous integration do not require CCHS data.
 
 ## Documentation site
 
-The docs site is built with [MkDocs](https://www.mkdocs.org/) and the
-[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) theme,
-pulling its content from this README and the other project markdown files.
+Documentation source stays in this repository. The [PHIZ documentation hub](https://wdgph.github.io/docs/cchs/)
+provides the shared presentation, version selection, search, and publication.
+The Streamlit application continues to run locally as described above.
+
+Build or serve the source documentation with the locked environment:
 
 ```bash
-uv sync --group docs
-uv run mkdocs serve
+uv sync --locked --group docs
+uv run --locked --group docs python -m mkdocs build --strict
+uv run --locked --group docs python -m mkdocs serve
 ```
 
-Open <http://127.0.0.1:8000>. Edits to the markdown files it references are
-picked up automatically.
+Open <http://127.0.0.1:8000> for the local Material preview. The hub applies its
+shared theme when building these same pages. Pull requests and pushes to `main`
+run the strict documentation check; this repository does not publish a docs site.
 
-### Enabling the docs site
+### Notify the documentation hub
 
-The `docs` workflow (`.github/workflows/docs.yml`) builds the site on every
-push to `main` and publishes it to the `gh-pages` branch. To serve it on
-GitHub Pages:
+When `DOCS_HUB_NOTIFY_ENABLED` is true, the no-checkout notification workflow
+uses `DOCS_HUB_TRIGGER_TOKEN` only to dispatch the hub's fixed workflows.
+Documentation builds do not receive that credential. Manual notification requests
+both a development build and release reconciliation; the hub controls publication.
 
-1. Go to the repository's **Settings** tab.
-2. Navigate to **Pages** in the left sidebar.
-3. Under **Source**, select **Deploy from a branch**.
-4. Choose the **gh-pages** branch and **/ (root)** folder.
-5. Click **Save**.
+Pushes to `main` request a full hub build that updates `latest`. Creation or
+updates of stable `vX.Y.Z` tags, and deletion of those tags, request release
+reconciliation. The hub proposes release-lock changes for review and builds the
+complete candidate before a maintainer merges it. The current manual is selected
+by the hub release lock; a tag notification does not select it automatically.
 
-The site becomes available at `https://wdgph.github.io/CCHS/` after the first
-successful run of the workflow on `main`.
+A reused or deleted older tag may have a workflow without this notifier. After
+changing historical tags, run **Notify documentation hub** from `main`, or run the
+hub's **Propose documentation releases** workflow with `source_repo=WDGPH/CCHS`.
+Review corrected or withdrawn versions in the resulting hub pull request.
+Notifications use fixed hub workflows on `main`; they do not check out source
+code or pass credentials to documentation builds. There is no polling workflow.
 
 ## Repository structure
 
