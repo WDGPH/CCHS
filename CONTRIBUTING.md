@@ -6,7 +6,7 @@ requests, documentation improvements, and code.
 
 ## Reporting Issues
 
-- Please use [GitHub Issues](../../issues) to report bugs or request enhancements.
+- Please use [GitHub Issues](https://github.com/WDGPH/CCHS/issues) to report bugs or request enhancements.
 - When reporting a bug, include steps to reproduce, what you expected, what happened,
   and your environment (OS, Python version).
 - For security-sensitive issues, do **not** open a public issue — follow the process
@@ -52,6 +52,13 @@ with `uv add package_name` and commit the updated manifest and lock file.
 > Note: this project does not currently pin an autoformatter or linter in
 > `pyproject.toml`. If you use one locally (e.g. `ruff` or `black`), keep changes
 > scoped to the lines you are editing so diffs stay reviewable.
+
+## Documentation changes
+
+Edit Markdown and API docstrings in this repository. Run the strict documentation
+build in the [project overview](https://github.com/WDGPH/CCHS#documentation-site) before submitting a change.
+The hub owns shared styling and publication; keep local preview configuration
+compatible with the locked documentation dependencies.
 
 ## Contact
 

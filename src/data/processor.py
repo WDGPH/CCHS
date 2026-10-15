@@ -15,13 +15,13 @@ def create_age_groups(df, age_column=None, age_bins=None, age_labels=None):
     - Multi-cycle harmonized: AWCAGE
     
     Args:
-        df: DataFrame containing age data
-        age_column: Optional specific age column name. If None, auto-detects.
-        age_bins: List of bin edges (e.g., [0, 15, 25, 45, 65, 120])
-        age_labels: List of labels for bins (e.g., ['0-14', '15-24', '25-44', '45-64', '65+'])
+        df (pd.DataFrame): DataFrame containing age data
+        age_column (str | None): Specific age column name. If None, auto-detects.
+        age_bins (list | None): List of bin edges (e.g., [0, 15, 25, 45, 65, 120])
+        age_labels (list | None): List of labels for bins (e.g., ['0-14', '15-24', '25-44', '45-64', '65+'])
     
     Returns:
-        DataFrame with AgeGroup column added
+        result (pd.DataFrame): DataFrame with AgeGroup column added
     """
     # Use default bins/labels if not provided
     if age_bins is None:

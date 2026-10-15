@@ -230,7 +230,8 @@ def load_multi_cycle_data(cycles: list, crosswalk: dict, categories: dict):
         categories: Categories dictionary (not used, kept for compatibility)
     
     Returns:
-        Tuple of (combined_data, combined_bootstrap_data) or (None, None) if error
+        frames (tuple[pd.DataFrame | None, pd.DataFrame | None]): Combined survey
+            and bootstrap frames, or (None, None) if an error occurs.
     """
     if not cycles:
         st.error("No cycles specified for multi-cycle loading.")
