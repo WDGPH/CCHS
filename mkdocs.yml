@@ -55,6 +55,6 @@ repo_url: https://github.com/WDGPH/CCHS
 repo_name: WDGPH/CCHS
 site_name: CCHS Bootstrap Analysis Tool
 site_description: Documentation for the WDGPH CCHS Bootstrap Analysis Tool
-site_url: https://wdgph.github.io/docs/cchs/latest/
+site_url: https://docs.phiz.ca/cchs/latest/
 theme:
   name: material

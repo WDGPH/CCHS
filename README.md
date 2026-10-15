@@ -1,7 +1,7 @@
 # CCHS Bootstrap Analysis Tool
 
 [![CI](https://github.com/WDGPH/CCHS/actions/workflows/ci.yml/badge.svg)](https://github.com/WDGPH/CCHS/actions/workflows/ci.yml)
-[![Docs](https://img.shields.io/badge/docs-PHIZ-blue)](https://wdgph.github.io/docs/cchs/)
+[![Docs](https://img.shields.io/badge/docs-PHIZ-blue)](https://docs.phiz.ca/cchs/)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/WDGPH/CCHS)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -16,7 +16,7 @@ age-stratified analysis, exports, and comparisons across annual cycles.
 > privacy policies, and applicable release standards.
 
 Full documentation, including the methodology and code reference, is published
-at <https://wdgph.github.io/docs/cchs/>.
+at <https://docs.phiz.ca/cchs/>.
 
 ## Analysis modes
 
@@ -173,7 +173,7 @@ Tests and continuous integration do not require CCHS data.
 
 ## Documentation site
 
-Documentation source stays in this repository. The [PHIZ documentation hub](https://wdgph.github.io/docs/cchs/)
+Documentation source stays in this repository. The [PHIZ documentation hub](https://docs.phiz.ca/cchs/)
 provides the shared presentation, version selection, search, and publication.
 The Streamlit application continues to run locally as described above.
 
