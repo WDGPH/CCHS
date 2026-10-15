@@ -1,6 +1,12 @@
 # Adding a New CCHS Cycle
 
-This project supports cycle-specific analysis and Multi-Cycle Trends. Trend mode calculates each year independently and compares estimates; it does not pool respondent records or weights across cycles. Adding a new cycle is mostly a data + harmonization workflow, plus a small config update so the UI exposes the new year.
+This project supports cycle-specific analysis, Multi-Cycle Trends, and Cycle Pooling. Trend mode calculates each year independently and compares estimates; it does not pool respondent records or weights across cycles. Adding a new cycle is mostly a data + harmonization workflow, plus a small config update so the UI exposes the new year.
+
+For Cycle Pooling, also review and add the year's `POOLING_CYCLE_POLICIES` entry
+in `config/settings.py`: target-population minimum age, survey-design era, and
+census geography vintage. Pooling rejects years without a reviewed policy.
+The policy guides age restrictions and analyst review; variable descriptions,
+response categories, and geographic boundaries still need subject-matter review.
 
 ## What the app expects
 
