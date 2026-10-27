@@ -25,6 +25,22 @@ def set_session_state(key, value):
     st.session_state[key] = value
 
 
+def synchronize_analysis_cycles(cycles):
+    """Discard prepared data and results when the selected survey years change.
+
+    Run before selection validation and before rendering the variable widget so
+    empty or incomplete selections cannot retain results from previous years.
+    Selection order does not affect the analysis population.
+    """
+    current_cycles = tuple(sorted(str(cycle) for cycle in cycles))
+    if st.session_state.get('analysis_cycles') != current_cycles:
+        for key in ['filtered_data', 'merged_data', 'combined_results']:
+            st.session_state[key] = None
+        st.session_state['selected_variables'] = []
+        st.session_state.pop('variable_multiselect', None)
+        st.session_state['analysis_cycles'] = current_cycles
+
+
 def clear_session_state():
     """Clear all session state variables."""
     for key in ['filtered_data', 'merged_data', 'combined_results', 'selected_variables']:

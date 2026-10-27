@@ -44,6 +44,15 @@ with `uv add package_name` and commit the updated manifest and lock file.
 
 ## Code Style
 
+For each analytical change, document the exact method, primary source and section,
+assumptions, and validation evidence in
+[the methodology guide](bootstrap_analysis_documentation.md). Distinguish
+survey-provider requirements from application choices. Validate estimator changes
+against a hand calculation or an independent implementation with explicit variance
+settings; state any remaining provider-specific checks. Keep each issue in its own
+commit. Use synthetic fixtures and keep local variable dictionaries, survey records,
+and generated analysis data out of commits.
+
 - Follow [PEP 8](https://peps.python.org/pep-0008/) for Python code.
 - Use clear, descriptive variable and function names.
 - Add docstrings and comments only where the intent is non-obvious.
